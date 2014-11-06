@@ -1,0 +1,70 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+
+@media only screen and (min-width: 768px) {
+  ul, ol {
+    margin-left: 1.3em
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #body {
+    font-size:1.15em  
+  }
+
+  h1 {
+    font-size: 2.2em;
+    line-height: 1.2em
+  }
+}
+
+blockquote p {
+  font-size: 0.8em;
+}
+
+.aboutme {
+  position: relative;
+}
+
+.aboutme .aboutme-sns .fa-stack {
+  display: inline-flex;
+}
+
+.aboutme .aboutme-avatar {
+  float: left;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.aboutme .aboutme-name {
+  margin-bottom: 0;
+  padding: 10px 0;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.aboutme .aboutme-avatar:before,
+.aboutme .aboutme-avatar:after {
+  content: " ";
+  display: table;
+}
+
+.aboutme .aboutme-avatar:after {
+  clear: both;
+}
+
+.aboutme .aboutme-sns {
+  position: relative;
+}
+
+
+html .gist .gist-file .gist-meta a[href*='#file'] {
+  right: 0;
+}
+
+.gist .highlight,
+.gist .gist-highlight {
+  width: 100%;
+  margin-bottom: 0;
+}
