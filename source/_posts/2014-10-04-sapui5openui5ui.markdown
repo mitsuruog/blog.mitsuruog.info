@@ -8,6 +8,8 @@ categories:
  - OpenUI5
 ---
 
+> How to create new own controls in OpenUI5(Part 2)
+
 [前回](/2014/09/sapui5openui5ui)に引き続き、OpenUI5にてカスタムUIコントロールを作成する方法の後編です。今回のパートは「既存のUIを拡張する」方法についてです。
 
 今回のデモはこちらで参照できます。

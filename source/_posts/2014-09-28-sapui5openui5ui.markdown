@@ -8,20 +8,14 @@ categories:
  - OpenUI5
 ---
 
-How to create new own controls in OpenUI5(Part 1)
+> How to create new own controls in OpenUI5(Part 1)
 
 OpenUI5はUIフレームワークという名前の通り、多くの優れたUIコントロールを持っていますが、場合によっては少しカスタムして使いたいという要望は時々あります。
-
-OpenUI5 to be called UI framework, it has many usefull controls. but there are sometimes desire to use it with a little custom in some cases.
 
 さて、OpenUI5にてカスタムUIコントロールを作成する方法は「新規で作成する」「既存のUIを拡張する」の2つありますが、少し長くなるので、2部構成で説明していきます。 
 前編は新規で作成する方を説明します。
 
-Methodology of create a custom UI controls in OpenUI5 are two. one is to create new and the other is to extend the existing controls.since a little longer, it will be discussed in two parts.part 1 describes to create new controls in OpenUI5.
-
 今回のデモはこちらで参照できます。
-
-demo here.
 
 [http://mitsuruog.github.io/sapui5-showroom/#/controls](http://mitsuruog.github.io/sapui5-showroom/#/controls)
 
@@ -43,15 +37,11 @@ demo here.
 
 こちらの公式ページの内容をもとに書いています。
 
-Written by based on contents of this official page.
-
 [Developing UI5 Controls in JavaScript](https://openui5.hana.ondemand.com/#docs/guide/91f1703b6f4d1014b6dd926db0e91070.html)
 
 ## 1. 新しいUIコントロールの定義(Definition of UI controls)
 
 新しいUIコントロールを作成するためには、まず`sap.ui.core.Control`を継承する必要があります。以下のコードは新規で`mitsuruog.SayHello`という名前のUIコントロールを定義しています。
-
-First, in order to create a new UI control, need to inherit `sap.ui.core.Control`. following code in definition of new controls named of `mitsuruog.SayHello`.
 
 {% gist 0d78e15894940547077d 1.coffee %}
 
