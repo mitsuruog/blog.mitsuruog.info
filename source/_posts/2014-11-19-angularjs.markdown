@@ -62,7 +62,7 @@ AngularJS開発にあたってYeomanが必須な訳ではありませんので�
 
 {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/why_angular3.png 520 370 %}
 
-本来は、なぜフロント開発がこんなにも複雑になってしまったのかを嘆くべきなのでしょうが。。。
+> 本来は、なぜフロント開発がこんなにも複雑になってしまったのかを嘆くべきなのでしょうが。。。
 
 ## まとめ
 
