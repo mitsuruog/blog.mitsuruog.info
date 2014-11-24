@@ -4,7 +4,7 @@
 
 url: http://blog.mitsuruog.info
 title: I am mitsuruog
-subtitle: Writing about web development related topics, sometimes.
+subtitle: Writing about web development related topics.
 author: mitsuruog
 simple_search: https://www.google.com/search
 description: 
@@ -13,13 +13,17 @@ description:
 # You can customize the format as defined in
 # http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
 # Additionally, %o will give you the ordinal representation of the day
-date_format: "ordinal"
+date_format: "%Y-%m-%d"  # e.g. 2014-07-03
+time_format: "%H:%M"     # 24 hour time
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
+
+gems:
+  - octopress-date-format
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -98,7 +102,7 @@ delicious_count: 3
 
 # Disqus Comments
 disqus_short_name: mitsuruog
-disqus_show_comment_count: true
+disqus_show_comment_count: false
 
 # Google Analytics
 google_analytics_tracking_id: UA-56435197-1
