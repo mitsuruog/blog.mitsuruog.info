@@ -5,6 +5,10 @@ h1 {
   font-size: 1.8em;
 }
 
+#content .blog-index a[rel=full-article] {
+  font-family: inherit;
+}
+
 @media only screen and (min-width: 768px) {
   ul, ol {
     margin-left: 1.3em;
@@ -70,4 +74,21 @@ html .gist .gist-file .gist-meta a[href*='#file'] {
 .gist .gist-highlight {
   width: 100%;
   margin-bottom: 0;
+  background: #002b36 url('/images/noise.png') top left !important;
+}
+
+.gist .line-numbers {
+  width: 12px;
+}
+
+.code pre {
+  border-radius: 0;
+}
+
+.pocket-btn {
+  display: inline;
+}
+
+.fb-like.fb_iframe_widget {
+  vertical-align: super;
 }

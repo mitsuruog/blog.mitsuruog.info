@@ -4,7 +4,7 @@
 
 //$header-bg: #263347;
 //$subtitle-color: lighten($header-bg, 58);
-//$nav-bg: desaturate(lighten(#8fc17a, 18), 5);
+//$nav-bg: #00A8C6;
 //$nav-bg-front: image-url('noise.png');
 //$nav-bg-back: linear-gradient(lighten($nav-bg, 8), $nav-bg, darken($nav-bg, 11));
 //$sidebar-bg: desaturate(#eceff5, 8);
@@ -41,3 +41,15 @@
 //$pre-bg: $base03;
 //$pre-border: darken($base02, 5);
 //$pre-color: $base1;
+
+// Main Section Colors
+$title-color: #555 !default;
+$subtitle-color: #555 !default;
+
+$noise-bg: image-url('bg/tileable_wood_texture.png') top left !default;
+
+// Main Link Colors
+$link-color: #c4a549 !default;
+$link-color-hover: adjust-color($link-color, $lightness: 10, $saturation: 25) !default;
+$link-color-visited: adjust-color($link-color, $lightness: -4) !default;
+$link-color-active: adjust-color($link-color-hover, $lightness: -15) !default;

@@ -31,7 +31,7 @@ nav {
       @include border-radius(.5em);
       @include background-clip(padding-box);
       @include box-shadow(lighten($nav-bg, 2) 0 1px);
-      background-color: lighten($nav-bg, 35);
+      background-color: lighten($nav-bg, 20);
       border: 1px solid $nav-border;
       color: #ddd;
       &:focus {
