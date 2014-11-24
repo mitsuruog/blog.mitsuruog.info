@@ -1,0 +1,23 @@
+.highlight, html .gist .gist-file .gist-syntax .gist-highlight {
+  table {
+    margin-bottom: -1px;
+  }
+}
+
+html .gist .gist-file {  
+  .gist-meta {
+    a[href*='#file'] {
+      position: absolute; top: 0; left:0; right:0;
+    }
+  }
+}
+
+.highlight, .gist-highlight {
+  width: 100%;
+  margin-bottom: 0;
+  background: lighten($base03, 1) $transparent-noise-bg !important;
+}
+
+.code pre {
+  border-radius: 0;
+}

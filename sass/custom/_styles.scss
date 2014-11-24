@@ -5,8 +5,22 @@ h1 {
   font-size: 1.8em;
 }
 
-#content .blog-index a[rel=full-article] {
-  font-family: inherit;
+h3 {
+  margin-left: 0.5em;
+}
+
+@media only screen and (min-width: 992px) {
+  #body { font-size: 1em; }
+  h1 { font-size: 1.5em; line-height: 1.2em; }
+}
+
+#content .blog-index {
+  article h1 {
+    font-size: 1.5em;
+  }
+  a[rel=full-article] {
+    font-family: inherit;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -15,80 +29,17 @@ h1 {
   }
 }
 
-@media only screen and (min-width: 992px) {
-  #body {
-    font-size:1.15em;
+blockquote {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+p, blockquote, ul, ol { margin-bottom: 1em; }
+
+#blog-archives {
+  @media only screen and (min-width: 550px) {
+    article {
+      padding:{left: 6.15em; bottom: .7em;}
+    }
   }
-
-  h1 {
-    font-size: 1.8em;
-    line-height: 1.2em
-  }
-}
-
-blockquote p {
-  font-size: 0.8em;
-}
-
-.aboutme {
-  position: relative;
-}
-
-.aboutme .aboutme-sns .fa-stack {
-  display: inline-flex;
-}
-
-.aboutme .aboutme-avatar {
-  float: left;
-  margin-right: 5px;
-  border-radius: 50%;
-}
-
-.aboutme .aboutme-name {
-  margin-bottom: 0;
-  padding: 10px 0;
-  font-size: 21px;
-  line-height: 21px;
-}
-
-.aboutme .aboutme-avatar:before,
-.aboutme .aboutme-avatar:after {
-  content: " ";
-  display: table;
-}
-
-.aboutme .aboutme-avatar:after {
-  clear: both;
-}
-
-.aboutme .aboutme-sns {
-  position: relative;
-}
-
-
-html .gist .gist-file .gist-meta a[href*='#file'] {
-  right: 0;
-}
-
-.gist .highlight,
-.gist .gist-highlight {
-  width: 100%;
-  margin-bottom: 0;
-  background: #002b36 url('/images/noise.png') top left !important;
-}
-
-.gist .line-numbers {
-  width: 12px;
-}
-
-.code pre {
-  border-radius: 0;
-}
-
-.pocket-btn {
-  display: inline;
-}
-
-.fb-like.fb_iframe_widget {
-  vertical-align: super;
 }
