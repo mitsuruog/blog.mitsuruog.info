@@ -23,6 +23,13 @@ h3 {
   }
 }
 
+#content div.pagination {
+  a {
+    &.prev { position: absolute; right: 0; left: inherit; }
+    &.next { position: absolute; left: 0; right: inherit; }
+  }
+}
+
 @media only screen and (min-width: 768px) {
   ul, ol {
     margin-left: 1.3em;
