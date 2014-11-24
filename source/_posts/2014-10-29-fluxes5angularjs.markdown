@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "話題のFluxアーキテクチャをES5のAngularJSで書いてみた"
-date: 2014-11-05 22:34:47 +0900
+date: 2014-10-29 00:10:00 +0900
 comments: true
 categories:
  - Angular
@@ -39,11 +39,3 @@ Fluxアーキテクチャを使った場合は、Angular wayにならないの�
 
 Angularの場合は、無理してFlux使うより`shared services`の方がコードは読みやすくなると思います。
 そろそろSPAのアーキテクチャについても、かなり出尽くした感がしますね。
-
-```js
-
-var same = '';
-
-```
-
-{% gist 0d78e15894940547077d 1.coffee %}
