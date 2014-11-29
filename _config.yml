@@ -22,9 +22,6 @@ subscribe_email:
 # RSS feeds can list your email address if you like
 email:
 
-gems:
-  - octopress-date-format
-
 # ----------------------- #
 #    Jekyll & Plugins     #
 # ----------------------- #
