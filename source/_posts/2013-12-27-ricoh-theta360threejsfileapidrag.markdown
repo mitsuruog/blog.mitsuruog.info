@@ -7,6 +7,7 @@ categories:
  - HTML5
  - three.js
  - File API
+ - RICOH THETA
 ---
 
 職場の同僚が[RICOH THETA](https://theta360.com/ja/)なる360°写真が撮影できるカメラを買って、何やら面白そうなことをやりたがってたので、three.jsを使って全天球処理するところを手伝いました。  
