@@ -14,6 +14,25 @@ h3 {
   h1 { font-size: 1.5em; line-height: 1.2em; }
 }
 
+article {
+
+  ul {
+    list-style-type: none;
+
+    li {
+      &:before {
+        content: "\f1b0";
+        font-family: FontAwesome;
+        padding: 0 .4em 0 .2em;
+        display: inline-block;
+        width: 1.2em;
+        margin-left: -1.2em;    
+      }
+    }
+  }
+  
+}
+
 #content .blog-index {
   article h1 {
     font-size: 1.5em;
@@ -75,4 +94,11 @@ article {
     padding-bottom: 1.5em;
   }
 
+}
+
+.separator {
+  content: "\f1ae";
+  font-family: FontAwesome;
+  padding: 0 .4em 0 .2em;
+  display: inline-block;
 }
