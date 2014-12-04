@@ -12,7 +12,7 @@ categories:
 この記事は[AngularJS Advent Calendar 2014 - Adventar](http://www.adventar.org/calendars/350)の3日目の記事です。
 
 * 2日目[AngularJS BootstrapUIを利用したFilterSelect(@takeyama)](http://qiita.com/takeyama/items/f6e0fbac4d3b4907193e)
-* 4日目[あと]()
+* 4日目[初心者マークのAngular.js - Uemmra3のフルスタックエンジニア？日記(@Uemmra3)](http://d.hatena.ne.jp/Uemmra3/20141204/1417696122)
 
 AngularJSでそれなりの規模のアプリケーションを書く場合、プロジェクトの構成って結構悩みます。  
 いつも悩んでます。。。  
@@ -41,7 +41,7 @@ johnpapa/angularjs-styleguideの内容を加味しながらやってます。
 まず、それなりの規模開発をする場合のアンチパターンの紹介。johnpapa/angularjs-styleguideにも載っているのですが、俗に`folders-by-type`と呼ばれるものがアンチパターンとされています。  
 AngularJSのモジュールのタイプに合わせてディレクトリを作成して、その中に各機能のjavascriptファイルを格納する方式です。
 
-機能が増えるほど、大変そうなのが想像できるかと思います。
+機能が増えるほど、ファイルが分散して大変そうなのが想像できるかと思います。
 
 ```
 app/
