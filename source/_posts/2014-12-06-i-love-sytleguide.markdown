@@ -22,7 +22,7 @@ categories:
 ちなみにこの記事は[Frontrend Advent Calendar 2014 - Qiita](http://qiita.com/advent-calendar/2014/frontrend)の6日目の記事です。
 
 * 5日目[はじめてのCSS設計 - Qiita(@moschann)](http://qiita.com/moschann/items/c7cbf62056d77cbc1d66)
-* 7日目[あと]()
+* 7日目[CSSのプリプロセスとポストプロセス、そしてReworkとPostCSS(@morishitter)](http://morishitter.hatenablog.com/entry/2014/12/07/000205)
 
 ## 良いスタイルガイドとは
 
@@ -62,7 +62,7 @@ var items = [];
 ```
 > [mitsuruog/Javacript-style-guide | オブジェクト](http://mitsuruog.github.io/javacript-style-guide/#objects)より
 
-スタイルガイドを読むことで基本的な部分では悩まなくなります。基本的なことで悩まないということは、本当にやるべきところで悩むことに集中できると思います。  
+スタイルガイドを読むことで基本的な部分では悩まなくなります。基本的なことで悩まないということは、本当にやるべきところで悩むことに集中するために大切なことです。  
 
 様々な書き方存在する中で良いコードを書くために悩む時間を少なくしたいですね。  
 (とはいえ、悩むのですが。。。) 
