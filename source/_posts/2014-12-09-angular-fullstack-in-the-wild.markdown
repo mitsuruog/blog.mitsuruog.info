@@ -15,7 +15,7 @@ AngularJS開発の厳しい旅のお供にどうぞ。
 この記事は[YEOMAN Advent Calendar 2014 - Adventar](http://www.adventar.org/calendars/356)9日目の記事です。
 
 * 8日目[YEOMAN Advent Calendar 8日目：generator-ember を紹介します - albatrosary's blog](http://albatrosary.hateblo.jp/entry/2014/12/08/120810)
-* 10日目[あと]()
+* 10日目[YEOMAN Advent Calendar 10日目：generator-reveal を紹介します - albatrosary's blog](http://albatrosary.hateblo.jp/entry/2014/12/10/143324)
 
 <!-- more -->
 
