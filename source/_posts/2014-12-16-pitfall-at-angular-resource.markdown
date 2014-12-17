@@ -23,7 +23,7 @@ AngularJSを利用するメリットの1つとして、AngularJSが内包して�
 
 > $resourceの細かい内容については[本家ドキュメント](https://docs.angularjs.org/api/ngResource/service/$resource)か[Qiita](http://qiita.com/search?utf8=%E2%9C%93&sort=rel&q=angular+%24resource)でググるといいと思います。  
 
-私がいつも$resourceを使う場合は`service`か`factory`で利用しています。URLを$resourceに渡すだけで以下のREST APIが実行できるようになります。
+$resourceにURLを渡すだけで以下のような基本的なWebAPIが実行できるようになります。$resourceを使う場合、`service`か`factory`の中で利用することがほとんどですね。
 
 ```
 { 
@@ -35,7 +35,7 @@ AngularJSを利用するメリットの1つとして、AngularJSが内包して�
 };
 ```
 
-また、`PUT`や異なるエンドポイント(URL)などカスタムしたい場合は、$resourceに渡す`actions(3つめの引数)`で追加できるので、使いこなすとバックエンドのAPIを叩く部分では非常に重宝します。
+また、`PUT`や異なるエンドポイント(URL)など、先ほどの基本的なAPIをカスタムしたい場合は、`actions($resourceに渡す3つめの引数)`で使うことで簡単にAPIを追加できるので、使いこなすことが出来るとバックエンドとのWebAPI連携の部分で非常に重宝します。
 
 **user.service.js**
 ```js
@@ -62,9 +62,9 @@ angular.module('app').factory('User', User);
 > し、しらなかったぜ・・・
 
 結論から言うと、$resourceの戻り値は**参照**なので、そこから直接プリミティブ型の値を取り出して他で使う場合には、タイミングによって`undefined`になったりならなかったりするということです。  
-(普通に使う場合は、参照を経由してデータバインドしているので、あんまり問題にならないと思います。)
+(ほとんどの場合、Objectをデータバインドして参照経由で実際の値を見ているので、あんまり問題にならないと思います。)
 
-このハマりポイント、あまり遭遇するケースはないかも知れませんし、原因がわからないまま暫定対応しているとこもあるかと思います。私の場合、ui-routerの`resolve`を使ってcontrollerで必要な情報を取得することが多かったため、よく遭遇していたのだと思います。
+このハマりポイント、あまり遭遇するケースはないかも知れませんし、原因がわからないままなんとなく回避している人もいるかと思います。私の場合、ui-routerの`resolve`を使ってcontrollerで必要な情報を取得することが多かったため、よく遭遇していました。
 
 **app.route.js**
 ```js
@@ -116,7 +116,7 @@ angular.module('app').controller('MainCtrl', MainCtrl);
 
 ## $resourceとの正しい(安全な)付き合いかた
 
-より安全なコードの書き方は、$resourceはpromiseを返してくれるので、次のようのうに`$promise`を使って処理すると安全です。
+より安全なコードの書き方は、$resourceが返すpromiseを、次のように`$promise`から取り出して処理すると安全です。
 
 **main.controller.js**
 ```js
