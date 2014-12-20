@@ -188,6 +188,12 @@ AngularJSはこれを読んでおけばいいです。
 
 * [SMACSS E-book 日本語](http://shop.smacss.com/products/smacss-e-book)
 
+### HTML
+
+結構マークアップで悩む事が多いので、参考になります。
+
+* [hail2u/html-best-practices](https://github.com/hail2u/html-best-practices)
+
 ## まとめ
 
 進化の早いフロントエンドの世界ですが、私が進化に追いつくためにスタイルガイドを有効活用しているという話をしました。  
