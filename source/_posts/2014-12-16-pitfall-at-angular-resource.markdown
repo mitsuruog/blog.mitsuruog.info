@@ -17,7 +17,7 @@ AngularJSを利用するメリットの1つとして、AngularJSが内包して�
 [AngularJS Advent Calendar 2014 - Adventar](http://www.adventar.org/calendars/350)16日目の記事です。
 
 * 15日目[AngularJS - Promiseを使おう - Qiita(@teyosh)](http://qiita.com/teyosh/items/d7d3c17f954318c88882)
-* [あと]()
+* 17日目[AngularJS 1.3へのアップデート(@kon.yuichi)](https://note.mu/konpyu/n/n1eb6c13c69d6)
 
 ## $resourceの使い方
 
