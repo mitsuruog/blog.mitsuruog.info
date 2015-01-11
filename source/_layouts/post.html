@@ -23,6 +23,9 @@ single: true
         <a class="basic-alignment right" href="{{page.next.url}}" title="Next Post: {{page.next.title}}">{{page.next.title}} &raquo;</a>
       {% endif %}
     </p>
+    <p class="meta">
+      {% include custom/adsense.html %}
+    </p>
   </footer>
 </article>
 {% if site.disqus_short_name and page.comments == true %}
