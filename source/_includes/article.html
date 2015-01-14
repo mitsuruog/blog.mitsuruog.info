@@ -5,7 +5,7 @@
     {% else %}
       <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
     {% endif %}
-    
+
     {% unless page.meta == false %}
       <p class="meta">
         {% include post/date.html %}{{ time }}
@@ -17,8 +17,10 @@
     {% endunless %}
 
     <!-- SNS Share -->
-    {% unless page.sharing == false %}
-      {% include post/sharing.html %}
+    {% unless index %}
+      {% unless page.sharing == false %}
+        {% include post/sharing.html %}
+      {% endunless %}
     {% endunless %}
 
   </header>
