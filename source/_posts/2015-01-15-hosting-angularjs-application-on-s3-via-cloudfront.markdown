@@ -8,11 +8,12 @@ categories:
  - aws
  - s3
  - cloudfront
+ - SPA
 ---
 
 最近は、WebAPIやAWSのようなクラウドサービスが普及してきて、バックエンドのサーバーがなくても、Webサービスが公開できるようになってきました。
 
-私が普段利用する機会が多いのはGithub pagesですが、今回はAWSの**S3にあるStatic Website Hosting機能**を使ってAngularJSで作成したSPA(Single page application)をホスティングさせてみました。
+今回はAWSの**S3にあるStatic Website Hosting機能**を使ってAngularJSで作成したSPA(Single page application)をホスティングさせてみました。
 
 割とS3でのサイト公開は簡単なので楽勝かと思いきや・・・  
 いろいろまじめに考えると手こずるものですね。
