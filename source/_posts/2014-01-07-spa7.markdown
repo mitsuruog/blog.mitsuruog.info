@@ -107,7 +107,7 @@ _(これは自分の調査不足かも。SPAはRESTだし、RESTはStatelessっ�
 > (2014/11/06 追記)  
 > 重要なAjax通信時はCSRF対策のため1回ワンタイムトークンを取得してから、そのcallbackで本当のリクエストを行うようにしています。
 > また、認証、セッションについては従来のWeb開発のノウハウが使えると感じています。WebAPIアクセスの正当性については`JWT`を使うことが増えました。
-> こちらに記事書いたので読んでみてください。[JWT(Json Web Token)を利用したWebAPIでのCredentialの受け渡しについて](/2014/08/jwtjson-web-tokenwebapicredential/)
+> こちらに記事書いたので読んでみてください。[JWT(Json Web Token)を利用したWebAPIでのCredentialの受け渡しについて](/2014/08/jwtjson-web-tokenwebapicredential.html)
 
 ## まとめ
 
