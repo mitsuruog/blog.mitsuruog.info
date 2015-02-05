@@ -49,6 +49,7 @@ S3のStatic Website Hosting機能はお手軽で非常に魅力を感じるの�
 
 * アクセスを`HTTPS`に限定できない。
 * URLに「`/`」を指定した場合、S3上のフォルダを参照してしまいエラーとなる。(結果「`/index.html`」まで含める形に・・・)
+* 「`/`」以外のURL(「/hoge」とか)でアクセスした場合に`403(access denied)`エラー(2015/01/20 追記)
 * 他にもあった気がするが、忘れた。
  
 という訳でS3のみのお手軽ホスティングは、コーポレートサイトのような静的コンテンツ向きな気がします。
@@ -116,3 +117,7 @@ CloudFrontでDistributionsを選択すると「`Invalidations`」というタブ
 [AWSにおける静的コンテンツ配信パターンカタログ（アンチパターン含む） ｜ Developers.IO](http://dev.classmethod.jp/cloud/aws/static-contents-delivery-patterns/)
 
 もっと稽古します。
+
+> (2015/01/20 追記)  
+> `/`以外のURLでアクセスした場合に`403(access denied)`エラーになるのですが、CloudFront DistributionsのError Pages設定で、403エラーの場合のエラーページを`/index.html`にすることで回避することができましたー。  
+> うぇーーーーい！！って無理矢理感が半端ないw
