@@ -151,3 +151,10 @@ Webをより使いやすくするために追加された新機能や手法が�
 
 企画・運営していただいた方々、本当にありがとうございました。  
 思いは確かに伝わりました。
+
+### 参考資料
+
+* [安全なウェブサイトの作り方：IPA 独立行政法人 情報処理推進機構](http://www.ipa.go.jp/security/vuln/websecurity.html)
+* [HTML5 を利用したWeb アプリケーションのセキュリティ問題に関する調査報告書](https://www.jpcert.or.jp/research/html5.html)
+* [Androidセキュリティ勉強会～WebViewの脆弱性編～(PDF)](https://ierae.co.jp/uploads/webview.pdf)
+* [HTML5 Security Cheatsheet(malaさんに教えていただいた、xssの例がいっぱいのってるサイト)](https://html5sec.org/)
