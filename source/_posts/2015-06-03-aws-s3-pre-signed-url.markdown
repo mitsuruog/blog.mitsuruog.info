@@ -8,7 +8,7 @@ categories:
   s3
 ---
 
-子ネタです。  
+小ネタです。  
 最近、真面目にawsを触っていて、今更ながら[Amazon Web Services クラウドデザインパターン 設計ガイド 改訂版](http://www.amazon.co.jp/gp/product/4822277372/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277372&linkCode=as2&tag=mitsuruog-22)を読み始めました。  
 
 本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。  
