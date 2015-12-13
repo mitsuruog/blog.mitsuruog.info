@@ -1,38 +1,35 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
-
 h1 {
   font-size: 1.8em;
 }
-
 h3 {
   margin-left: 0.5em;
 }
-
 @media only screen and (min-width: 992px) {
-  #body { font-size: 1em; }
-  h1 { font-size: 1.5em; line-height: 1.2em; }
+  #body {
+    font-size: 1em;
+  }
+  h1 {
+    font-size: 1.5em;
+    line-height: 1.2em;
+  }
 }
-
 article {
-
   ul {
     list-style-type: none;
-
     li {
       &:before {
         content: "\f1b0";
         font-family: FontAwesome;
-        padding: 0 .4em 0 .2em;
+        padding: 0 0.4em 0 0.2em;
         display: inline-block;
         width: 1.2em;
-        margin-left: -1.2em;    
+        margin-left: -1.2em;
       }
     }
   }
-  
 }
-
 #content .blog-index {
   article h1 {
     font-size: 1.5em;
@@ -41,41 +38,50 @@ article {
     font-family: inherit;
   }
 }
-
 #content > div > article {
   border-bottom: solid 1px #f5f5f5;
 }
-
 #content div.pagination {
   a {
-    &.prev { position: absolute; right: 0; left: inherit; }
-    &.next { position: absolute; left: 0; right: inherit; }
+    &.prev {
+      position: absolute;
+      right: 0;
+      left: inherit;
+    }
+    &.next {
+      position: absolute;
+      left: 0;
+      right: inherit;
+    }
   }
 }
-
 @media only screen and (min-width: 768px) {
-  ul, ol {
+  ul,
+  ol {
     margin-left: 1.3em;
   }
 }
-
 blockquote {
   font-size: 1em;
   line-height: 1.5em;
 }
-
-p, blockquote, ul, ol { margin-bottom: 1em; }
-
+p,
+blockquote,
+ul,
+ol {
+  margin-bottom: 1em;
+}
 #blog-archives {
   @media only screen and (min-width: 550px) {
     article {
-      padding:{left: 6.15em; bottom: .7em;}
+      padding: {
+        left: 6.15em;
+        bottom: 0.7em;
+      }
     }
   }
 }
-
 article {
-
   .entry-content {
     h2:before {
       content: "\f12e";
@@ -83,22 +89,24 @@ article {
       margin-right: 7px;
     }
   }
-
   h3:before {
     content: "\f0a4";
     font-family: FontAwesome;
     margin-right: 7px;
   }
-
   > footer {
     padding-bottom: 1.5em;
   }
-
+  .intro-article-wrapper {
+    img {
+      box-shadow: none;
+      border: none;
+    }
+  }
 }
-
 .separator {
   content: "\f1ae";
   font-family: FontAwesome;
-  padding: 0 .4em 0 .2em;
+  padding: 0 0.4em 0 0.2em;
   display: inline-block;
 }
