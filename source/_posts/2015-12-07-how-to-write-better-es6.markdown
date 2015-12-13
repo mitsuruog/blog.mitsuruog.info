@@ -15,7 +15,7 @@ categories:
 
 ところで、[Javascriptのスタイルガイドでは割と有名なAirbnb](https://github.com/airbnb/javascript)の日本語訳をしているのですが、最近本家のスタイルガイドがES6対応していたので、日本語訳の方もアップデートしました。
 
-<div class="intro-article-wrapper" style="width: 100%; overflow: auto;"><a class="intro-article-img" href="http://mitsuruog.github.io/javacript-style-guide/" target="_blank" style="float:left;" rel="nofollow"><img src="http://capture.heartrails.com/150x130/shadow?http://mitsuruog.github.io/javacript-style-guide/" align="left" width="150" height="130" alt="mitsuruog/javacript-style-guide · GitHub"></a><a class="intro-article-title" href="http://mitsuruog.github.io/javacript-style-guide/" target="_blank" style="font-size:110%;" rel="nofollow">mitsuruog/javacript-style-guide · GitHub</a> <img src="http://b.hatena.ne.jp/entry/image/http://mitsuruog.github.io/javacript-style-guide/" style="opacity:0.8;"><span style="clear: both;"></span></div>
+<div class="intro-article-wrapper" style="width: 100%; overflow: auto;"><a class="intro-article-img" href="http://mitsuruog.github.io/javacript-style-guide/" target="_blank" style="float:left;" rel="nofollow"><img src="http://capture.heartrails.com/150x130/shadow?http://mitsuruog.github.io/javacript-style-guide/" align="left" width="150" height="130" alt="Javacript-style-guide by mitsuruog"></a><a class="intro-article-title" href="http://mitsuruog.github.io/javacript-style-guide/" target="_blank" style="font-size:110%;" rel="nofollow">Javacript-style-guide by mitsuruog</a> <img src="http://b.hatena.ne.jp/entry/image/http://mitsuruog.github.io/javacript-style-guide/" style="opacity:0.8;"><span style="clear: both;"></span></div>
 
 スタイルガイドをES6にアップデートする過程で、私なりにES6でより良いコードを書くために気づいた点、注意する点などピックアップして紹介したいと思います。  
 この記事は、ES6でより良いコードを書きたい人向けのES6入門です。
