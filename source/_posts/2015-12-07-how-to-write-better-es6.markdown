@@ -11,9 +11,11 @@ categories:
 
 仕事が忙しくアドベントカレンダーシーズンに乗り遅れてしまいました。数年ぶりに平穏な12月を過ごしております。
 
+> と思ったら[JavaScript その2 Advent Calendar 2015 - Qiita](http://qiita.com/advent-calendar/2015/javascript2)の7日目が開いていたので急遽参加w
+
 ところで、[Javascriptのスタイルガイドでは割と有名なAirbnb](https://github.com/airbnb/javascript)の日本語訳をしているのですが、最近本家のスタイルガイドがES6対応していたので、日本語訳の方もアップデートしました。
 
-[mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
+<div class="intro-article-wrapper" style="width: 100%; overflow: auto;"><a class="intro-article-img" href="http://mitsuruog.github.io/javacript-style-guide/" target="_blank" style="float:left;" rel="nofollow"><img src="http://capture.heartrails.com/150x130/shadow?http://mitsuruog.github.io/javacript-style-guide/" align="left" width="150" height="130" alt="mitsuruog/javacript-style-guide · GitHub"></a><a class="intro-article-title" href="http://mitsuruog.github.io/javacript-style-guide/" target="_blank" style="font-size:110%;" rel="nofollow">mitsuruog/javacript-style-guide · GitHub</a> <img src="http://b.hatena.ne.jp/entry/image/http://mitsuruog.github.io/javacript-style-guide/" style="opacity:0.8;"><span style="clear: both;"></span></div>
 
 スタイルガイドをES6にアップデートする過程で、私なりにES6でより良いコードを書くために気づいた点、注意する点などピックアップして紹介したいと思います。  
 この記事は、ES6でより良いコードを書きたい人向けのES6入門です。
