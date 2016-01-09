@@ -3,7 +3,7 @@ layout: post
 title: "nodejsとexpressでREST APIっぽいURLでroutingする方法"
 date: 2012-11-07 22:52:00 +0900
 comments: true
-tags: 
+tags:
  - nodejs
  - express
 ---
@@ -14,7 +14,19 @@ nodejsでexpressを使ってroutingする際に、少し知ってるとREST API�
 
 まず、基本編。
 
-{% gist 4031497 routing.js %}
+```js
+var express = require("express"),
+    http = require("http");
+
+var app = express();
+app.get('/content/*', function(req, res) {
+    console.log(req.params);
+    res.send(req.params);
+});
+
+http.createServer(app).listen(3000);
+console.log('Express server listening on port 3000');
+```
 
 URLとそれを呼び出したときのreq.paramsの内容です。
 
@@ -30,7 +42,19 @@ http://localhost:3000/content/aaaa/bbbb
 
 次にREST APIっぽく。
 
-{% gist 4031570 routing.js %}
+```js
+var express = require("express"),
+    http = require("http");
+
+var app = express();
+app.get('/products/:id/:operation?', function(req, res) {
+    console.log(req.params);
+    res.send(req.params);
+});
+
+http.createServer(app).listen(3000);
+console.log('Express server listening on port 3000');
+```
 
 URLとそれを呼び出したときのreq.paramsの内容です。
 
@@ -53,7 +77,19 @@ Cannot GET /products/
 
 最後はURLに正規表現リテラルを指定する場合。
 
-{% gist 4031571 routing.js %}
+```js
+var express = require("express"),
+    http = require("http");
+
+var app = express();
+app.get(/^\/node?(?:\/(\d+)(?:\.\.(\d+))?)?/, function(req, res){
+    console.log(req.params);
+    res.send(req.params);
+});
+
+http.createServer(app).listen(3000);
+console.log('Express server listening on port 3000');
+```
 
 URLとそれを呼び出したときのreq.paramsの内容です。
 

@@ -3,7 +3,7 @@ layout: post
 title: "業務系アプリケーションに特化したSAP社製「SAPUI5」を触ってみた"
 date: 2014-02-19 05:13:00 +0900
 comments: true
-tags: 
+tags:
  - SAPUI5
  - OpenUI5
 ---
@@ -47,9 +47,9 @@ OpenUI5の中身は基本的にSAPUI5と同じものですが、SAPUI5より若�
 
 これに伴い、開発者用のドキュメントも分かれています。ご注意ください。
 
-* SAPUI5 SDK - Demo Kit 
+* SAPUI5 SDK - Demo Kit
 [https://sapui5.hana.ondemand.com/sdk/#content/Overview.html](https://sapui5.hana.ondemand.com/sdk/#content/Overview.html)
-* OpenUI5 SDK - Demo Kit 
+* OpenUI5 SDK - Demo Kit
 [https://openui5.hana.ondemand.com/#content/Overview.html](https://openui5.hana.ondemand.com/#content/Overview.html)
 
 ### 2. Theme Designerがない
@@ -78,7 +78,14 @@ HTMLファイルを準備して以下のように記述してください。（�
 
 コードはこちらです。
 
-{% gist 9079112 sapui5.html %}
+//3.0.3以降
+$myModal = $('#myModal').modal({}, {
+  person: 'mitsuruog'
+});
+
+$myModal.on('show.bs.modal', function(e) {
+  var name = e.relatedTarget.person;
+}
 
 実際に動くアプリケーションはこちらです。
 
@@ -92,4 +99,3 @@ Platform 3.0では「Sybase Unwired Platform」をはじめ、「SAP NetWeaver G
 HTML5ベースのUIフレームワーク「SAPUI5」は、そのようなSAPのモバイル戦略を下支えするものです。
 
 SAPUI5を使うことで、他のWebサービスとのマッシュアップ開発など柔軟に行えるようになり、まったく新しいSAPユーザ体験を提供できる可能性を秘めているのではないかと思います。
-

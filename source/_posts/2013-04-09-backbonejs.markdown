@@ -3,7 +3,7 @@ layout: post
 title: "Backbone.jsともっと仲良くなるためのヒント"
 date: 2013-04-09 17:44:40 +0900
 comments: true
-tags: 
+tags:
  - backbone
  - SPA
  - チュートリアル
@@ -41,12 +41,35 @@ Backbone.jsでアプリケーションを作成する場合、いつくかView�
 アプリケーション自体が比較的大きくない場合は、この実装方法でも大丈夫だと思います。
 しかし、規模が大きくなり関係するViewが増えた場合、コントローラのロジックが肥大化してViewのサイズが大きくなる要因となりますので、私はあまりおススメしません。
 
-{% gist 7dc7b8f3911ab6865745 nonmediator.js %}
+```js
+initialize: function () {
+
+  //他のViewのイベントをハンドリングしてレンダリングする
+  this.someView.on('chage:some', this.render);
+
+},
+
+render: function(){
+
+  //他のViewへレンダリング指示
+  this.anotherView.render();
+
+}
+```
 
 Backbone.jsには`Backbone.Events`というカスタムイベントをバインドしたり、発火させたりできる強力な仕組みが備わっていますので、これを使いましょう。
 実装する際は、`Backbone.Events`を`_.extend()`して使います。
 
-{% gist 7dc7b8f3911ab6865745 mediator.js %}
+```js
+//Backbone.Eventsのクローン
+_.extend(mediator, Backbone.Events);
+
+//イベントの発火
+mediator.trigger('change:some', param);
+
+//イベントのハンドリング
+mediator.on('change:some', this.behavior);
+```
 
 このようにView間の連携をイベントベースで行うことの忘れてはならないメリットは、View間の不要な依存関係を排除することで、各Viewにてイベントを起点にユニットテストを行うことが出来ることです。
 
@@ -62,27 +85,60 @@ Backbone.jsには`Backbone.Events`というカスタムイベントをバイン�
 2.  検索キーワードをCollectionに追加（データの変更）
 3.  検索履歴Viewをレンダリング
 
-{% gist 7dc7b8f3911ab6865745 render.js %}
+```js
+initialize: function () {
+
+  //他のViewからのModel追加依頼
+  mediator.on('add', this.addSome);
+
+  //Collectionのaddイベントをハンドリングしてレンダリング処理を呼び出す
+  this.listenTo(this.collections, 'add', this.render);
+
+},
+
+addSome: function (some) {
+  //CollectionにModelを1件追加する
+  //追加した場合、addイベントが発火する
+},
+
+render: function () {
+  //レンダリング処理
+},
+```
 
 このように、ユーザの操作からレンダリングする間にデータの変更を挟むことによって、やってしまいがちな、ユーザの操作とレンダリングが1つになった、テストしにくいスパゲッティfunctionの作成を抑止できます。
 
 ## 3. その他、細々したこと
 
-その他、知っておいたほうがいいポイントを紹介します。 
+その他、知っておいたほうがいいポイントを紹介します。
 
 ###  3-1. CollectionやModelのイベント監視には.listenTo()を使う
 
 Viewが管理するCollectionやModelのイベントハンドリングには従来`.on()`を使用してきましたが、0.9.9以降は`.listenTo()`を使います。
 
-{% gist 7dc7b8f3911ab6865745 listenTo.js %}
+```js
+//.on()を使ったバージョン
+this.collections.on('reset', this.render);
+
+//.listenTo()を使ったバージョン
+this.listenTo(this.collections, 'reset', this.render);
+```
 
 これは、`.on()`でバインドしたイベントが（Modelなどを）`.remove()`した際に、アンバインドされずメモリリークを起こしてしまうためです。
-  
+
 ###  3-2. initializeで_.bindAll(this)を使う
 
 1.のようにイベントベースで実装を進めた場合、結構ストレスに感じるのがjavascript特有の`this`の問題です。Viewの`initialize()`で`_.bindAll(this)`することで、Viewの中のthisがすべてView自身を指し示すようになるので、実装が楽になります。
 
-{% gist 7dc7b8f3911ab6865745 bindAll.js %}
+```js
+initialize: function () {
+
+  bindAll(this);
+
+  //なにかの処理
+
+},
+```
 
 ## 最後に
 

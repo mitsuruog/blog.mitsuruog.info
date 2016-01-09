@@ -3,7 +3,7 @@ layout: post
 title: "[SAPUI5/OpenUI5]大きくなりがちなViewのコードをFragmentsでパーツ化して賢くViewを構築する"
 date: 2014-05-06 23:52:39 +0900
 comments: true
-tags: 
+tags:
  - OpenUI5
  - SAPUI5
 ---
@@ -51,11 +51,38 @@ Fragmentsを使うためには、まず「sap.ui.jsfragment」を継承してオ
 
 まず、Fragmentsを定義していきます。
 
-{% gist 76106b6d2397500f33b3 Edit.fragments.coffee %}
+Edit.fragments.coffee
+```coffee
+sap.ui.jsfragment "util.Edit",
+
+  createContent: (oController) ->
+
+    # ここに普通のJSViewのcreateContentと同様にUIコントロールを追加して
+    # 最後にreturnします。
+
+```
 
 次に、ownerView側でFragmentsを呼び出します。
 
-{% gist 76106b6d2397500f33b3 Fragments1.view.coffee %}
+Fragments1.view.coffee
+```coffee
+sap.ui.jsview "view.Fragment",
+
+  getControllerName: ->
+    "view.Fragment"
+
+  createContent: (oController) ->
+
+    @page = new sap.m.Page
+      title: "Fragment Sample"
+
+    # Fragmentsを呼び出します
+    fragment = sap.ui.jsfragment "util.Edit", oController
+    @page.addContent fragment
+
+    @page
+
+```
 
 Fragmentsを初期化する際の第2引数のoControllerは、Fragmentにて参照するControllerを渡してください（詳細は後述）。参照が無い場合は、当然nullとなります。（渡した方が後のこととか考えると無難です。）
 また、この例の場合、SAPUI5が呼び出す際のエイリアス名が「util.Edit」となるため、物理ファイル名と配置場所は「util/Edit.fragment.js」となります。〜fragments.jsが接頭語だと思ってください。物理ファイルの配置場所とファイル名には特に注意が必要です。
@@ -74,15 +101,77 @@ SAPUI5にてアプリケーションを構築した場合、MVCコンセプト�
 
 まず、参照用のFragmentsを定義していきます。登録用のFragmentsは先ほどの「Edit.fragments.coffee」を使います。
 
-{% gist 76106b6d2397500f33b3 Detail.fragments.coffee %}
+Detail.fragments.coffee
+```coffee
+sap.ui.jsfragment "util.Detail",
 
-次に、ownerView側のボタンでUIの切り替えを行うため、ownerViewで行っていたFragments呼び出し処理を、controllerで行うようにします。
+  createContent: (oController) ->
 
-{% gist 76106b6d2397500f33b3 Fragments2.view.coffee %}
+    # ここに普通のJSViewのcreateContentと同様にUIコントロールを追加して
+    # 最後にreturnします。
+
+```
 
 最後に、controllerにてFragments呼び出し処理を行います。
 
-{% gist 76106b6d2397500f33b3 Fragments2.controller.coffee %}
+Fragments2.controller.coffee
+```coffee
+sap.ui.jsview "view.Fragment",
+
+  getControllerName: ->
+    "view.Fragment"
+
+  createContent: (oController) ->
+
+    @page = new sap.m.Page
+      title: "Fragment Sample"
+
+    # Fragmentsを呼び出します
+    # -> controllerで呼び出すようにします
+    #fragment = sap.ui.jsfragment "util.Edit", oController
+    #@page.addContent fragment
+
+    @page
+
+```
+
+次に、ownerView側のボタンでUIの切り替えを行うため、ownerViewで行っていたFragments呼び出し処理を、controllerで行うようにします。
+
+Fragments2.view.coffee
+```coffee
+jQuery.sap.require "sap.m.MessageToast"
+
+sap.ui.controller "view.Fragment",
+
+  _fragments: {}
+  _mode: "Detail"
+
+  _getFragments: (name) ->
+    #fragmentsを取得してキャッシュ
+    unless @_fragments[name]
+      @_fragments[name] = sap.ui.jsfragment "util.#{name}", @
+    @_fragments[name]
+
+  _toggleFragment: (name) ->
+    fragment = @_getFragments name
+    container = sap.ui.getCore().getElementById "fragContainer"
+    #コンテナの0番目にfragmentsで取得したFormを追加します
+    #[MEMO]ここではViewの中のContentはfragmentsのみの想定で書いています
+    #[MEMO]Contentが複数ある場合は、removeContentとinsertContentのindexを変更してください
+    container.removeContent 0
+    container.insertContent fragment, 0
+    @_mode = name
+
+  onInit: ->
+    @_toggleFragment "Detail"
+
+  #入力用と参照用のFormを切り替る処理
+  pressedToggle: (oEvt) ->
+    if @_mode is "Detail"
+      @_toggleFragment "Edit"
+    else
+      @_toggleFragment "Detail"
+```
 
 ここでのremoveContentとinsertContentはViewの中でContentとなるUIパーツがFragments1つのみの前提で書いています。
 また、Fragmentsを切り替えるコンテナを作成して、固有のIDを振ってJavascript側からいつでもフックできるようにするといいでしょう。
@@ -92,7 +181,29 @@ SAPUI5にてアプリケーションを構築した場合、MVCコンセプト�
 このケースでは、選択用などのダイアログUIを再利用します。単純なものではなく少しUIパーツが多いダイアログを再利用するとさらに効果的です。
 先ほどと同様にダイアログ用のFragmentsを定義していきます。
 
-{% gist 76106b6d2397500f33b3 Dialog.fragments.coffee %}
+Dialog.fragments.coffee
+```coffee
+sap.ui.jsfragment "util.Dialog",
+
+  createContent: (oController) ->
+
+    dialog = new sap.m.Dialog
+      title: "Dialog"
+      content: [
+
+        #入力用のFragmentsを再利用します
+
+        sap.ui.jsfragment "util.Edit", oController
+      ]
+      beginButton: new sap.m.Button
+        type: "Accept"
+        text: "OK"
+        press: [oController.pressedOk, oController]
+      endButton: new sap.m.Button
+        text: "NG"
+        press: [oControl
+
+```
 
 ダイアログの中身のコンテンツは先ほど定義したEdit.fragments.jsを再利用しています。こんなところでもFragmentsいい仕事しています。
 
@@ -101,7 +212,38 @@ Fragments側からControllerのfunctionを呼び出していると思います�
 
 > この場合、OwnerView側でFragmentsが使うfunctionを知っていて実装する必要があります。Javaでいうインターフェースと同じような感覚なのですが、いかんせん動的型付け言語なのでチェックが緩いです。Controllerにfunctionが存在しない場合は当然、実行時に落ちます。
 次にownerViewのcontrollerにてFragmentsを呼び出します。ownerViewにてダイアログを開くボタンを押した際にダイアログをopenします。
-{% gist 76106b6d2397500f33b3 Fragments3.controller.coffee %}
+
+> Fragments3.controller.coffee
+```coffee
+jQuery.sap.require "sap.m.MessageToast"
+
+sap.ui.controller "view.Fragment",
+
+  _fragments: {}
+
+  _getFragments: (name) ->
+    #fragmentsを取得してキャッシュ
+    unless @_fragments[name]
+      @_fragments[name] = sap.ui.jsfragment "util.#{name}", @
+    @_fragments[name]
+
+  onInit: ->
+
+  #ダイアログを表示します
+  openDialog: (oEvt) ->
+    dialog = @_getFragments "Dialog"
+    dialog.open()
+
+  #ダイアログでOKをPressした時の処理
+  pressedOk: (oEvt) ->
+    oEvt.getSource().getParent().close()
+    sap.m.MessageToast.show "pressed OK"
+
+  #ダイアログでNGをPressした時の処理
+  pressedNg: (oEvt) ->
+    oEvt.getSource().getParent().close()
+    sap.m.MessageToast.show "pressed NG"
+```
 
 FragmentsにてOK/NGボタンを押した場合の処理は、Controllerに記述して処理させています。
 

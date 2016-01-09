@@ -3,8 +3,8 @@ layout: post
 title: "Yeomanに学ぶモテるGruntfile.jsの書き方"
 date: 2013-12-24 00:56:00 +0900
 comments: true
-tags: 
- - grunt 
+tags:
+ - grunt
  - yeoman
 ---
 
@@ -26,7 +26,26 @@ tags:
 
 [load-grunt-tasks](https://github.com/sindresorhus/load-grunt-tasks)とはpackage.jsonに定義されているGruntタスクを見て、タスク起動時にロードしてくれるモジュールです。これでタスクを変更するたびにGruntfile.jsを変更する必要がなくなりました。
 
-{% gist 8098078 load-grunt-tasks.js %}
+```js
+/**
+ * before
+ */
+grunt.loadNpmTasks('grunt-shell');
+grunt.loadNpmTasks('grunt-sass');
+grunt.loadNpmTasks('grunt-recess');
+grunt.loadNpmTasks('grunt-sizediff');
+grunt.loadNpmTasks('grunt-svgmin');
+grunt.loadNpmTasks('grunt-styl');
+grunt.loadNpmTasks('grunt-php');
+grunt.loadNpmTasks('grunt-eslint');
+grunt.loadNpmTasks('grunt-concurrent');
+grunt.loadNpmTasks('grunt-bower-requirejs');
+
+/**
+ * after
+ */
+require('load-grunt-tasks')(grunt);
+```
 
 ## 2. テンプレート
 
@@ -39,8 +58,32 @@ Gruntには[Underscore.js](http://underscorejs.org/#template)ライクなテン�
 
 Yoemanの中では、開発用のディレクトリとビルド用のディレクトリパスを使い分けてます。こちらも、タスク内でよく使う定義情報などはファイルの先頭で定義しておいて、テンプレートで挿入すると後々メンテナンスし易いですね。
 
-{% gist 8098078 template.js %}
+```js
 
+grunt.initConfig({
+
+  yeoman: {
+    // Configurable paths
+    app: 'app',
+    dist: 'dist'
+  },
+
+  copy: {
+    dist: {
+      files: [{
+        expand: true,
+        dot: true,
+        cwd: '<%= yeoman.app %>', // <- ここ
+        dest: '<%= yeoman.dist %>', // <- ここ
+        src: [
+          '*.{ico,png,txt}'
+        ]
+      }]
+    }
+  }
+
+});
+```
 
 ## 3. ファイル指定方法あれこれ
 
@@ -77,11 +120,35 @@ Gruntタスクを呼び出す場合の次のように「`:`」以降の文字列
 ```
 grunt serve:dist
 ```
- 
+
 通常は`grunt.registerTask`の第2引数にタスクの文字列を配列で渡すのですが、ここにコールバック用のfunctionを渡すことで、タスク呼び出し時の処理をある程度柔軟に書くことができます。
 とはいえ、可読性という観点では使いどころ微妙かな。。。と
 
-{% gist 8098078 parameter.js %}
+```js
+// 普通はこんな感じ
+grunt.registerTask('serve', [
+    'clean:server',
+    'concurrent:server',
+    'autoprefixer',
+    'connect:livereload',
+    'watch'
+]);
+
+// grunt serve:distと呼ぶことタスクの中で分岐ができる
+grunt.registerTask('serve', function (target) {
+  if (target === 'dist') {
+    return grunt.task.run(['build', 'connect:dist:keepalive']);
+  }
+
+  grunt.task.run([
+    'clean:server',
+    'concurrent:server',
+    'autoprefixer',
+    'connect:livereload',
+    'watch'
+  ]);
+});
+```
 
 ## 5. 外部定義ファイルのインポート
 
@@ -89,7 +156,21 @@ Yoemanのgenerator界隈ではあまり見かけないのですが、知って�
 
 GruntではjsonとYAMLの外部定義ファイルをインポートする機能が内包されています。次の例Grunt公式の例ですが、package.jsonから定義情報をインポートしています。
 
-{% gist 8098078 import.js %}
+```js
+
+grunt.initConfig({
+  pkg: grunt.file.readJSON('package.json'),
+  uglify: {
+    options: {
+      banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+    },
+    dist: {
+      src: 'src/<%= pkg.name %>.js',
+      dest: 'dist/<%= pkg.name %>.min.js'
+    }
+  }
+});
+```
 
 ## まとめ
 

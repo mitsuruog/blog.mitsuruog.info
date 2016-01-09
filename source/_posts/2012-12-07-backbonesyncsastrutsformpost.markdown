@@ -3,7 +3,7 @@ layout: post
 title: "Backbone.SyncでSAStrutsにFormをPOSTする方法"
 date: 2012-12-07 23:13:00 +0900
 comments: true
-tags: 
+tags:
  - backbone
  - SAStruts
  - Seaser2
@@ -35,10 +35,39 @@ SAStruts+Seaser2構成のバックエンドに対して、Backbone.SyncからFor
 BackboneのCollectionやModelにてfatchを呼び出すと、Backbone.Syncがサーバに対してGETでURLリソースを取得します。この部分は比較的簡単で、以下のようにSAStrutsのAction側の実装を少し変えるのみでJSONでレスポンスを返すことができます。
 （ちなみに、JSONのライブラリは[jsonic](http://jsonic.sourceforge.jp/)を使用しています。）
 
-サーバ側
-{% gist 4318372 IndexAction.get.java %}
-フロント側
-{% gist 4318372 Backbone.Sync.get.js %}
+サーバ側(IndexAction.get.java)
+```java
+public class IndexAction {
+
+  @Execute(validator = false)
+  public String index() {
+
+    List<Model> models = new LinkedList<Model>();
+    models.add(new Model("aomori", "good place"));
+
+    //JSONでレスポンスを返す
+    ResponseUtil.write(JSON.encode(models), "application/json");
+    return null;
+  }
+}
+```
+
+フロント側(Backbone.Sync.get.js)
+```js
+PROTO.Views.view = Backbone.View.extend({
+
+//中略
+
+  read: function(){
+    this.collection.fetch({
+      success : this.render
+    });
+  },
+
+//中略
+
+});
+```
 
 ## Backbone.Sync -> SAStruts POSTの場合
 
@@ -50,10 +79,53 @@ BackboneのCollectionやModelにてfatchを呼び出すと、Backbone.Syncがサ
 
 これでContent-Typeを「`application/x-www-form-urlencoded`」にすることは出来たのですが、リクエストパラメータはAjax.optionsのdata属性で渡さないと受け取れません。結果、次のようなコードとなります。
 
-フロント側
-{% gist 4318372 Backbone.Sync.post.js %}
-サーバ側
-{% gist 4318372 IndexAction.post.java %}
+フロント側(Backbone.Sync.post.js)
+```js
+PROTO.Views.view = Backbone.View.extend({
+
+//中略
+
+  create: function(){
+    var param = {};
+    _.each($('form').serializeArray(), function(v){
+      param[v.name] = v.value;
+    });
+
+    //Content-Typeを偽装
+    Backbone.emulateJSON = true;
+    var model = new PROTO.Models.model(param);
+    //リクエストパラメータはAjaxのdata属性で渡す
+    this.collection.create(model, { data: param, success : this.render });
+  },
+
+//中略
+
+});
+```
+
+サーバ側(IndexAction.post.java)
+```java
+public class IndexAction {
+
+  //TODO ActionForm
+  //ActionFormでリクエストパラメータを受け渡し
+  @Required
+  public String name;
+  @Required
+  public String age;
+
+  //TODO エラーの戻りをJSON化
+  @Execute(validator = true, input="index.html")
+  public String index() {
+
+    List<Model> models = new LinkedList<Model>();
+    models.add(new Model(name, age));
+
+    ResponseUtil.write(JSON.encode(models), "application/json");
+    return null;
+  }
+}
+```
 
 これで、サーバ側でBackbone.SyncのPOST値を受け取ることができました。
 

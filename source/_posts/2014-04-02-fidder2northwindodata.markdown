@@ -3,7 +3,7 @@ layout: post
 title: "Fiddler2でリバースプロキシしてNorthWindのOdataサービスをテストで使う"
 date: 2014-04-02 00:47:00 +0900
 comments: true
-tags: 
+tags:
  - Fiddler2
  - OpenUI5
  - ReverseProxy
@@ -39,7 +39,7 @@ tags:
 異なるドメインへのリクエストを裏でプロキシサーバーが代替わりしてくれるため、フロント側から見ると、サーバーはlocalhostしか見えないようになり、同一生成元ポリシー違反にならないのです。
 
 
-## 2.grunt-connect-proxyを使う 
+## 2.grunt-connect-proxyを使う
 
 まず最初に試したことは、使い慣れたGruntタスクを使うことでした。幸い、「grunt-contrib-connect」の兄弟分で「grunt-connect-proxy」というリバースプロキシが使えそうでしたので、試してみました。
 
@@ -65,7 +65,23 @@ Fiddlerのメニューから「Rules > Customize Rules.」を選択すると、�
 
 ルール定義は次のように書きます。
 
-{% gist 9916184 setting.js %}
+```js
+static function OnBeforeRequest(oSession: Session) {
+
+  // ...
+
+  //services.odata.orgへのリバースプロキシ設定
+  //
+  //localhostdで/Northwind/というコンテキストがある場合に
+  //services.odata.org:80ドメインへリクエストを投げます。
+  if (oSession.HostnameIs("localhost") && oSession.uriContains("/Northwind/")) {
+    oSession.host = "services.odata.org:80";
+  }
+
+  // ...
+
+}
+```
 
 これで、Webアプリケーションから「`http://localhost/Northwind/Northwind.svc/Categories`」にリクエストを投げた場合、プロキシサーバにて「`http://services.odata.org/Northwind/Northwind.svc/Categories`」のリソースを取得してくれます。
 

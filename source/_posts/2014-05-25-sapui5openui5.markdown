@@ -3,7 +3,7 @@ layout: post
 title: "[SAPUI5/OpenUI5]イベントハンドラにパラメータを渡す"
 date: 2014-05-25 23:28:00 +0900
 comments: true
-tags: 
+tags:
 - javascript
 - OpenUI5
 - SAPUI5
@@ -20,7 +20,7 @@ SAPUI5/OpenUI5ではUIコントロールのイベント（press、tap、select�
 2.  イベントハンドラにパラメータを渡す
 3.  最後に
 
-## 1.　イベントインターフェースについて 
+## 1.　イベントインターフェースについて
 
 まず、SAPUI5でのイベントインターフェースについて説明します。  
 SAPUI5ではViewの中にボタンなどのUIコントロールを配置していくのですが、この時にUIコントロールから発生するどのイベントを処理するか定義することが出来ます。
@@ -59,10 +59,45 @@ Buttonのpressイベント発火時の第1引数にオブジェクトを渡し�
 press: [ message: "Hello :)", oController.doPress, oController]
 ```
 
-{% gist 1a1e2fe5d8dd3610e1c7 %}
+```coffee
+button = new sap.m.Button
+  text: "Action!!"
+  press: [message: "Hello :)", (evt, param) ->
+    jQuery.sap.require "sap.m.MessageToast"
+    sap.m.MessageToast.show param.message
+  ]
+
+button.placeAt "content"
+
+```
+
+```html
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+<meta name="description" content="[add your bin description]" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="UTF-8">
+
+        <title>SAPUI5/OpenUI5 Sample</title>
+
+        <script id="sap-ui-bootstrap"
+        src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-libs="sap.m"
+        data-sap-ui-theme="sap_bluecrystal"
+        >
+        </script>
+
+    </head>
+
+    <body class="sapUiBody" id="content" />
+
+</html>
+```
 
 ## 3.　最後に
- 
+
 基本的なことなのですが、探すのにとても時間が掛かりました。公式ドキュメントの量が非常に多いので、欲しい情報を探すのに毎度苦労します。:(
 
 ちなみに、この内容はこちらのやり取りを参考にしています。

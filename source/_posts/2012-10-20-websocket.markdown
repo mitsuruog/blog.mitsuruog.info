@@ -3,7 +3,7 @@ layout: post
 title: "websocketを使う際の意外な落とし穴"
 date: 2012-10-20 20:00:00 +0900
 comments: true
-tags: 
+tags:
  - nodejs
  - websocket
 ---
@@ -53,7 +53,25 @@ wsの正しい挙動としては、まずhttpでハンドシェイクを行い�
 
 [{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/block.png %}](https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/block.png)
 
-{% gist 3905544 gistfile1.txt %}
+```
+Request URL:ws://wsping.jit.su/socket.io/1/websocket/dL7NXuBCnWhqnZMPAYkU
+Request Method:GET
+Status Code:101 Switching Protocols
+Request Headersview source
+Connection:Upgrade
+Host:wsping.jit.su
+Origin:http://wsping.jit.su
+Sec-WebSocket-Extensions:x-webkit-deflate-frame
+Sec-WebSocket-Key:4EjkGu1WajTwi0MOvQjOyw==
+Sec-WebSocket-Version:13
+Upgrade:websocket
+(Key3):00:00:00:00:00:00:00:00
+Response Headersview source
+Connection:Upgrade
+Sec-WebSocket-Accept:lbl4DxvLmfnTm2okzQxld/Yb/sE=
+Upgrade:websocket
+(Challenge Response):00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+```
 
 正直、この挙動が仕様なのかバグなのか、それとも私の実装が悪いのか判断できず、一度詳しい方の見解を聞いてみたいです。（Help me!）
 
@@ -67,7 +85,7 @@ wsの正しい挙動としては、まずhttpでハンドシェイクを行い�
 
 最後に2か月くらい[nodejitsu](http://nodejitsu.com/)使って遊んでますが。良かった点を書き連ねてみます。（CEOの[
 Charlie Robbins氏](https://twitter.com/indexzero)も来ることですし。）
- 
+
 * websocketが使える。
 * 無料期間は1ヵ月。Microプランで月$3。（円高最高！）
 * jitsuを使ったクラウド上へのデプロイがシンプルで簡単（ただし、package.jsonにモジュールの依存関係を正しく書くこと）。

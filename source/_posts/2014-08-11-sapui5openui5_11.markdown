@@ -3,7 +3,7 @@ layout: post
 title: "[SAPUI5/OpenUI5]スマートに国際化する方法"
 date: 2014-08-11 00:46:00 +0900
 comments: true
-tags: 
+tags:
  - HTML5
  - javascript
  - OpenUI5
@@ -38,9 +38,14 @@ OpenUI5にて国際化するための手順は「リソースモデルファイ�
 
 まず、国際化用の「**リソースモデル(ResourceModel)**」を作成し、その中に国際化したいメッセージを定義していきます。ファイルはこちらを参考にしてください。
 
-{% gist 2d212e729f45542717f8 messageBundle_ja.properties %}  
+```
+title = ロケール
+text = 吾輩は猫である。名前はまだ無い。
+changeLocale = ロケール変更:
+button = これはボタンのテキスト
+```
 
-このリソースモデルはJavaの「java.util.Properties」クラスと同等のもので、中に「key/value」ペアで値を設定していきます。ファイルの拡張子は「*.properties」です。 
+このリソースモデルはJavaの「java.util.Properties」クラスと同等のもので、中に「key/value」ペアで値を設定していきます。ファイルの拡張子は「*.properties」です。
 （マルチバイトの場合であってもファイルがUTF-8で作成されていれば、Unicodeエスケープする必要はないようです。）
 
 Webルート直下に「i18n」フォルダを作成して、ファイルを配置するのが慣例のようです。まず、最低限ロケールなしの場合に利用される「**messageBundle.properties**」を作成します。各ロケールごとのファイル名の例は以下の通りです。
@@ -58,12 +63,19 @@ Webルート直下に「i18n」フォルダを作成して、ファイルを配�
 
 ### リソースモデルをロード
 
-
-
-
 次に、リソースモデルをアプリケーションにロードしていきます。こちらのコードを参考にしてください。
 
-{% gist 2d212e729f45542717f8 Locale.controller.coffee %}  
+Locale.controller.coffee
+```coffee
+
+sap.ui.controller "com.mitsuruog.sapui5.showroom.view.Locale",
+
+  onInit: ->
+    i18nModel = new sap.ui.model.resource.ResourceModel
+      bundleUrl : "i18n/messageBundle.properties"
+
+    @getView().setModel i18nModel, "i18n"
+```
 
 ロードする場所は、「Component.js」の`init()`か、国際化対象ViewのControllerの`init()`がいいと思います。`i18n`という名前付きModelとしてロードして、後のコントロールへのデータバインドの際に利用します。
 
@@ -71,7 +83,35 @@ Webルート直下に「i18n」フォルダを作成して、ファイルを配�
 
 最後にコントロールの国際化したプロパティへメッセージをデータバインドしていきます。こちらのコードを参照してください。
 
-{% gist 2d212e729f45542717f8 Locale.view.coffee %}  
+Locale.view.coffee
+```coffee
+sap.ui.jsview "com.mitsuruog.sapui5.showroom.view.Locale",
+
+  getControllerName: -> "com.mitsuruog.sapui5.showroom.view.Locale"
+
+  createContent: (oController) ->
+    @page = new sap.m.Page
+      title: "{i18n>title}"
+      subHeader:
+        new sap.m.Bar
+          contentRight: [
+            new sap.m.Text
+              text: "{i18n>changeLocale}"
+          ]
+      content: [
+        new sap.m.Text
+          text: "{i18n>text}"
+      ]
+      footer:
+        new sap.m.Bar
+          contentRight: [
+            new sap.m.Button
+              type: "Accept"
+              text: "{i18n>button}"
+          ]
+
+    @page
+```
 
 こちらが国際化した結果画面の例です。日本語と英語で画面の項目名などが変化していることが分かると思います。
 
@@ -96,8 +136,6 @@ Webルート直下に「i18n」フォルダを作成して、ファイルを配�
 *   window.navigator.browserLanguageでの指定(IEのみ)
 *   デフォルトのロケールは「**en**」
 
-
-
 かなり細かい指定ですが、大きく分けると以下の5つになるかと思います。
 
 *   プログラムからの直接設定
@@ -106,14 +144,12 @@ Webルート直下に「i18n」フォルダを作成して、ファイルを配�
 *   端末固有設定(window.navigator.languageなど)
 *   デフォルト「**en**」
 
-
-
 この中で、プログラマブルに設定する可能性がある「プログラムからの直接設定」「URLパラメータからの指定」「アプリケーションConfigでの指定」について順に説明します。
 
 
 ### プログラムからの直接設定
 
-プログラム上でOpenUI5のロケール情報を参照する場合は、`sap.ui.getCore().getConfiguration().getLanguage()`を利用します。 
+プログラム上でOpenUI5のロケール情報を参照する場合は、`sap.ui.getCore().getConfiguration().getLanguage()`を利用します。
 ロケールの変更を行う場合は、`sap.ui.getCore().getConfiguration().setLanguage(local)`を利用します。引数の`local`にはロケールを文字列で設定してください。`null`を設定することはできません。
 
 ### URLパラメータからの指定
@@ -138,7 +174,7 @@ URLハッシュが付く場合はこちらです。
 
 ## 3. まとめ
 
-OpenUI5での国際化の方法について説明しました。OpenUI5はグローバルでの利用を想定した強力な国際化の機能を持っています。 
+OpenUI5での国際化の方法について説明しました。OpenUI5はグローバルでの利用を想定した強力な国際化の機能を持っています。
 
 このような国際化の仕組みは、OpenUI5がエンタープライズ利用を想定したものであり、それを提供するSAP社がグローバルカンパニーであるであるからこと出来たと考えています。  
 簡単に国際化することができることも、OpenUI5の魅力の一つですね。

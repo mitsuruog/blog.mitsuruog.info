@@ -3,7 +3,7 @@ layout: post
 title: "BootstrapのModalにパラメータを渡す"
 date: 2014-01-23 00:07:00 +0900
 comments: true
-tags: 
+tags:
  - bootstrap
 ---
 
@@ -25,13 +25,38 @@ Pass data arguments to modal? · Issue #531 · twbs/bootstrap
 
 3.0.3以前は以下のようにパラメータを渡すのですが、Modal初回構築時のパラメータで固定されてしまうため、一覧▶︎詳細のような用途では使えませんでした。
 
-{% gist 8560033 before3.0.3.js %}
+```js
+$myModal = $('#myModal').modal({
+  person: 'mitsuruog'
+});
+
+//2.3.1と3.0.0ではネームスベースが微妙に異なる
+
+//2.3.1
+$myModal.on('show', function(e) {
+  var name = $(this).data('modal').options.person
+};
+
+//3.0.0
+$myModal.on('show.bs.modal', function(e) {
+  var name = $(this).data('bs.modal').options.person
+}
+```
 
 ## 2. 3.0.3以降
 
 3.0.3以降では、以下の用にmodalを呼び出す際に、2つめのパラメータにセットすることで、イベントオブジェクトにセットされてくるように改善されています。
 
-{% gist 8560033 after3.0.3.js %}
+```js
+//3.0.3以降
+$myModal = $('#myModal').modal({}, {
+  person: 'mitsuruog'
+});
+
+$myModal.on('show.bs.modal', function(e) {
+  var name = e.relatedTarget.person;
+}
+```
 
 これで、一覧▶︎詳細のような用途で使えるようになりました。
 

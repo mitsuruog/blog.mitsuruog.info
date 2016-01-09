@@ -3,7 +3,7 @@ layout: post
 title: "[SAPUI5/OpenUI5]複数のプロパティをバインドする"
 date: 2014-07-11 00:16:00 +0900
 comments: true
-tags: 
+tags:
  - javascript
  - OpenUI5
  - SAPUI5
@@ -22,7 +22,21 @@ XMLViewの場合、複数プロパティは以下のように割と簡単に実�
 
 答えはこちらです。
 
-{% gist cdc997bbc901ae180d52 %}
+```coffee
+new sap.m.Text({
+    text: {
+        parts: [
+            {path: "Width"},
+            {path: "Depth"},
+            {path: "Height"},
+            {path: "DimUnit"}
+        ],
+        formatter: function(width, depth, height, dimUnit){
+            return width + " x " + depth  + " x "  + height + " " + dimUnit;
+        }
+    }
+});
+```
 
 通常のformatterを使ったデータバインドは`path`と`formatter`プロパティをセットすればいいのですが、複数プロパティの場合は`path`を`parts`の中に含めればできます。
 

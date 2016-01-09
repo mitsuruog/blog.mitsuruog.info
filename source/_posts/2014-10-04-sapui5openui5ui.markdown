@@ -3,7 +3,7 @@ layout: post
 title: "[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(後編)"
 date: 2014-10-04 23:56:00 +0900
 comments: true
-tags: 
+tags:
  - SAPUI5
  - OpenUI5
 ---
@@ -30,10 +30,16 @@ tags:
 
 ## 1. 既存UIコントロールの継承
 
-既存のUIコントロールを継承した新しいUIコントロールを作成していきます。基本的にはextendすることで継承が可能です。 
+既存のUIコントロールを継承した新しいUIコントロールを作成していきます。基本的にはextendすることで継承が可能です。
 下の例は、sap.m.Inputを継承して「mitsuruog.NoisyInput」というUIコントロールを作成しています。
 
-{% gist 0d78e15894940547077d 10.coffee %}
+```coffee
+jQuery.sap.declare "com.mitsuruog.sapui5.showroom.controls.NoisyInput"
+
+sap.m.Input.extend "mitsuruog.NoisyInput",
+  metadata: {}
+  renderer: {}
+```
 
 ## 2. 新規機能の追加
 
@@ -42,11 +48,36 @@ tags:
 
 NoisyInputは、focusinした際にUIコントロールを左右にアニメーションする新しいInputコントロールです。外部から`beQuiet=true`を受け取ることで静かになります。
 
-{% gist 0d78e15894940547077d 11.coffee %}
+```coffee
+sap.m.Input.extend "mitsuruog.NoisyInput",
+
+  metadata:
+    properties:
+      beQuiet:
+        type: "boolean"
+        defaultValue: false
+
+  onfocusin: (evt) ->
+    unless @getBeQuiet() then @addStyleClass "shake"
+
+  onfocusout: (evt) ->  
+    unless @getBeQuiet() then @removeStyleClass "shake"
+```
 
 既存UIコントロールの既存機能(イベントハンドラなどの関数)を上書きする場合は、同名のfunctionを宣言した上で継承元のprototype関数を呼び出します。
 
-{% gist 0d78e15894940547077d 12.coffee %}
+```coffee
+sap.m.Input.extend "mitsuruog.NoisyInput",
+
+  metadata:{}
+  # 省略...
+
+  init: ->
+    sap.m.Input.prototype.init.apply @, arguments
+
+  onBeforeRendering: ->
+    sap.m.Input.prototype.onBeforeRendering @, arguments
+```
 
 上の例は既存のinitとonBeforeRenderingに対して機能を追加する例です。この例では実際に機能を追加していませんが、雰囲気は掴めると思います。
 
@@ -54,7 +85,17 @@ NoisyInputは、focusinした際にUIコントロールを左右にアニメー�
 
 新しいUIコントロールの新しいUIを作成します。基本的にはrendererを定義して、中で既存UIコントロールのrendererを呼び出しすれば良いです。
 
-{% gist 0d78e15894940547077d 13.coffee %}
+```coffee
+sap.m.Input.extend "mitsuruog.NoisyInput",
+
+  metadata:{}
+  # 省略...
+
+  renderer: (rm, control) ->
+    rm.write "<div class='mitsuruogNoisyInput'>"
+    sap.m.InputRenderer.render.apply @, [rm, control]
+    rm.write "</div>"
+```
 
 ただし、実態は既存UIコントロールのrendererがどのように実装されているかに依存している場合が多く、確実に実装するためにはOpenUI5側のソースを一度確認したほうがいいです。
 OpenUI5のコンロールの場合は、コントロールクラスの近くに「`〜Renderer-dbg.js`」があるのでこれを見ます。(-dbg)が付いているものがminifyされていないものです。
@@ -69,20 +110,30 @@ Label.js -> LabelRenderer-dbg.js
 次の例では、既存のaddInnerStylesが実行される前に、Inputコントロールの外見を変更する指定をしています。
 > (innerやouterがあるのは、OpenUI5のUIコントロールは外側をdivコンテナで囲う場合が多いからです。外側のコンテナをouter、内側のUIコントロールをinnerと表現しています。)
 
-{% gist 0d78e15894940547077d 14.coffee %}
+```coffee
+sap.m.Input.extend "mitsuruog.NoisyInput",
+
+  metadata:{}
+  # 省略...
+
+  renderer:
+    addInnerStyles: (rm, control) ->
+      rm.addStyle "background-color", "#23AC0E"
+      rm.addStyle "border-radius", "7px"
+```
 
 ただし、既存のrendererを変更することは良くありません。既存のrendererの前後に機能を追加するか、フック用のI/Fを利用するようにしてください。
 既存のrendererを変更する必要な場合は、継承せず新規でUIコントロールを作成した方がいいと思います。
 
 ## 4. 配布、利用
 
-配布方法は、新規UIコントロールを作成する場合と変わりありません。 
+配布方法は、新規UIコントロールを作成する場合と変わりありません。
 
 継承元のクラスがロードされていないケースを想定し、予防的に`jQuery.sap.require`にてクラスをロードする記述を書いておいた方がいいと思います。
 
 ## 5. まとめ
 
-2回に分けてOpenUI5にて新しいUIコントロールを作成する方法を紹介しました。 
+2回に分けてOpenUI5にて新しいUIコントロールを作成する方法を紹介しました。
 OpenUI5はフレームワーク側の仕組みが複雑であるために、正しい方法を理解せず、カスタムしようとすると必ず手痛い失敗をします。(経験談)
 
 OpenUI5多くの優れたUIコントロールを持っているため、本来であれば無理にカスタムせず、OpenUI5のコンポーネントの機能の範囲内でUIを構築していく方がベストですが、カスタムの方法も知っておくと、一気に利用の幅が広がると思います。

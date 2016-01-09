@@ -3,7 +3,7 @@ layout: post
 title: "[SAPUI5/OpenUI5]URLでのルーティングの基本"
 date: 2014-05-25 02:16:00 +0900
 comments: true
-tags: 
+tags:
  - javascript
  - OpenUI5
  - SAPUI5
@@ -35,7 +35,34 @@ URLが変わらないということは、すべての画面のURLが同じに�
 
 まず、「Conpoment.js」内の「metadata」にルーティングテーブルを定義します。
 
-{% gist dd2428263bb03eb6eb4f routingTable.coffee %}
+```coffee
+#! Component.js
+
+sap.ui.core.UIComponent.extend "com.mitsuruog.sapui5.Component",
+
+  metadata:
+    routing:
+      config:
+        viewType: "JS"
+        viewPath: "view"
+        targetControl: "navConteiner"
+        targetAggregation: "pages"
+        clearTarget: false
+      routes: [{
+        pattern: ""
+        name: "First"
+        view: "First"
+        targetAggregation: "pages"
+      }, {
+        pattern: "second"
+        name: "Second"
+        view: "Second"
+        targetAggregation: "pages"
+      },
+
+      # ...省略
+
+```
 
 ちなみに「config」はすべてのrouting共通の設定で、「routes」内には、それぞれのハッシュと対応するView定義、カスタムする振る舞いなどが定義出来ます。
 
@@ -72,7 +99,28 @@ URLが変わらないということは、すべての画面のURLが同じに�
 
 この辺りのコードはお作法だと思ってコピペしましょう。
 
-{% gist dd2428263bb03eb6eb4f lifecycle.coffee %}
+```coffee
+#! Component.js
+
+  # ...省略
+
+  init: ->
+    jQuery.sap.require "sap.ui.core.routing.History"
+    jQuery.sap.require "sap.m.routing.RouteMatchedHandler"
+
+    sap.ui.core.UIComponent.prototype.init.apply @
+
+    router = @getRouter()
+    this.routerHandler = new sap.m.routing.RouteMatchedHandler router
+    router.initialize()
+
+  destory: ->
+    if @routerHandler
+      @routerHandler.destroy()
+    sap.ui.core.UIComponent.prototype.destory.apply @
+
+  # ...省略
+```
 
 ## 2.　ルーティング
 
@@ -87,7 +135,20 @@ URLが変わらないということは、すべての画面のURLが同じに�
 
 プログラムからViewを切り替え時にハッシュも変更するためには、先ほど定義したrouterを取得してハッシュを切り替える命令を出す必要があります。ハッシュパラメータを渡す場合は、第2引数にkey-value形式でハッシュパラメータのオブジェクトを渡します。
 
-{% gist dd2428263bb03eb6eb4f routing.coffee %}
+```coffee
+#! ButtonのPress処理などController.jsにて書いている想定。
+
+nextPage: ->
+
+  router = sap.ui.core.UIComponent.getRouterFor @
+
+  #パラメータを伴わない場合
+  router.navTo "Second"
+
+  #パラメータを伴う場合
+  router.navTo "Second",
+    someParam: "hoge"
+```
 
 ## 3.　ルーティングマッチとViewでのパラメータ取得
 
@@ -95,7 +156,29 @@ URLのハッシュ値を変えることでViewを切り替えることができ�
 
 Viewにてハッシュに設定されたパラメータを取得するためには、ルーティングマッチした際に発火するイベントにフックする必要があります。
 
-{% gist dd2428263bb03eb6eb4f routingMatch.coffee %}
+```js
+#! routing先のController.jsにて書いている想定。
+
+sap.ui.controller "view.Third",
+
+  onInit: ->
+    @router = sap.ui.core.UIComponent.getRouterFor @
+    @router.attachRoutePatternMatched @_handleRouteMatched, @
+
+  _handleRouteMatched: (oEvt) ->
+
+    #viewNameが一致しないものはFilterする
+    unless "Third" is oEvt.getParameter "name"
+      return
+
+    #Hashパラメータを取得
+    #以下のようなURLを想定
+    #/some/{id}
+    #/some/:id:
+    hashParams = oEvt.getParameter "arguments"
+    id = hashParams.id
+
+```
 
 ルーティング時に渡したパラメータはgetParameterにて取得します。すべてのパタメータをオブジェクトとして取得する場合は、getParametersを使います。
 
@@ -133,8 +216,3 @@ sapui5-showroom/app/routing at master · mitsuruog/sapui5-showroom
 * [(SAP/Open) UI5 with dynamic Routing Tutorial - YouTube](https://www.youtube.com/watch?v=hMEkV1ECf2c)
 * [Navigation](https://sapui5.hana.ondemand.com/sdk/#docs/guide/3d18f20bd2294228acb6910d8e8a5fb5.html)
 * [Step 3: Navigation and Routing](https://sapui5.hana.ondemand.com/sdk/#docs/guide/688f36bd758e4ce2b4e682eef4dc794e.html)
-
-
-
-
-

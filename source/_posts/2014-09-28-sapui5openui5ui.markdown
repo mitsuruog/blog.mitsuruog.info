@@ -3,7 +3,7 @@ layout: post
 title: "[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(前編)"
 date: 2014-09-28 23:01:00 +0900
 comments: true
-tags: 
+tags:
  - SAPUI5
  - OpenUI5
 ---
@@ -12,7 +12,7 @@ tags:
 
 OpenUI5はUIフレームワークという名前の通り、多くの優れたUIコントロールを持っていますが、場合によっては少しカスタムして使いたいという要望は時々あります。
 
-さて、OpenUI5にてカスタムUIコントロールを作成する方法は「新規で作成する」「既存のUIを拡張する」の2つありますが、少し長くなるので、2部構成で説明していきます。 
+さて、OpenUI5にてカスタムUIコントロールを作成する方法は「新規で作成する」「既存のUIを拡張する」の2つありますが、少し長くなるので、2部構成で説明していきます。
 前編は新規で作成する方を説明します。
 
 今回のデモはこちらで参照できます。
@@ -43,7 +43,11 @@ OpenUI5はUIフレームワークという名前の通り、多くの優れたUI
 
 新しいUIコントロールを作成するためには、まず`sap.ui.core.Control`を継承する必要があります。以下のコードは新規で`mitsuruog.SayHello`という名前のUIコントロールを定義しています。
 
-{% gist 0d78e15894940547077d 1.coffee %}
+```coffee
+sap.ui.core.Control.extend "mitsuruog.SayHello",
+  metadata: {}
+  renderer: {}
+```
 
 ## 2. UIコントロールメタデータの定義
 
@@ -70,15 +74,36 @@ UIコントロールに外部からリストを渡したい場合に定義しま
 * __singularName__: 単数の場合の名前を定義します。通常は複数系の`「s」`を取り除いた形を指定します。`items`の場合は`item`です。この辺り、正直OpenUI5に慣れてないとピンとこないと思いますので、詳細は割愛します。
 
 実装例)
-{% gist 0d78e15894940547077d 2.coffee %}
+```coffee
+
+sap.ui.core.Control.extend "mitsuruog.BlueContainer",
+
+  metadata:
+    properties:
+      boxColor:
+        type: "string"
+        defaultValue: "#CBE6F3"
+    events:
+      hover: {}
+    aggregations:
+      items:
+        type: "sap.ui.core.Control"
+        multiple: true
+        singularName: "item"
+
+    renderer: {}
+
+    onmouseover: (evt) ->
+      @fireHover()
+```
 
 詳細は公式ベージを確認してください。
 
-* メタデータについての詳細 
+* メタデータについての詳細
 [Defining the Control Metadata](https://openui5.hana.ondemand.com/#docs/guide/7b52540d9d8c4e00b9723151622bbb64.html)
-* メタデータを定義した場合、使用しない方がいいメソッド名についての注意事項など 
+* メタデータを定義した場合、使用しない方がいいメソッド名についての注意事項など
 [Adding Method Implementations](https://openui5.hana.ondemand.com/#docs/guide/91f0a8dc6f4d1014b6dd926db0e91070.html)
-* Propertiesの指定方法の詳細 
+* Propertiesの指定方法の詳細
 [Defining Control Properties](https://openui5.hana.ondemand.com/#docs/guide/ac56d92162ed47ff858fdf1ce26c18c4.html)
 
 ## 3. レンダラの実装
@@ -93,9 +118,39 @@ UIコントロールに外部からリストを渡したい場合に定義しま
 * __renderControl__: 与えられたUIコントロールのレンダラを実行します。Aggregations(Associations)あたりで使うようです。
 
 実装例）
-{% gist 0d78e15894940547077d 3.coffee %}
+```coffee
+sap.ui.core.Control.extend "mitsuruog.BlueContainer",
 
-ある程度書き慣れてくると、レンダラについてはお決まりのパターンが見えてくるでしょう。また、似たようなOpenUI5のソースを読むのもいいと思います。 
+  metadata:
+    # 省略
+
+  renderer: (rm, control) ->
+
+    rm.write "<div"
+    rm.writeControlData control
+    rm.addClass "blue"
+    rm.writeClasses()
+    rm.write ">"
+
+    # Aggregations(Associations)のデータはこうやって受け取る
+    items = control.getContent()
+
+    for item in items
+      rm.write "<div"
+      rm.addStyle "display", "inline-block"
+      rm.addStyle "border", "1px solid #{control.getBoxColor()}"
+      rm.addStyle "margin", "7px"
+      rm.addStyle "padding", "7px"
+      rm.writeStyles()      
+      rm.write ">"
+
+      rm.renderControl item
+      rm.write "</div>"
+
+    rm.write "</div>"
+```
+
+ある程度書き慣れてくると、レンダラについてはお決まりのパターンが見えてくるでしょう。また、似たようなOpenUI5のソースを読むのもいいと思います。
 詳細は公式ページを参照してください。
 
 [JsDoc Report - SAP UI development Toolkit for HTML5 - API Reference - sap.ui.core.RenderManager](https://openui5.hana.ondemand.com/docs/api/symbols/sap.ui.core.RenderManager.html)
@@ -105,7 +160,32 @@ UIコントロールに外部からリストを渡したい場合に定義しま
 配布方法はUIコントロールを1つのJavascriptファイルにまとめて`index.html`で読み込めばいいと思います。
 OpenUI5には`RequireJS`のようなモジュールシステムがあるので、以下のようにモジュール化して呼び出し先でロードします。
 
-{% gist 0d78e15894940547077d 4.coffee %}
+```coffee
+#
+# カスタムUIコントロール側
+#
+jQuery.sap.declare "com.mitsuruog.sapui5.showroom.controls.BlueContainer"
+
+sap.ui.core.Control.extend "mitsuruog.BlueContainer",
+
+  # 以下、省略
+
+
+#
+# 呼び出し側
+#
+jQuery.sap.require "com.mitsuruog.sapui5.showroom.controls.BlueContainer"
+
+sap.ui.jsview "someView",
+
+  createContent: (oController) ->
+
+    # new でUIコントロールを初期化します。
+    blueContainer = new mitsuruog.BlueContainer
+
+    # 以下、省略
+
+```
 
 ## 5. まとめ
 
