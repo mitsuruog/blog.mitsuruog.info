@@ -3,11 +3,13 @@ layout: post
 title: "webpackでSalesforce Lightning Design Systemを使う"
 date: 2016-01-03 00:00:21 +0900
 comments: true
-categories:
+tags:
   - webpack
   - Salesforce Lightning Design System
   - Salesforce
 ---
+
+{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/webpack-slds.png 620 %}
 
 一手間必要だったのでメモ。  
 長いのでSalesforce Lightning Design System(以下、SLDS)とします。
@@ -66,7 +68,7 @@ module.exports = {
     },
     module: {
         loaders: [
-	  　　     { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader") },
+	         { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader") },
        ]
     },
     plugins: [
@@ -103,6 +105,52 @@ console.log('Hello Salesforce Lightning Design System!!');
 </html>
 
 ```
+
+### fontファイルのロード(追記:2015/01/03)
+
+上の方法ではSLDSのfontが正しくロードできず、fontファイルのリクエストがすべて404エラーになっていました。
+
+まず、`webpack.config.js`の`module.loaders`にfile-loaderを追加して、fontファイルをコピーするようにします。
+
+```js
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+module.exports = {
+    entry: "./entry.js",
+    output: {
+        path: __dirname,
+        filename: "bundle.js"
+    },
+    module: {
+        loaders: [
+	         { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader") },
+           { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader : 'file-loader?&name=/assets/fonts/[name].[ext]'}
+       ]
+    },
+    plugins: [
+        new ExtractTextPlugin("style.css")
+    ]
+};
+```
+
+これで、`/assets/font`以下にfontファイルがコピーされるようになりましたが、  
+SLDS内部のfont指定が絶対パス指定されているため、このままではfontがwebpackで処理されません。
+
+`index.scss`にてSLDS内部のSass変数を書き換えて、webpackで処理できるようにします。
+
+```scss
+// SLDS内部で使われているfontのpath設定
+$static-font-path: "~@salesforce-ux/design-system/assets/fonts/webfonts";
+
+@import "~@salesforce-ux/design-system/scss/index.scss";
+```
+
+fontの絶対パスの件は本家に似たようなIssueがありますので、Sass変数の置き換え作法は、今後のためにも知っておいた方がよろしいかと思います。
+
+Compiling index-ltng.scss results in CSS that does not load salesforce fonts · Issue #71 · salesforce-ux/design-system   https://github.com/salesforce-ux/design-system/issues/71
+
+これでfontも読み込むことができました。  
+めでたし、めでたし。
 
 ## まとめ
 

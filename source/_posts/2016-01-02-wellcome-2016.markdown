@@ -3,7 +3,7 @@ layout: post
 title: "2015年の振り返りと2016年の抱負"
 date: 2016-01-02 22:20:29 +0900
 comments: true
-categories:
+tags:
   - その他
 ---
 

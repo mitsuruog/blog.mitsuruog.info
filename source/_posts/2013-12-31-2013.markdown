@@ -1,0 +1,130 @@
+---
+layout: post
+title: "2013年を振り返る"
+date: 2013-12-31 23:55:00 +0900
+comments: true
+tags: 
+ - その他
+---
+
+今年も最後となりましたので、自分の2013年の活動について振り返ってみます。
+ちなみに去年の最後は[enja-ossについて](http://blog.mitsuruog.info/2012/12/enja-oss.html)書いてます。  
+それから「来年こそはもっと質の良いアウトプットしたいと思います。」と締めくくってますね。果たして私は今年、何をやっていたのでしょうか。。。
+
+<!-- more -->
+
+{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/mitsuruog.png %}
+
+1.  1月〜3月　翻訳とBackbone.jsのSPAチュートリアル作成
+2.  4月〜6月　HTML5jエンタープライズ部（旧えんぷら部）に参加
+3.  7月〜9月　JJUGとのコラボレーション
+4.  10月〜12月　技術研究所へ配置換え
+5.  来年の活動
+
+## 1. 1月〜3月　翻訳とBackbone.jsのSPAチュートリアル作成
+
+この間は、enja-ossにてひたすらstylus関連の翻訳してました。
+
+* [https://github.com/enja-oss/stylus](https://github.com/enja-oss/stylus)
+* [https://github.com/enja-oss/nib](https://github.com/enja-oss/nib)
+
+Javascriptの勉強がてら、AirbnbのJavascriptスタイルガイドの翻訳を行いました。  
+現在では9カ国語に翻訳されている、Airbnbのスタイルガイドですが、私の日本語版が最初ですね。  
+当時、Javascriptどう書けばいいのか迷っている時期でしたので、このスタイルガイドの翻訳は自分にとって非常に良い活動でした。
+
+[https://github.com/mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
+
+おそらく密かに今年のアウトプットとしては一番のヒットだったのが、Backbone.jsでSinglePageApplicationを作るためのチュートリアルです。
+現在では、自分でカンニングするほどw、当時そんなスペックが自分にあったなんて・・・信じられない。
+
+[https://github.com/mitsuruog/SPA-with-Backbone](https://github.com/mitsuruog/SPA-with-Backbone)
+
+当時、Bootstrap2.3でエンタープライズ向けのWebアプリを作ってました。  
+Bootstrapは余白が多いので頻繁にカスタムする機会が多く面倒でしたのでOSSにしました。3.0対応は未定です。
+
+[https://github.com/mitsuruog/bootstrap-narrow](https://github.com/mitsuruog/bootstrap-narrow)
+
+## 2. 4月〜6月　HTML5jエンタープライズ部（旧えんぷら部）に参加
+
+この時期は、HTML5jエンタープライズ部の運営メンバーとして活動していました。  
+今の自分があって、ここまで努力できるのもコミュニティメンバーのおかげです。本当に感謝しています。
+あまり、後先考えずに参加したのですが、結果としてその判断は間違っていませんでした。
+
+
+[http://www.html5biz.org/](http://www.html5biz.org/)
+
+この時期は黙々とコードを書いては思索する毎日でした。  
+中規模案件のフロントエンドを一切合切任される立場となり、はじめて、フロントエンドのエンジニアとして本格的に仕事をすることとなりました。
+普段の鍛錬の結果が実務に本当に活かせるのか、自分との孤独な戦いの日々でした。
+
+## 3. 7月〜9月　JJUGとのコラボレーション
+
+この時期は社内でもフロント関連技術習得を目的としたコミュニティを作っていて、7月に社内で初めてHTML5関連技術の勉強会を開催しました。
+そのとき未来のフロントエンジニアに向けて作った資料です。
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/24060048" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/mitsuruogawa33/ss-24060048" title="これからフロントエンジニアを目指すあなたへ" target="_blank">これからフロントエンジニアを目指すあなたへ</a> </strong> from <strong><a href="//www.slideshare.net/mitsuruogawa33" target="_blank">Mitsuru Ogawa</a></strong> </div>
+
+7月には会社のビジネスパートナー向けのセミナーで講演してます。  
+ちょうどこの当たりから社内で「HTML5」関連の講演とか頼まれるようになってきましたね。
+
+ただ、この時期仕事の方がテラ忙しくて大変でした。  
+140画面くらいのリッチな社内システム作っていて、フロント側1人（私w）に対してサーバ側30くらいの体制でやってて、しかもバックエンドの技術支援とか共通機能とか作ってたので、自分が遅れる（デグレードもw）と開発が全部止まるというような、とにかく辛い立場でさんざん鍛えられました。
+そのとき感じたのが、エンタープライズ現場のフロント力の低さで、今の自分の活動ポリシーである「進化し続けるフロントエンド技術とシステム開発の現場をいかに融合させるか！ 」が生まれた時期でした。
+
+忙しい傍ら、勉強がてらco-meetingの未読数を通知するだけの簡単なchromeのextentionsを作りました。
+
+[https://github.com/mitsuruog/co-meeting-notifier](https://github.com/mitsuruog/co-meeting-notifier)
+
+9/9にエンタープライズ部とJJUGと共催で「Java×Web」をテーマに200人規模の勉強会を企画して行いました。いままでエンタープライズ部の企画は部長の川田さんが取り仕切っていたのですが、私が手を上げて企画しました。
+
+参加者層を読み違えたので、勉強会自体はちょっとアレでしたが・・・  
+自分がエンタープライズ向けに伝えたかったメッセージはレポート記事などで伝わったと思います。レポート記事はこちらです。
+
+[業務系システムは今すぐ脱Strutsを！」業務システムエンジニアのためのHTML5勉強会#04 活動報告](http://gihyo.jp/news/report/2013/09/1901)
+
+## 4. 10月〜12月　技術研究所へ配置換え
+
+10月からは1年の期限付きで技術研究所へ配置換えしました。  
+実は、ずっと本気で転職を考えているのですが、あえて現職で頑張る道を選ぶことにしました。
+（このことについてはそのうち記事にしようかな。。。SIの退職エントリ多いし）
+
+この時期から社内外問わず講演する機会が増えましたね。  
+一番光栄に思ったことは11/9のJJUG CCCでの講演機会に恵まれたことです。  
+普段、Javaをやっている身としてJJUG CCCに出て話をするなんて、夢のような話でした。
+そのとき発表した内容がこちらです。
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/28086112" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/mitsuruogawa33/webjava" title="メンテナンス性の良いWebシステムを構築するためにjavaとフロントエンドでやるべきこと" target="_blank">メンテナンス性の良いWebシステムを構築するためにjavaとフロントエンドでやるべきこと</a> </strong> from <strong><a href="//www.slideshare.net/mitsuruogawa33" target="_blank">Mitsuru Ogawa</a></strong> </div>
+
+そうそう、11/9のJJUG CCCの当日にMacbook Airが届きました。JJUG CCCもMacで登壇しています。これまでずーとWindows＆lenovoでしたが、今ではすっかりMacbook Airの虜ですね。
+
+仕事では、とあるベンダー製HTML5関連のUIフレームワークの国内初事例に挑みながら、フロントエンドのテスト自動化など、HTML5時代の開発現場の負担やリスクをいかに軽減するか模索する毎日です。
+
+12月に社内でNodeのハンズオンとかやりました。資料はこちらです。
+来年も、社内でフロントエンドのキーテクノロジについてハンズオンしながら教えますので、今後もリソース増えそうです。
+
+[https://github.com/mitsuruog/node_study](https://github.com/mitsuruog/node_study)
+
+同僚が困ってたので、サクッとthree.jsのサンプルとか作りました。
+
+[https://github.com/mitsuruog/richo-theta-with-threejs](https://github.com/mitsuruog/richo-theta-with-threejs)
+
+ざっとこんな感じですね。  
+うーん、去年の自分と比べると全くの別人なんですが、正直もっと頑張れたかなと。。。  
+もっと頑張れ自分。
+
+## ５. 来年の活動
+
+来年は、今年（前Windowsマシンが壊れて）できなかったJavaEEとフロントエンドのチュートリアルを完成させたいですね。
+とりあえずBackbone.jsで作ってますが、他に有名どこのフレームワークでも作ってみてエンタープライズ目線で検証・評価したいと思います。
+
+テスト自動化についても、何らかの結果を出したいです。
+それからいくつかフロント技術に関する論文を書いて発表したいです。
+
+それから、活動のフィールドを変えます。  
+今年1年、エンタープライズHTML5の立場で活動してきましたが、フロントエンド技術のコアがJavascriptと言うこともあり、ブラックボックス化が困難であり、企業としてマネタイズすることが難しいと感じています。  
+近い未来ではHTML5特需、IE11対応特需など見込まれますが、やっぱり一過性のものかなと思っています。
+
+という訳で、表では今まで通りフロントエンジニアとして活動していきますが、裏では、本当にお金になるHTML5とは？ということをキーワードで活動していたいと思います。
+
+来年こそはもっと質の良いアウトプットしたいと思います。  
+では、みなさん良いお年を。
