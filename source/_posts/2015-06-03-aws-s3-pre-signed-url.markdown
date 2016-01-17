@@ -4,8 +4,8 @@ title: "期限付きURLを発行してセキュアなS3のオブジェクトに�
 date: 2015-06-03 00:14:49 +0900
 comments: true
 tags:
-  aws
-  s3
+ - aws
+ - s3
 ---
 
 小ネタです。  

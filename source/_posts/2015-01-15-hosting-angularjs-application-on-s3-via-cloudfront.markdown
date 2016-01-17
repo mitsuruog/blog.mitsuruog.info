@@ -4,7 +4,7 @@ title: "AngularJSで作ったSPAをAWS上の「S3＋CloudFront」でお手軽ホ
 date: 2015-01-15 21:47:55 +0900
 comments: true
 tags: 
- - angularjs
+ - AngularJs
  - aws
  - s3
  - cloudfront

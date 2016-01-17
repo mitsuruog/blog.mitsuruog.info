@@ -4,7 +4,7 @@ title: "AngularJSの$resourceの意外なハマりポイント"
 date: 2014-12-16 20:00:00 +0900
 comments: true
 tags: 
- - angularjs
+ - AngularJs
  - webapi
 ---
 
@@ -112,7 +112,7 @@ angular.module('app').controller('MainCtrl', MainCtrl);
 > It is important to realize that invoking a $resource object method immediately returns an empty reference  
 > ($resourceを実行するとね、すぐに空の参照を返すから、心して使え。このボケがぁ！・・・超約)
 
-[json - AngularJS using $resource service. Promise is not resolved by GET request - Stack Overflow](http://stackoverflow.com/questions/20008244/angularjs-using-resource-service-promise-is-not-resolved-by-get-request/20008380?stw=2#20008380)
+[json - AngularJs using $resource service. Promise is not resolved by GET request - Stack Overflow](http://stackoverflow.com/questions/20008244/angularjs-using-resource-service-promise-is-not-resolved-by-get-request/20008380?stw=2#20008380)
 
 ## $resourceとの正しい(安全な)付き合いかた
 

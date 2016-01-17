@@ -4,7 +4,7 @@ title: "Angular1.X系をES6で書いてみたらちょっと残念だった話�
 date: 2015-03-11 01:36:47 +0900
 comments: true
 tags:
- - angularjs
+ - AngularJs
  - es6
  - babel
  - jspm
@@ -18,7 +18,7 @@ ES5のコードの中にクソコードを仕込んでおいて、ついでに�
 Angular1.3をES6でリファクタするポイントや、書き換えてみての所感とかまとめようと思います。  
 (注 今回のコードは実験的な試みです。プロダクションコードに適用するかは自己責任でお願いします。)
 
-[AngularJS ES6リファクタソン - AngularJS Japan User Group | Doorkeeper](https://angularjs-jp.doorkeeper.jp/events/21008)
+[AngularJS ES6リファクタソン - AngularJs Japan User Group | Doorkeeper](https://angularjs-jp.doorkeeper.jp/events/21008)
 
 <!-- more -->
 

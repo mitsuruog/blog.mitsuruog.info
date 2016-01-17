@@ -4,7 +4,7 @@ title: "controllerAs仕様のcontrollerをユニットテストするための�
 date: 2015-01-13 23:33:37 +0900
 comments: true
 tags: 
- - angularjs
+ - AngularJs
  - karma
  - unit test
 ---

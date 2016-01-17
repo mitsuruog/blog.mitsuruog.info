@@ -4,7 +4,7 @@ title: "いま一番気に入っているAngularJSのプロジェクト構成"
 date: 2014-12-03 00:00:00 +0900
 comments: true
 tags: 
- - angularjs
+ - AngularJs
  - yeoman
  - fullstack
 ---

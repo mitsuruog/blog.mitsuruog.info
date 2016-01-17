@@ -6,7 +6,7 @@ comments: true
 tags:
  - cordova
  - ionic
- - android
+ - Android
 ---
 
 [Ionic](http://ionicframework.com/)でAndroidアプリを初めて作って公開してみました。

@@ -4,7 +4,7 @@ title: "話題のFluxアーキテクチャをES5のAngularJSで書いてみた"
 date: 2014-10-29 00:10:00 +0900
 comments: true
 tags:
- - Angularjs
+ - AngularJs
  - Flux
  - SPA
 ---

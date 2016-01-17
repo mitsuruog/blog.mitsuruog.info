@@ -6,7 +6,7 @@ comments: true
 tags: 
  - javascript
  - styleguide
- - Angularjs
+ - AngularJs
  - backbone
  - nodejs
 ---

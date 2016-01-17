@@ -6,6 +6,7 @@ comments: true
 tags:
   - wercker
   - ci
+  - unit test
 ---
 
 {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/wercker-frontend.png %}

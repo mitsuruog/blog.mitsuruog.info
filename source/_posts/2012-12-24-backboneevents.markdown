@@ -3,8 +3,8 @@ layout: post
 title: "Backbone.Eventsの機能テスト"
 date: 2012-12-24 00:37:00 +0900
 comments: true
-tags: 
- - Backbone
+tags:
+ - backbone
  - jasmine
 ---
 
