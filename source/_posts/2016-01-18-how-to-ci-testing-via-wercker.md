@@ -101,12 +101,12 @@ build:
         packages: sudo gawk
     - hipchat-notify:
         token: $HIPCHAT_TOKEN
-        room-id: $HIPCHAT_NAME
+        room-id: $HIPCHAT_ROOM
         from-name: wercker
         on: failed
 ```
 
-(※)`$HIPCHAT_TOKEN`と`$HIPCHAT_NAME`はweckerで定義した環境変数です。
+(※)`$HIPCHAT_TOKEN`と`$HIPCHAT_ROOM`はweckerで定義した環境変数です。
 
 ## まとめ
 
