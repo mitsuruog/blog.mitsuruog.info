@@ -19,7 +19,7 @@ github private repositoryも無料でCIテストできるので[wercker](http://
 
 ##  ベースはNode用の基本構成
 
-まず、自動テストはNode.jsで行うようにしていると思うので、Node用の基本設定をベースにするといいと思います。  
+まず、自動テストはNode.jsで行うようにしていると思うので、Node用の基本設定をベースにするのがいいと思います。  
 
 [wercker - docs - Nodejs](http://devcenter.wercker.com/docs/languages/nodejs.html)
 
@@ -78,7 +78,7 @@ build:
 
 ### CIテストはヘッドレスブラウザを使いましょう
 
-ローカルは実ブラウザを使ってテストしている場合は、ヘッドレスブラウザを使いましょう。  
+ローカルは実ブラウザを使ったテストしている場合は、ヘッドレスブラウザを使いましょう。  
 ヘッドレスブラウザは[PhantomJS](http://phantomjs.org/)が代表的です。だた、v1.0系はモダンブラウザとのcompatibilityの問題があるため、v2.0以降を使った方がいいです。
 
 CIでも実ブラウザを使いたい場合は、werckerで頑張るより、お金を払って[Sauce Labs](https://saucelabs.com/)使った方がいいと思います。
