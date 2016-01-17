@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "spellcheck-tech-word": true,
+    "no-mix-dearu-desumasu": true,
+    "no-doubled-joshi": true,
+    "no-double-negative-ja": true,
+    "max-ten": {
+      "max" : 3
+    }
+  }
+}

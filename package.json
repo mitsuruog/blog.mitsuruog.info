@@ -20,6 +20,12 @@
     "hexo-util": "mitsuruog/hexo-util"
   },
   "devDependencies": {
-    "hexo-util": "mitsuruog/hexo-util"
+    "gulp": "^3.9.0",
+    "gulp-textlint": "^1.1.0",
+    "textlint-rule-max-ten": "^2.0.0",
+    "textlint-rule-no-double-negative-ja": "^1.0.3",
+    "textlint-rule-no-doubled-joshi": "^2.0.0",
+    "textlint-rule-no-mix-dearu-desumasu": "^1.4.0",
+    "textlint-rule-spellcheck-tech-word": "^4.1.2"
   }
 }
