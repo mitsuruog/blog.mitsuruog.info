@@ -16,29 +16,6 @@ tags:
 
 <!-- more -->
 
-## 結論
-
-ターミナルからvscodeを起動する必要があります。起動時に、nvmの設定を外部から指定すると動作します。
-
-```
-nvm use 5; code .
-```
-
-vscodeをターミナルから動かせるようにしておくことが前提条件です。
-設定はこちらを参考にしてください。
-
-[Setting up Visual Studio Code](https://code.visualstudio.com/Docs/editor/setup)
-
-自分の場合はzshを使っているので、`.zshrc`に追加しました。
-
-```
-function code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
-```
-
-参考：
-[VS Code with NVM · Issue #1895 · Microsoft/vscode](https://github.com/Microsoft/vscode/issues/1895)
-
-
 ## トラブル
 
 vscodeの`task.json`に定義した`tsc`コマンドで`.ts`ファイルをコンパイルしようと思ったらエラーが発生。ぐぬぬ。。。
@@ -47,3 +24,26 @@ vscodeの`task.json`に定義した`tsc`コマンドで`.ts`ファイルをコ�
 Failed to launch external program tsc HelloWorld.ts.
 spawn tsc ENOENTspawn tsc ENOENT
 ```
+
+## 結論
+
+ターミナルからvscodeを起動する必要があります。起動時に、nvmの設定を外部から指定すると動作します。
+
+```
+nvm use 5; code .
+```
+
+~~vscodeをターミナルから動かせるようにしておくことが前提条件です。
+設定はこちらを参考にしてください。~~
+
+[Setting up Visual Studio Code](https://code.visualstudio.com/Docs/editor/setup)
+
+~~自分の場合はzshを使っているので、`.zshrc`に追加しました。~~  
+(2016-03-10 追記) vscodeのバージョンアップによりpathの設定は不要になったようです。
+
+```
+function code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
+```
+
+参考：
+[VS Code with NVM · Issue #1895 · Microsoft/vscode](https://github.com/Microsoft/vscode/issues/1895)

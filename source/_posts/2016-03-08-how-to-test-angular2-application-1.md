@@ -12,7 +12,7 @@ tags:
 
 {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/angular2-testing-logo.png %}
 
-Angular2の実装の方法については書かれている記事をよく目にするようになってきたので、テストについての自分が困らないように調べてみたシリーズ。
+Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 
 今回は準備編。
 
@@ -125,15 +125,17 @@ module.exports = function (config) {
 }
 ```
 
-Karmaの設定ファイルの`frameworks`にてテスティングフレームワークを変更できるので、mochaなど他のものを利用することもできると思います。
-見慣れない`karma.shim.js`が登場しますが、後で説明します。
+~~Karmaの設定ファイルの`frameworks`にてテスティングフレームワークを変更できるので、mochaなど他のものを利用することもできると思います。~~  
+(2016-03-10 追記) Angular2内部でJasmineのDefinitelyTypedを参照しているため、Jasmineを使った方が幸せになれる気がします。
+
+`karma.shim.js`という見慣れないファイルについては後で説明します。
 
 ## モジュールロードシステムが独自からsystemjsに変更となった
 
-Angular2で大きく変わった点の一つが、モジュールロードシステムが[systemjs](https://github.com/systemjs/systemjs)に変更になった点です。
+Angular2で大きく変わった点の一つは、モジュールロードシステムが[systemjs](https://github.com/systemjs/systemjs)に変更された点です。
 
 Angular1はモジュール名の名前解決による独自のモジュールロードシステムを持っていました。
-基本的には`<script>`タグでロードした外部スクリプトを、Angular上でモジュールとして再ロードして利用していました。
+基本的には`<script>`タグでロードした外部スクリプトを、Angular上でモジュールとして再ロードすることで利用していました。
 
 Angular2ではsystemjsの設定ファイルにて利用する外部スクリプトを定義して、systemjsを介してモジュールをロードするようになります。
 これまではテストランナーでテスト用のファイル一式をロードすれば十分でしたが、間にsystemjsが1枚存在する形になります。
@@ -142,7 +144,7 @@ Angular2ではsystemjsの設定ファイルにて利用する外部スクリプ�
 
 ## karma.shim.jsとは
 
-`karma.shim.js`とは、テストを行う前にsystemjsにてモジュールがロードされていることを保証するために、テストランナーとsystemjsの初期化のタイミングを制御する役割をするものです。
+`karma.shim.js`とは、テストを行う前にsystemjsにてモジュールがロードされていることを保証するために、Karmaとsystemjsの初期化のタイミングを制御する役割をするものです。
 
 `karma.shim.js`の処理を大きく分けると次の3ステップでテストを実行しています。
 
@@ -209,12 +211,7 @@ karma start karma.conf.js
 
 ## まとめ
 
-モジュールロードシステムがSystemJSに変更になったことにより、少し面倒になりましたがこれでAngular1と同様にユニットテストを行う準備ができるはず！！
-
-> `it('', inject([], () => ()))`ってなんだこれ！？
-`beforeEachProviders`って一体！？
-
-細かい部分は後ろのパートで順次説明していきます。
+モジュールロードシステムがSystemJSに変更されたことで、少し面倒になりましたがこれでAngular1と同様にユニットテストを行う準備ができるはず！！
 
 ### 参考
 

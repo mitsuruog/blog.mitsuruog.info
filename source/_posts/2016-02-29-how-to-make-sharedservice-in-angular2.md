@@ -44,7 +44,7 @@ Angular2の公式ページでよく利用されるHeroListを例に説明しま�
 
 {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/IMG_20160229_001409.png %}
 
-HeroDetailComponentで`@Component`でDIしている箇所を抜粋します。
+HeroDetailComponentで`@Component`をDIしている箇所を抜粋します。
 
 **hero-detail.component.ts**
 ```ts
