@@ -21,16 +21,14 @@ Angular2の実装の方法は記事をよく目にする機会が増えたので
 > （注意）Angular 2.0.0-beta.7 をベースに話しています。
 E2Eテストはprotractorがそのまま利用できると思うので、ここでのテストはユニットテストの話です。
 
-## Angular2テストシリーズ
+## Angular2ユニットテストシリーズ
 
-（こんな感じで書けたらいいな。。。）
-
-1. [準備]()
+1. [準備](/2016/03/how-to-test-angular2-application-1.html)
 1. 基本的なMock, Spyの方法
 1. Componentのテスト
 1. Serviceのテスト
 1. Pipeのテスト
-1. カバレッジ
+1. [カバレッジ](/2016/03/how-to-test-angular2-application-coverage.html)
 
 ## 準備編
 
