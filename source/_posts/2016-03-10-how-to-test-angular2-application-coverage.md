@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Angular2のユニットテスト・カバレッジ編"
+title: "Angular2 Unit Testing - カバレッジ編"
 date: 2016-03-10 23:35:00 +900
 comments: true
 tags:
@@ -20,16 +20,16 @@ Angular2の実装の方法は記事をよく目にする機会が増えたので
 
 <!-- more -->
 
-> （注意）Angular 2.0.0-beta.7 をベースに話しています。
+> （注意）Angular 2.0.0-beta.9 をベースに話しています。
 E2Eテストはprotractorがそのまま利用できると思うので、ここでのテストはユニットテストの話です。
 
-## Angular2ユニットテストシリーズ
+## Angular2 Unit Testing
 
 1. [準備](/2016/03/how-to-test-angular2-application-1.html)
-1. 基本的なMock, Spyの方法
-1. Componentのテスト
-1. Serviceのテスト
-1. Pipeのテスト
+1. [基本](/2016/03/how-to-test-angular2-application-basic.html)
+1. TBD
+1. TBD
+1. TBD
 1. [カバレッジ](/2016/03/how-to-test-angular2-application-coverage.html)
 
 ## カバレッジ編
@@ -40,7 +40,7 @@ E2Eテストはprotractorがそのまま利用できると思うので、ここ�
 カバレッジを取得することのメリットは、コードの危ない部分に対して効果的にテストができているか客観的に評価できることです。。
 特にHTML形式のレポートは、コードとテストを実行した部分を重ねて表示することができ、結果を視覚的に見やすくしてくれます。
 
-最近のJavascriptのテストではカバレッジ取得のための環境が整ってきたこともあり、積極的に活用していくべきです。
+最近のJavaScriptのテストではカバレッジ取得のための環境が整ってきたこともあり、積極的に活用していくべきです。
 
 ## karma-coverageでカバレッジを測定する
 
@@ -66,7 +66,7 @@ module.exports = function (config) {
     // ...省略
     
     // (1)
-    // (*.spec.js, *.mock.js)以外のJavascriptファイルをカバレッジ測定の対象とします
+    // (*.spec.js, *.mock.js)以外のJavaScriptファイルをカバレッジ測定の対象とします
     preprocessors: {
       "app/**/!(*spec|*mock).js": ['coverage']
     },
@@ -95,7 +95,7 @@ module.exports = function (config) {
 
 {%img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/testing-angular2-coverage-1.png %}
 
-karma-coverage内部では、Javascriptのカバレッジ測定ツールとして有名な[istanbul](https://github.com/gotwarlost/istanbul)を利用しています。
+karma-coverage内部では、JavaScriptのカバレッジ測定ツールとして有名な[istanbul](https://github.com/gotwarlost/istanbul)を利用しています。
 HTMLレポートでは、ディレクトリやファイルごとにカバレッジを知ることができます。これを見ながらカバレッジの低い部分などに追加のテストを書いていきます。
 
 {%img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/testing-angular2-coverage-2.png %}
@@ -104,7 +104,7 @@ HTMLレポートでは、ディレクトリやファイルごとにカバレッ�
 
 {%img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/testing-angular2-coverage-3.png %}
 
-ところがこのままでは、レポートのコードがtsファイルをトランスパイルしたjavascriptファイルとなっているため、実際に作成したtsファイル上のどの部分に該当するかが非常に分かりにくいです。
+ところがこのままでは、レポートのコードがtsファイルをトランスパイルしたJavaScriptファイルとなっているため、実際に作成したtsファイル上のどの部分に該当するかが非常に分かりにくいです。
 
 ## remap-istanbulでtsファイルとリンクさせる
 
@@ -132,7 +132,7 @@ module.exports = function (config) {
     // ...省略
     
     // (1)
-    // (*.spec.js, *.mock.js)以外のJavascriptファイルをカバレッジ測定の対象とします
+    // (*.spec.js, *.mock.js)以外のJavaScriptファイルをカバレッジ測定の対象とします
     preprocessors: {
       "app/**/!(*spec|*mock).js": ['coverage']
     },
@@ -178,6 +178,8 @@ node_modules/.bin/remap-istanbul -i report/coverage/coverage-final.json -o repor
 カバレッジの取り方とレポートの表示についてでした。
 HTMLレポートの出力方法は他にもあると思いますので、いろいろ試してみるといいでしょう。
 カバレッジレポートを取得することで、テストが十分でない箇所を明らかにすることができ、つまらないテストにゲーム的な要素が加わってテストを書くことが楽しくなります。
+
+### PR
 
 こちらに初学者のためのMinimum starter kitを作成しましたので、ぜひ利用してください。
 (もちろんカバレッジも取得できます！！)

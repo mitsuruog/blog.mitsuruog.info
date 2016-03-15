@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Angular2のユニットテスト・準備編"
+title: "Angular2 Unit Testing - 準備編"
 date: 2016-03-08 00:35:00 +900
 comments: true
 tags:
@@ -18,16 +18,16 @@ Angular2の実装の方法は記事をよく目にする機会が増えたので
 
 <!-- more -->
 
-> （注意）Angular 2.0.0-beta.7 をベースに話しています。
+> （注意）Angular 2.0.0-beta.9 をベースに話しています。
 E2Eテストはprotractorがそのまま利用できると思うので、ここでのテストはユニットテストの話です。
 
-## Angular2ユニットテストシリーズ
+## Angular2 Unit Testing
 
 1. [準備](/2016/03/how-to-test-angular2-application-1.html)
-1. 基本的なMock, Spyの方法
-1. Componentのテスト
-1. Serviceのテスト
-1. Pipeのテスト
+1. [基本](/2016/03/how-to-test-angular2-application-basic.html)
+1. TBD
+1. TBD
+1. TBD
 1. [カバレッジ](/2016/03/how-to-test-angular2-application-coverage.html)
 
 ## 準備編
@@ -210,6 +210,13 @@ karma start karma.conf.js
 ## まとめ
 
 モジュールロードシステムがSystemJSに変更されたことで、少し面倒になりましたがこれでAngular1と同様にユニットテストを行う準備ができるはず！！
+
+### PR 
+
+こちらに初学者のためのMinimum starter kitを作成しましたので、ぜひ利用してください。
+(もちろんすぐテストできます！！)
+
+mitsuruog/angular2-minimum-starter: Minimum starter kit for angular2 https://github.com/mitsuruog/angular2-minimum-starter
 
 ### 参考
 
