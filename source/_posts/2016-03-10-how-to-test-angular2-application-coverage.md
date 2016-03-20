@@ -28,6 +28,8 @@ E2Eテストはprotractorがそのまま利用できると思うので、ここ�
 1. [準備](/2016/03/how-to-test-angular2-application-1.html)
 1. [基本](/2016/03/how-to-test-angular2-application-basic.html)
 1. TBD
+1. [DOMのテスト](/2016/03/how-to-test-angular2-application-dom.html)
+1. TBD
 1. [pipeのテスト](/2016/03/how-to-test-angular2-application-pipe.html)
 1. TBD
 1. [カバレッジ](/2016/03/how-to-test-angular2-application-coverage.html)
