@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Angular2 Unit Testing - pipeのテスト"
+title: "Angular2 Unit Testing - Pipeのテスト"
 date: 2016-03-17 1:29:00 +900
 comments: true
 tags:
@@ -8,13 +8,14 @@ tags:
   - angular2
   - karma
   - jasmine
+  - unit test
 ---
 
 {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/angular2-testing-logo.png %}
 
 Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 
-今回はpipeのテスト。
+今回はPipeのテスト。
 
 <!-- more -->
 
@@ -25,23 +26,25 @@ E2Eテストはprotractorがそのまま利用できると思うので、ここ�
 
 1. [準備](/2016/03/how-to-test-angular2-application-1.html)
 1. [基本](/2016/03/how-to-test-angular2-application-basic.html)
-1. TBD
+1. Mock, Spyの基本(TBD)
 1. [DOMのテスト](/2016/03/how-to-test-angular2-application-dom.html)
-1. TBD
-1. [pipeのテスト](/2016/03/how-to-test-angular2-application-pipe.html)
-1. TBD
+1. [XHRのテスト](/2016/03/how-to-test-angular2-application-xhr.html)
+1. Componentのテスト(TBD)
+1. Serviceのテスト(TBD)
+1. [Pipeのテスト](/2016/03/how-to-test-angular2-application-pipe.html)
+1. Directiveのテスト(TBD)
 1. [カバレッジ](/2016/03/how-to-test-angular2-application-coverage.html)
 
-## pipeのテスト
+## Pipeのテスト
 
-pipeのテストについて紹介します。
+Pipeのテストについて紹介します。
 
-Angular2のpipeはAngular1のfilterに相当するものです。
-Linuxコマンドの`|(パイプ)`と同義で、入力内容をpipe内で(transform, replaceなど)処理し、結果を出力する単純なものです。
+Angular2のPipeはAngular1のfilterに相当するものです。
+Linuxコマンドの`|(パイプ)`と同義で、入力内容をPipe内で(transform, replaceなど)処理し、結果を出力する単純なものです。
 
-## pipeのテストは至ってシンプル
+## Pipeのテストは至ってシンプル
 
-文の区切りの最初の文字を大文字にするpipeをテストします。
+文の区切りの最初の文字を大文字にするPipeをテストします。
 
 ```
 例）
@@ -49,7 +52,7 @@ abc     => Abc
 abc def => Abc Def
 ```
 
-pipeのコードはこちらです。
+Pipeのコードはこちらです。
 
 **init-caps.pipe.ts**
 ```ts
@@ -65,10 +68,10 @@ export class InitCapsPipe implements PipeTransform {
 }
 ```
 
-pipeは単純なclassであるため、テストクラス内でインスタンスを生成してテストします。
+Pipeは単純なclassであるため、テストクラス内でインスタンスを生成してテストします。
 至ってシンプルです。  
 
-下の例では、`beforeEach`でテスト対象のpipeを読み込んでテストしています。
+下の例では、`beforeEach`でテスト対象のPipeを読み込んでテストしています。
 
 **init-caps.pipe.spec.ts**
 ```ts
@@ -108,13 +111,13 @@ describe('Test: InitCapsPipe', () => {
 });
 ```
 
-ただし、pipe内部でDIしているproviderがある場合は、`beforeEachProviders`で読み込んだ後に`inject`でDIする必要があるでしょう。
+ただし、Pipe内部でDIしているproviderがある場合は、`beforeEachProviders`で読み込んだ後に`inject`でDIする必要があるでしょう。
 
 ## まとめ
 
-pipeのテストは以上です。
+Pipeのテストは以上です。
 
-pipeは構造がシンプルなためテストも簡単です。テストの最初にトライするものとしては最適だと思います。
+Pipeは構造がシンプルなためテストも簡単です。テストの最初にトライするものとしては最適だと思います。
 サンプルコードはこちらを参照してください。
 
 [mitsuruog/_angular2_pipe](https://github.com/mitsuruog/_angular2_pipe)

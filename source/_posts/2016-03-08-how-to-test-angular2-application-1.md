@@ -8,6 +8,7 @@ tags:
   - angular2
   - karma
   - jasmine
+  - unit test
 ---
 
 {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/angular2-testing-logo.png %}
@@ -25,11 +26,13 @@ E2Eテストはprotractorがそのまま利用できると思うので、ここ�
 
 1. [準備](/2016/03/how-to-test-angular2-application-1.html)
 1. [基本](/2016/03/how-to-test-angular2-application-basic.html)
-1. TBD
+1. Mock, Spyの基本(TBD)
 1. [DOMのテスト](/2016/03/how-to-test-angular2-application-dom.html)
-1. TBD
-1. [pipeのテスト](/2016/03/how-to-test-angular2-application-pipe.html)
-1. TBD
+1. [XHRのテスト](/2016/03/how-to-test-angular2-application-xhr.html)
+1. Componentのテスト(TBD)
+1. Serviceのテスト(TBD)
+1. [Pipeのテスト](/2016/03/how-to-test-angular2-application-pipe.html)
+1. Directiveのテスト(TBD)
 1. [カバレッジ](/2016/03/how-to-test-angular2-application-coverage.html)
 
 ## 準備編
