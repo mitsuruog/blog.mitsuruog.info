@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dropboxのpublicフォルダが使えなくなったので、Cloudinaryに移行してみた"
+title: "Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた"
 date: 2017-05-17 0:00:00 +900
 comments: true
 tags:
