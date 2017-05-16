@@ -31,4 +31,4 @@ tags:
 
 ちなみにGoogleで「Jasmine」で検索すると、まだ4番目ですね。もっと上位になるように頑張って情報発信していきたいです。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/jasmine.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2012/jasmine.png %}

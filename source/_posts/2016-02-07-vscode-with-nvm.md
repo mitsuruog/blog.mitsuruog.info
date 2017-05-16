@@ -8,7 +8,7 @@ tags:
   - nvm
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/vscode-with-nvm.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/vscode-with-nvm.png %}
 
 # vscodeとnvmを一緒に使う小ネタ
 

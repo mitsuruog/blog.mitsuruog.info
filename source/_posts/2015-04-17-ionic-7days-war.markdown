@@ -17,7 +17,7 @@ ionicで開発自体はAngularJSベースということもあり、結構スム
 
 作ったアプリはこちらです。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2015/hello-ionic-1-1.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-1-1.png %}
 
 [ダウンロードはこちら](https://play.google.com/store/apps/details?id=com.mitsuruog.transitbus)
 
@@ -201,7 +201,7 @@ $scope.$on('$ionicView.beforeEnter', function() {
 どのバス停が人気があるかとか、こっそりトラッキングしてニヤニヤしてます。  
 ちゃんと真面目にエラーのスタックトレースも取得してます。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2015/hello-ionic-2-2.png 500 %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-2-2.png 500 %}
 
 > モバイルアプリのトラッキングはGoogle Analytics上のアナリティクス設定で新しいプロパティを作成する際に、トラッキングの対象を「モバイルアプリ」にしてください。(普段、Webページのトラッキングをやっているので、最初うっかりハマってしまいました。)
 
@@ -332,11 +332,11 @@ Genymotion上に作成したapkファイルをどうインストールするか
 
 エミュレータが実行されている状態でAndroid Device Monitorを起動します。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2015/hello-ionic-3-1.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3-1.png %}
 
 実行中のデバイスが表示されるので、「Screen capture」ボタンをクリックします。キャプチャ用の別画面が立ち上がります。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2015/hello-ionic-3-2.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3-2.png %}
 
 > 他に良い方法あれば教えてください。。。
 
@@ -350,7 +350,7 @@ Genymotion上に作成したapkファイルをどうインストールするか
 
 というわけで無事公開できましたー。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2015/hello-ionic-3.jpg 320 %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3.jpg 320 %}
 
 
 ## 最後に

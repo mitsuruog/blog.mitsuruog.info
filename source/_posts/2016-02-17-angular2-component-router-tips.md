@@ -7,7 +7,7 @@ tags:
   - angular2
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/angular2.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2.png %}
 
 Angular2のComponentRouterを使った場合に発生する`Use "..." on the parent's route path.`エラーの対処法です。  
 完全に小ネタ。

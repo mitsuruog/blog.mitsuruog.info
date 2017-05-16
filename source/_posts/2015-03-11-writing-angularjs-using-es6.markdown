@@ -22,7 +22,7 @@ Angular1.3をES6でリファクタするポイントや、書き換えてみて�
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2015/angular-refactor.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-refactor.png %}
 
 ## Angular1.X系はES6と相性が悪い？？
 

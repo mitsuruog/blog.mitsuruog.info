@@ -23,7 +23,7 @@ Gtihub：
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/openui5odata1.png 580 326 %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/openui5odata1.png 580 326 %}
 
 1.  ODataとは？
 2.  なぜODataとOpenUi5なのか？
@@ -34,7 +34,7 @@ Gtihub：
 >(2014/11/13 追記)  
 > このネタで[HTML5Experts.jp](http://html5experts.jp)に寄稿しました。こちらの方が分かりやすく書いてあると思います。  
 >[実例から考える、HTML5時代のエンタープライズ・アーキテクチャ | HTML5Experts.jp](http://html5experts.jp/mitsuruog/9518/)
-> {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/exjp_odata.png 483　246 %}
+> {% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/exjp_odata.png 483　246 %}
 
 ## 1. ODataとは？
 
@@ -111,7 +111,7 @@ ODataが持つデータアクセス方法の標準化とUIフレームワーク�
 従来のオープンソースを組み合わせた場合と比べ、データアクセスに関わる非常にセンシティブで難易度が高い部分実装がかなり省け、大規模なシステム開発においても比較的管理しやすく、安全に開発ができる可能性があり、非常に惹かれるものがあります。
 
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/openui5odata2.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/openui5odata2.png %}
 
 
 ## 5. まとめ

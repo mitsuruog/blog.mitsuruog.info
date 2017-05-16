@@ -30,7 +30,7 @@ URLを知っていれば誰でもアクセスできる性質を持っていま�
 
 バックエンドではユーザ認証を行い、その証明情報を元に、不正なアクセスを除外したり、正しいアクセスに対して機能に対する認可を行わなければなりません。そのため、SPAでの証明情報の受け渡しは非常に重要です。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/JWT2.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/JWT2.png %}
 
 
 ## 2.　Tokenを利用した証明情報の受け渡し
@@ -41,7 +41,7 @@ Cookieを利用した証明情報とは「セッションID」をイメージす
 
 それに対し、Tokenを利用した方法では認証はバックンドに依存しません。ここでの「Token」とは「**電子署名**」の一種です。こちらがTokenを利用した場合の証明情報の受け渡しフローです。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/JWT3.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/JWT3.png %}
 
 
 まず認証後に、暗号学的ハッシュ関数(SHA-256など)を使って暗号化したTokenを生成して渡します。このときにロールや個人情報をTokenに含めることがポイントです。  
@@ -62,7 +62,7 @@ JWTの構造はJSON Web Signature(JWS)とJSON Web Encryption(JWE)の2つ。
 (ちなみに上の[Cookies vs Tokens. Getting auth right with Angular.JS](https://auth0.com/blog/2014/01/07/angularjs-authentication-with-cookies-vs-token/)はJWSです。)
 JWS構造のJWTを簡単に図解すると「ヘッダー」「クレームセット」「署名」の3部構成になっています。それぞれBase64URLエンコードされており、署名はヘッダー・クレームセットから生成します。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/JWT1.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/JWT1.png %}
 
 クレームセット部分には、個人情報やロールなどカスタム項目を設定します。これ以外にJWTの仕様で以下のような項目(クレーム名)が標準で定義されています。
 

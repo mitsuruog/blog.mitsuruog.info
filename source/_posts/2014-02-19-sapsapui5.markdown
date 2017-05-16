@@ -13,7 +13,7 @@ SAP社では2013年12月に「[SAP Mobile Platform 3.0](http://www.sapmobile-pla
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/Shopping%20Cart.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/Shopping_Cart.png %}
 
 ## SAPUI5とは
 

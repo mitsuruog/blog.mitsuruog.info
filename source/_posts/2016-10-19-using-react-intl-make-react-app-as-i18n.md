@@ -9,7 +9,7 @@ tags:
   - i18n
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/localization.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png %}
 
 [react-intl](https://github.com/yahoo/react-intl)を使ってReactアプリを国際化してみたところ、結構良かったので紹介します。
 

@@ -10,7 +10,7 @@ tags:
   - font
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/custom-font.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png %}
 
 アイコンなどの画像には、少し前までCSS Spritesを使うことが多かったと思います。しかし、最近はCSSでスタイリングできるため、カスタムフォントを作成して使用することが増えてきたように感じます。
 

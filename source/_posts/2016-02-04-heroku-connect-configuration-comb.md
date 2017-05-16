@@ -9,7 +9,7 @@ tags:
   - nodejs
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/heroku-connect.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/heroku-connect.png %}
 
 [Heroku Connect](https://www.heroku.com/connect)は、SalesforceとHeroku上のpostgresとを接続するアドオンです。
 

@@ -15,13 +15,13 @@ Yet Another Your Story (Enterprise TED 3)
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/devsumi1.jpg 390 520 %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/devsumi1.jpg 390 520 %}
 
 講演前のTEDメンバー。みんな緊張してますw。（撮影：荒井さん）  
 （上段左から、高柳さん、中野さん、梅澤さん、川添さん）  
 （下段左から、高野さん、わたし、平栗さん）  
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/devsumi2.jpg 520 390 %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/devsumi2.jpg 520 390 %}
 
 講演前の準備風景（撮影：荒井さん）
 

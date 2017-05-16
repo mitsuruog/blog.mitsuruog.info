@@ -13,7 +13,7 @@ tags:
   - unit test
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/angular2-testing-logo.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2-testing-logo.png %}
 
 Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 
@@ -98,16 +98,16 @@ module.exports = function (config) {
 
 テストを実行すると`report/coverage`の直下にHTML形式のカバレッジレポートが出力されます。
 
-{%img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/testing-angular2-coverage-1.png %}
+{%img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-1.png %}
 
 karma-coverage内部では、JavaScriptのカバレッジ測定ツールとして有名な[istanbul](https://github.com/gotwarlost/istanbul)を利用しています。
 HTMLレポートでは、ディレクトリやファイルごとにカバレッジを知ることができます。これを見ながらカバレッジの低い部分などに追加のテストを書いていきます。
 
-{%img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/testing-angular2-coverage-2.png %}
+{%img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-2.png %}
 
 コードとテスト実行した部分を重ねあわせて表示することで、テストが不足している部分を容易に発見できます。
 
-{%img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/testing-angular2-coverage-3.png %}
+{%img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-3.png %}
 
 ところがこのままでは、レポートのコードがtsファイルをトランスパイルしたJavaScriptファイルとなっているため、実際に作成したtsファイル上のどの部分に該当するかが非常に分かりにくいです。
 
@@ -173,7 +173,7 @@ node_modules/.bin/remap-istanbul -i report/coverage/coverage-final.json -o repor
 
 コマンドを実行すると`report/coverage`の直下にHTML形式のカバレッジレポートが出力されます。
 
-{%img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/testing-angular2-coverage-4.png %}
+{%img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-4.png %}
 
 今度はtsファイルとカバレッジレポートがリンクするようになりました。
 めでたし。めでたし。

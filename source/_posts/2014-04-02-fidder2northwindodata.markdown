@@ -16,7 +16,7 @@ tags:
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/fiddler2.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/fiddler2.png %}
 
 1.  背景
 2.  grunt-connect-proxyを使う
@@ -34,7 +34,7 @@ tags:
 
 そこで今回はリバースプロキシサーバーを立てて、サーバーで受け取ったリクエストの中で、特定のURLの一部（例えば「`http://localhost/Northwind`」の「`/Northwind/`」）にマッチしたリクエストを、NorthWindのOdataServiceに代わりに要求します。そして結果をフロント側に返します。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/reverse.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/reverse.png %}
 
 異なるドメインへのリクエストを裏でプロキシサーバーが代替わりしてくれるため、フロント側から見ると、サーバーはlocalhostしか見えないようになり、同一生成元ポリシー違反にならないのです。
 

@@ -88,7 +88,7 @@ grunt serve:debug
 
 コマンドを叩くと、Node inspectorが立ち上がってくるのですが、`--debug-brk`指定されているので最初のステップのブレイクポイントで止まっています。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/node-Inspector.png %} 
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/node-Inspector.png %} 
 
 ブレイクポイントから処理を進めると通常通りサーバーが起動してくるので`http://localhsot:9000`にてアプリの動作を確認しながら、Node側のデバックもできます。
 

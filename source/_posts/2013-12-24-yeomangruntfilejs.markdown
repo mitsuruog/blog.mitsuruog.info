@@ -12,7 +12,7 @@ tags:
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/yeoman-logo.png %}
+{% img https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/yeoman-logo.png %}
 
 ### 目次
 
