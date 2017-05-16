@@ -6,7 +6,9 @@
     "version": "3.1.1"
   },
   "scripts": {
-    "generate": "gulp clean && hexo generate"
+    "generate": "gulp clean && node_modules/.bin/hexo generate",
+    "serve": "node_modules/.bin/hexo server",
+    "deploy": "node_modules/.bin/hexo deploy"
   },
   "dependencies": {
     "hexo": "^3.1.0",
