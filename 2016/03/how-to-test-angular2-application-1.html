@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Angular2 Unit Testing - 準備編 | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
+今回は準備編。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular2 Unit Testing - 準備編">
+<meta property="og:url" content="http://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
+今回は準備編。">
+<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2-testing-logo.png">
+<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-1-run.png">
+<meta property="og:updated_time" content="2017-05-16T13:33:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular2 Unit Testing - 準備編">
+<meta name="twitter:description" content="Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
+今回は準備編。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+<!-- End Google Tag Manager -->
+
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+        
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+        <td>
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+          
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80">
+      <h2 id="name">mitsuruog</h2>
+      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
+      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        89
+        <span>投稿</span>
+      </div>
+      <div class="article-info-block">
+        103
+        <span>タグ</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
+          
+          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-2016-03-08-how-to-test-angular2-application-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Angular2 Unit Testing - 準備編
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/03/how-to-test-angular2-application-1.html">
+      <time datetime="2016-03-07T15:35:00.000Z" itemprop="datePublished">2016-03-08 00:35</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2-testing-logo.png">
+<p>Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。</p>
+<p>今回は準備編。</p>
+<a id="more"></a>
+<blockquote>
+<p>（注意）Angular 2.0.0-beta.9 をベースに話しています。<br>E2Eテストはprotractorがそのまま利用できると思うので、ここでのテストはユニットテストの話です。</p>
+</blockquote>
+<h2 id="Angular2-Unit-Testing"><a href="#Angular2-Unit-Testing" class="headerlink" title="Angular2 Unit Testing"></a>Angular2 Unit Testing</h2><ol>
+<li><a href="/2016/03/how-to-test-angular2-application-1.html">準備</a></li>
+<li><a href="/2016/03/how-to-test-angular2-application-basic.html">基本</a></li>
+<li>Mock, Spyの基本(TBD)</li>
+<li><a href="/2016/03/how-to-test-angular2-application-dom.html">DOMのテスト</a></li>
+<li><a href="/2016/03/how-to-test-angular2-application-xhr.html">XHRのテスト</a></li>
+<li>Componentのテスト(TBD)</li>
+<li>Serviceのテスト(TBD)</li>
+<li><a href="/2016/03/how-to-test-angular2-application-pipe.html">Pipeのテスト</a></li>
+<li>Directiveのテスト(TBD)</li>
+<li><a href="/2016/03/how-to-test-angular2-application-coverage.html">カバレッジ</a></li>
+</ol>
+<h2 id="準備編"><a href="#準備編" class="headerlink" title="準備編"></a>準備編</h2><p>Angular1の場合と同様に、Angular2でもユニットテストを実行する前に少し下準備が必要です。<br>今回は、Angular1経験者向けに変更点などを紹介します。</p>
+<p>サンプルはこちらを参考にしてください。<br><a href="https://github.com/mitsuruog/angular2-minimum-starter" target="_blank" rel="external">mitsuruog/angular2-minimum-starter: Minimum starter kit for angular2</a></p>
+<h2 id="Karma＋Jasmineの構成はそのまま利用できる"><a href="#Karma＋Jasmineの構成はそのまま利用できる" class="headerlink" title="Karma＋Jasmineの構成はそのまま利用できる"></a>Karma＋Jasmineの構成はそのまま利用できる</h2><p>ユニットテストの構成はAngular1と同じ構成です。</p>
+<ul>
+<li>テストランナー<ul>
+<li><a href="https://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">Karma</a></li>
+</ul>
+</li>
+<li>テスティングフレームワーク<ul>
+<li><a href="http://jasmine.github.io/2.4/introduction.html" target="_blank" rel="external">Jasmine</a></li>
+</ul>
+</li>
+</ul>
+<p>Karmaの設定は次のような形です。</p>
+<p><strong>karma.conf.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="comment">// Karma configuration</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> baseLibs = [</span><br><span class="line">  <span class="string">'node_modules/systemjs/dist/system-polyfills.js'</span>,</span><br><span class="line">  <span class="string">'node_modules/systemjs/dist/system.js'</span>,</span><br><span class="line">  <span class="string">'node_modules/es6-shim/es6-shim.js'</span>,</span><br><span class="line">  <span class="string">'node_modules/rxjs/bundles/Rx.js'</span>,</span><br><span class="line">  <span class="string">'node_modules/angular2/bundles/angular2-polyfills.js'</span>,</span><br><span class="line">  <span class="string">'node_modules/angular2/bundles/angular2.dev.js'</span>,</span><br><span class="line">  <span class="string">'node_modules/angular2/bundles/router.dev.js'</span>,</span><br><span class="line">  <span class="string">'node_modules/angular2/bundles/http.dev.js'</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">  config.set(&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// base path that will be used to resolve all patterns (eg. files, exclude)</span></span><br><span class="line">    basePath: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// frameworks to use</span></span><br><span class="line">    <span class="comment">// available frameworks: https://npmjs.org/browse/keyword/karma-adapter</span></span><br><span class="line">    frameworks: [<span class="string">'jasmine'</span>],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// list of files / patterns to load in the browser</span></span><br><span class="line">    files: [</span><br><span class="line">      ...baseLibs,</span><br><span class="line">      <span class="string">'node_modules/angular2/bundles/testing.dev.js'</span>,</span><br><span class="line">      <span class="string">'karma.shim.js'</span>,</span><br><span class="line">      &#123; <span class="attr">pattern</span>: <span class="string">'app/**/*.js'</span>, <span class="attr">included</span>: <span class="literal">false</span> &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// list of files to exclude</span></span><br><span class="line">    exclude: [],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// preprocess matching files before serving them to the browser</span></span><br><span class="line">    <span class="comment">// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor</span></span><br><span class="line">    preprocessors: &#123;&#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// test results reporter to use</span></span><br><span class="line">    <span class="comment">// possible values: 'dots', 'progress'</span></span><br><span class="line">    <span class="comment">// available reporters: https://npmjs.org/browse/keyword/karma-reporter</span></span><br><span class="line">    reporters: [<span class="string">'mocha'</span>],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// web server port</span></span><br><span class="line">    port: <span class="number">9876</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// enable / disable colors in the output (reporters and logs)</span></span><br><span class="line">    colors: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// level of logging</span></span><br><span class="line">    <span class="comment">// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG</span></span><br><span class="line">    logLevel: config.LOG_INFO,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// enable / disable watching file and executing tests whenever any file changes</span></span><br><span class="line">    autoWatch: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// start these browsers</span></span><br><span class="line">    <span class="comment">// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher</span></span><br><span class="line">    browsers: [<span class="string">'Chrome'</span>],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Continuous Integration mode</span></span><br><span class="line">    <span class="comment">// if true, Karma captures browsers, runs the tests and exits</span></span><br><span class="line">    singleRun: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Concurrency level</span></span><br><span class="line">    <span class="comment">// how many browser should be started simultaneous</span></span><br><span class="line">    concurrency: <span class="literal">Infinity</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><del>Karmaの設定ファイルの<code>frameworks</code>にてテスティングフレームワークを変更できるので、mochaなど他のものを利用することもできると思います。</del><br>(2016-03-10 追記) Angular2内部でJasmineのDefinitelyTypedを参照しているため、Jasmineを使った方が幸せになれる気がします。</p>
+<p><code>karma.shim.js</code>という見慣れないファイルについては後で説明します。</p>
+<h2 id="モジュールロードシステムが独自からsystemjsに変更となった"><a href="#モジュールロードシステムが独自からsystemjsに変更となった" class="headerlink" title="モジュールロードシステムが独自からsystemjsに変更となった"></a>モジュールロードシステムが独自からsystemjsに変更となった</h2><p>Angular2で大きく変わった点の一つは、モジュールロードシステムが<a href="https://github.com/systemjs/systemjs" target="_blank" rel="external">systemjs</a>に変更された点です。</p>
+<p>Angular1はモジュール名の名前解決による独自のモジュールロードシステムを持っていました。<br>基本的には<code>&lt;script&gt;</code>タグでロードした外部スクリプトを、Angular上でモジュールとして再ロードすることで利用していました。</p>
+<p>Angular2ではsystemjsの設定ファイルにて利用する外部スクリプトを定義して、systemjsを介してモジュールをロードするようになります。<br>これまではテストランナーでテスト用のファイル一式をロードすれば十分でしたが、間にsystemjsが1枚存在する形になります。</p>
+<p>そこで、<code>karma.shim.js</code>の登場です。</p>
+<h2 id="karma-shim-jsとは"><a href="#karma-shim-jsとは" class="headerlink" title="karma.shim.jsとは"></a>karma.shim.jsとは</h2><p><code>karma.shim.js</code>とは、テストを行う前にsystemjsにてモジュールがロードされていることを保証するために、Karmaとsystemjsの初期化のタイミングを制御する役割をするものです。</p>
+<p><code>karma.shim.js</code>の処理を大きく分けると次の3ステップでテストを実行しています。</p>
+<ol>
+<li>systemjs内にアプリケーションの静的リソースをロード</li>
+<li>テスト用のブラウザと接続</li>
+<li>Specをロード&amp;テスト実行</li>
+</ol>
+<p>refs <a href="https://github.com/mitsuruog/angular2-minimum-starter/blob/master/karma.shim.js" target="_blank" rel="external">https://github.com/mitsuruog/angular2-minimum-starter/blob/master/karma.shim.js</a></p>
+<h2 id="サンプルSpecを作成して実行してみる"><a href="#サンプルSpecを作成して実行してみる" class="headerlink" title="サンプルSpecを作成して実行してみる"></a>サンプルSpecを作成して実行してみる</h2><p>最後に簡単なSpecを実装してみます。シンプルな<code>AppComponent</code>です。</p>
+<p><strong>app.component.ts</strong><br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Component, OnInit&#125; <span class="keyword">from</span> <span class="string">'angular2/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'my-app'</span>,</span><br><span class="line">  template: <span class="string">`</span><br><span class="line">    &lt;h1&gt;Angular2 Minimum Starter Kit&lt;/h1&gt;</span><br><span class="line">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppComponent &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Specを書いてみます。</p>
+<p><strong>app.component.spec.ts</strong><br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  it,</span><br><span class="line">  inject,</span><br><span class="line">  injectAsync,</span><br><span class="line">  beforeEachProviders,</span><br><span class="line">  TestComponentBuilder</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'angular2/testing'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;Component, provide&#125; <span class="keyword">from</span> <span class="string">'angular2/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;AppComponent&#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'Test: AppComponent'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  beforeEachProviders(<span class="function"><span class="params">()</span> =&gt;</span> [</span><br><span class="line">    AppComponent</span><br><span class="line">  ]);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">'AppComponentが存在すること'</span>, inject([AppComponent], <span class="function">(<span class="params">testee: AppComponent</span>) =&gt;</span> &#123;</span><br><span class="line">    expect(testee).toBeDefined();</span><br><span class="line">  &#125;));</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>テストを実行してみます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma start karma.conf.js</span><br></pre></td></tr></table></figure>
+<p>テストを実行すると結果が表示されます。</p>
+<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-1-run.png">
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>モジュールロードシステムがSystemJSに変更されたことで、少し面倒になりましたがこれでAngular1と同様にユニットテストを行う準備ができるはず！！</p>
+<h3 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h3><p>こちらに初学者のためのMinimum starter kitを作成しましたので、ぜひ利用してください。<br>(もちろんすぐテストできます！！)</p>
+<p>mitsuruog/angular2-minimum-starter: Minimum starter kit for angular2 <a href="https://github.com/mitsuruog/angular2-minimum-starter" target="_blank" rel="external">https://github.com/mitsuruog/angular2-minimum-starter</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://github.com/juliemr/ng2-test-seed" target="_blank" rel="external">juliemr/ng2-test-seed: Work in Progress - Example, cloneable setup for an Angular2 application with tests.</a></li>
+<li><a href="https://github.com/ghpabs/angular2-seed-project" target="_blank" rel="external">ghpabs/angular2-seed-project: Angular 2 Seed Project – Gulp, TypeScript, Typings, Karma, Protractor, Sass and more.</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html" data-id="cj2qrp7hp0027tn0anmyfb9qq" class="article-share-link">共有</a>
+      
+        <a href="http://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html#disqus_thread" class="article-comment-link">コメント</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular2/">angular2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jasmine/">jasmine</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/karma/">karma</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unit-test/">unit test</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/how-to-test-angular2-application-coverage.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">新しい記事</strong>
+      <div class="article-nav-title">
+        
+          Angular2 Unit Testing - カバレッジ編
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/how-to-make-sharedservice-in-angular2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">古い記事</strong>
+      <div class="article-nav-title">Angular2でSharedServiceを作りたい</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+)" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/webpack-with-custom-font.html" class="title">webpack+Sass+reactでカスタムフォントを使う</a></p>
+              <p class="item-date"><time datetime="2016-10-23T16:58:00.000Z" itemprop="datePublished">2016-10-24 01:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+)" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="title">react-intlを使ってReactアプリを国際化する</a></p>
+              <p class="item-date"><time datetime="2016-10-19T14:58:00.000Z" itemprop="datePublished">2016-10-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+)" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="title">Typescript+ReactでDefault parametersにObjectを正しく設定する方法</a></p>
+              <p class="item-date"><time datetime="2016-10-05T14:58:00.000Z" itemprop="datePublished">2016-10-05 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+)" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="title">Angular2のPipeを使う上で開発者が知るべきたった1つのこと</a></p>
+              <p class="item-date"><time datetime="2016-07-19T14:58:00.000Z" itemprop="datePublished">2016-07-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/HTTP_Intercept.png
+)" alt="Angular2でHTTP Interceptorを使いたい" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="title">Angular2でHTTP Interceptorを使いたい</a></p>
+              <p class="item-date"><time datetime="2016-04-11T15:58:00.000Z" itemprop="datePublished">2016-04-12 00:58</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 11px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 18px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 14px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 11px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 19px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 19px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 13px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 17px;">angular</a> <a href="/tags/angular2/" style="font-size: 20px;">angular2</a> <a href="/tags/aws/" style="font-size: 11px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 15px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 11px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 11px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/es6/" style="font-size: 11px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 12px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 12px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 11px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 17px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 16px;">karma</a> <a href="/tags/localstorage/" style="font-size: 11px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 19px;">nodejs</a> <a href="/tags/npm/" style="font-size: 11px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/react/" style="font-size: 12px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/s3/" style="font-size: 11px;">s3</a> <a href="/tags/styleguide/" style="font-size: 12px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17px;">unit test</a> <a href="/tags/vscode/" style="font-size: 11px;">vscode</a> <a href="/tags/webapi/" style="font-size: 11px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 12px;">yeoman</a> <a href="/tags/その他/" style="font-size: 18px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 12px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 11px;">統計</a> <a href="/tags/翻訳/" style="font-size: 11px;">翻訳</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+      &copy; 2017 mitsuruog<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script>
+  var disqus_shortname = 'mitsuruog';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

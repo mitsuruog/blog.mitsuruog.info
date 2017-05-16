@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(前編) | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="How to create new own controls in OpenUI5(Part 1)
+
+OpenUI5はUIフレームワークという名前の通り、多くの優れたUIコントロールを持っていますが、場合によっては少しカスタムして使いたいという要望は時々あります。
+さて、OpenUI5にてカスタムUIコントロールを作成する方法は「新規で作成する」「既存のUIを拡張する」の2つありますが、少し長くな">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(前編)">
+<meta property="og:url" content="http://blog.mitsuruog.info/2014/09/sapui5openui5ui.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="How to create new own controls in OpenUI5(Part 1)
+
+OpenUI5はUIフレームワークという名前の通り、多くの優れたUIコントロールを持っていますが、場合によっては少しカスタムして使いたいという要望は時々あります。
+さて、OpenUI5にてカスタムUIコントロールを作成する方法は「新規で作成する」「既存のUIを拡張する」の2つありますが、少し長くな">
+<meta property="og:updated_time" content="2017-05-15T23:00:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(前編)">
+<meta name="twitter:description" content="How to create new own controls in OpenUI5(Part 1)
+
+OpenUI5はUIフレームワークという名前の通り、多くの優れたUIコントロールを持っていますが、場合によっては少しカスタムして使いたいという要望は時々あります。
+さて、OpenUI5にてカスタムUIコントロールを作成する方法は「新規で作成する」「既存のUIを拡張する」の2つありますが、少し長くな">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+<!-- End Google Tag Manager -->
+
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+        
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+        <td>
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+          
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80">
+      <h2 id="name">mitsuruog</h2>
+      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
+      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        89
+        <span>投稿</span>
+      </div>
+      <div class="article-info-block">
+        103
+        <span>タグ</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
+          
+          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-2014-09-28-sapui5openui5ui" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(前編)
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2014/09/sapui5openui5ui.html">
+      <time datetime="2014-09-28T14:01:00.000Z" itemprop="datePublished">2014-09-28 23:01</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>How to create new own controls in OpenUI5(Part 1)</p>
+</blockquote>
+<p>OpenUI5はUIフレームワークという名前の通り、多くの優れたUIコントロールを持っていますが、場合によっては少しカスタムして使いたいという要望は時々あります。</p>
+<p>さて、OpenUI5にてカスタムUIコントロールを作成する方法は「新規で作成する」「既存のUIを拡張する」の2つありますが、少し長くなるので、2部構成で説明していきます。<br>前編は新規で作成する方を説明します。</p>
+<p>今回のデモはこちらで参照できます。</p>
+<p><a href="http://mitsuruog.github.io/sapui5-showroom/#/controls" target="_blank" rel="external">http://mitsuruog.github.io/sapui5-showroom/#/controls</a></p>
+<a id="more"></a>
+<h3 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h3><ol>
+<li>新しいUIコントロールの定義</li>
+<li>UIコントロールメタデータの定義</li>
+<li>レンダラの実装</li>
+<li>配布、利用</li>
+<li><p>まとめ</p>
+</li>
+<li><p>Definition of UI controls</p>
+</li>
+<li>Definition ofUI controls metadate</li>
+<li>Implementation of the renderer</li>
+<li>How to use</li>
+<li>Summary</li>
+</ol>
+<p>こちらの公式ページの内容をもとに書いています。</p>
+<p><a href="https://openui5.hana.ondemand.com/#docs/guide/91f1703b6f4d1014b6dd926db0e91070.html" target="_blank" rel="external">Developing UI5 Controls in JavaScript</a></p>
+<h2 id="1-新しいUIコントロールの定義-Definition-of-UI-controls"><a href="#1-新しいUIコントロールの定義-Definition-of-UI-controls" class="headerlink" title="1. 新しいUIコントロールの定義(Definition of UI controls)"></a>1. 新しいUIコントロールの定義(Definition of UI controls)</h2><p>新しいUIコントロールを作成するためには、まず<code>sap.ui.core.Control</code>を継承する必要があります。以下のコードは新規で<code>mitsuruog.SayHello</code>という名前のUIコントロールを定義しています。</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sap.ui.core.Control.extend <span class="string">"mitsuruog.SayHello"</span>,</span><br><span class="line">  metadata: &#123;&#125;</span><br><span class="line">  renderer: &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-UIコントロールメタデータの定義"><a href="#2-UIコントロールメタデータの定義" class="headerlink" title="2. UIコントロールメタデータの定義"></a>2. UIコントロールメタデータの定義</h2><p>新しく定義したUIコントロールが持つ特徴をメタデータ(定義情報)として定義していきます。定義できるメタデータの属性は<code>Properties</code>、<code>Events</code>、<code>Aggregations(Associations)</code>の3つです。順に説明していきます。</p>
+<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><p>Propertiesとは、その名の通りUIコントロールに外部からアクセスできるプロパティ定義です。例えば、<code>name</code>というPropertiesを定義した場合、UIコントロールを初期化(new)する際に、<code>name</code>プロパティにパラメータを渡すことができます。以下の属性を定義します。</p>
+<ul>
+<li><strong>type</strong>: プロパティのデータタイプを指定します。これを指定する事でOpenUI5が提供するvalidationが機能します。デフォルトは<code>string</code>です。</li>
+<li><strong>defaultValue</strong>: デフォルトを指定します。何も指定しない場合は<code>undefined</code>です。<br>Propertiesにはアクセスレベルが指定できるようです(未検証)。<a href="https://openui5.hana.ondemand.com/docs/guide/91f29fea6f4d1014b6dd926db0e91070.html" target="_blank" rel="external">Object Metadata and Implementation</a></li>
+</ul>
+<h3 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h3><p>UIコントロールから発火するカスタムイベント名を定義します。</p>
+<h3 id="Aggregations-Associations"><a href="#Aggregations-Associations" class="headerlink" title="Aggregations(Associations)"></a>Aggregations(Associations)</h3><p>UIコントロールに外部からリストを渡したい場合に定義します。<code>sap.m.List</code>の<code>items</code>や<code>sap.m.Page</code>の<code>content</code>に相当します。以下の属性を定義します。</p>
+<ul>
+<li><strong>type</strong>: Aggregationsに設定するクラスを定義します。<code>sap.m.List</code>の<code>items</code>場合は<code>sap.m.ListItemBase</code>です。デフォルトは<code>sap.ui.core.control</code>です。</li>
+<li><strong>multiple</strong>: <code>0..n</code>の場合は<code>true</code>、<code>0..1</code>の場合は<code>false</code>にします。何も設定しない場合の挙動が面倒なので、必ず設定しましょう。</li>
+<li><strong>singularName</strong>: 単数の場合の名前を定義します。通常は複数系の<code>「s」</code>を取り除いた形を指定します。<code>items</code>の場合は<code>item</code>です。この辺り、正直OpenUI5に慣れてないとピンとこないと思いますので、詳細は割愛します。</li>
+</ul>
+<p>実装例)<br><figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sap.ui.core.Control.extend <span class="string">"mitsuruog.BlueContainer"</span>,</span><br><span class="line"></span><br><span class="line">  metadata:</span><br><span class="line">    properties:</span><br><span class="line">      boxColor:</span><br><span class="line">        type: <span class="string">"string"</span></span><br><span class="line">        defaultValue: <span class="string">"#CBE6F3"</span></span><br><span class="line">    events:</span><br><span class="line">      hover: &#123;&#125;</span><br><span class="line">    aggregations:</span><br><span class="line">      items:</span><br><span class="line">        type: <span class="string">"sap.ui.core.Control"</span></span><br><span class="line">        multiple: <span class="literal">true</span></span><br><span class="line">        singularName: <span class="string">"item"</span></span><br><span class="line"></span><br><span class="line">    renderer: &#123;&#125;</span><br><span class="line"></span><br><span class="line">    onmouseover: <span class="function"><span class="params">(evt)</span> -&gt;</span></span><br><span class="line">      @fireHover()</span><br></pre></td></tr></table></figure></p>
+<p>詳細は公式ベージを確認してください。</p>
+<ul>
+<li>メタデータについての詳細<br><a href="https://openui5.hana.ondemand.com/#docs/guide/7b52540d9d8c4e00b9723151622bbb64.html" target="_blank" rel="external">Defining the Control Metadata</a></li>
+<li>メタデータを定義した場合、使用しない方がいいメソッド名についての注意事項など<br><a href="https://openui5.hana.ondemand.com/#docs/guide/91f0a8dc6f4d1014b6dd926db0e91070.html" target="_blank" rel="external">Adding Method Implementations</a></li>
+<li>Propertiesの指定方法の詳細<br><a href="https://openui5.hana.ondemand.com/#docs/guide/ac56d92162ed47ff858fdf1ce26c18c4.html" target="_blank" rel="external">Defining Control Properties</a></li>
+</ul>
+<h2 id="3-レンダラの実装"><a href="#3-レンダラの実装" class="headerlink" title="3. レンダラの実装"></a>3. レンダラの実装</h2><p>レンダラとは実際にUIコントロールのHTMLを出力する部分です。HTMLを書き出す際は、内部的に<code>sap.ui.core.RenderManager</code>の各メソッドを呼び出します。良く使いそうなものはこちらです。</p>
+<ul>
+<li><strong>write</strong>: HTMLを出力します</li>
+<li><strong>writeEscaped</strong>: エスケープしてHTMLを出力します</li>
+<li><strong>writeControlData</strong>: OpenUI5上が内部でUIコントロールを管理するためのIDを出力します。これが無い場合、内部のイベントがハンドルできません。結構重要です。</li>
+<li><strong>addStyle</strong>, <strong>writeStyles</strong>: インラインスタイルを出力します</li>
+<li><strong>addClass</strong>, <strong>writeClasses</strong>: CSSクラスを出力します</li>
+<li><strong>renderControl</strong>: 与えられたUIコントロールのレンダラを実行します。Aggregations(Associations)あたりで使うようです。</li>
+</ul>
+<p>実装例）<br><figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">sap.ui.core.Control.extend <span class="string">"mitsuruog.BlueContainer"</span>,</span><br><span class="line"></span><br><span class="line">  metadata:</span><br><span class="line">    <span class="comment"># 省略</span></span><br><span class="line"></span><br><span class="line">  renderer: <span class="function"><span class="params">(rm, control)</span> -&gt;</span></span><br><span class="line"></span><br><span class="line">    rm.write <span class="string">"&lt;div"</span></span><br><span class="line">    rm.writeControlData control</span><br><span class="line">    rm.addClass <span class="string">"blue"</span></span><br><span class="line">    rm.writeClasses()</span><br><span class="line">    rm.write <span class="string">"&gt;"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Aggregations(Associations)のデータはこうやって受け取る</span></span><br><span class="line">    items = control.getContent()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items</span><br><span class="line">      rm.write <span class="string">"&lt;div"</span></span><br><span class="line">      rm.addStyle <span class="string">"display"</span>, <span class="string">"inline-block"</span></span><br><span class="line">      rm.addStyle <span class="string">"border"</span>, <span class="string">"1px solid <span class="subst">#&#123;control.getBoxColor()&#125;</span>"</span></span><br><span class="line">      rm.addStyle <span class="string">"margin"</span>, <span class="string">"7px"</span></span><br><span class="line">      rm.addStyle <span class="string">"padding"</span>, <span class="string">"7px"</span></span><br><span class="line">      rm.writeStyles()      </span><br><span class="line">      rm.write <span class="string">"&gt;"</span></span><br><span class="line"></span><br><span class="line">      rm.renderControl item</span><br><span class="line">      rm.write <span class="string">"&lt;/div&gt;"</span></span><br><span class="line"></span><br><span class="line">    rm.write <span class="string">"&lt;/div&gt;"</span></span><br></pre></td></tr></table></figure></p>
+<p>ある程度書き慣れてくると、レンダラについてはお決まりのパターンが見えてくるでしょう。また、似たようなOpenUI5のソースを読むのもいいと思います。<br>詳細は公式ページを参照してください。</p>
+<p><a href="https://openui5.hana.ondemand.com/docs/api/symbols/sap.ui.core.RenderManager.html" target="_blank" rel="external">JsDoc Report - SAP UI development Toolkit for HTML5 - API Reference - sap.ui.core.RenderManager</a></p>
+<h2 id="4-配布、利用"><a href="#4-配布、利用" class="headerlink" title="4. 配布、利用"></a>4. 配布、利用</h2><p>配布方法はUIコントロールを1つのJavascriptファイルにまとめて<code>index.html</code>で読み込めばいいと思います。<br>OpenUI5には<code>RequireJS</code>のようなモジュールシステムがあるので、以下のようにモジュール化して呼び出し先でロードします。</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># カスタムUIコントロール側</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">jQuery.sap.declare <span class="string">"com.mitsuruog.sapui5.showroom.controls.BlueContainer"</span></span><br><span class="line"></span><br><span class="line">sap.ui.core.Control.extend <span class="string">"mitsuruog.BlueContainer"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 以下、省略</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 呼び出し側</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">jQuery.sap.<span class="built_in">require</span> <span class="string">"com.mitsuruog.sapui5.showroom.controls.BlueContainer"</span></span><br><span class="line"></span><br><span class="line">sap.ui.jsview <span class="string">"someView"</span>,</span><br><span class="line"></span><br><span class="line">  createContent: <span class="function"><span class="params">(oController)</span> -&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># new でUIコントロールを初期化します。</span></span><br><span class="line">    blueContainer = <span class="keyword">new</span> mitsuruog.BlueContainer</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 以下、省略</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-まとめ"><a href="#5-まとめ" class="headerlink" title="5. まとめ"></a>5. まとめ</h2><p>今回は新しいUIコンポーネントを作成する方法について説明しました。<br>実装の細かい部分はGithub上のサンプルを参照してください。</p>
+<ul>
+<li>UIコンポーネント側<ul>
+<li><a href="https://github.com/mitsuruog/sapui5-showroom/tree/master/coffee/controls" target="_blank" rel="external">https://github.com/mitsuruog/sapui5-showroom/tree/master/coffee/controls</a></li>
+</ul>
+</li>
+<li>UIコンポーネント利用側<ul>
+<li><a href="https://github.com/mitsuruog/sapui5-showroom/blob/master/coffee/view/Controls.view.coffee" target="_blank" rel="external">https://github.com/mitsuruog/sapui5-showroom/blob/master/coffee/view/Controls.view.coffee</a></li>
+<li><a href="https://github.com/mitsuruog/sapui5-showroom/blob/master/coffee/view/Controls.controller.coffee" target="_blank" rel="external">https://github.com/mitsuruog/sapui5-showroom/blob/master/coffee/view/Controls.controller.coffee</a></li>
+</ul>
+</li>
+</ul>
+<p>私が普段利用しているOpenUI5のモバイル用ライブラリ(sap.m〜)ではv1.22の時点で73のUIコントロールを持っています。OpenUI5自体のUIが優れているため、新規でUIコントロールを作成するケースはあまりないように思えます。<br>また、レンダラを実装しているとJavaのtaglibを思い出して、軽いめまいを覚えますね。(まぁそこは置いといて。)</p>
+<p>経験的にも良くあるケースとしては、既存のUIを少しカスタムしたいケースだと思います。<br>その辺りは<a href="/2014/10/sapui5openui5ui/">後編</a>にて取り上げたいと思います。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.mitsuruog.info/2014/09/sapui5openui5ui.html" data-id="cj2qrp7ly006wtn0a31454tq8" class="article-share-link">共有</a>
+      
+        <a href="http://blog.mitsuruog.info/2014/09/sapui5openui5ui.html#disqus_thread" class="article-comment-link">コメント</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenUI5/">OpenUI5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAPUI5/">SAPUI5</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/10/sapui5openui5ui.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">新しい記事</strong>
+      <div class="article-nav-title">
+        
+          [SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(後編)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/gitworkmaster.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">古い記事</strong>
+      <div class="article-nav-title">[Git]workブランチの内容をmasterへ強制マージ</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+)" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/webpack-with-custom-font.html" class="title">webpack+Sass+reactでカスタムフォントを使う</a></p>
+              <p class="item-date"><time datetime="2016-10-23T16:58:00.000Z" itemprop="datePublished">2016-10-24 01:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+)" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="title">react-intlを使ってReactアプリを国際化する</a></p>
+              <p class="item-date"><time datetime="2016-10-19T14:58:00.000Z" itemprop="datePublished">2016-10-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+)" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="title">Typescript+ReactでDefault parametersにObjectを正しく設定する方法</a></p>
+              <p class="item-date"><time datetime="2016-10-05T14:58:00.000Z" itemprop="datePublished">2016-10-05 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+)" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="title">Angular2のPipeを使う上で開発者が知るべきたった1つのこと</a></p>
+              <p class="item-date"><time datetime="2016-07-19T14:58:00.000Z" itemprop="datePublished">2016-07-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/HTTP_Intercept.png
+)" alt="Angular2でHTTP Interceptorを使いたい" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="title">Angular2でHTTP Interceptorを使いたい</a></p>
+              <p class="item-date"><time datetime="2016-04-11T15:58:00.000Z" itemprop="datePublished">2016-04-12 00:58</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 11px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 18px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 14px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 11px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 19px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 19px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 13px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 17px;">angular</a> <a href="/tags/angular2/" style="font-size: 20px;">angular2</a> <a href="/tags/aws/" style="font-size: 11px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 15px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 11px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 11px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/es6/" style="font-size: 11px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 12px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 12px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 11px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 17px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 16px;">karma</a> <a href="/tags/localstorage/" style="font-size: 11px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 19px;">nodejs</a> <a href="/tags/npm/" style="font-size: 11px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/react/" style="font-size: 12px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/s3/" style="font-size: 11px;">s3</a> <a href="/tags/styleguide/" style="font-size: 12px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17px;">unit test</a> <a href="/tags/vscode/" style="font-size: 11px;">vscode</a> <a href="/tags/webapi/" style="font-size: 11px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 12px;">yeoman</a> <a href="/tags/その他/" style="font-size: 18px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 12px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 11px;">統計</a> <a href="/tags/翻訳/" style="font-size: 11px;">翻訳</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+      &copy; 2017 mitsuruog<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script>
+  var disqus_shortname = 'mitsuruog';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

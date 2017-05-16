@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[SAPUI5/OpenUI5]URLでのルーティングの基本 | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Backbone.jsやAngularJSに代表されるJavascriptMV＊系で構築されたSPA（Single page application）は、Strutsなどで構築された従来のWebアプリケーションと異なり、1つのHTML5の中に複数画面（View）を持ち、画面遷移時にJavascriptにてViewを切り替えるため、通常はブラウザのリフレッシュを伴いません。
+その際に問題となるのが、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[SAPUI5/OpenUI5]URLでのルーティングの基本">
+<meta property="og:url" content="http://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="Backbone.jsやAngularJSに代表されるJavascriptMV＊系で構築されたSPA（Single page application）は、Strutsなどで構築された従来のWebアプリケーションと異なり、1つのHTML5の中に複数画面（View）を持ち、画面遷移時にJavascriptにてViewを切り替えるため、通常はブラウザのリフレッシュを伴いません。
+その際に問題となるのが、">
+<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/a1510_000018.jpg">
+<meta property="og:updated_time" content="2017-05-16T13:34:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[SAPUI5/OpenUI5]URLでのルーティングの基本">
+<meta name="twitter:description" content="Backbone.jsやAngularJSに代表されるJavascriptMV＊系で構築されたSPA（Single page application）は、Strutsなどで構築された従来のWebアプリケーションと異なり、1つのHTML5の中に複数画面（View）を持ち、画面遷移時にJavascriptにてViewを切り替えるため、通常はブラウザのリフレッシュを伴いません。
+その際に問題となるのが、">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+<!-- End Google Tag Manager -->
+
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+        
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+        <td>
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+          
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80">
+      <h2 id="name">mitsuruog</h2>
+      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
+      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        89
+        <span>投稿</span>
+      </div>
+      <div class="article-info-block">
+        103
+        <span>タグ</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
+          
+          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-2014-05-25-sapui5openui5urlrouting" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [SAPUI5/OpenUI5]URLでのルーティングの基本
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2014/05/sapui5openui5urlrouting.html">
+      <time datetime="2014-05-24T17:16:00.000Z" itemprop="datePublished">2014-05-25 02:16</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>Backbone.jsやAngularJSに代表されるJavascriptMV＊系で構築されたSPA（Single page application）は、Strutsなどで構築された従来のWebアプリケーションと異なり、1つのHTML5の中に複数画面（View）を持ち、画面遷移時にJavascriptにてViewを切り替えるため、通常はブラウザのリフレッシュを伴いません。</p>
+<p>その際に問題となるのが、画面遷移時にリフレッシュを伴わないため、URLが変らないことです。</p>
+<p>URLが変わらないということは、すべての画面のURLが同じになるということで、ブックマークから特定の画面を開くことができなくなります。</p>
+<p>そこでSPAでは通常、URLの後ろに「ハッシュ」と呼ばれる開く対象となるURLを付け加え、Javascriptにてハッシュと一致するViewを表示するようにコントロールする「router」「routing」と呼ばれる手法を行うことが一般的です。</p>
+<p>今回は、SAPUI5/OpenUI5でのroutingの基本的なことについて紹介します。</p>
+<a id="more"></a>
+<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/a1510_000018.jpg">
+<ol>
+<li>ルーティングテーブルの定義とルーターの初期化</li>
+<li>ルーティング</li>
+<li>ルーティングマッチとViewでのパラメータの取得</li>
+<li>最後に</li>
+</ol>
+<h2 id="1-ルーティングテーブルの定義とルーターの初期化"><a href="#1-ルーティングテーブルの定義とルーターの初期化" class="headerlink" title="1.　ルーティングテーブルの定義とルーターの初期化"></a>1.　ルーティングテーブルの定義とルーターの初期化</h2><p>ルーティングするためには、URLの「ハッシュ」とそれと対応して表示するViewを定義する必要があります。ここでは便宜上「ルーティングテーブル」と言います。</p>
+<p>まず、「Conpoment.js」内の「metadata」にルーティングテーブルを定義します。</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! Component.js</span></span><br><span class="line"></span><br><span class="line">sap.ui.core.UIComponent.extend <span class="string">"com.mitsuruog.sapui5.Component"</span>,</span><br><span class="line"></span><br><span class="line">  metadata:</span><br><span class="line">    routing:</span><br><span class="line">      config:</span><br><span class="line">        viewType: <span class="string">"JS"</span></span><br><span class="line">        viewPath: <span class="string">"view"</span></span><br><span class="line">        targetControl: <span class="string">"navConteiner"</span></span><br><span class="line">        targetAggregation: <span class="string">"pages"</span></span><br><span class="line">        clearTarget: <span class="literal">false</span></span><br><span class="line">      routes: [&#123;</span><br><span class="line">        pattern: <span class="string">""</span></span><br><span class="line">        name: <span class="string">"First"</span></span><br><span class="line">        view: <span class="string">"First"</span></span><br><span class="line">        targetAggregation: <span class="string">"pages"</span></span><br><span class="line">      &#125;, &#123;</span><br><span class="line">        pattern: <span class="string">"second"</span></span><br><span class="line">        name: <span class="string">"Second"</span></span><br><span class="line">        view: <span class="string">"Second"</span></span><br><span class="line">        targetAggregation: <span class="string">"pages"</span></span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      <span class="comment"># ...省略</span></span><br></pre></td></tr></table></figure>
+<p>ちなみに「config」はすべてのrouting共通の設定で、「routes」内には、それぞれのハッシュと対応するView定義、カスタムする振る舞いなどが定義出来ます。</p>
+<p>細かい設定等はこちらです。簡単に紹介します。</p>
+<p><a href="https://sapui5.hana.ondemand.com/sdk/#docs/guide/902313063d6f45aeaa3388cc4c13c34e.html" target="_blank" rel="external">Configuration Parameters for Navigation</a></p>
+<ul>
+<li>pattern<ul>
+<li>パターンマッチするハッシュを文字列で指定します。ルーティングテーブルの中で最も大事な設定です</li>
+</ul>
+</li>
+<li>name（必須）<ul>
+<li>ルーテリングテーブルの中で一意な名前を設定します</li>
+</ul>
+</li>
+<li>view<ul>
+<li>patternにマッチした場合に表示するView名です</li>
+</ul>
+</li>
+<li>viewType<ul>
+<li>Viewのタイプです。HTML、JS、JSON、XMLがあります</li>
+</ul>
+</li>
+<li>viewPath<ul>
+<li>Viewのリソースがあるところまでのパスです。例えば、「view/someView」の場所にViewが存在する場合は、「view」を指定します</li>
+</ul>
+</li>
+<li>targetParent<ul>
+<li>後述するtargetControlの親要素をIDで指定します</li>
+</ul>
+</li>
+<li>targetControl<ul>
+<li>viewを表示するコンテナをIDで指定します</li>
+</ul>
+</li>
+<li>targetAggregation<ul>
+<li>targetControlで指定したコンテナのどのプロパティにViewを設定するか指定します。次のように指定することが多いです</li>
+</ul>
+</li>
+<li>subroutes<ul>
+<li>ネストしたルーティングを実現する場合にroutesと同じように設定します。（まだ詳しく検証してないです。</li>
+</ul>
+</li>
+<li>clearTarget<ul>
+<li>Viewを追加する前にViewをクリアする必要がある場合、trueを設定します。</li>
+</ul>
+</li>
+<li>callback<ul>
+<li>patternにマッチした場合に実行されるCallbackを指定します。</li>
+</ul>
+</li>
+</ul>
+<p>どのルーティング定義にもマッチしないものに対してNotFoundページを表示する場合は、patternに「<code>:all*:</code>」を設定してください。</p>
+<p>ルーティングテーブルを定義した後に、同じ「Conpoment.js」にてrouterのライフサイクルを定義します。「init」で初期化して、「destory」時に破棄します。</p>
+<p>この辺りのコードはお作法だと思ってコピペしましょう。</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! Component.js</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># ...省略</span></span><br><span class="line"></span><br><span class="line">  init: <span class="function">-&gt;</span></span><br><span class="line">    jQuery.sap.<span class="built_in">require</span> <span class="string">"sap.ui.core.routing.History"</span></span><br><span class="line">    jQuery.sap.<span class="built_in">require</span> <span class="string">"sap.m.routing.RouteMatchedHandler"</span></span><br><span class="line"></span><br><span class="line">    sap.ui.core.UIComponent.prototype.init.apply @</span><br><span class="line"></span><br><span class="line">    router = @getRouter()</span><br><span class="line">    <span class="keyword">this</span>.routerHandler = <span class="keyword">new</span> sap.m.routing.RouteMatchedHandler router</span><br><span class="line">    router.initialize()</span><br><span class="line"></span><br><span class="line">  destory: <span class="function">-&gt;</span></span><br><span class="line">    <span class="keyword">if</span> @routerHandler</span><br><span class="line">      @routerHandler.destroy()</span><br><span class="line">    sap.ui.core.UIComponent.prototype.destory.apply @</span><br><span class="line"></span><br><span class="line">  <span class="comment"># ...省略</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-ルーティング"><a href="#2-ルーティング" class="headerlink" title="2.　ルーティング"></a>2.　ルーティング</h2><p>それでは実際にルーティングしてみましょう。</p>
+<p>サンプルの例では、次のように呼び出すURLにハッシュを追加することで、望みの画面を表示させることが可能です。</p>
+<ul>
+<li><a href="http://mitsuruog.github.io/sapui5-showroom/app/routing/#/second" target="_blank" rel="external">http://mitsuruog.github.io/sapui5-showroom/app/routing/#/second</a></li>
+<li><a href="http://mitsuruog.github.io/sapui5-showroom/app/routing/#/third/1/tab2" target="_blank" rel="external">http://mitsuruog.github.io/sapui5-showroom/app/routing/#/third/1/tab2</a></li>
+</ul>
+<p>では、プログラムからViewを切り替え時にハッシュも変更するためにはどうすればよいでしょうか？</p>
+<p>プログラムからViewを切り替え時にハッシュも変更するためには、先ほど定義したrouterを取得してハッシュを切り替える命令を出す必要があります。ハッシュパラメータを渡す場合は、第2引数にkey-value形式でハッシュパラメータのオブジェクトを渡します。</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! ButtonのPress処理などController.jsにて書いている想定。</span></span><br><span class="line"></span><br><span class="line">nextPage: <span class="function">-&gt;</span></span><br><span class="line"></span><br><span class="line">  router = sap.ui.core.UIComponent.getRouterFor @</span><br><span class="line"></span><br><span class="line">  <span class="comment">#パラメータを伴わない場合</span></span><br><span class="line">  router.navTo <span class="string">"Second"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#パラメータを伴う場合</span></span><br><span class="line">  router.navTo <span class="string">"Second"</span>,</span><br><span class="line">    someParam: <span class="string">"hoge"</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-ルーティングマッチとViewでのパラメータ取得"><a href="#3-ルーティングマッチとViewでのパラメータ取得" class="headerlink" title="3.　ルーティングマッチとViewでのパラメータ取得"></a>3.　ルーティングマッチとViewでのパラメータ取得</h2><p>URLのハッシュ値を変えることでViewを切り替えることができましたが、ハッシュに含まれるパラメータをそれぞれのViewにて取得するためにはどうすれば良いでしょうか。</p>
+<p>Viewにてハッシュに設定されたパラメータを取得するためには、ルーティングマッチした際に発火するイベントにフックする必要があります。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#! routing先のController.jsにて書いている想定。</span><br><span class="line"></span><br><span class="line">sap.ui.controller "view.Third",</span><br><span class="line"></span><br><span class="line">  onInit: -&gt;</span><br><span class="line">    @router = sap.ui.core.UIComponent.getRouterFor @</span><br><span class="line">    @router.attachRoutePatternMatched @_handleRouteMatched, @</span><br><span class="line"></span><br><span class="line">  _handleRouteMatched: (oEvt) -&gt;</span><br><span class="line"></span><br><span class="line">    #viewNameが一致しないものはFilterする</span><br><span class="line">    unless "Third" is oEvt.getParameter "name"</span><br><span class="line">      return</span><br><span class="line"></span><br><span class="line">    #Hashパラメータを取得</span><br><span class="line">    #以下のようなURLを想定</span><br><span class="line">    #/some/&#123;id&#125;</span><br><span class="line">    #/some/:id:</span><br><span class="line">    hashParams = oEvt.getParameter "arguments"</span><br><span class="line">    id = hashParams.id</span><br></pre></td></tr></table></figure>
+<p>ルーティング時に渡したパラメータはgetParameterにて取得します。すべてのパタメータをオブジェクトとして取得する場合は、getParametersを使います。</p>
+<p>（getParameterの引数にargumentsが使われている辺り、中の実装がどうなっているか予想できますw）</p>
+<h2 id="4-最後に"><a href="#4-最後に" class="headerlink" title="4.　最後に"></a>4.　最後に</h2><p>SAPUI5/OpenUI5でのルーティングについて基本的なことを書きました。</p>
+<p>ちなみにSAPUI5/OpenUI5では、最近まではEventBusを使ったNavigationを使うことが一般的でした。（たぶん、1.20になってから変わったと思います。）</p>
+<p>EventBusでは、ブックマークからの特定画面を起動することが難しかったので、個人的には待ちに待った機能でした。</p>
+<p>1.20になってから他にも大きな変更点があるSAPUI5/OpenUI5ですので、機会があればまた紹介していきます。</p>
+<h2 id="デモやソースコードはこちらです。"><a href="#デモやソースコードはこちらです。" class="headerlink" title="デモやソースコードはこちらです。"></a>デモやソースコードはこちらです。</h2><h3 id="デモ"><a href="#デモ" class="headerlink" title="デモ"></a>デモ</h3><p>SAPUI5/OpenUI5 routing Sample</p>
+<p><a href="http://mitsuruog.github.io/sapui5-showroom/app/routing/" target="_blank" rel="external">http://mitsuruog.github.io/sapui5-showroom/app/routing/</a></p>
+<h3 id="ソースコード"><a href="#ソースコード" class="headerlink" title="ソースコード"></a>ソースコード</h3><p>sapui5-showroom/app/routing at master · mitsuruog/sapui5-showroom</p>
+<p><a href="https://github.com/mitsuruog/sapui5-showroom/tree/master/app/routing" target="_blank" rel="external">https://github.com/mitsuruog/sapui5-showroom/tree/master/app/routing</a></p>
+<h3 id="参考リンク"><a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク</h3><ul>
+<li><a href="https://www.youtube.com/watch?v=YZqtx2KJ2To" target="_blank" rel="external">(SAP/Open) UI5 with Routing Tutorial - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=hMEkV1ECf2c" target="_blank" rel="external">(SAP/Open) UI5 with dynamic Routing Tutorial - YouTube</a></li>
+<li><a href="https://sapui5.hana.ondemand.com/sdk/#docs/guide/3d18f20bd2294228acb6910d8e8a5fb5.html" target="_blank" rel="external">Navigation</a></li>
+<li><a href="https://sapui5.hana.ondemand.com/sdk/#docs/guide/688f36bd758e4ce2b4e682eef4dc794e.html" target="_blank" rel="external">Step 3: Navigation and Routing</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html" data-id="cj2qrp7mi0089tn0amczpocw1" class="article-share-link">共有</a>
+      
+        <a href="http://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html#disqus_thread" class="article-comment-link">コメント</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenUI5/">OpenUI5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAPUI5/">SAPUI5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/05/sapui5openui5.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">新しい記事</strong>
+      <div class="article-nav-title">
+        
+          [SAPUI5/OpenUI5]イベントハンドラにパラメータを渡す
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/05/html5funhtml5.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">古い記事</strong>
+      <div class="article-nav-title">HTML5funで「エンタープライズでのHTML5」について最近思うことを話してきた</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+)" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/webpack-with-custom-font.html" class="title">webpack+Sass+reactでカスタムフォントを使う</a></p>
+              <p class="item-date"><time datetime="2016-10-23T16:58:00.000Z" itemprop="datePublished">2016-10-24 01:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+)" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="title">react-intlを使ってReactアプリを国際化する</a></p>
+              <p class="item-date"><time datetime="2016-10-19T14:58:00.000Z" itemprop="datePublished">2016-10-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+)" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="title">Typescript+ReactでDefault parametersにObjectを正しく設定する方法</a></p>
+              <p class="item-date"><time datetime="2016-10-05T14:58:00.000Z" itemprop="datePublished">2016-10-05 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+)" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="title">Angular2のPipeを使う上で開発者が知るべきたった1つのこと</a></p>
+              <p class="item-date"><time datetime="2016-07-19T14:58:00.000Z" itemprop="datePublished">2016-07-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/HTTP_Intercept.png
+)" alt="Angular2でHTTP Interceptorを使いたい" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="title">Angular2でHTTP Interceptorを使いたい</a></p>
+              <p class="item-date"><time datetime="2016-04-11T15:58:00.000Z" itemprop="datePublished">2016-04-12 00:58</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 11px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 18px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 14px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 11px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 19px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 19px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 13px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 17px;">angular</a> <a href="/tags/angular2/" style="font-size: 20px;">angular2</a> <a href="/tags/aws/" style="font-size: 11px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 15px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 11px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 11px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/es6/" style="font-size: 11px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 12px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 12px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 11px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 17px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 16px;">karma</a> <a href="/tags/localstorage/" style="font-size: 11px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 19px;">nodejs</a> <a href="/tags/npm/" style="font-size: 11px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/react/" style="font-size: 12px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/s3/" style="font-size: 11px;">s3</a> <a href="/tags/styleguide/" style="font-size: 12px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17px;">unit test</a> <a href="/tags/vscode/" style="font-size: 11px;">vscode</a> <a href="/tags/webapi/" style="font-size: 11px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 12px;">yeoman</a> <a href="/tags/その他/" style="font-size: 18px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 12px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 11px;">統計</a> <a href="/tags/翻訳/" style="font-size: 11px;">翻訳</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+      &copy; 2017 mitsuruog<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script>
+  var disqus_shortname = 'mitsuruog';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

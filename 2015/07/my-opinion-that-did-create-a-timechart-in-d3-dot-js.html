@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる">
+<meta property="og:url" content="http://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
+<meta property="og:updated_time" content="2017-05-15T23:00:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる">
+<meta name="twitter:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+<!-- End Google Tag Manager -->
+
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+        
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+        <td>
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
+          
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=80">
+      <h2 id="name">mitsuruog</h2>
+      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
+      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        89
+        <span>投稿</span>
+      </div>
+      <div class="article-info-block">
+        103
+        <span>タグ</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
+          
+          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-2015-07-05-my-opinion-that-did-create-a-timechart-in-d3-dot-js" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html">
+      <time datetime="2015-07-05T13:38:00.000Z" itemprop="datePublished">2015-07-05 22:38</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>D3.jsを使ってタイムチャートを作成してみました。<br>初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。<br>D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。</p>
+<a id="more"></a>
+<h2 id="サンプル"><a href="#サンプル" class="headerlink" title="サンプル"></a>サンプル</h2><p>jsBinにサンプルつくりました。</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/ziwuru/embed?output" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.30.4"></script></p>
+<h2 id="苦労したこと"><a href="#苦労したこと" class="headerlink" title="苦労したこと"></a>苦労したこと</h2><ol>
+<li>一定期間の時間軸を作成したい</li>
+<li>時間軸のラベルを一定間隔にしたい</li>
+<li>時間軸のラベルフォーマットしたい</li>
+<li>軸のメモリ線(？)を消したい</li>
+<li>画面サイズに応じて軸ラベルを回転させたい</li>
+<li>カテゴライズされた軸を作りたい</li>
+<li>カテゴライズされた軸のラベルを別なものにしたい</li>
+<li>ラベルの文字が長い場合に改行したい</li>
+<li>軸のdomain範囲を超えたデータがある場合に表示させない</li>
+<li>windowがリサイズしたらChartを再描画したい</li>
+<li>描画したSVGオブジェクトを全てクリアしたい</li>
+</ol>
+<h3 id="一定期間の時間軸を作成したい"><a href="#一定期間の時間軸を作成したい" class="headerlink" title="一定期間の時間軸を作成したい"></a>一定期間の時間軸を作成したい</h3><p><code>d3.time.scale</code>の<code>domain</code>に開始日時と終了日時を設定する。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xScale = d3.time.scale()</span><br><span class="line">  .domain([</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2015-07-01 0:00:00'</span>), <span class="comment">// 開始日時</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2015-07-02 0:00:00'</span>)  <span class="comment">// 終了日時</span></span><br><span class="line">  ])</span><br><span class="line">  .range([<span class="number">0</span>, width]); <span class="comment">// 実際の出力サイズ</span></span><br></pre></td></tr></table></figure>
+<h3 id="時間軸のラベルを一定間隔にしたい"><a href="#時間軸のラベルを一定間隔にしたい" class="headerlink" title="時間軸のラベルを一定間隔にしたい"></a>時間軸のラベルを一定間隔にしたい</h3><p><code>d3.svg.axis()</code>の<code>ticks</code>に間隔を指定する。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xAxis = d3.svg.axis()</span><br><span class="line">  .scale(xScale)</span><br><span class="line">  .orient(<span class="string">'top'</span>)</span><br><span class="line">  .ticks(d3.time.minute, <span class="number">60</span>); <span class="comment">// 60分間隔</span></span><br></pre></td></tr></table></figure>
+<p>細かな単位の指定などはこちら<br>(Intervalsを指定すればいいと思われる。)</p>
+<p><a href="https://github.com/mbostock/d3/wiki/Time-Intervals" target="_blank" rel="external">Time Intervals · mbostock/d3 Wiki</a></p>
+<h3 id="時間軸のラベルフォーマットしたい"><a href="#時間軸のラベルフォーマットしたい" class="headerlink" title="時間軸のラベルフォーマットしたい"></a>時間軸のラベルフォーマットしたい</h3><p><code>tickFormat</code> を使おう。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var xAxis = d3.svg.axis()</span><br><span class="line">    .scale(x)</span><br><span class="line">    .orient(&apos;bottom&apos;)</span><br><span class="line">    .tickFormat(d3.time.format(&apos;%H:00&apos;));</span><br></pre></td></tr></table></figure>
+<p>フォーマット書式はこちら</p>
+<p><a href="https://github.com/mbostock/d3/wiki/Time-Formatting" target="_blank" rel="external">Time Formatting · mbostock/d3 Wiki</a></p>
+<p>よく使いそうなもの</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">%Y - year</span><br><span class="line">%m - month[01,12]</span><br><span class="line">%d - zero-padded day[01,31]</span><br><span class="line">%H - hour[00-23]</span><br><span class="line">%M - minute[00,59]</span><br><span class="line">%S - second as a decimal number [00,61].</span><br></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/15471224/how-to-format-time-on-xaxis-use-d3-js" target="_blank" rel="external">javascript - how to format time on xAxis use d3.js - Stack Overflow</a></p>
+<h3 id="軸のメモリ線-？-を消したい"><a href="#軸のメモリ線-？-を消したい" class="headerlink" title="軸のメモリ線(？)を消したい"></a>軸のメモリ線(？)を消したい</h3><p><code>innerTickSize</code>, <code>outerTickSize</code>, <code>tickPadding</code>あたりを使う。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xAxis = d3.svg.axis()</span><br><span class="line">  .scale(xScale)</span><br><span class="line">  .orient(<span class="string">'top'</span>)</span><br><span class="line">  .innerTickSize(<span class="number">0</span>)</span><br><span class="line">  .outerTickSize(<span class="number">0</span>)</span><br><span class="line">  .tickPadding(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>ここの記事がわかりやすかったので、これを見れば十分。</p>
+<p><a href="http://blog.qaramell.com/?p=12911" target="_blank" rel="external">D3.jsの折れ線グラフにグリッド線を追加する | Qaramell Blog</a></p>
+<h3 id="画面サイズに応じて軸ラベルを回転させたい"><a href="#画面サイズに応じて軸ラベルを回転させたい" class="headerlink" title="画面サイズに応じて軸ラベルを回転させたい"></a>画面サイズに応じて軸ラベルを回転させたい</h3><p>ラベルを描画する際に、画面サイズに応じて<code>rotate</code>させる。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">svg.append(&apos;g&apos;)</span><br><span class="line">  .call(xAxis)</span><br><span class="line">  .selectAll(&apos;text&apos;)</span><br><span class="line">  .attr(&apos;transform&apos;, function() &#123;</span><br><span class="line">    if (w &lt; 1000 &amp;&amp; w &gt; 689) &#123;</span><br><span class="line">      return &apos;translate(20, -5) rotate(-45)&apos;;</span><br><span class="line">    &#125; else if (w &lt;= 689) &#123;</span><br><span class="line">      return &apos;translate(20, -15) rotate(-90)&apos;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return null;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="カテゴライズされた軸を作りたい"><a href="#カテゴライズされた軸を作りたい" class="headerlink" title="カテゴライズされた軸を作りたい"></a>カテゴライズされた軸を作りたい</h3><p>例えば、システム的なIdではなくで、なんらかの文字列のラベルなど。</p>
+<p><code>d3.scale.ordinal</code>を使って<code>domain</code>にラベルとしたい値の配列を渡す。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> labels = [</span><br><span class="line">  &#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>:<span class="string">'ばなな'</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>:<span class="string">'りんご'</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">id</span>: <span class="number">3</span>, <span class="attr">name</span>:<span class="string">'ぶどう'</span>&#125;,</span><br><span class="line">];</span><br><span class="line"><span class="keyword">var</span> yScale = d3.scale.ordinal()</span><br><span class="line">  .domain(labels.map(<span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> d.name;</span><br><span class="line">  &#125;))</span><br><span class="line">  .rangeRoundBands([<span class="number">0</span>, height], <span class="number">0.5</span>); <span class="comment">// 0.5はラベルの間隔</span></span><br></pre></td></tr></table></figure>
+<h3 id="カテゴライズされた軸のラベルを別なものにしたい"><a href="#カテゴライズされた軸のラベルを別なものにしたい" class="headerlink" title="カテゴライズされた軸のラベルを別なものにしたい"></a>カテゴライズされた軸のラベルを別なものにしたい</h3><p><code>d3.svg.axis</code>にて<code>tickFormat</code>を使って別の値に変換する。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mapper = [<span class="string">'ばなな'</span>, <span class="string">'りんご'</span>, <span class="string">'ぶどう'</span>];</span><br><span class="line"><span class="keyword">var</span> xAxis = d3.svg.axis()</span><br><span class="line">  .scale(xScale)</span><br><span class="line">  .orient(<span class="string">'top'</span>)</span><br><span class="line">  .tickFormat(<span class="function"><span class="keyword">function</span>(<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// d, i をうまく使ってマッピングリストから値を取得するように設計する</span></span><br><span class="line">    <span class="keyword">return</span> mapper[i];</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/19994328/give-d3-ordinal-axis-labels-different-from-scale-names" target="_blank" rel="external">javascript - Give d3 ordinal axis labels different from scale names - Stack Overflow</a></p>
+<h3 id="ラベルの文字が長い場合に改行したい"><a href="#ラベルの文字が長い場合に改行したい" class="headerlink" title="ラベルの文字が長い場合に改行したい"></a>ラベルの文字が長い場合に改行したい</h3><p>ラベルのテキストを抽出して、親のエレメントを指定して<code>&lt;p&gt;</code>タグなどで置き換える。<br>(もっとスマートなやり方はないのか)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mapper = [<span class="string">'ばなな'</span>, <span class="string">'りんご'</span>, <span class="string">'ぶどう'</span>];</span><br><span class="line">svg.append(<span class="string">'g'</span>)</span><br><span class="line">  .call(yAxis)</span><br><span class="line">  .selectAll(<span class="string">'text'</span>)</span><br><span class="line">  .each(<span class="function"><span class="keyword">function</span>(<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> el = d3.select(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">var</span> parent = d3.select(<span class="keyword">this</span>.parentNode);</span><br><span class="line">    parent.append(<span class="string">'foreignObject'</span>)</span><br><span class="line">      .attr() <span class="comment">// テキストラベルラッパーの設定 ex)表示位置など</span></span><br><span class="line">      .append(<span class="string">'xhtml:p'</span>)</span><br><span class="line">      .attr() <span class="comment">// テキストラベルの属性 ex)classなど</span></span><br><span class="line">      .html(<span class="function"><span class="keyword">function</span>(<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mapper[i]; <span class="comment">// 設定するラベルを返却</span></span><br><span class="line">      &#125;);</span><br><span class="line">    el.remove(); <span class="comment">// 元のtextを消す</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>あとはcssでスタイリングしていきます。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.y-axis-label</span> &#123;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">  <span class="attribute">text-align</span>: center;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/16039693/how-to-do-wordwrap-for-chart-labels-using-d3-js" target="_blank" rel="external">nvd3.js - How to do wordwrap for chart labels using d3.js - Stack Overflow</a></p>
+<h3 id="軸のdomain範囲を超えたデータがある場合に表示させない"><a href="#軸のdomain範囲を超えたデータがある場合に表示させない" class="headerlink" title="軸のdomain範囲を超えたデータがある場合に表示させない"></a>軸のdomain範囲を超えたデータがある場合に表示させない</h3><p><code>.clamp(true)</code>を使おう。これでdomain範囲を超えるデータは自動的にカットされて表示される。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xAxis = d3.svg.axis()</span><br><span class="line">  .scale(xScale)</span><br><span class="line">  .orient(<span class="string">'top'</span>)</span><br><span class="line">  .clamp(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="windowがリサイズしたらChartを再描画したい"><a href="#windowがリサイズしたらChartを再描画したい" class="headerlink" title="windowがリサイズしたらChartを再描画したい"></a>windowがリサイズしたらChartを再描画したい</h3><p><code>resize</code>イベントを使おう。そのままだとイベント発火回数が多いので、<code>throttle</code>(間引き)の仕組みを使う。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timer = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (timer !== <span class="literal">false</span>) &#123;</span><br><span class="line">    clearTimeout(timer);</span><br><span class="line">  &#125;</span><br><span class="line">  timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    redraw(); <span class="comment">// 何かの再描画関数</span></span><br><span class="line">  &#125;, <span class="number">200</span>); <span class="comment">// リサイズ終わってから200msec経過して再描画する</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="描画したSVGオブジェクトを全てクリアしたい"><a href="#描画したSVGオブジェクトを全てクリアしたい" class="headerlink" title="描画したSVGオブジェクトを全てクリアしたい"></a>描画したSVGオブジェクトを全てクリアしたい</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d3.select(<span class="string">'svg'</span>).selectAll(<span class="string">'*'</span>).remove();</span><br></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/14422198/how-do-i-remove-all-children-elements-from-a-node-and-them-apply-them-again-with" target="_blank" rel="external">d3.js - how do I remove all children elements from a node and them apply them again with different color and size? - Stack Overflow</a></p>
+<h3 id="雑感"><a href="#雑感" class="headerlink" title="雑感"></a>雑感</h3><p>D3.jsでタイムチャートで作ってみましたが、1点ものの作品を作っている感が非常に強いです。<br>再利用とか部品化など考えるとD3が提供しているAPIとの境界でそこまでコストを掛けてするべきか、正直悩みました。</p>
+<p>学習コストは結構高い方の部類に入りますので、その辺り本腰を入れて学習するか一度天秤に掛けた方がいいと思います。<br>ただ、一度覚えると比較的自由に扱えるようになると思います。<br>要件的にに満たすのであれば、既存のライブラリを利用した方が楽でいいですね。</p>
+<p>このあたりが有名どこでしょうか。簡単なチャートであれば積極的に使っていきたいです。</p>
+<ul>
+<li><a href="http://c3js.org/" target="_blank" rel="external">C3.js | D3-based reusable chart library</a></li>
+<li><a href="http://fastly.github.io/epoch/" target="_blank" rel="external">Epoch by Fastly</a></li>
+<li><a href="http://chinmaymk.github.io/angular-charts/#" target="_blank" rel="external">Angular-charts</a></li>
+</ul>
+<p>D3.jsじゃないけど、気になってるやつ</p>
+<ul>
+<li><a href="http://www.chartjs.org/docs/#radar-chart" target="_blank" rel="external">Chart.js | Documentation</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html" data-id="cj2qrp7iv003ptn0a2zhu8yks" class="article-share-link">共有</a>
+      
+        <a href="http://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html#disqus_thread" class="article-comment-link">コメント</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chart/">chart</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d3-js/">d3.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/how-to-write-better-es6.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">新しい記事</strong>
+      <div class="article-nav-title">
+        
+          スタイルガイドから考えるES6でより良いコードを書きたい人向けのES6入門
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/how-to-troubleshoot-when-cannot-load-tasks-on-load-grunt-tasks-and-load-grunt-config.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">古い記事</strong>
+      <div class="article-nav-title">load-grunt-tasksやload-grunt-configでタスクがロードされない場合の対処法</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+)" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/webpack-with-custom-font.html" class="title">webpack+Sass+reactでカスタムフォントを使う</a></p>
+              <p class="item-date"><time datetime="2016-10-23T16:58:00.000Z" itemprop="datePublished">2016-10-24 01:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+)" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="title">react-intlを使ってReactアプリを国際化する</a></p>
+              <p class="item-date"><time datetime="2016-10-19T14:58:00.000Z" itemprop="datePublished">2016-10-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+)" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="title">Typescript+ReactでDefault parametersにObjectを正しく設定する方法</a></p>
+              <p class="item-date"><time datetime="2016-10-05T14:58:00.000Z" itemprop="datePublished">2016-10-05 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+)" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="title">Angular2のPipeを使う上で開発者が知るべきたった1つのこと</a></p>
+              <p class="item-date"><time datetime="2016-07-19T14:58:00.000Z" itemprop="datePublished">2016-07-19 23:58</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="thumbnail">
+  
+    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/HTTP_Intercept.png
+)" alt="Angular2でHTTP Interceptorを使いたい" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/04/way-of-http-interceptpr-in-angular2.html" class="title">Angular2でHTTP Interceptorを使いたい</a></p>
+              <p class="item-date"><time datetime="2016-04-11T15:58:00.000Z" itemprop="datePublished">2016-04-12 00:58</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 11px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 18px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 14px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 11px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 19px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 19px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 13px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 17px;">angular</a> <a href="/tags/angular2/" style="font-size: 20px;">angular2</a> <a href="/tags/aws/" style="font-size: 11px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 15px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 11px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 11px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/es6/" style="font-size: 11px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 12px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 12px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 11px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 17px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 16px;">karma</a> <a href="/tags/localstorage/" style="font-size: 11px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 19px;">nodejs</a> <a href="/tags/npm/" style="font-size: 11px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/react/" style="font-size: 12px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/s3/" style="font-size: 11px;">s3</a> <a href="/tags/styleguide/" style="font-size: 12px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17px;">unit test</a> <a href="/tags/vscode/" style="font-size: 11px;">vscode</a> <a href="/tags/webapi/" style="font-size: 11px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 12px;">yeoman</a> <a href="/tags/その他/" style="font-size: 18px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 12px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 11px;">統計</a> <a href="/tags/翻訳/" style="font-size: 11px;">翻訳</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+      &copy; 2017 mitsuruog<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script>
+  var disqus_shortname = 'mitsuruog';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
