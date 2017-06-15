@@ -9,8 +9,12 @@ tags:
 
 {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png %}
 
-当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。
-画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。
+~~当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。
+画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。~~
+
+(うそです)
+
+> 結局、Bandwidthが無料枠をオーバーしてしまったので、S3にしました。(2017/06/15)
 
 <!-- more -->
 
@@ -21,7 +25,9 @@ tags:
 
 Cloudinaryとは、画像/動画専門のクラウドホスティングサービスで、画像をアップロードしてブログなどで使うために利用できます。
 
-> フリーでも75,000枚の画像や動画を保存できるので、まぁ普通に使っている内は大丈夫でしょう。。。
+> ~~フリーでも75,000枚の画像や動画を保存できるので、まぁ普通に使っている内は大丈夫でしょう。。。~~
+
+> （だめでした〜！！）Bandwidthが5GB/月なんですが、結構アクセス多くってオーバーしてしまいました。結果、S3に移行することにしました。(2017/06/15)
 
 - [Cloudinary](http://cloudinary.com/)
 
@@ -64,3 +70,5 @@ Image_01.png
 ## まとめ
 
 普通に画像読めているし、httpsも使えるので、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思いました。
+
+> Bandwidthが5GB/月の中に収まるのであれば大丈夫だと思います。
