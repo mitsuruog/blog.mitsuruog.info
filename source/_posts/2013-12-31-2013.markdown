@@ -13,7 +13,7 @@ tags:
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/mitsuruog.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/mitsuruog.png %}
 
 1.  1月〜3月　翻訳とBackbone.jsのSPAチュートリアル作成
 2.  4月〜6月　HTML5jエンタープライズ部（旧えんぷら部）に参加

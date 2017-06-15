@@ -8,7 +8,7 @@ tags:
   - angular2
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/HTTP%20Intercept.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/HTTP%20Intercept.png %}
 
 Way of httpInterceptor in Angular 2
 

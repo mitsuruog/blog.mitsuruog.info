@@ -9,7 +9,7 @@ tags:
   - Salesforce
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/webpack-slds.png 620 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/webpack-slds.png 620 %}
 
 一手間必要だったのでメモ。  
 長いのでSalesforce Lightning Design System(以下、SLDS)とします。

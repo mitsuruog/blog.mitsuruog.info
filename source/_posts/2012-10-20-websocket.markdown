@@ -35,7 +35,7 @@ tags:
 
 例えばですが、80ポートのwsがブロックされている場合は次のような結果となります。
 
-[{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/comp.png 340 500 %}](https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/comp.png)
+[{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png 340 500 %}](https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png)
 
 で、厄介なのが、セキュリティソフトにてブロックされている場合で、
 wsの疎通確認自体はOKなのですが、wsがなぜか届かない状態となってしまったので、原因を特定するのに少し時間がかかりました。
@@ -51,7 +51,7 @@ wsの正しい挙動としては、まずhttpでハンドシェイクを行い�
 
 （念のため、Chromeで取ったヘッダーとか載せときますね。）
 
-[{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/block.png %}](https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/block.png)
+[{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png %}](https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png)
 
 ```
 Request URL:ws://wsping.jit.su/socket.io/1/websocket/dL7NXuBCnWhqnZMPAYkU

@@ -27,7 +27,7 @@ tags:
 エンタープライズにいるエンジニアとして、「なぜHTML5なのか？」「HTML5になると何かいいのか？」という問いに対する答えを探し続けています。
 まだ、答えは見つけられていませんが、ぼんやりと「セマンティック」の先にある何かではないかと感じています。今日は、そんな頭の中のもやもやを少し文書化してみました。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/ariaweb1.jpg 421 315 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb1.jpg 421 315 %}
 
 ## 私が思うセマンティックとは
 
@@ -70,7 +70,7 @@ WAI-ARIA対応されてないマークアップの場合は、VoiceOverはただ
 <a href="//www.google.com" target="_brank">google</a>
 ```
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/ariaweb2.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb2.png %}
 
 ところが、WAI-ARIAの「aria-haspopup」を使うことで、VoiceOverはポップアップリンクであることを認識しています。
 
@@ -78,7 +78,7 @@ WAI-ARIA対応されてないマークアップの場合は、VoiceOverはただ
 <a href="//www.google.com" target="_brank" aria-haspopup="true">google</a>
 ````
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/ariaweb3.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb3.png %}
 
 次は、状態の例です。
 
@@ -103,7 +103,7 @@ HTMLのマークアップは次の通りです。
 
 このようにすることで、VoiceOverはコンテンツが動的に変わった瞬間を検知して読み上げてくれます。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/ariaweb4.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb4.png %}
 
 必須入力も「aria-required」で知らせてくれます。
 
@@ -111,7 +111,7 @@ HTMLのマークアップは次の通りです。
 <input aria-required="true">
 ```
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/ariaweb5.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb5.png %}
 
 ほかにもWAI-AREAで定義されている属性は非常に沢山ありますので、詳しくは仕様書を読んでください。
 

@@ -61,7 +61,7 @@ Airbnbとはアメリカのサンフランシスコにある、個性的な宿�
 
 > (2014/11/09 追記)
 > 現在10ヶ国語に翻訳されています
-> {% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2013/airbnb%20javascript.png %}
+> {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/airbnb%20javascript.png %}
 
 ちなみに、組織（法人とか）で採用した場合、本家にプルリクエストするとリストに追加してます。もちろん翻訳版を使ってくれて、私にプルリクエストくれても結構です。
 

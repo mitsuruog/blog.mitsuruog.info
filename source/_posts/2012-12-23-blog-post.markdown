@@ -20,7 +20,7 @@ tags:
 
 このアドベントカレンダーの趣旨として、まず育児グッツを紹介することになっているので、我が家でおそらく一番活躍している育児グッツの「お食事エプロンを」紹介します。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2012/OGYU.jpg %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/OGYU.jpg %}
 
 「OGYU」というメーカー（ブランド？）のお食事エプロンです。ポリエチレン製で食器感覚で洗えます。これは「PLATINUMBABY」とのコラボ品なので現在は購入することはできませんが、類似品は[Amazon](https://www.amazon.co.jp/dp/B001QOAS2Y/ref=as_li_qf_sp_asin_til?tag=mitsuruog-22&amp;camp=243&amp;creative=1615&amp;linkCode=as1&amp;creativeASIN=B001QOAS2Y&amp;adid=00QK31KGT3T3CED7A7W9&amp;)などで購入可能です。
 

@@ -15,7 +15,7 @@ Web Componentsについての解説記事はそこそこ出てきましたが、
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/wc_handson1.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson1.png %}
 
 1.  Web Componentsとは
 2.  苦労したポイント
@@ -38,7 +38,7 @@ UI部品がコンポーネント化して再利用しやすくすることが出
 最短で理解してもらうための構成とコンテンツ作りには難儀しましたが、Web Componentsのコンセプトについては「花の種」を例えて、コンテンツの方は、講師がいなくても出来るように[Github](https://github.com/html5bizj/x-business-card)上に作りました。 
 (Githubのコンテンツについてはかなり試行錯誤して悩んだのは事実です。)
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/wc_handson2.png 554 393 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson2.png 554 393 %}
 
 <blockquote class="twitter-tweet" lang="ja"><p>エンタープライズな<a href="https://twitter.com/mitsuruog">@mitsuruog</a> さんならではの「Web Componentsは花の種で理解しよう」論いいねっ∩( ・ω・)∩ <a href="https://twitter.com/hashtag/html5biz?src=hash">#html5biz</a></p>&mdash; 21cafe管理人おだんみつ (@21cafe_shibuya) <a href="https://twitter.com/21cafe_shibuya/status/509291557111885825">2014, 9月 9</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -47,7 +47,7 @@ UI部品がコンポーネント化して再利用しやすくすることが出
 
 こちらが当日の様子です。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/wc_handson3.JPG 554 415 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson3.JPG 554 415 %}
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/hashtag/html5biz?src=hash">#html5biz</a> 昨日はWebComponentsハンズオンありがとうございました。信じがたいことにあの2時間だけでかなり自在にWebComponentが書けるようになりました。(^^;;;</p>&mdash; Shunji Konishi (@shunjikonishi) <a href="https://twitter.com/shunjikonishi/status/509540957809692672">2014, 9月 10</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -84,8 +84,8 @@ UI部品がコンポーネント化して再利用しやすくすることが出
 
 作成したWeb名刺
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/wc_handson4.JPG 554 415 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson4.JPG 554 415 %}
 
 最後は参加者で記念撮影
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/wc_handson5.JPG 554 415 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson5.JPG 554 415 %}

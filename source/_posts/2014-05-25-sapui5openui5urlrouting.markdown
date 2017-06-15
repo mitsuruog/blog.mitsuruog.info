@@ -21,7 +21,7 @@ URLが変わらないということは、すべての画面のURLが同じに�
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/a1510_000018.jpg %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/a1510_000018.jpg %}
 
 1.  ルーティングテーブルの定義とルーターの初期化
 2.  ルーティング

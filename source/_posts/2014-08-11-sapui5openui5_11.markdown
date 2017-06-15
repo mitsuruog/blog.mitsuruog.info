@@ -18,7 +18,7 @@ tags:
 
 <!-- more -->
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/a1180_010361.jpg %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/a1180_010361.jpg %}
 
 1.  OpenUI5での国際化(Internationalization in OpenUI5)
 2.  ロケール判定の優先度(Priority of the locale judgment)
@@ -115,7 +115,7 @@ sap.ui.jsview "com.mitsuruog.sapui5.showroom.view.Locale",
 
 こちらが国際化した結果画面の例です。日本語と英語で画面の項目名などが変化していることが分かると思います。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2014/Hello%20SAPUI52_Fotor_Collage.png 650 487 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/Hello%20SAPUI52_Fotor_Collage.png 650 487 %}
 
 より詳細な内容は公式ページを参照してください。
 

@@ -9,7 +9,7 @@ tags:
   - unit test
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/wercker-frontend.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/wercker-frontend.png %}
 
 github private repositoryも無料でCIテストできるので[wercker](http://wercker.com/)を使うことが多いです。  
 プロジェクト立ち上げ時に設定した後、安定すると放置になる設定周り。ついつい忘れてしまうので、自分用メモ。  

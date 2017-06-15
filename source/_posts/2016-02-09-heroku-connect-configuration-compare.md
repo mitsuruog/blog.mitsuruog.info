@@ -9,7 +9,7 @@ tags:
   - nodejs
 ---
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/heroku-connect.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/heroku-connect.png %}
 
 前回、[Heroku ConnectのConfigurationファイルが辛いので美しくするモジュールを書いた](http://blog.mitsuruog.info/2016/02/heroku-connect-configuration-comb.html)の続きっぽいもの。
 
@@ -44,7 +44,7 @@ heroku-connect-configuration-compare one-heroku-appname other-heroku-appname
 
 差分がDiffとして参照できます。
 
-{% img https://dl.dropboxusercontent.com/u/77670774/blog.mitsuruog.info/2016/heroku-connect-diff.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/heroku-connect-diff.png %}
 
 > 注）[ Heroku Toolbelt](https://toolbelt.heroku.com/)と[heroku-connect-plugin](https://github.com/heroku/heroku-connect-plugin)がインストールしていることが前提です。
 
