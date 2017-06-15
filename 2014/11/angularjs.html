@@ -13,10 +13,10 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="だいぶ前のことですが、9/22に行われたAngularJSリファレンス」出版記念会にてSIerでのAngularJSの取り組みについて話させていただきました。
 先日、その資料を見て興味を持ってくれた他のSIerにてAngularJSについて講演させていただく機会をいただいたこともあり、なぜAngularJSをいいと感じているのかや、AngularJSに期待することなど、個人的な思いを書いてみたいと">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/why_angular1.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/why_angular2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/why_angular3.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:14.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular3.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="なぜAngularJSを薦めるのか ー 個人的な思い">
 <meta name="twitter:description" content="だいぶ前のことですが、9/22に行われたAngularJSリファレンス」出版記念会にてSIerでのAngularJSの取り組みについて話させていただきました。
@@ -175,7 +175,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>他社にて 講演したときの資料です。</p>
 <p><iframe src="//www.slideshare.net/slideshow/embed_code/41489044" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/mitsuruogawa33/webangular-js" title="今後のWeb開発の未来を考えてangular jsにしました(拡大版)" target="_blank">今後のWeb開発の未来を考えてangular jsにしました(拡大版)</a> </strong> from <strong><a href="//www.slideshare.net/mitsuruogawa33" target="_blank">Mitsuru Ogawa</a></strong> </div></p>
 <h2 id="マルチプラットフォームとしてのHTML5"><a href="#マルチプラットフォームとしてのHTML5" class="headerlink" title="マルチプラットフォームとしてのHTML5"></a>マルチプラットフォームとしてのHTML5</h2><p>まず、AngularJSを選定する際に外せないのが、「HTML5」の存在です。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/why_angular1.png" width="520" height="370">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular1.png" width="520" height="370">
 <p>ブラウザだけではなくモバイルアプリなど利用範囲が広いため、今後のWebアプリケーションのマルチプラットフォーム実行環境としては主役だなと思います。</p>
 <h2 id="AngularJSの注目ポイント"><a href="#AngularJSの注目ポイント" class="headerlink" title="AngularJSの注目ポイント"></a>AngularJSの注目ポイント</h2><p>AngularJSで注目しているポイントとしては次のような部分です。</p>
 <ol>
@@ -185,13 +185,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>Web開発要件にマッチ</li>
 </ol>
 <p>いくつかJSフレームワークを触っていきた経験的に、AngularJSの各モジュール分割(controllerやfilterなど)の考え方は割とBetterかなと思います。強いて言えば、規模が大きくなってくると細かなServiceがたくさんできてDIが多くなるのが辛いといったとこでしょうか。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/why_angular2.png" width="520" height="370">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular2.png" width="520" height="370">
 <p>スキルチェンジに関しては、JSPとAngularJSはテンプレート部分にロジックを記述していくため、Javascriptで全てテンプレートを生成するものより、理解しやすいと思います。またDIの概念や、各モジュールについての役割についてもJavaでのWeb開発を例に説明できると思います。</p>
 <h2 id="開発支援ツールとしてのYeoman"><a href="#開発支援ツールとしてのYeoman" class="headerlink" title="開発支援ツールとしてのYeoman"></a>開発支援ツールとしてのYeoman</h2><p>私がYeomanの存在を知ったのは2013年の10月くらいだったかと思います。</p>
 <p>従来のJavaでのWeb開発と比較して、Yeomanが提供するGruntタスク(特にフロント側リソースの本番ビルド)はかなりオーバースペックに見えたこともあり、ここ1年、少し慎重に評価していました。</p>
 <p>AngularJS開発にあたってYeomanが必須な訳ではありませんので、Yeomanを使わずに自分の組織にあったGruntタスクを0から作成して利用してもいいと思います。<br>(Yeomanは必須ではなくても、GruntタスクはAngularJS開発では必要だと思います。)</p>
 <p>私の場合、当初はYeomanを利用しない方向で考えていましたが、AngularJSを開発するにあたりいろいろとタスクを追加した結果、Yeomanでのタスクの劣化版を作っていることに気づきました。<br>いまでは既存のYeomanジェネレーターを自組織に合うようにカスタムして利用しています。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/why_angular3.png" width="520" height="370">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular3.png" width="520" height="370">
 <blockquote>
 <p>本来は、なぜフロント開発がこんなにも複雑になってしまったのかを嘆くべきなのでしょうが。。。</p>
 </blockquote>
@@ -202,7 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2014/11/angularjs.html" data-id="cj2rntxls006lwu0ayhi2z35b" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2014/11/angularjs.html" data-id="cj3yfeqdw006l0y0adcqbd9zr" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2014/11/angularjs.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -258,7 +258,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -276,7 +276,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -294,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -312,7 +312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -330,7 +330,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

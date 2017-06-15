@@ -13,12 +13,12 @@ ionicで開発自体はAngularJSベースということもあり、結構スム
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="IonicでAndroidアプリを初めて作って公開してみました。
 ionicで開発自体はAngularJSベースということもあり、結構スムーズだったのですが、開発以外の部分で意外とハマったので、その辺り紹介しようと思います。">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-1-1.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-2-2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3-1.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3-2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3.jpg">
-<meta property="og:updated_time" content="2017-05-16T14:00:15.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-1-1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-2-2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-3-1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-3-2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-3.jpg">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Androidアプリ開発初心者がionicでアプリを作って公開するまでの7日間の道のり">
 <meta name="twitter:description" content="IonicでAndroidアプリを初めて作って公開してみました。
@@ -172,7 +172,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>ionicで開発自体はAngularJSベースということもあり、結構スムーズだったのですが、開発以外の部分で意外とハマったので、その辺り紹介しようと思います。</p>
 <a id="more"></a>
 <p>作ったアプリはこちらです。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-1-1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-1-1.png">
 <p><a href="https://play.google.com/store/apps/details?id=com.mitsuruog.transitbus" target="_blank" rel="external">ダウンロードはこちら</a></p>
 <p>はい、千葉のローカルバスのアプリです。</p>
 <p>では、早速本題へ。</p>
@@ -228,7 +228,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><strong>controller.js</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$scope.$on(<span class="string">'$ionicView.beforeEnter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  navigator.analytics.sendAppView(<span class="string">'view名'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>どのバス停が人気があるかとか、こっそりトラッキングしてニヤニヤしてます。<br>ちゃんと真面目にエラーのスタックトレースも取得してます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-2-2.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-2-2.png" width="500">
 <blockquote>
 <p>モバイルアプリのトラッキングはGoogle Analytics上のアナリティクス設定で新しいプロパティを作成する際に、トラッキングの対象を「モバイルアプリ」にしてください。(普段、Webページのトラッキングをやっているので、最初うっかりハマってしまいました。)</p>
 </blockquote>
@@ -261,9 +261,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>エミュレータでのスクリーンショットですが、Genymotionから取得する場合は有料プランの機能のようです。<br>そこで、下の記事のようにAndroid Device Monitorから実行中のエミュレータをアタッチすることで、スクリーンショットを取得することにしました。</p>
 <p><a href="http://stackoverflow.com/questions/21771416/capture-screenshot-in-genymotion" target="_blank" rel="external">android emulator - Capture screenshot in GenyMotion - Stack Overflow</a></p>
 <p>エミュレータが実行されている状態でAndroid Device Monitorを起動します。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3-1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-3-1.png">
 <p>実行中のデバイスが表示されるので、「Screen capture」ボタンをクリックします。キャプチャ用の別画面が立ち上がります。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3-2.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-3-2.png">
 <blockquote>
 <p>他に良い方法あれば教えてください。。。</p>
 </blockquote>
@@ -271,7 +271,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><a href="https://support.google.com/googleplay/android-developer/answer/6112435?hl=ja" target="_blank" rel="external">Google Play デベロッパー コンソール - 基本事項 - Google Play デベロッパー ヘルプ</a></p>
 <p>1回登録すればOKです。$25です。あ、はい。</p>
 <p>というわけで無事公開できましたー。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/hello-ionic-3.jpg" width="320">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-3.jpg" width="320">
 <h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>作るのに4日。そこから公開まで3日くらいかかりました。<br>1日フルで使えた日はないので、実質はもう少し少ないと思いますが、予想より公開準備の部分のコストが掛かったと思います。<br>初期の学習コストだと思うので次回以降は半分くらいになると思いますが。。。</p>
 <p>普段やっているWebと違って、アプリの世界は結構大変ですね。</p>
 <p>いつもエンジニアとしてアプリの機能を開発していますが、このように1から自身の手でやってみると、世の中に出ている素晴らしいアプリを作成する裏側でどれくらいの労力が掛かっているか、実感できてよかったです。</p>
@@ -281,7 +281,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2015/04/ionic-7days-war.html" data-id="cj2rntxjo0047wu0a0jslauw4" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2015/04/ionic-7days-war.html" data-id="cj3yfeqce00470y0ajmdnn8sk" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2015/04/ionic-7days-war.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -337,7 +337,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -355,7 +355,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -373,7 +373,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -391,7 +391,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -409,7 +409,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

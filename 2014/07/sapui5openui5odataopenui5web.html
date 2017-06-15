@@ -15,10 +15,10 @@ Gtihub：https://github.com/mitsuruog/Openui">
 <meta property="og:description" content="国内でのOpenUI5の注目度の低さに涙が出そうです。でも頑張ります。今回は「OpenUI5とODataを使ってどのようにWebシステムを作成するか」というチュートリアルを作って見ました。
 内容はこちらです。http://mitsuruog.github.io/Openui5-with-OdataService/
 Gtihub：https://github.com/mitsuruog/Openui">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/openui5odata1.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/exjp_odata.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/openui5odata2.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:14.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/exjp_odata.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata2.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SAPUI5/OpenUI5]ODataとOpenUI5でWebシステムを作るチュートリアルをつくりました">
 <meta name="twitter:description" content="国内でのOpenUI5の注目度の低さに涙が出そうです。でも頑張ります。今回は「OpenUI5とODataを使ってどのようにWebシステムを作成するか」というチュートリアルを作って見ました。
@@ -173,7 +173,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>内容はこちらです。<br><a href="http://mitsuruog.github.io/Openui5-with-OdataService/" target="_blank" rel="external">http://mitsuruog.github.io/Openui5-with-OdataService/</a></p>
 <p>Gtihub：<br><a href="https://github.com/mitsuruog/Openui5-with-OdataService" target="_blank" rel="external">https://github.com/mitsuruog/Openui5-with-OdataService</a><br>良かったらGithubでStar付けたり、SNSでシェアしてくださいね。</p>
 <a id="more"></a>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/openui5odata1.png" width="580" height="326">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata1.png" width="580" height="326">
 <ol>
 <li>ODataとは？</li>
 <li>なぜODataとOpenUi5なのか？</li>
@@ -182,7 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>まとめ</li>
 </ol>
 <blockquote>
-<p>(2014/11/13 追記)<br>このネタで<a href="http://html5experts.jp" target="_blank" rel="external">HTML5Experts.jp</a>に寄稿しました。こちらの方が分かりやすく書いてあると思います。<br><a href="http://html5experts.jp/mitsuruog/9518/" target="_blank" rel="external">実例から考える、HTML5時代のエンタープライズ・アーキテクチャ | HTML5Experts.jp</a><br><img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/exjp_odata.png" title="483　246"></p>
+<p>(2014/11/13 追記)<br>このネタで<a href="http://html5experts.jp" target="_blank" rel="external">HTML5Experts.jp</a>に寄稿しました。こちらの方が分かりやすく書いてあると思います。<br><a href="http://html5experts.jp/mitsuruog/9518/" target="_blank" rel="external">実例から考える、HTML5時代のエンタープライズ・アーキテクチャ | HTML5Experts.jp</a><br><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/exjp_odata.png" title="483　246"></p>
 </blockquote>
 <h2 id="1-ODataとは？"><a href="#1-ODataとは？" class="headerlink" title="1. ODataとは？"></a>1. ODataとは？</h2><p>ODataとは、<br>「Webシステムにおける、フロントエンドとバックエンドとの面倒なAjax問い合わせの手続きを標準化したプロトコル」</p>
 <p>皆さん、Webシステムを構築する際にWebAPIに渡すパラメータを独自設計していると思いますが、パラメータを含めたバックエンドへのデータアクセスの手順を標準化しているものです。</p>
@@ -205,7 +205,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>ここで言うUIフレームワークとはUIコンポーネントも持つもので、WebAPIから取得したデータを元に自動でUIを構築し、UI側の操作をダイレクトURLへ変換してバックエンドに連携できる機能を持っています。（以下、双方向データバインディング）</p>
 <p>ODataが持つデータアクセス方法の標準化とUIフレームワークの双方向データバインディングが組合わせることで、フロント部分の多くがフレームワークで隠蔽できます。</p>
 <p>従来のオープンソースを組み合わせた場合と比べ、データアクセスに関わる非常にセンシティブで難易度が高い部分実装がかなり省け、大規模なシステム開発においても比較的管理しやすく、安全に開発ができる可能性があり、非常に惹かれるものがあります。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/openui5odata2.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata2.png">
 <h2 id="5-まとめ"><a href="#5-まとめ" class="headerlink" title="5. まとめ"></a>5. まとめ</h2><p>ODataとOpenUI5について少し関心を持っていただけたでしょうか？</p>
 <p>昨今は、AngularJSが最も注目されるJavascriptフレームワークです。私も非常に大好きです。</p>
 <p>しかし、企業向けWebシステムとして見た場合、様々なオープンソースを組み合わせて構築するより、様々な機能を統合した「エンタープライズUIフレームワーク」の方が、向いているのではないかと思っています。</p>
@@ -215,7 +215,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2014/07/sapui5openui5odataopenui5web.html" data-id="cj2rntxmk007twu0aydoxxbnh" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2014/07/sapui5openui5odataopenui5web.html" data-id="cj3yfeqei007t0y0anx19qcp2" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2014/07/sapui5openui5odataopenui5web.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -271,7 +271,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -289,7 +289,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -307,7 +307,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -325,7 +325,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -343,7 +343,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

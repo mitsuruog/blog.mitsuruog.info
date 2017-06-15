@@ -5,17 +5,26 @@
   
   <title>Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。">
+  <meta name="description" content="当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。
+(うそです)
+
+結局、Bandwidthが無料枠をオーバーしてしまったので、S3にしました。(2017/06/15)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた">
 <meta property="og:url" content="http://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png">
-<meta property="og:updated_time" content="2017-05-16T14:34:49.000Z">
+<meta property="og:description" content="当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。
+(うそです)
+
+結局、Bandwidthが無料枠をオーバーしてしまったので、S3にしました。(2017/06/15)">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png">
+<meta property="og:updated_time" content="2017-06-15T13:30:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた">
-<meta name="twitter:description" content="当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。">
+<meta name="twitter:description" content="当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。
+(うそです)
+
+結局、Bandwidthが無料枠をオーバーしてしまったので、S3にしました。(2017/06/15)">
   
   
     <link rel="icon" href="/favicon.png">
@@ -161,13 +170,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png">
-<p>当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。<br>画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。</p>
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png">
+<p><del>当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。<br>画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。</del></p>
+<p>(うそです)</p>
+<blockquote>
+<p>結局、Bandwidthが無料枠をオーバーしてしまったので、S3にしました。(2017/06/15)</p>
+</blockquote>
 <a id="more"></a>
 <h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>当ブログの画像はDropboxのpublicフォルダを使っていたのですが、2017年3月から有料化しないとそのままでは使えなくなってしまいました。<br>長らく代替先を検討していたのですが、この度Cloudinaryを使ってみることにしました。</p>
 <p>Cloudinaryとは、画像/動画専門のクラウドホスティングサービスで、画像をアップロードしてブログなどで使うために利用できます。</p>
 <blockquote>
-<p>フリーでも75,000枚の画像や動画を保存できるので、まぁ普通に使っている内は大丈夫でしょう。。。</p>
+<p><del>フリーでも75,000枚の画像や動画を保存できるので、まぁ普通に使っている内は大丈夫でしょう。。。</del></p>
+<p>（だめでした〜！！）Bandwidthが5GB/月なんですが、結構アクセス多くってオーバーしてしまいました。結果、S3に移行することにしました。(2017/06/15)</p>
 </blockquote>
 <ul>
 <li><a href="http://cloudinary.com/" target="_blank" rel="external">Cloudinary</a></li>
@@ -179,11 +193,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 id="移行時のURLに関する注意点"><a href="#移行時のURLに関する注意点" class="headerlink" title="移行時のURLに関する注意点"></a>移行時のURLに関する注意点</h3><p>URLに関しては、ファイル名に空白が含まれる場合は注意が必要です。Cloudinary上にアップロードしたタイミングで空白が<code>_</code>に置き換わるようです。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 元ファイル</span><br><span class="line">Image 01.png</span><br><span class="line"></span><br><span class="line">// Dropbox</span><br><span class="line">Image%2001.png</span><br><span class="line"></span><br><span class="line">// Cloudinary</span><br><span class="line">Image_01.png</span><br></pre></td></tr></table></figure>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>普通に画像読めているし、httpsも使えるので、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思いました。</p>
+<blockquote>
+<p>Bandwidthが5GB/月の中に収まるのであれば大丈夫だと思います。</p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html" data-id="cj2rntxcd0007wu0a3fhlk3ju" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html" data-id="cj3ygddpp00005o0alpa74e92" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -230,7 +247,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -248,7 +265,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -266,7 +283,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -284,7 +301,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -302,7 +319,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

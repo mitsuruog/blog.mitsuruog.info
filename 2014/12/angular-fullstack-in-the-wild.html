@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="最近のAngularJS開発ではDaftMonk/generator-angular-fullstackをオレオレカスタムしたものを使っています。  fullstackだけあって使いこなすまで慣れがいると思いますので、私が普段使いしていていいなって思う機能を紹介します。AngularJS開発の厳しい旅のお供にどうぞ。
 この記事はYEOMAN Advent Calendar 2014 - Adven">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/node-Inspector.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:15.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/node-Inspector.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一度使ったらやめられないMEANスタック開発が捗るgenerator-angular-fullstackの便利機能の紹介">
 <meta name="twitter:description" content="最近のAngularJS開発ではDaftMonk/generator-angular-fullstackをオレオレカスタムしたものを使っています。  fullstackだけあって使いこなすまで慣れがいると思いますので、私が普段使いしていていいなって思う機能を紹介します。AngularJS開発の厳しい旅のお供にどうぞ。
@@ -193,7 +193,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Node.jsのデバックには<a href="https://github.com/node-inspector/node-inspector" target="_blank" rel="external">node-inspector/node-inspector</a>を使うのが一般的だと思うのですが、<br>しばらく触っていないと使い方をすぐ忘れてしまします。幸いfullstackではサーバーをデバックモードで起動するGruntタスクとして組み込まれているので忘れにくくなりました。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt serve:debug</span><br></pre></td></tr></table></figure>
 <p>コマンドを叩くと、Node inspectorが立ち上がってくるのですが、<code>--debug-brk</code>指定されているので最初のステップのブレイクポイントで止まっています。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/node-Inspector.png"> 
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/node-Inspector.png"> 
 <p>ブレイクポイントから処理を進めると通常通りサーバーが起動してくるので<code>http://localhsot:9000</code>にてアプリの動作を確認しながら、Node側のデバックもできます。</p>
 <h2 id="mongodbテストデータ自動投入"><a href="#mongodbテストデータ自動投入" class="headerlink" title="mongodbテストデータ自動投入"></a>mongodbテストデータ自動投入</h2><p>サーバー起動時に動作環境を選択できます。デフォルトは<code>Development</code>になっていると思いますので、起動時にmongodbのテストの洗い替えを行ってくれます。<br>テストデータは<code>server&gt;config&gt;seed.js</code>に初期設定されていて、最初は<code>Thing</code>と<code>User</code>のデータがセットされているはずです。ここにテストデータを追加してください。</p>
 <p>テストデータ投入の有無は各動作環境ごとのconfigにて選択できます。<code>server&gt;config&gt;environment</code>以下の各環境ごとの設定ファイルが置かれているので、<code>seedDB</code>フラグを切り替えてください。</p>
@@ -230,7 +230,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2014/12/angular-fullstack-in-the-wild.html" data-id="cj2rntxlc0064wu0aa68d78mi" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2014/12/angular-fullstack-in-the-wild.html" data-id="cj3yfeqdm00640y0acefbrthr" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2014/12/angular-fullstack-in-the-wild.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -286,7 +286,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -304,7 +304,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -322,7 +322,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -340,7 +340,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -358,7 +358,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

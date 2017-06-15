@@ -11,10 +11,10 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/IMG_20160229_001319.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/IMG_20160229_001409.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:15.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001319.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001409.png">
+<meta property="og:updated_time" content="2017-06-15T13:17:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular2でSharedServiceを作りたい">
 <meta name="twitter:description" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。">
@@ -163,7 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2.png">
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png">
 <p>SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。<br>Angular1の場合は、SharedServiceを利用するケースが多かったです。<br>そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。</p>
 <a id="more"></a>
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><ul>
@@ -176,10 +176,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>Hero一覧データはHeroServiceに格納され、各componentはHeroServiceを参照する。</li>
 </ul>
 <p>簡単な図に示すとこのような構造をしていると仮定します。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/IMG_20160229_001319.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001319.png">
 <h2 id="失敗パターン"><a href="#失敗パターン" class="headerlink" title="失敗パターン"></a>失敗パターン</h2><p>すべてのサンプルはこちら<br><a href="http://plnkr.co/edit/R1q9vzDa1gHXHBUClu1s?p=preview" target="_blank" rel="external">plnkr</a></p>
 <p>失敗パターンでは、HeroDetailComponentにてHeroを削除しても消えません。<br>これはHeroDetailComponentの<code>providers</code>でHeroServiceをDIした場合、新規でインスタンスを生成してしまうためです。<br>結果、HeroListComponentとHeroDetailComponentでは、別のHeroServiceのインスタンスを参照していることになっています。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/IMG_20160229_001409.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001409.png">
 <p>HeroDetailComponentで<code>@Component</code>をDIしている箇所を抜粋します。</p>
 <p><strong>hero-detail.component.ts</strong><br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Component,  Input&#125;  <span class="keyword">from</span> <span class="string">'angular2/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Hero, HeroService&#125;   <span class="keyword">from</span> <span class="string">'./hero.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'hero-detail'</span>,</span><br><span class="line">  template: <span class="string">`</span><br><span class="line">  &lt;span class="badge"&gt;&#123;&#123;hero.id&#125;&#125;&lt;/span&gt; &#123;&#123;hero.name&#125;&#125;</span><br><span class="line">  &lt;button (click)="remove()"&gt;remove&lt;/button&gt;</span><br><span class="line">  `</span>,</span><br><span class="line">  providers:  [HeroService]  <span class="comment">// &lt;- ここ</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HeroDetailComponent <span class="keyword">implements</span> OnInit  &#123;</span><br><span class="line">  <span class="meta">@Input</span>() hero: Hero;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> service:HeroService</span>)&#123; &#125;</span><br><span class="line">  remove() &#123;</span><br><span class="line">    <span class="keyword">this</span>.service.remove(<span class="keyword">this</span>.hero);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="成功パターン"><a href="#成功パターン" class="headerlink" title="成功パターン"></a>成功パターン</h2><p>すべてのサンプルはこちら<br><a href="http://plnkr.co/edit/iYFMhuldCBqay72eWjay?p=preview" target="_blank" rel="external">plnkr</a></p>
@@ -192,7 +192,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html" data-id="cj2rntxg9002fwu0abxr7p1nn" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html" data-id="cj3yfeqab002f0y0an77i0wal" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -248,7 +248,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -266,7 +266,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -284,7 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -302,7 +302,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -320,7 +320,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

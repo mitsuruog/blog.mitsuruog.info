@@ -11,8 +11,8 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2015/02/mongoose-ref-and-populate-tips.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="ずっとRDBを使っていると、mongodbなどNOSQLのスキーマ設計する際に正規化を意識してちょいちょい思考が固まるのですが、mongodbのO/Rマッパーとして有名なmongooseを使う事で、複数のCollection間のリレーションとjoinっぽいことをエミュレーションできるので紹介します。">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/mongoose-populate.jpg">
-<meta property="og:updated_time" content="2017-05-16T14:00:15.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/mongoose-populate.jpg">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと">
 <meta name="twitter:description" content="ずっとRDBを使っていると、mongodbなどNOSQLのスキーマ設計する際に正規化を意識してちょいちょい思考が固まるのですが、mongodbのO/Rマッパーとして有名なmongooseを使う事で、複数のCollection間のリレーションとjoinっぽいことをエミュレーションできるので紹介します。">
@@ -167,7 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>今回の内容は、こちらの公式ドキュメントに基づくものです。</p>
 <p><a href="http://mongoosejs.com/docs/populate.html" target="_blank" rel="external">Mongoose Query Population v3.8.23</a></p>
 <h2 id="スキーマ定義"><a href="#スキーマ定義" class="headerlink" title="スキーマ定義"></a>スキーマ定義</h2><p>今回のスキーマは「社員(Employee)」と「部署(Unit)」として、以下のような構造をしているとします。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/mongoose-populate.jpg">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/mongoose-populate.jpg">
 <h2 id="refを使ったリレーションの表現"><a href="#refを使ったリレーションの表現" class="headerlink" title="refを使ったリレーションの表現"></a>refを使ったリレーションの表現</h2><p>mongooseの場合、Schema定義の部分で<code>ref</code>を使うことでリレーションを表現することができます。<br>mongodbはCollectionにDocumentが作成された際に一意な<code>ObjectId</code>が生成されるため、これを外部キーのように利用してリレーションを表現します。</p>
 <p>Schema定義(model.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>)</span><br><span class="line">  , Schema = mongoose.Schema</span><br><span class="line"></span><br><span class="line"><span class="comment">// Employee</span></span><br><span class="line"><span class="keyword">var</span> employeeSchema = Schema(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">String</span>,</span><br><span class="line">  <span class="attr">unit</span>: &#123; <span class="attr">type</span>: Schema.Types.ObjectId, <span class="attr">ref</span>: <span class="string">'Unit'</span> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Unit</span></span><br><span class="line"><span class="keyword">var</span> unitSchema = Schema(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">String</span>,</span><br><span class="line">  <span class="attr">employees</span>: [&#123; <span class="attr">type</span>: Schema.Types.ObjectId, <span class="attr">ref</span>: <span class="string">'Employee'</span> &#125;]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">exports.Employee = mongoose.model(<span class="string">'Employee'</span>, employeeSchema);</span><br><span class="line">exports.Unit = mongoose.model(<span class="string">'Unit'</span>, unitSchema);</span><br></pre></td></tr></table></figure></p>
 <p>これで、EmployeeとUnitの双方にObjectIdを通じた参照が定義されました。実際にはそれぞれのDocumentに参照先のObjectIdが設定されます。</p>
@@ -196,7 +196,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2015/02/mongoose-ref-and-populate-tips.html" data-id="cj2rntxkp0055wu0aco3bg5t2" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2015/02/mongoose-ref-and-populate-tips.html" data-id="cj3yfeqd900550y0aeb6lgdnd" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2015/02/mongoose-ref-and-populate-tips.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -252,7 +252,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -270,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -288,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -306,7 +306,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -324,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

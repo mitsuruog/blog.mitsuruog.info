@@ -15,9 +15,9 @@
 <meta property="og:description" content="How to internationalize the smart in OpenUI5/SAPUI5
 
 エンタープライズ利用を想定した「OpenUI5」には、企業システムで有用な多くのUIコンポーネントを持っています。しかし、OpenUI5の価値は豊富なUIだけではありません。OpenUI5の本当の価値は、エンタープライズ利用を想定したHTML5ベースのアプリケーションを作成するために、必要な機">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/a1180_010361.jpg">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/Hello_SAPUI52_Fotor_Collage.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:14.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/a1180_010361.jpg">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/Hello_SAPUI52_Fotor_Collage.png">
+<meta property="og:updated_time" content="2017-06-15T13:24:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SAPUI5/OpenUI5]スマートに国際化する方法">
 <meta name="twitter:description" content="How to internationalize the smart in OpenUI5/SAPUI5
@@ -173,7 +173,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <p>エンタープライズ利用を想定した「<a href="http://sap.github.io/openui5/" target="_blank" rel="external">OpenUI5</a>」には、企業システムで有用な多くのUIコンポーネントを持っています。<br>しかし、OpenUI5の価値は豊富なUIだけではありません。OpenUI5の本当の価値は、エンタープライズ利用を想定したHTML5ベースのアプリケーションを作成するために、必要な機能を含んだオールインワンかつハイスペックなUIフレームワークということです。<br>今回は、その中でもOpenUI5が持つ強力な国際化機能について説明します。</p>
 <a id="more"></a>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/a1180_010361.jpg">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/a1180_010361.jpg">
 <ol>
 <li>OpenUI5での国際化(Internationalization in OpenUI5)</li>
 <li>ロケール判定の優先度(Priority of the locale judgment)</li>
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 id="コントロールへデータバインド"><a href="#コントロールへデータバインド" class="headerlink" title="コントロールへデータバインド"></a>コントロールへデータバインド</h3><p>最後にコントロールの国際化したプロパティへメッセージをデータバインドしていきます。こちらのコードを参照してください。</p>
 <p>Locale.view.coffee<br><figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">sap.ui.jsview <span class="string">"com.mitsuruog.sapui5.showroom.view.Locale"</span>,</span><br><span class="line"></span><br><span class="line">  getControllerName: <span class="function">-&gt;</span> <span class="string">"com.mitsuruog.sapui5.showroom.view.Locale"</span></span><br><span class="line"></span><br><span class="line">  createContent: <span class="function"><span class="params">(oController)</span> -&gt;</span></span><br><span class="line">    @page = <span class="keyword">new</span> sap.m.Page</span><br><span class="line">      title: <span class="string">"&#123;i18n&gt;title&#125;"</span></span><br><span class="line">      subHeader:</span><br><span class="line">        <span class="keyword">new</span> sap.m.Bar</span><br><span class="line">          contentRight: [</span><br><span class="line">            <span class="keyword">new</span> sap.m.Text</span><br><span class="line">              text: <span class="string">"&#123;i18n&gt;changeLocale&#125;"</span></span><br><span class="line">          ]</span><br><span class="line">      content: [</span><br><span class="line">        <span class="keyword">new</span> sap.m.Text</span><br><span class="line">          text: <span class="string">"&#123;i18n&gt;text&#125;"</span></span><br><span class="line">      ]</span><br><span class="line">      footer:</span><br><span class="line">        <span class="keyword">new</span> sap.m.Bar</span><br><span class="line">          contentRight: [</span><br><span class="line">            <span class="keyword">new</span> sap.m.Button</span><br><span class="line">              type: <span class="string">"Accept"</span></span><br><span class="line">              text: <span class="string">"&#123;i18n&gt;button&#125;"</span></span><br><span class="line">          ]</span><br><span class="line"></span><br><span class="line">    @page</span><br></pre></td></tr></table></figure></p>
 <p>こちらが国際化した結果画面の例です。日本語と英語で画面の項目名などが変化していることが分かると思います。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2014/Hello_SAPUI52_Fotor_Collage.png" width="650" height="487">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/Hello_SAPUI52_Fotor_Collage.png" width="650" height="487">
 <p>より詳細な内容は公式ページを参照してください。</p>
 <p><a href="https://openui5.hana.ondemand.com/#docs/guide/b6d1a9511f994b3a86e2f34a32e40a34.html" target="_blank" rel="external">Step 4: Internationalization</a></p>
 <p><a href="https://openui5.hana.ondemand.com/#docs/guide/91f217c46f4d1014b6dd926db0e91070.html" target="_blank" rel="external">Translating SAPUI5 Applications</a></p>
@@ -238,7 +238,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2014/08/sapui5openui5_11.html" data-id="cj2rntxmg007owu0at41rgexx" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2014/08/sapui5openui5_11.html" data-id="cj3yfeqeg007o0y0aflmz93wc" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2014/08/sapui5openui5_11.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -294,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -312,7 +312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -330,7 +330,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -348,7 +348,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -366,7 +366,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

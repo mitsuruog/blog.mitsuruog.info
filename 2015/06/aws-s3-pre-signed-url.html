@@ -15,10 +15,10 @@
 <meta property="og:description" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。  
 本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。(もっと早く読んでいれば・・・)
 今回は、その中でS3上のセキュアな環境下にある任意のオブジェクトに">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/aws-s3-pre-signed-url_01.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/aws-s3-pre-signed-url_02.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/aws-s3-pre-signed-url_03.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:15.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9201.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9202.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9203.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる">
 <meta name="twitter:description" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。  
@@ -176,14 +176,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="やってみる"><a href="#やってみる" class="headerlink" title="やってみる"></a>やってみる</h2><p>では、早速やってみます。<br>私はnoderなので、node.js版のaws sdkを利用して行います。</p>
 <p>まず、S3上に「Bucket」を作成して、任意のファイルをアップロードしておきます。</p>
 <p>S3上にアップロードしたファイル(オブジェクト)には、<br>アクセスするための一意なURLが付与されていますが、今の状態では外部からアクセスできません。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/aws-s3-pre-signed-url_01.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9201.png">
 <p>確認してみます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/aws-s3-pre-signed-url_02.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9202.png">
 <p>では、aws sdkを利用して「期限付きURL」を発行してみます。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> AWS = <span class="built_in">require</span>(<span class="string">'aws-sdk'</span>);</span><br><span class="line"><span class="keyword">var</span> s3 = <span class="keyword">new</span> AWS.S3();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> params = &#123;</span><br><span class="line">  <span class="attr">Bucket</span>: <span class="string">'&lt;Bucket名&gt;'</span>,</span><br><span class="line">  <span class="attr">Key</span>: <span class="string">'&lt;アクセスするオブジェクト&gt;'</span>,</span><br><span class="line">  <span class="attr">Expires</span>: <span class="number">60</span> <span class="comment">//sec</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">s3.getSignedUrl(<span class="string">'getObject'</span>, params, <span class="function"><span class="keyword">function</span>(<span class="params">err, url</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'The URL is'</span>, url);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>これをコンソール上で実行すると期限付きURLが発行されます。<br>デフォルトではURLの有効期間が15分なので、<code>Expires</code>に有効期限(sec)を指定することもできます。</p>
 <p>では、生成された期限付きURLでアクセスしてみます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/aws-s3-pre-signed-url_03.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9203.png">
 <p>ファイルの中身についてアクセスできました。</p>
 <h2 id="さいごに"><a href="#さいごに" class="headerlink" title="さいごに"></a>さいごに</h2><p>S3上に静的コンテンツを配置して、任意のユーザーに限定公開できるので、<br>ユーザーへ期限付きURLを配布してパスワードの再入力など、特定の業務フローに組み込むことで効果を発揮しそうだと思いました。</p>
 <p>AWSについて、もっと学習しないとなーと思います。</p>
@@ -196,7 +196,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html" data-id="cj2rntxjb0042wu0aj4viat19" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html" data-id="cj3yfeqbj00420y0a3w699u3u" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -252,7 +252,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -270,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -288,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -306,7 +306,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -324,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

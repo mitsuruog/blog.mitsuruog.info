@@ -15,13 +15,13 @@
 <meta property="og:description" content="最近は、WebAPIやAWSのようなクラウドサービスが普及してきて、バックエンドのサーバーがなくても、Webサービスが公開できるようになってきました。
 今回はAWSのS3にあるStatic Website Hosting機能を使ってAngularJSで作成したSPA(Single page application)をホスティングさせてみました。
 割とS3でのサイト公開は簡単なので楽勝かと思いきや・">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-1.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-3.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-5.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-4.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-6.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:15.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-3.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-5.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-4.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-6.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJSで作ったSPAをAWS上の「S3＋CloudFront」でお手軽ホスティングして、クラウドサービスってやっぱ素晴らしいなと思った話">
 <meta name="twitter:description" content="最近は、WebAPIやAWSのようなクラウドサービスが普及してきて、バックエンドのサーバーがなくても、Webサービスが公開できるようになってきました。
@@ -182,9 +182,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>AngularJSで作成したSPAをアップロードする。</li>
 <li>BucketのStatic Website HostingをONにする。</li>
 </ul>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-1.png">
 <p>Static Website HostingをONにすることでアクセス可能なURLが取得できます。<br>アクセスした際に「<code>AccessDenied</code>」エラーになる場合は、アップロードしたファイルの<code>Permissions</code>が<strong>Everyoneアクセス可能</strong>になっていないことが多いです。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-2.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-2.png" width="500">
 <p>しかし、この<strong>Everyoneアクセス可能</strong>状態はあまりいい状態ではありませんので、CloudFrontを利用します。<br>(後で紹介しますが、S3はCloudFront経由のアクセスのみ有効にする設定を推奨します。)</p>
 <blockquote>
 <p>S3のEveryoneアクセス可能はApacheの設定漏れで、ファイル一覧が見えてしまっている感覚に似ていて落ち着きませんw</p>
@@ -206,18 +206,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>Origin Domain NameにS3のBucketを指定</li>
 <li>Restrict Bucket Accessで「Yes」を設定してS3へのアクセスを制限</li>
 </ul>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-3.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-3.png" width="500">
 <p>これでCloudFront経由でS3へアクセスすることができますが、SPAをホスティングするに当たって追加で以下の設定をしました。</p>
 <h3 id="General-gt-Default-Root-Object"><a href="#General-gt-Default-Root-Object" class="headerlink" title="General &gt; Default Root Object"></a>General &gt; Default Root Object</h3><p><code>Default Root Object</code>に「index.html」を設定します。これで「<code>/</code>」でアクセスした際に、エラーにならず「<code>index.html</code>」を呼び出すことができます。</p>
 <p>しかも、デフォルトの(*.cloudfront.net)ドメインであればSSL証明書までついてきます。<br>まじで至れり尽くせりです。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-5.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-5.png" width="500">
 <h3 id="Behaviors-gt-Viewer-Protocol-Policy"><a href="#Behaviors-gt-Viewer-Protocol-Policy" class="headerlink" title="Behaviors &gt; Viewer Protocol Policy"></a>Behaviors &gt; Viewer Protocol Policy</h3><p>新しいBehaviorを作成して<code>Viewer Protocol Policy</code>にて<code>Redirect HTTP to HTTPS</code>を選択します。これでHTTPでアクセスされた場合に、HTTPSにリダイレクトすることが可能です。<br>(あまりこだわりなければ<code>Path Pattern</code>は<code>Default (*)</code>1つで事足りるはず。)</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-4.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-4.png" width="500">
 <h2 id="CloudFront利用上の注意点"><a href="#CloudFront利用上の注意点" class="headerlink" title="CloudFront利用上の注意点"></a>CloudFront利用上の注意点</h2><p>CloudFrontを利用すると幸せになれるのですが、1点注意点があります。それは<strong>キャッシュ</strong>です。</p>
 <p>CloudFrontの本質はCDNなので、コンテンツをキャッシュします。しかもデフォルトでは<strong>24hキャッシュを保持</strong>するので、S3上にアップロードしたファイルは最大24h変更されません。  </p>
 <h3 id="Invalidationsを利用してCacheをクリア"><a href="#Invalidationsを利用してCacheをクリア" class="headerlink" title="Invalidationsを利用してCacheをクリア"></a>Invalidationsを利用してCacheをクリア</h3><p>CloudFrontにはInvalidationsというキャッシュクリアをする仕組みがあるので、これを使ってCloudFrontに対してキャッシュのクリアを指示します。<br>(ただ、5〜10分くらいかかります。リアルタイムではないです。)</p>
 <p>CloudFrontでDistributionsを選択すると「<code>Invalidations</code>」というタブがあるので、ここで「<code>Create Invalidation</code>」ボタンをクリックします。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2015/angular-s3-cloudfront-6.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-6.png" width="500">
 <p>クリアするファイルを指定する必要があるので、例えば「<code>/index.html</code>」とか入力します。<br>私の場合、フロントのリソースは結合＆minify＆バージョニングして最適化してしまうので、普段は<code>index.html</code>だけで十分です。</p>
 <p>あとはキャッシュがクリアされるまで気長に待ちましょう。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>「S3＋CloudFront」を使うことでお手軽にAngularJSで作成したWebアプリケーションをホスティングすることができました。しかも勝手にスケールするし、クラウドサービス偉大過ぎます。</p>
@@ -231,7 +231,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2015/01/hosting-angularjs-application-on-s3-via-cloudfront.html" data-id="cj2rntxl2005nwu0ar60btqgk" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2015/01/hosting-angularjs-application-on-s3-via-cloudfront.html" data-id="cj3yfeqde005n0y0az1wrzz82" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2015/01/hosting-angularjs-application-on-s3-via-cloudfront.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -287,7 +287,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -305,7 +305,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -323,7 +323,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -341,7 +341,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -359,7 +359,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

@@ -13,12 +13,12 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 今回はカバレッジ編。">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2-testing-logo.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-1.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-3.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-4.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:15.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-3.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-4.png">
+<meta property="og:updated_time" content="2017-06-15T13:17:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular2 Unit Testing - カバレッジ編">
 <meta name="twitter:description" content="Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
@@ -168,7 +168,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/angular2-testing-logo.png">
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png">
 <p>Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。</p>
 <p>今回はカバレッジ編。</p>
 <a id="more"></a>
@@ -197,11 +197,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>続いて<code>karma.conf.js</code>の設定を変更します。</p>
 <p><strong>karma.conf.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="comment">// Karma configuration</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> baseLibs = [...];</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">  config.set(&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...省略</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// (1)</span></span><br><span class="line">    <span class="comment">// (*.spec.js, *.mock.js)以外のJavaScriptファイルをカバレッジ測定の対象とします</span></span><br><span class="line">    preprocessors: &#123;</span><br><span class="line">      <span class="string">"app/**/!(*spec|*mock).js"</span>: [<span class="string">'coverage'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// (2)</span></span><br><span class="line">    <span class="comment">// テスト完了時のreporterにカバレッジ用reporterを設定します</span></span><br><span class="line">    reporters: [<span class="string">'mocha'</span>, <span class="string">'coverage'</span>],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// (3)</span></span><br><span class="line">    <span class="comment">// カバレッジ用reporterの出力先, フォーマットを指定します</span></span><br><span class="line">    <span class="comment">// see https://github.com/karma-runner/karma-coverage/blob/master/docs/configuration.md</span></span><br><span class="line">    coverageReporter: &#123;</span><br><span class="line">      <span class="attr">dir</span> : <span class="string">'report/coverage/'</span>,</span><br><span class="line">      <span class="attr">reporters</span>: [&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">'html'</span></span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ...省略</span></span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>テストを実行すると<code>report/coverage</code>の直下にHTML形式のカバレッジレポートが出力されます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-1.png">
 <p>karma-coverage内部では、JavaScriptのカバレッジ測定ツールとして有名な<a href="https://github.com/gotwarlost/istanbul" target="_blank" rel="external">istanbul</a>を利用しています。<br>HTMLレポートでは、ディレクトリやファイルごとにカバレッジを知ることができます。これを見ながらカバレッジの低い部分などに追加のテストを書いていきます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-2.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-2.png">
 <p>コードとテスト実行した部分を重ねあわせて表示することで、テストが不足している部分を容易に発見できます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-3.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-3.png">
 <p>ところがこのままでは、レポートのコードがtsファイルをトランスパイルしたJavaScriptファイルとなっているため、実際に作成したtsファイル上のどの部分に該当するかが非常に分かりにくいです。</p>
 <h2 id="remap-istanbulでtsファイルとリンクさせる"><a href="#remap-istanbulでtsファイルとリンクさせる" class="headerlink" title="remap-istanbulでtsファイルとリンクさせる"></a>remap-istanbulでtsファイルとリンクさせる</h2><p>先ほどのカバレッジレポートを改良してトランスパイル前のtsファイルをリンクさせます。リンクさせるには<a href="https://github.com/SitePen/remap-istanbul" target="_blank" rel="external">remap-istanbul</a>を利用します。</p>
 <p>remap-istanbulとは、tsファイルをトランスパイルした際に生成されるSouceMap(ここではinline SouceMap)を元に、カバレッジレポートをオリジナルのtsファイルにリンクさせるツールです。<br>早速、リポジトリの<code>devDependency</code>に追加します。</p>
@@ -211,7 +211,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>テストを実行すると<code>report/coverage/coverage-final.json</code>にJSON形式のカバレッジレポートが出力されます。<br>これをremap-istanbulでHTML形式のレポートに仕立てて行きます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules/.bin/remap-istanbul -i report/coverage/coverage-final.json -o report/coverage/ -t html</span><br></pre></td></tr></table></figure>
 <p>コマンドを実行すると<code>report/coverage</code>の直下にHTML形式のカバレッジレポートが出力されます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/testing-angular2-coverage-4.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/testing-angular2-coverage-4.png">
 <p>今度はtsファイルとカバレッジレポートがリンクするようになりました。<br>めでたし。めでたし。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>カバレッジの取り方とレポートの表示についてでした。<br>HTMLレポートの出力方法は他にもあると思いますので、いろいろ試してみるといいでしょう。<br>カバレッジレポートを取得することで、テストが十分でない箇所を明らかにすることができ、つまらないテストにゲーム的な要素が加わってテストを書くことが楽しくなります。</p>
 <h3 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h3><p>こちらに初学者のためのMinimum starter kitを作成しましたので、ぜひ利用してください。<br>(もちろんカバレッジも取得できます！！)</p>
@@ -220,7 +220,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html" data-id="cj2rntxf4001zwu0axt7g9o5y" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html" data-id="cj3yfeq9x001z0y0ad0u3c9dw" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -276,7 +276,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -294,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -312,7 +312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -330,7 +330,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -348,7 +348,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

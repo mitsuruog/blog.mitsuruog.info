@@ -11,16 +11,16 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="2013/10/30に「Frontrend x Chrome Tech Talk Night Extended」が開催され、Addy氏、Jake氏、Paul氏が来日して、最新のモバイル開発のための様々な手法を紹介してくれました。そこで聞いた内容をもとに、エンタープライズで適用できそうなものを、中立な目線で評価・検証していたのですが、ChromeDevtoolsのが凄すぎて、終わってみたらChrom">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting1.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting3.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting4.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting5.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting6.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting7.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting8.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting9.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:14.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting3.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting4.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting5.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting6.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting7.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting8.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting9.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Androidやってる人でChromeDevtoolsのRemote DebuggingとScreencasting知らない人は使ってみた方がいいよ！">
 <meta name="twitter:description" content="2013/10/30に「Frontrend x Chrome Tech Talk Night Extended」が開催され、Addy氏、Jake氏、Paul氏が来日して、最新のモバイル開発のための様々な手法を紹介してくれました。そこで聞いた内容をもとに、エンタープライズで適用できそうなものを、中立な目線で評価・検証していたのですが、ChromeDevtoolsのが凄すぎて、終わってみたらChrom">
@@ -182,29 +182,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="Remote-Debugging"><a href="#Remote-Debugging" class="headerlink" title="Remote Debugging"></a>Remote Debugging</h2><p>Remote Debuggingとは、デバイスをUSBで接続し、閲覧しているページをローカルPC上のChrome Devtoolsでデバックするできる機能です。Android4.0以上の端末で有効です。</p>
 <h3 id="Remote-Debuggingの設定"><a href="#Remote-Debuggingの設定" class="headerlink" title="Remote Debuggingの設定"></a>Remote Debuggingの設定</h3><p>Remote Debuggingを行うためには、まずデバイス側でUSBデバックを受け入れる準備が整っていること、ローカルPC上にデバイスのUSBドライバがインストールされていることが前提条件です。<br>Googleで調べるといろいろ出てきますので、詳しくは紹介しません。<br>（windowsの場合は、USB接続時にドライバが自動でインストールされないようです。デバイス多い場合、結構泣くと思います。）</p>
 <p>まず、デバイスをUSBで接続して、ローカルPC上のChromeのアドレスバーにて「chrome://inspect」と打ってください。下のような画面が表示されて、接続してあるデバイスが表示されれば準備はOKです。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting1.png">
 <h3 id="Remote-Debugging使ってみる"><a href="#Remote-Debugging使ってみる" class="headerlink" title="Remote Debugging使ってみる"></a>Remote Debugging使ってみる</h3><p>実際にRemote Debuggingするためには、「inspect」リンクを押せばいいです。非常に簡単です。後は、ローカルPCのDevtoolsと同じ感覚で操作できます。<br>例えば、elementsタブでスタイルを変更した場合、即座にデバイス側へ反映されます。</p>
 <p>さらに、ブラウザのバージョン番号が表示されている横のテキストボックスにURLを入力することで、デバイス側へ表示させてたいページを送ることができ、Remote Debuggingと組み合わせることで、ローカル上で開発中の画面をデバイス側でデバックすることができます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting2.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting2.png">
 <h3 id="Port-Forwarding"><a href="#Port-Forwarding" class="headerlink" title="Port Forwarding"></a>Port Forwarding</h3><p>Port ForwardingとはローカルPC上のTCPポートをそのままデバイス側に転送する機能です。具体的にはローカルPC上で開発している「localhost:9000」など、今まさに開発中のWebページをデバイス側へ転送して表示させることができます。<br>（本家のサイトに記載されてますが、ネットワークなどの制限により動作しない場合があるようです。）</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting3.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting3.png">
 <h3 id="Port-Forwarding-Grunt-livereload"><a href="#Port-Forwarding-Grunt-livereload" class="headerlink" title="Port Forwarding + Grunt + livereload"></a>Port Forwarding + Grunt + livereload</h3><p>最近のフロント開発では、「Yeoman+Bower+Grunt」を組み合わせた高速開発手法がトレンドです。中でも<a href="https://github.com/gruntjs/grunt-contrib-watch" target="_blank" rel="external">grunt-contrib-watch</a>の「livereload」を使ったコードの変更からブラウザのリフレッシュまでの一連の操作を自動化したものは、今のフロント高速開発を象徴しているものです。</p>
 <p>このlivereloadとPort Forwardingを組み合わせると、ローカルPC上にUSB接続してあるすべてのデバイスをlivereloadさせることができます。<br>具体的には次のようにします。</p>
 <p>話の都合上、ローカルにて開発中のWebページのURLが「localhost:9000」とし、livereload用のPort を「9002」とします。<br>次のように9000、9002ポートを転送するように、Port Forwarding設定をします。<br>（livereloadのデフォルトポートは35729なのですが、Devtools側が4桁ポートしか受け入れてくれないので、9002にしてます。Devtoolsチームの皆さんなんとかしてくださーい。）</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting4.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting4.png">
 <p>設定が正しく行われると、転送されるポートが画面上で確認できます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting5.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting5.png">
 <p>これで、9002ポートを経由してlivereloadができるようになりました。<br>コード修正のたびに、デバイスのブラウザをリフレッシュするという手間がなくなりましたね。</p>
 <h2 id="Screencasting"><a href="#Screencasting" class="headerlink" title="Screencasting"></a>Screencasting</h2><p>Screencastingとは、デバイスで表示されている画面をローカルPCで閲覧できる機能です。イメージとしてはRemote DebuggingのPort Forwardingの逆ですね。<br>これはChromeのバージョン31から追加された機能です。</p>
 <h3 id="Screencastingの設定"><a href="#Screencastingの設定" class="headerlink" title="Screencastingの設定"></a>Screencastingの設定</h3><p>（まだ実験的な機能です、将来的には普通に使えるようになると思います。）</p>
 <p>Screencastingを使うためには、ローカルPC上のChromeのアドレスバーにて「chrome://flags」と打って、実験的な機能が使えるように設定する必要があります。<br>表示された画面にて、次の２つの機能を有効にしてください。</p>
 <p>「デベロッパー ツールのテストを有効にする（#enable-devtools-experiments）」<br>「USB でリモート デバッグを有効にする。（#remote-debugging-raw-usb）」</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting6.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting6.png">
 <p>変更したら、下の方にChromeを再起動するためのボタンが表示されますので、再起動してください。<br>そしてDevtoolsの設定画面を開いてみると、見慣れない「Experiments」メニューが表示されるはずです。<br>そこで「Enable screencast」にチェックをすると準備はOKです。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting7.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting7.png">
 <h3 id="Screencastingを使ってみる"><a href="#Screencastingを使ってみる" class="headerlink" title="Screencastingを使ってみる"></a>Screencastingを使ってみる</h3><p>とりあえず、先ほどのRemote Debuggingと同じ要領で、デバイスをUSBでつないでRemote Debuggingしてみてください。今度は、Devtoolsの下の方に見慣れない「□」が表示されているはずです。（ちょっと分かりにくいですがw）<br>これを押すとデバイスで表示されてるページがローカルPC上に転送されてきます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting8.png">
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/Screencasting9.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting8.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/Screencasting9.png">
 <p>ちなみに、Screencastingされた画面では次のことができます。<br>素晴らしい！！</p>
 <ul>
 <li>キーボード入力の転送</li>
@@ -225,7 +225,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html" data-id="cj2rntxo6009uwu0ap258rb64" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html" data-id="cj3yfeqfi009u0y0aky01320h" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -281,7 +281,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -299,7 +299,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -317,7 +317,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -335,7 +335,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -353,7 +353,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

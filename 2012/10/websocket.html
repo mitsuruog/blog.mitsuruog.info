@@ -13,9 +13,9 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。
 今回はnodejitsuを使ってsockect.ioを使ったアプリをホスティングしたところ、websocket（以下、ws）まわりで思わぬハマりポイントがあったというお話しをします。（同じようなトラブルで悩む方に少しでもヒントをあげられたらと考えています。）">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2012/comp.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2012/block.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:14.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="websocketを使う際の意外な落とし穴">
 <meta name="twitter:description" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。
@@ -180,13 +180,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><a href="http://wsping.jit.su/" target="_blank" rel="external">http://wsping.jit.su/</a>（nodejitsuのwebsoketPingサイトです。）</li>
 </ul>
 <p>例えばですが、80ポートのwsがブロックされている場合は次のような結果となります。</p>
-<p><a href="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2012/comp.png" target="_blank" rel="external"><img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2012/comp.png" width="340" height="500"></a></p>
+<p><a href="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png" target="_blank" rel="external"><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png" width="340" height="500"></a></p>
 <p>で、厄介なのが、セキュリティソフトにてブロックされている場合で、<br>wsの疎通確認自体はOKなのですが、wsがなぜか届かない状態となってしまったので、原因を特定するのに少し時間がかかりました。</p>
 <p><em>（私の場合はウイルスバスタークラウド2012がブロックしていました。<strong>こちらについてはTrend Microのサポートとやりとりしているので、</strong>何か進展あっておもしろそうだったら書くかもしれません。）</em></p>
 <h2 id="wsのみがブロックされた場合にsocket-ioが怪しい挙動をする…"><a href="#wsのみがブロックされた場合にsocket-ioが怪しい挙動をする…" class="headerlink" title="wsのみがブロックされた場合にsocket.ioが怪しい挙動をする…"></a>wsのみがブロックされた場合にsocket.ioが怪しい挙動をする…</h2><p>さて、nodejsでws使う際はsocket.ioを使うのがデファクトとなっているのは皆さんご存知だと思います。<br>socket.ioではクライアントがws使えない場合、通信手段をwsからXmlHttpRequestなどに自動でダウングレードしてくれる便利機能があるのですが、今回のようにwsのみがブロックされるような場合、そのダウングレード機能がうまく働きませんでした。</p>
 <p>wsの正しい挙動としては、まずhttpでハンドシェイクを行い、ハンドシェイクができた後にwsにプロトコルを変更して通信する流れなのですが、どうやらハンドシェイクを確立した後にwsのみがブロックされている場合、socket.ioにて通信手段の変更ができないようです。</p>
 <p>（念のため、Chromeで取ったヘッダーとか載せときますね。）</p>
-<p><a href="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2012/block.png" target="_blank" rel="external"><img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2012/block.png"></a></p>
+<p><a href="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png" target="_blank" rel="external"><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png"></a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Request URL:ws://wsping.jit.su/socket.io/1/websocket/dL7NXuBCnWhqnZMPAYkU</span><br><span class="line">Request Method:GET</span><br><span class="line">Status Code:101 Switching Protocols</span><br><span class="line">Request Headersview source</span><br><span class="line">Connection:Upgrade</span><br><span class="line">Host:wsping.jit.su</span><br><span class="line">Origin:http://wsping.jit.su</span><br><span class="line">Sec-WebSocket-Extensions:x-webkit-deflate-frame</span><br><span class="line">Sec-WebSocket-Key:4EjkGu1WajTwi0MOvQjOyw==</span><br><span class="line">Sec-WebSocket-Version:13</span><br><span class="line">Upgrade:websocket</span><br><span class="line">(Key3):00:00:00:00:00:00:00:00</span><br><span class="line">Response Headersview source</span><br><span class="line">Connection:Upgrade</span><br><span class="line">Sec-WebSocket-Accept:lbl4DxvLmfnTm2okzQxld/Yb/sE=</span><br><span class="line">Upgrade:websocket</span><br><span class="line">(Challenge Response):00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</span><br></pre></td></tr></table></figure>
 <p>正直、この挙動が仕様なのかバグなのか、それとも私の実装が悪いのか判断できず、一度詳しい方の見解を聞いてみたいです。（Help me!）</p>
 <p>今回の件で、改めて新しいプロトコル導入期のライアント周辺環境（N/Wとかセキュリティとか）の課題が大きいなと感じました。（SPDYもそうなんですが･･･）<br>現状、より多くのユーザの元にsocket.ioを使った通信を届けるためには、wsの通信をwssとするか、通信手段をXmlHttpRequestなどにダウングレードするのが無難なのかもしれません。</p>
@@ -207,7 +207,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2012/10/websocket.html" data-id="cj2rntxpl00bywu0apa7rutkj" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2012/10/websocket.html" data-id="cj3yfeqgl00by0y0ad8a0yrpi" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2012/10/websocket.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -263,7 +263,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -281,7 +281,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -299,7 +299,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -317,7 +317,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -335,7 +335,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>

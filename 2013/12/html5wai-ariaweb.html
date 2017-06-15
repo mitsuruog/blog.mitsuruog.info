@@ -15,12 +15,12 @@
 <meta property="og:description" content="このエントリはHTML5 Advent Calendar 2013 ３日目の記事です。
 前後の記事はこちらです← youhei.iwasaki8 [iwaheiの日記]geolocation apiを使った位置情報取得→ あおいたん [GCG研究所]手元にあったHTML5アプリをFxOSとTizenで動かしてみるの巻
 「Internet of Things」と呼ばれる「モノがインターネットする」時">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb1.jpg">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb2.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb3.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb4.png">
-<meta property="og:image" content="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb5.png">
-<meta property="og:updated_time" content="2017-05-16T14:00:14.000Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb1.jpg">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb3.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb4.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb5.png">
+<meta property="og:updated_time" content="2017-06-15T13:18:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5のセマンティックとWAI-ARIAでWebの未来がおもしろい件">
 <meta name="twitter:description" content="このエントリはHTML5 Advent Calendar 2013 ３日目の記事です。
@@ -181,7 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>「セマンティック」は再利用してこそ意味がある。</li>
 </ol>
 <p>エンタープライズにいるエンジニアとして、「なぜHTML5なのか？」「HTML5になると何かいいのか？」という問いに対する答えを探し続けています。<br>まだ、答えは見つけられていませんが、ぼんやりと「セマンティック」の先にある何かではないかと感じています。今日は、そんな頭の中のもやもやを少し文書化してみました。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb1.jpg" width="421" height="315">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb1.jpg" width="421" height="315">
 <h2 id="私が思うセマンティックとは"><a href="#私が思うセマンティックとは" class="headerlink" title="私が思うセマンティックとは"></a>私が思うセマンティックとは</h2><p>今日まで数々の論者の方がセマンティックについて語って来ましたので、今更わたしのセマンティック論なんて聞きたくないと思いますが、あえて言わせていただきます。</p>
 <p><strong>「HTML文書に意味付けを行って、機械がその意味を理解して振る舞えるようにすること」</strong></p>
 <p>セマンティックとは人が自己満足でやるものではなく、あくまで機械（デバイス）などでHTML文書が再利用できて初めて価値があると思います。エンタープライスにて今後「HTML5」を導入する企業は多いと思いますが、一度この辺りを真剣に検討した方がいいと思います。</p>
@@ -196,10 +196,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>WAI-ARIAでは、HTMLのタグにカスタム属性「role」にて役割を、「aria-」にて振る舞いや状態を定義することができます。<br>（変なマークアップがあるかもしれませんが、雰囲気をつかめればいいのでご了承ください。）</p>
 <p>なんからのポップアップのリンクがあったとします。<br>WAI-ARIA対応されてないマークアップの場合は、VoiceOverはただのリンクと解釈しています。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"//www.google.com"</span> <span class="attr">target</span>=<span class="string">"_brank"</span>&gt;</span>google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb2.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb2.png">
 <p>ところが、WAI-ARIAの「aria-haspopup」を使うことで、VoiceOverはポップアップリンクであることを認識しています。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"//www.google.com"</span> <span class="attr">target</span>=<span class="string">"_brank"</span> <span class="attr">aria-haspopup</span>=<span class="string">"true"</span>&gt;</span>google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb3.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb3.png">
 <p>次は、状態の例です。</p>
 <p>Ajaxなどによるコンテンツを動的に更新するケースは非常に多いと思います。<br>WAI-ARIAでは次のように「aria-live」を使用することで、コンテンツの動的更新を通知することが可能です。</p>
 <p>Javascript側でタイマーを仕込んでコンテンツを動的更新させていきます。</p>
@@ -207,10 +207,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>HTMLのマークアップは次の通りです。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p aria-live=&quot;polite&quot; class=&quot;hoge&quot;&amp;gt;0&amp;lt;/p&amp;gt;</span><br></pre></td></tr></table></figure>
 <p>このようにすることで、VoiceOverはコンテンツが動的に変わった瞬間を検知して読み上げてくれます。</p>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb4.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb4.png">
 <p>必須入力も「aria-required」で知らせてくれます。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">aria-required</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2013/ariaweb5.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb5.png">
 <p>ほかにもWAI-AREAで定義されている属性は非常に沢山ありますので、詳しくは仕様書を読んでください。</p>
 <ul>
 <li><a href="http://www.w3.org/TR/wai-aria/" target="_blank" rel="external">Accessible Rich Internet Applications (WAI-ARIA) 1.0</a></li>
@@ -223,7 +223,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2013/12/html5wai-ariaweb.html" data-id="cj2rntxoa009ywu0acizgqnji" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2013/12/html5wai-ariaweb.html" data-id="cj3yfeqfk009y0y0a1y5rvsp3" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2013/12/html5wai-ariaweb.html#disqus_thread" class="article-comment-link">コメント</a>
       
@@ -279,7 +279,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/05/image-hosting-move-dropdox-to-cloudinary.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494943978/2017/dropbox2cloudinary.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 )" alt="Dropboxのpublicフォルダが使えなくなったので、画像をCloudinaryに移行してみた" class="thumbnail-image"></span>
   
 </a>
@@ -297,7 +297,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/webpack-with-custom-font.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/custom-font.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 )" alt="webpack+Sass+reactでカスタムフォントを使う" class="thumbnail-image"></span>
   
 </a>
@@ -315,7 +315,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/using-react-intl-make-react-app-as-i18n.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/localization.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 )" alt="react-intlを使ってReactアプリを国際化する" class="thumbnail-image"></span>
   
 </a>
@@ -333,7 +333,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/10/how-to-use-defaut-object-argument-on-typescript.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/defaut-parameter-in-typescript.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 )" alt="Typescript+ReactでDefault parametersにObjectを正しく設定する方法" class="thumbnail-image"></span>
   
 </a>
@@ -351,7 +351,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2016/07/just-do-not-use-pipe-in-filter-and-sort.html" class="thumbnail">
   
-    <span style="background-image:url(https://res.cloudinary.com/blog-mitsuruog/image/upload/v1494866571/2016/No_more.png
+    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 )" alt="Angular2のPipeを使う上で開発者が知るべきたった1つのこと" class="thumbnail-image"></span>
   
 </a>
