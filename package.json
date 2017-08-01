@@ -7,7 +7,7 @@
   },
   "scripts": {
     "generate": "gulp clean && node_modules/.bin/hexo generate",
-    "serve": "node_modules/.bin/hexo server",
+    "server": "node_modules/.bin/hexo server",
     "deploy": "node_modules/.bin/hexo deploy"
   },
   "dependencies": {
