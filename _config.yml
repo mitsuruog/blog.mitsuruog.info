@@ -19,7 +19,7 @@ timezone: Japan
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://blog.mitsuruog.info/
 root: /
-permalink: :year/:month/:shortTitle.html
+permalink: :title.html
 permalink_defaults:
 
 # Directory
