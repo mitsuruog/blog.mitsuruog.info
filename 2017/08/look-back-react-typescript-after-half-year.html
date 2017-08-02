@@ -3,33 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>いま一番気に入っているAngularJSのプロジェクト構成 | I am mitsuruog</title>
+  <title>ReactとTypeScriptで半年間サービスを走らせてみてよかった点を振り返って見る | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="この記事はAngularJS Advent Calendar 2014 - Adventarの3日目の記事です。
-
-2日目AngularJS BootstrapUIを利用したFilterSelect(@takeyama)
-4日目初心者マークのAngular.js - Uemmra3のフルスタックエンジニア？日記(@Uemmra3)
-
-AngularJSでそれなりの規模のアプリケーションを書く場合、">
+  <meta name="description" content="自分はCODEPREPというオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="いま一番気に入っているAngularJSのプロジェクト構成">
-<meta property="og:url" content="http://blog.mitsuruog.info/2014/12/angular-structure.html">
+<meta property="og:title" content="ReactとTypeScriptで半年間サービスを走らせてみてよかった点を振り返って見る">
+<meta property="og:url" content="http://blog.mitsuruog.info/2017/08/look-back-react-typescript-after-half-year.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="この記事はAngularJS Advent Calendar 2014 - Adventarの3日目の記事です。
-
-2日目AngularJS BootstrapUIを利用したFilterSelect(@takeyama)
-4日目初心者マークのAngular.js - Uemmra3のフルスタックエンジニア？日記(@Uemmra3)
-
-AngularJSでそれなりの規模のアプリケーションを書く場合、">
-<meta property="og:updated_time" content="2017-08-01T08:47:47.000Z">
+<meta property="og:description" content="自分はCODEPREPというオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript3.png">
+<meta property="og:updated_time" content="2017-08-02T15:46:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="いま一番気に入っているAngularJSのプロジェクト構成">
-<meta name="twitter:description" content="この記事はAngularJS Advent Calendar 2014 - Adventarの3日目の記事です。
-
-2日目AngularJS BootstrapUIを利用したFilterSelect(@takeyama)
-4日目初心者マークのAngular.js - Uemmra3のフルスタックエンジニア？日記(@Uemmra3)
-
-AngularJSでそれなりの規模のアプリケーションを書く場合、">
+<meta name="twitter:title" content="ReactとTypeScriptで半年間サービスを走らせてみてよかった点を振り返って見る">
+<meta name="twitter:description" content="自分はCODEPREPというオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -145,7 +133,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
       
-      <section id="main"><article id="post-2014/12/angular-structure" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-2017/08/look-back-react-typescript-after-half-year" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -154,7 +142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
   
     <h1 class="article-title" itemprop="name">
-      いま一番気に入っているAngularJSのプロジェクト構成
+      ReactとTypeScriptで半年間サービスを走らせてみてよかった点を振り返って見る
     </h1>
   
 
@@ -162,8 +150,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2014/12/angular-structure.html">
-      <time datetime="2014-12-02T15:00:00.000Z" itemprop="datePublished">2014-12-03 00:00</time>
+    <a href="/2017/08/look-back-react-typescript-after-half-year.html">
+      <time datetime="2017-08-02T15:00:00.000Z" itemprop="datePublished">2017-08-03 00:00</time>
     </a>
   </div>
 
@@ -175,58 +163,74 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <p>この記事は<a href="http://www.adventar.org/calendars/350" target="_blank" rel="external">AngularJS Advent Calendar 2014 - Adventar</a>の3日目の記事です。</p>
-<ul>
-<li>2日目<a href="http://qiita.com/takeyama/items/f6e0fbac4d3b4907193e" target="_blank" rel="external">AngularJS BootstrapUIを利用したFilterSelect(@takeyama)</a></li>
-<li>4日目<a href="http://d.hatena.ne.jp/Uemmra3/20141204/1417696122" target="_blank" rel="external">初心者マークのAngular.js - Uemmra3のフルスタックエンジニア？日記(@Uemmra3)</a></li>
-</ul>
-<p>AngularJSでそれなりの規模のアプリケーションを書く場合、プロジェクトの構成って結構悩みます。<br>いつも悩んでます。。。<br>悩みすぎてちょくちょく構成変えるため、たまにアプリケーションが壊れてます。<br>そんなとき心もポッキリ壊れそうになります。</p>
-<p>そんな私が、最近いいなと思っているAngularJSのプロジェクト構成について紹介します。</p>
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript1.png">
+<p>自分は<a href="https://codeprep.jp/" target="_blank" rel="external">CODEPREP</a>というオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。</p>
 <a id="more"></a>
-<h2 id="参考資料-有名どころ"><a href="#参考資料-有名どころ" class="headerlink" title="参考資料(有名どころ)"></a>参考資料(有名どころ)</h2><p>AngularJSのプロジェクトの構成については、結構以前から議論されています。有名どころではこのあたりでしょうか…<br>(正直、これで決まりといったものは無いような気がします。)</p>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p><a href="https://codeprep.jp/" target="_blank" rel="external">CODEPREP</a>は月間で50万PV以上あるWebサービスです。</p>
+<p>そのため、それなりの事態は発生するだようと思い、フロントエンドにはエラー監視を導入して、ユーザーのブラウザ上で何かエラーが発生したら、直ちにSlackに通知が来て対応できるような万全の準備をしていました。</p>
+<p>しかし、自分が担当して来たWebサービスの中では、もっともユーザーに頻繁に使われているにも関わらず、稀に見る安定稼働のサービスとなっています。</p>
+<p>今回は、選定したフロントエンドの技術スタックのどの辺りが良かったのか、少し振り返りたいと思います。</p>
+<h2 id="TypeScriptの型チェックが有効だった"><a href="#TypeScriptの型チェックが有効だった" class="headerlink" title="TypeScriptの型チェックが有効だった"></a>TypeScriptの型チェックが有効だった</h2><p>事前に予想していた通り、 TypeScriptの型チェックはかなり有効に働いています。</p>
+<p>基本的には、APIのレスポンスを一度フロントエンドのデータモデルクラスに変換して、これをアプリケーションで利用する形を取るのですが、データモデルクラスの段階で型安全が保証されるので、ベースとなるデータモデルの品質が普通のJavaScriptと比べて格段に違います。</p>
+<p>例えば、APIのデータモデルの変更に関連するリファクタであっても、何かデータ型で矛盾している点があればコンパイルエラーで事前に検知できる。当然、必要なプロパティがない、タイポしている、これらもコンパイルエラーで検知できます。</p>
+<p>とにかく、リファクタに対する心理的・肉体的な負担が減りました。<br>これの何か良かったかというと、リリース後に自信を持ってコードの改善が継続的にでき、技術負債がたまりにくくなったことです。</p>
+<p>今のところ一番目にするエラーは、オブジェクトが<code>null</code>や<code>undefined</code>でプロパティや関数を参照するときに実行時エラーになることがあることですね。（特に初期ロード時）</p>
+<p>これは、データモデルクラスのライフサイクルを設計し直して<code>null</code>や<code>undefined</code>の状態がないようにしたあとで、TypeScriptのコンパイラの<code>--strictNullChecks</code>をオンにすると軽減できるかもしれない。</p>
+<blockquote>
+<p>というか、、、そもそも自分の設計が悪い。</p>
+</blockquote>
+<h2 id="末端のUIコンポーネントを徹底的にStatelessにした"><a href="#末端のUIコンポーネントを徹底的にStatelessにした" class="headerlink" title="末端のUIコンポーネントを徹底的にStatelessにした"></a>末端のUIコンポーネントを徹底的にStatelessにした</h2><p>ここでのStatelessコンポーネントとは、Functional stateless componentのことで、内部に一切状態を保持せず、ただ外部から与えられた値を元に描画することに特化したコンポーネントのことです。</p>
+<p>ボタン・リンク・タブなどの共通的に利用できそうなUIパーツは、Statelessコンポーネントとして小分けに作成するようにしました。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript2.png">
+<p>これにより、Statelessコンポーネントはただ与えられた値を元にUIを描画するだけとなり、propsで渡される値のパターンだけ注意すればいい状態となりました。</p>
+<p>内部にstateにより状態遷移を持たないので、コンポーネントがシンプルで見通しがよくなり、ほとんど不具合を起こす要因が見当たらなくなりました。</p>
+<blockquote>
+<p>Statelessコンポーネントからの発生する(change, clickなどの)イベントについては、コンポーネントのpropsに<code>onChange</code>などのハンドラを渡すようにして、処理自体を呼び出し元に移譲しています。</p>
+</blockquote>
+<p>これの何が良かったかというと、末端のUIコンポーネントを信頼して使うことができることです。</p>
+<p>仮に渡すpropsの値が何か間違ったとしても、TypeScriptの型チェック機能が有効に作用するわけで、しっかり作り込んだStatelessコンポーネントを作りさえすれば、あとはそれに適切なpropsを渡せばいいという状態になりました。</p>
+<h2 id="コンテナパターンを採用してフロントのアプリケーションを3レイヤーに分けた"><a href="#コンテナパターンを採用してフロントのアプリケーションを3レイヤーに分けた" class="headerlink" title="コンテナパターンを採用してフロントのアプリケーションを3レイヤーに分けた"></a>コンテナパターンを採用してフロントのアプリケーションを3レイヤーに分けた</h2><p>3レイヤーとは、次の3つです。</p>
 <ul>
-<li><a href="https://github.com/angular/angular-seed" target="_blank" rel="external">angular/angular-seed</a></li>
-<li><a href="https://github.com/johnpapa/angularjs-styleguide#application-structure" target="_blank" rel="external">johnpapa/angularjs-styleguide</a></li>
-<li><a href="http://briantford.com/blog/huuuuuge-angular-apps" target="_blank" rel="external">Brian Ford/Building Huuuuuge Apps with AngularJS</a></li>
-<li><a href="https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub" target="_blank" rel="external">Angular Best Practice for App Structure (Public)</a></li>
+<li>コンテナ</li>
+<li>ページコンポーネント</li>
+<li>Statelessコンポーネント</li>
 </ul>
-<p>私の場合は<a href="https://github.com/DaftMonk/generator-angular-fullstack" target="_blank" rel="external">DaftMonk/generator-angular-fullstack</a>を利用することが多いので、基本的にはgenerator-angular-fullstack構成に<br>johnpapa/angularjs-styleguideの内容を加味しながらやってます。</p>
-<h2 id="アンチパターン-folders-by-type"><a href="#アンチパターン-folders-by-type" class="headerlink" title="アンチパターン(folders-by-type)"></a>アンチパターン(folders-by-type)</h2><p>まず、それなりの規模開発をする場合のアンチパターンの紹介。johnpapa/angularjs-styleguideにも載っているのですが、俗に<code>folders-by-type</code>と呼ばれるものがアンチパターンとされています。<br>AngularJSのモジュールのタイプに合わせてディレクトリを作成して、その中に各機能のjavascriptファイルを格納する方式です。</p>
-<p>機能が増えるほど、ファイルが分散して大変そうなのが想像できるかと思います。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/&#10;    app.js&#10;    controllers/&#10;        hoge.controller.js             &#10;    directives/       &#10;        one.directive.js  &#10;        one.directive.html  &#10;        two.directive.js  &#10;        two.directive.html  &#10;    services/       &#10;        hoge.service.js&#10;        fuga.service.js  &#10;    views/&#10;        hoge.html     &#10;        some.html</span><br></pre></td></tr></table></figure>
-<h2 id="ベストプラクティス-Folders-by-Feature"><a href="#ベストプラクティス-Folders-by-Feature" class="headerlink" title="ベストプラクティス(Folders-by-Feature)"></a>ベストプラクティス(Folders-by-Feature)</h2><p>アンチパターン(folders-by-type)に対して、良いとされているのが<code>Folders-by-Feature</code>と呼ばれる機能単位にフォルダを分ける方法です。機能単位いうよりも<strong>コンポーネント単位</strong>と呼んだ方がしっくりくると思います。</p>
-<p>generator-angular-fullstackを使った場合は、次のようなフォルダ構成になります。(<code>client以下</code>だけ抜粋)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/&#10;  main/             # &#21508;&#27231;&#33021;&#21336;&#20301;&#12398;&#12501;&#12457;&#12523;&#12480;&#10;  assets/&#12288;&#12288;&#12288;      # &#30011;&#20687;&#12501;&#12449;&#12452;&#12523;&#12394;&#12393;&#12398;&#12522;&#12477;&#12540;&#12473;&#10;    images/&#10;  components/       # &#20877;&#21033;&#29992;&#12377;&#12427;&#24819;&#23450;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&#10;  bower_components/ # bower&#12514;&#12472;&#12517;&#12540;&#12523;</span><br></pre></td></tr></table></figure>
-<p><code>main/</code>の中身は以下のような構成になっていて、URLのPathが<code>/</code>の場合に表示する画面のコンポーネント一式が格納されています。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main/&#10;  main.js                 # Router&#10;  main.controller.js      # Controller&#10;  main.controller.spec.js # Test spec&#10;  main.html               # Template&#10;  main.css                # Style</span><br></pre></td></tr></table></figure>
-<p>AngualrJSを使った開発をする場合、Javascriptファイルを細かく分割しながら開発することが多いので、このように機能単位で1つのフォルダにまとまっていると見通しがいいです。<br>さらにこうすることで、<strong>機能単位でgitのbranchを作成して開発することが可能</strong>です。</p>
-<p>これらのこともあって、それなりの規模感の場合は<code>Folders-by-Feature</code>方式を採用する方がいいと思います。</p>
-<h2 id="自分がカスタムしている部分"><a href="#自分がカスタムしている部分" class="headerlink" title="自分がカスタムしている部分"></a>自分がカスタムしている部分</h2><p>基本的にgenerator-angular-fullstackで作成されたプロジェクト構成をベースに使ってますが、自分なりにカスタムしている部分もあります。そのあたり紹介したいと思います。</p>
-<h3 id="Coreモジュールフォルダ"><a href="#Coreモジュールフォルダ" class="headerlink" title="Coreモジュールフォルダ"></a>Coreモジュールフォルダ</h3><p>バックエンドのデータアクセスや認証部品など、アプリケーション全体で利用するようなモジュールの置き場所として<code>app/core</code>以下を利用しています。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/&#10;  main/             # &#21508;&#27231;&#33021;&#21336;&#20301;&#12398;&#12501;&#12457;&#12523;&#12480;&#10;  core/             # &#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#20849;&#26377;&#12514;&#12472;&#12517;&#12540;&#12523;&#10;    auth/&#10;      auth.service.js&#10;    someApicall/&#10;      someApicall.service.js&#10;  assets/&#12288;&#12288;&#12288;      # &#30011;&#20687;&#12501;&#12449;&#12452;&#12523;&#12394;&#12393;&#12398;&#12522;&#12477;&#12540;&#12473;&#10;    images/&#10;  components/       # &#20877;&#21033;&#29992;&#12377;&#12427;&#24819;&#23450;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&#10;  bower_components/ # bower&#12514;&#12472;&#12517;&#12540;&#12523;</span><br></pre></td></tr></table></figure>
-<p>プロジェクトでの再利用観点で<code>components/</code>との使い分けなのですが、私の場合はUIが付属するものは<code>components/</code>に格納しするように使い分けしています。</p>
-<h3 id="partialsテンプレートフォルダ"><a href="#partialsテンプレートフォルダ" class="headerlink" title="partialsテンプレートフォルダ"></a>partialsテンプレートフォルダ</h3><p>AngularJSではテンプレート(html)にディレクティブを書き込んでいくため、テンプレートが大きくなりやすいと感じています。</p>
-<p>そこで良く利用するのが<code>ng-include</code>です。そのためgenerator-angular-fullstack:routeで作成したフォルダに<code>partials</code>フォルダを作成してinclideするテンプレートを格納するようにしています。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main/&#10;  main.js                 # Router&#10;  main.controller.js      # Controller&#10;  main.controller.spec.js # Test spec&#10;  main.html               # Template&#10;  main.css                # Style&#10;  partials/               # &#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#37096;&#21697;&#10;    megaButton.html&#10;    hugeInputArea.html</span><br></pre></td></tr></table></figure>
-<p>あ、この画面だけで利用するfilterなんかも格納しています。</p>
-<h3 id="filtersフォルダ"><a href="#filtersフォルダ" class="headerlink" title="filtersフォルダ"></a>filtersフォルダ</h3><p>アプリケーション全体で使うfilterについては置き場所悩みました。現在は直下の<code>filters</code>に格納して様子を見ています。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/&#10;  main/             # &#21508;&#27231;&#33021;&#21336;&#20301;&#12398;&#12501;&#12457;&#12523;&#12480;&#10;  assets/&#12288;&#12288;&#12288;      # &#30011;&#20687;&#12501;&#12449;&#12452;&#12523;&#12394;&#12393;&#12398;&#12522;&#12477;&#12540;&#12473;&#10;    images/&#10;  components/       # &#20877;&#21033;&#29992;&#12377;&#12427;&#24819;&#23450;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&#10;  filters/          # &#20877;&#21033;&#29992;&#12377;&#12427;&#24819;&#23450;&#12398;filter&#10;    snsAvater/&#10;      snsAvater.filter.js&#10;      snsAvater.filter.spec.js&#10;  bower_components/ # bower&#12514;&#12472;&#12517;&#12540;&#12523;</span><br></pre></td></tr></table></figure>
-<h3 id="configフォルダ"><a href="#configフォルダ" class="headerlink" title="configフォルダ"></a>configフォルダ</h3><p>開発と本番でconfigを分けたいケースがあるので、<code>config/environment</code>以下に実行環境ごとのconfigを格納しています。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/&#10;  main/             # &#21508;&#27231;&#33021;&#21336;&#20301;&#12398;&#12501;&#12457;&#12523;&#12480;&#10;  assets/&#12288;&#12288;&#12288;      # &#30011;&#20687;&#12501;&#12449;&#12452;&#12523;&#12394;&#12393;&#12398;&#12522;&#12477;&#12540;&#12473;&#10;    images/&#10;  components/       # &#20877;&#21033;&#29992;&#12377;&#12427;&#24819;&#23450;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&#10;  config/          &#10;    environment/&#10;      development.js  # &#38283;&#30330;&#29872;&#22659;&#29992;&#10;      production.js   # &#26412;&#30058;&#29872;&#22659;&#29992;&#10;      test.js         # &#12486;&#12473;&#12488;&#29872;&#22659;&#29992;&#10;  bower_components/ # bower&#12514;&#12472;&#12517;&#12540;&#12523;</span><br></pre></td></tr></table></figure>
-<p>開発/本番の切り替えはgenerator-angular-fullstackのGruntタスクを改造しています。テスト環境のconfigは<code>karma.conf.js</code>にてロードするconfigを指定しています。</p>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>私が普段使っているAngularJSのプロジェクト構成について紹介しました。たぶん半年くらい使ってみてちょくちょく変えると思います。</p>
-<p>とはいえ、ぶっちゃけ好みの問題ですけどね・・・</p>
-<p>そんな、試行錯誤の成果を<a href="https://github.com/DaftMonk/generator-angular-fullstack" target="_blank" rel="external">DaftMonk/generator-angular-fullstack</a>をForkして<a href="https://github.com/mitsuruog/generator-angular-mitsuruog" target="_blank" rel="external">mitsuruog/generator-angular-mitsuruog</a>にまとめています。AngularJSできれいにアプリケーション作りたい人は、YeomanでオレオレAngularJSプロジェクトテンプレート作ってみるのもいいと思います。</p>
+<p>大まかに「ページコンポーネント」が各画面1つに対応していて、「Statelessコンポーネント」は共通的に利用する小さいUI部品のことです。そして「コンテナ」とはいくつかページコンポーネントを束ねるコンポーネントのことです。<br>アプリケーションで共通で利用するデータなどを保持してたり、ページへの許可されていないアクセスをブロックする門番のような役割もしています。どちらかというと<strong>Gateway</strong>と言った方がしっくりくるかもしれません。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript3.png">
+<blockquote>
+<p>厳密にいうと世にあるReactのコンテナパターンのように綺麗に責務が別れていません。かなりオリジナル色が強いです。</p>
+</blockquote>
+<p>これの何が良かったかというと、ページコンポーネントからアプリケーション全体で必要なロジックの大部分をコンテナに移譲できたことです。<br>コンテナ・ページコンポーネント・Statelessコンポーネントの各役割が割としっかり分離できているので、何か問題があった場合でも、容易にどの辺りが問題ありそうかあたりをつけることができます。</p>
+<h2 id="アプリケーションの構造をなるべくフラットに保った"><a href="#アプリケーションの構造をなるべくフラットに保った" class="headerlink" title="アプリケーションの構造をなるべくフラットに保った"></a>アプリケーションの構造をなるべくフラットに保った</h2><p>これは先の3レイヤーの話ともかぶるのですが、内部の状態を保ったページコンポーネントは極力ネストさせないようにしました。</p>
+<p>これはつまり、コンテナに対してページコンポーネントは常にフラットな構造を保つということです。</p>
+<blockquote>
+<p>StatelessコンポーネントはネストさせてもOKです。（ただしあまり深くしなければ）</p>
+</blockquote>
+<p>内部の状態があるページコンポーネントをネストした場合、propsで渡って来た値をstateに格納して、これをまた子コンポーネントに渡すといったことをやることもあるかと思いますが、これはReactでよくやってしまうアンチパターンだと思います。</p>
+<p>なぜかというと、propsの変更を検知するために<code>componentWillReceiveProps</code>を実装する必要があるためです。<br>大抵の場合、この部分の実装は難しく、複雑になりがちで、コンポーネントのメンテナンスコストを引き上げます。</p>
+<p>これの何が良かったかというと、このようなネストを極力減らすことで、アプリケーション全体の構造をシンプルに保ち、不要なデバックコストを削減できたとです。</p>
+<p>普段は<a href="https://github.com/facebook/react-devtools" target="_blank" rel="external">react-devtools</a>をデバックに使っているのですが、何かおかしい動きをした時にチェックする場所が固定できる。<br>コンポーネントでデータを受け渡しをしている間に、なぜか途中から値が変わっている、なんて悪夢はもうありません。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>実は、他にもいろいろ工夫している点があるのですが、大きなところはこんなとこです。</p>
+<p>リニューアル前にReactとTypeScriptでプロダクトを作っているけど、なかなか良さそうだという趣旨の発表をしたのですが、正直期待以上でした。</p>
+<blockquote>
+<p>こちらが、リニューアル前に話した内容。</p>
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/wHfoBpzy70W17r" width="480" height="360" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe><br><a href="//www.slideshare.net/mitsuruogawa33/reacttype-script">React+TypeScriptもいいそ</a></p>
+</blockquote>
+<p>ただ結局のところ、Reactを使い試行錯誤の末、Reactの流儀に沿って正しくできたことが大きかったかと思います。<br>おそらく別のフレームワークを使ったとしたら、戦略レベルでは考えることは一緒であっても、戦術レベルではもう少し違うアプローチをしていたと思います。</p>
+<p>技術は正しく使ってこそ価値がある。</p>
+<blockquote>
+<p>時間がある時にフロントエンドのコンサルなどもしているので、もし興味がある方がいたら<a href="https://twitter.com/mitsuruog" target="_blank" rel="external">twitter</a>などでメッセください。</p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2014/12/angular-structure.html" data-id="cj5ujs172006ii10aup7bdw8t" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2017/08/look-back-react-typescript-after-half-year.html" data-id="cj5ujs0zc0007i10abkz2wxe4" class="article-share-link">共有</a>
       
-        <a href="http://blog.mitsuruog.info/2014/12/angular-structure.html#disqus_thread" class="article-comment-link">コメント</a>
+        <a href="http://blog.mitsuruog.info/2017/08/look-back-react-typescript-after-half-year.html#disqus_thread" class="article-comment-link">コメント</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJs/">AngularJs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fullstack/">fullstack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yeoman/">yeoman</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/">TypeScript</a></li></ul>
 
     </footer>
   </div>
@@ -234,19 +238,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
 <nav id="article-nav">
   
-    <a href="/2014/12/i-love-sytleguide.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新しい記事</strong>
-      <div class="article-nav-title">
-        
-          進化の早いフロントエンドの世界についていくために、スタイルガイドを有効活用しているという話
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/11/angularjs.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/08/how-to-send-custom-attribute-value-to-gtm.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">古い記事</strong>
-      <div class="article-nav-title">なぜAngularJSを薦めるのか ー 個人的な思い</div>
+      <div class="article-nav-title">リンククリック時にカスタムデータをGoogle tag managerに送信する</div>
     </a>
   
 </nav>
