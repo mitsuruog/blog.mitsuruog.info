@@ -4,7 +4,7 @@ title: "Reactのuncontrolled input warningで困った時に確認するべき�
 date: 2017-09-11 0:00:00 +900
 comments: true
 tags:
-  - React
+  - react
 ---
 
 {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-uncontrolled-input.png %}
