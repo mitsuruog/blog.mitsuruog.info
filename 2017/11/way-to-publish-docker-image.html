@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Machine Learning | I am mitsuruog</title>
+  <title>docker imageをdocker hubに公開する方法 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="I am mitsuruog">
-<meta property="og:url" content="http://blog.mitsuruog.info/tags/Machine-Learning/index.html">
+  <meta name="description" content="docker imageをdocker hubに公開する方法についての小ネタです。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker imageをdocker hubに公開する方法">
+<meta property="og:url" content="http://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description">
+<meta property="og:description" content="docker imageをdocker hubに公開する方法についての小ネタです。">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/docker_hub.png">
+<meta property="og:updated_time" content="2017-11-09T15:37:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="I am mitsuruog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="docker imageをdocker hubに公開する方法">
+<meta name="twitter:description" content="docker imageをdocker hubに公開する方法についての小ネタです。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -129,51 +131,109 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
       
-      <section id="main">
-    <section class="archives-wrap">
-    <div class="archive-tag-wrap">
-      <span class="archive-tag">#Machine Learning</span>
-    </div>
-    <div class="archives">
+      <section id="main"><article id="post-2017/11/way-to-publish-docker-image" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
     
-    <div class="archive-article-thumbnail">
-      <a href="/2015/04/hello-azure-machine-learning.html" class="thumbnail">
-  
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-1.png
-)" alt="Azure Machine Learningをやってみた" class="thumbnail-image"></span>
-  
-</a>
-    </div>
     
-    <header class="archive-article-header">
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/04/hello-azure-machine-learning.html">Azure Machine Learningをやってみた</a>
+    <h1 class="article-title" itemprop="name">
+      docker imageをdocker hubに公開する方法
     </h1>
   
 
-      
-        
-  <div class="archive-article-date">
+        <div class="article-meta">
+          
+  <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2015/04/hello-azure-machine-learning.html">
-      <time datetime="2015-04-16T06:18:50.000Z" itemprop="datePublished">2015-04-16 15:18</time>
+    <a href="/2017/11/way-to-publish-docker-image.html">
+      <time datetime="2017-11-09T15:00:00.000Z" itemprop="datePublished">2017-11-10 00:00</time>
     </a>
   </div>
 
 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-    </header>
+                
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/docker_hub.png">
+<p>docker imageをdocker hubに公開する方法についての小ネタです。</p>
+<a id="more"></a>
+<p>お仕事でdocker imageを作成して公開必要があったのですが、やり方よく知らなかったので、同僚のdocker得意なエンジニアに教えてもらいました。</p>
+<h2 id="docker-imageを作成する"><a href="#docker-imageを作成する" class="headerlink" title="docker imageを作成する"></a>docker imageを作成する</h2><p>まずは、docker imageを作成します。</p>
+<p>今回はCircleCI 2.0で使うフロントエンドビルド用のimageを作成するため、ベースのimageに<code>circleci/node:8.9</code>を利用しました。</p>
+<p>BuildDockerfile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FROM circleci/node:8.9&#10;&#10;ENV PATH /home/circleci/.local/bin:$&#123;PATH&#125;&#10;&#10;# Install AWS CLI&#10;RUN sudo apt-get install python-dev&#10;RUN sudo curl -O https://bootstrap.pypa.io/get-pip.py&#10;RUN python get-pip.py --user&#10;RUN pip install awscli --upgrade --user</span><br></pre></td></tr></table></figure></p>
+<p>imageファイルができたら、docker imageをビルドします。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -f BuildDockerfile .</span><br></pre></td></tr></table></figure>
+<p>ビルドが終わったらimageのリストを表示して、image idを覚えておきます。今回の場合は、一番上にある<code>&lt;none&gt;</code>が作成したimageです。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images&#10;&#10;REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE&#10;&#60;none&#62;              &#60;none&#62;              680c58dbd0f9        29 seconds ago      986MB&#10;circleci/node       8.9                 66a65e08d915        9 hours ago         894MB&#10;codeprep/sqlite     latest              0c3ec62e9c37        7 days ago          13.6MB&#10;...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>直前に作ったimageであれば、一番上に表示されると思います。</p>
+</blockquote>
+<h2 id="docker-imageをテストする"><a href="#docker-imageをテストする" class="headerlink" title="docker imageをテストする"></a>docker imageをテストする</h2><p>docker imageをテストします。</p>
+<p>テストの方法は「<a href="https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image">docker imageの中身をデバックする方法</a>」にあるとおりimageの中に入ってデバックします。</p>
+<blockquote>
+<p>image名には、上で取得したimage idを指定します。</p>
+</blockquote>
+<h2 id="dockerにログインする"><a href="#dockerにログインする" class="headerlink" title="dockerにログインする"></a>dockerにログインする</h2><p>ここからは、imageを公開するための準備です。</p>
+<p><a href="https://hub.docker.com/" target="_blank" rel="external">docker hub</a>のアカウントでdockerにログインしておきます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export DOCKER_ID_USER=&#34;mitsuruog&#34;&#10;$ docker login</span><br></pre></td></tr></table></figure>
+<p><code>DOCKER_ID_USER</code>にはdocker hubにユーザー名を設定しておきます。あとで使います。（なくても大丈夫ですが。。。）</p>
+<h2 id="docker-imageにタグをつける"><a href="#docker-imageにタグをつける" class="headerlink" title="docker imageにタグをつける"></a>docker imageにタグをつける</h2><p>docker imageにタグ（名前）を付けます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag [image name] $DOCKER_ID_USER/cool-build-frontend</span><br></pre></td></tr></table></figure>
+<p><code>image name</code>には、上で取得したimage idを指定し、<code>cool-build-frontend</code>に好きな名前を設定します。</p>
+<p>タグつけが終わったらimageのリストを表示してimageにタグが付いていることを確認します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images&#10;&#10;REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE&#10;mitsuruog/cool-build-frontend   latest              680c58dbd0f9        2 minutes ago       986MB&#10;circleci/node                   8.9                 66a65e08d915        9 hours ago         894MB&#10;codeprep/sqlite                 latest              0c3ec62e9c37        7 days ago          13.6MB</span><br></pre></td></tr></table></figure>
+<h2 id="docker-imageを公開する"><a href="#docker-imageを公開する" class="headerlink" title="docker imageを公開する"></a>docker imageを公開する</h2><p>最後にimageをdocker hubに公開します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push mitsuruog/cool-build-frontend</span><br></pre></td></tr></table></figure>
+<p>結果は、こんな感じです。</p>
+<ul>
+<li><a href="https://hub.docker.com/r/mitsuruog/cool-build-frontend/" target="_blank" rel="external">https://hub.docker.com/r/mitsuruog/cool-build-frontend/</a></li>
+</ul>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>ほぼ、自分用のメモですね。</p>
+<p>手順については他にも色々あると思うので、あくまでやり方の1つとして参考してください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html" data-id="cj9smwc3700cqfb0aabjvh0p5" class="article-share-link">共有</a>
+      
+        <a href="http://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html#disqus_thread" class="article-comment-link">コメント</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/way-to-debug-docker-image.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">古い記事</strong>
+      <div class="article-nav-title">docker imageの中身をデバックする方法</div>
+    </a>
+  
+</nav>
+
+
+  
 </article>
 
-    
-    </div></section>
-    </section>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
       
         <aside id="sidebar">
   
@@ -321,7 +381,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
