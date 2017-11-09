@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="docker imageを作る際のデバック方法についての小ネタです。">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/docker.png">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:updated_time" content="2017-11-09T01:22:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker imageの中身をデバックする方法">
 <meta name="twitter:description" content="docker imageを作る際のデバック方法についての小ネタです。">
@@ -164,22 +164,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/docker.png">
 <p>docker imageを作る際のデバック方法についての小ネタです。</p>
 <a id="more"></a>
-<p>お仕事でdocker imageを作成する必要があったのですが、docker imageの中に入ってデバックする方法をよく知らなかったので、同僚のdocker得意なエンジニアに教えてもらいました。</p>
-<h2 id="docker-imageの中への入り方"><a href="#docker-imageの中への入り方" class="headerlink" title="docker imageの中への入り方"></a>docker imageの中への入り方</h2><p>デバックするためにdocker imageの中に入る必要があるので、次の<code>docker run</code>コマンドを実行します。</p>
+<p>お仕事でdocker imageを作成する必要があったのですが、docker imageのコンテナ中に入ってデバックする方法をよく知らなかったので、同僚のdocker得意なエンジニアに教えてもらいました。</p>
+<h2 id="dockerコンテナへの入り方"><a href="#dockerコンテナへの入り方" class="headerlink" title="dockerコンテナへの入り方"></a>dockerコンテナへの入り方</h2><p>デバックするためにdocker imageのコンテナの中に入る必要があるので、次の<code>docker run</code>コマンドを実行します。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -it [image name] /bin/bash</span><br></pre></td></tr></table></figure>
 <p>それぞれのオプションは次の通りです。</p>
-<p><code>--rm</code>: docker runを終了させた時にimageを削除します。これをしない場合、imageが残ってしまうため、デバック目的であれば付けておいた方がいいと思います。</p>
+<p><code>--rm</code>: docker run終了時にrunで起動したdockerコンテナを削除します。これをしない場合、コンテナが残ってしまうため、デバック目的であれば付けておいた方がいいと思います。</p>
 <p><code>-it</code>: <code>i</code>はインタラクティブモード、<code>t</code>は<strong>tty</strong>と呼ばれるもので(あまり詳しくわかってない)両方のオプションを設定するといい感じのコマンド入力インターフェースになるので、基本は付けておいた方が良さそうです。</p>
 <p><code>[image name]</code>: デバックしたいdocker image名を指定します。</p>
 <p><code>/bin/bash</code>: docker runで実行するアプリケーション。この例では<strong>bash</strong>が起動します。特にデバック目的であれば変える必要がないかと。。。</p>
-<h2 id="デバックの終了方法"><a href="#デバックの終了方法" class="headerlink" title="デバックの終了方法"></a>デバックの終了方法</h2><p>このコマンドを実行します。</p>
+<blockquote>
+<p>imageによっては<strong>bash</strong>がない場合があるので、その場合は<code>/bin/sh</code>に変えてください。</p>
+</blockquote>
+<h2 id="コンテナからの脱出方法"><a href="#コンテナからの脱出方法" class="headerlink" title="コンテナからの脱出方法"></a>コンテナからの脱出方法</h2><p>このコマンドを実行します。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>今までよく分からなかったdocker imageの中のデバック方法について知る事ができたので、本当によかったです。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html" data-id="cj9rnemi40007wd0a0txapy5e" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html" data-id="cj9rnzs1b000a0g0attj8odkt" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html#disqus_thread" class="article-comment-link">コメント</a>
       
