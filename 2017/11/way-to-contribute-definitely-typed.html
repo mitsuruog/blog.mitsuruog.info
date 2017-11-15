@@ -3,17 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/1 | I am mitsuruog</title>
+  <title>DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="I am mitsuruog">
-<meta property="og:url" content="http://blog.mitsuruog.info/archives/2016/01/index.html">
+  <meta name="description" content="TypeScriptを使っていると、結構必要になる型定義ファイル。型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。
+今回は、DefinitelyTypedにコントリビュートする機会が最近増えたので、個人的な手順をまとめておきます。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順">
+<meta property="og:url" content="http://blog.mitsuruog.info/2017/11/way-to-contribute-definitely-typed.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description">
+<meta property="og:description" content="TypeScriptを使っていると、結構必要になる型定義ファイル。型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。
+今回は、DefinitelyTypedにコントリビュートする機会が最近増えたので、個人的な手順をまとめておきます。">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png">
+<meta property="og:updated_time" content="2017-11-15T14:13:29.153Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="I am mitsuruog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順">
+<meta name="twitter:description" content="TypeScriptを使っていると、結構必要になる型定義ファイル。型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。
+今回は、DefinitelyTypedにコントリビュートする機会が最近増えたので、個人的な手順をまとめておきます。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -129,123 +135,117 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
       
-      <section id="main">
-      <div class="archive-year-wrap">
-        <a href="/archives/2016" class="archive-year">2016</a>
-      </div>
-      <section class="archives-wrap">
-        <div class="archives">
+      <section id="main"><article id="post-2017/11/way-to-contribute-definitely-typed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
     
-    <div class="archive-article-thumbnail">
-      <a href="/2016/01/how-to-ci-testing-via-wercker.html" class="thumbnail">
-  
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/wercker-frontend.png
-)" alt="werckerでフロントエンドをCIテストする" class="thumbnail-image"></span>
-  
-</a>
-    </div>
     
-    <header class="archive-article-header">
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/how-to-ci-testing-via-wercker.html">werckerでフロントエンドをCIテストする</a>
+    <h1 class="article-title" itemprop="name">
+      DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順
     </h1>
   
 
-      
-        
-  <div class="archive-article-date">
+        <div class="article-meta">
+          
+  <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2016/01/how-to-ci-testing-via-wercker.html">
-      <time datetime="2016-01-17T15:00:00.000Z" itemprop="datePublished">2016-01-18 00:00</time>
+    <a href="/2017/11/way-to-contribute-definitely-typed.html">
+      <time datetime="2017-11-14T15:00:00.000Z" itemprop="datePublished">2017-11-15 00:00</time>
     </a>
   </div>
 
 
-      
-    </header>
-  </div>
-</article>
-
-  
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
+          
+        </div>
+      </header>
     
-    <div class="archive-article-thumbnail">
-      <a href="/2016/01/use-salesforce-lightning-design-system-in-webpack.html" class="thumbnail">
-  
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/webpack-slds.png
-)" alt="webpackでSalesforce Lightning Design Systemを使う" class="thumbnail-image"></span>
-  
-</a>
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png">
+<p>TypeScriptを使っていると、結構必要になる型定義ファイル。<br>型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。</p>
+<p>今回は、DefinitelyTypedにコントリビュートする機会が最近増えたので、個人的な手順をまとめておきます。</p>
+<a id="more"></a>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>コントリビュートの仕方については、まず公式ドキュメントをさらりと眺めておいてください。<br>ただ、結構わかりにくいと思うので、これから順を追って説明していきます。</p>
+<ul>
+<li><a href="https://github.com/DefinitelyTyped/DefinitelyTyped" target="_blank" rel="external">https://github.com/DefinitelyTyped/DefinitelyTyped</a></li>
+</ul>
+<p>それから型定義が存在しない事を確認しましょう。</p>
+<ul>
+<li><a href="https://microsoft.github.io/TypeSearch/" target="_blank" rel="external">https://microsoft.github.io/TypeSearch/</a></li>
+</ul>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>型定義のGeneratorがあるのでインストールしておく。<br>基本なくても大丈夫だと思いますが、フォルダやファイルヘッダーなど自動生成してくれるので便利なので、インストールしておきましょう。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g dts-gen</span><br></pre></td></tr></table></figure>
+<p>DefinitelyTypedのリポジトリをcloneして、トップのフォルダで<code>dts-gen</code>コマンドを実行する。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dts-gen --dt --name my-package-name --template module</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>--template</code>の部分はいくつか指定があるのですが、あまり詳しく知らないです。<br>（この辺り、どのtemplate使ったらいいか、わかりやすいドキュメントがあるといいんだけどなー。）</p>
+</blockquote>
+<p>generateした結果はこんな感じで、<code>types</code>の下にディレクトリが作成されています。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DefinitelyTyped&#10;  types&#10;    my-package-name&#10;      index.d.ts&#10;      my-package-name-test.ts&#10;      tsconfig.json&#10;      tslint.json</span><br></pre></td></tr></table></figure>
+<h2 id="index-d-tsを書く"><a href="#index-d-tsを書く" class="headerlink" title="index.d.tsを書く"></a>index.d.tsを書く</h2><p>さぁ、ここからは実際に型定義を作成していきます。型定義は<code>index.d.ts</code>に定義します。</p>
+<p>型定義の書き方についてはここでは紹介しませんが、内部構造が似ているライブラリを参考にすることが多いです。</p>
+<h2 id="index-d-tsをデバックする"><a href="#index-d-tsをデバックする" class="headerlink" title="index.d.tsをデバックする"></a>index.d.tsをデバックする</h2><p>型定義ファイルが出来上がったら、実際にプロジェクトに投入して正しく機能するかデバックします。実は、<code>npm</code>からインストールされた型定義ファイルは、<code>node_modules/@types</code>の中に格納されています。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png" width="250">
+<p>そのため、<code>@types</code>の下にライブラリ名と同じフォルダを作成して、その中に作成した<code>index.d.ts</code>を配置すると、あたかも<code>npm</code>インストールしたような振る舞いをします。</p>
+<h2 id="testを書く"><a href="#testを書く" class="headerlink" title="testを書く"></a>testを書く</h2><p>デバックも完了したら、PRを作成する準備に入ります。</p>
+<p>コントリビュートするためには、型定義のテストを書く必要があります。テストは上の<code>my-package-name-test.ts</code>に書きます。</p>
+<blockquote>
+<p>テストというよりは、実際にライブラリを利用するようなコードを書きます。ライブラリの利用例をバリエーション豊かに書くといった感じです。</p>
+</blockquote>
+<p>型定義で定義した内容を（なるべく）網羅したテストを書きます。</p>
+<p>手前味噌ですが、自分が書いたテストを張っておきます。これも他のライブラリを見ながら書いていきます。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import * as React from &#34;react&#34;;&#10;import Alert from &#34;react-s-alert&#34;;&#10;&#10;const config = &#123;&#10;    position: &#34;top&#34;,&#10;    offset: 100,&#10;    stack: &#123;&#10;        limit: 3,&#10;        spacing: 50,&#10;    &#125;,&#10;    effect: &#34;genie&#34;,&#10;    beep: &#123;&#10;        info: &#34;beep.mp3&#34;,&#10;        error: &#34;beep.mp3&#34;,&#10;        warning: &#34;beep.mp3&#34;,&#10;        success: &#34;beep.mp3&#34;,&#10;    &#125;,&#10;    timeout: 1000,&#10;    html: true,&#10;    onClose: () =&#62; &#123;&#125;,&#10;    onShow: () =&#62; &#123;&#125;,&#10;    customFields: &#123;&#125;,&#10;&#125;;&#10;&#10;class Test extends React.Component &#123;&#10;    render() &#123;&#10;        return (&#10;          &#60;div&#62;&#10;              &#60;Alert /&#62;&#10;              &#60;Alert&#10;                  &#123;...config&#125;&#10;              /&#62;&#10;          &#60;/div&#62;&#10;        );&#10;    &#125;&#10;&#125;&#10;&#10;Alert.info(&#34;I am a info message.&#34;, config);&#10;Alert.error(&#34;I am an error message.&#34;, config);&#10;Alert.warning(&#34;I am a warning message.&#34;, config);&#10;Alert.success(&#34;I am a success message&#34;, config);&#10;&#10;const index = Alert.info(&#34;Hello&#34;);&#10;Alert.close(index);&#10;&#10;Alert.closeAll();</span><br></pre></td></tr></table></figure>
+<p>(2017/11/15現在のコードなので古くなっているかもしれません。最新はこちらから見れます)</p>
+<ul>
+<li><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-s-alert/react-s-alert-tests.tsx" target="_blank" rel="external">https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-s-alert/react-s-alert-tests.tsx</a></li>
+</ul>
+<h2 id="Lintチェックをする"><a href="#Lintチェックをする" class="headerlink" title="Lintチェックをする"></a>Lintチェックをする</h2><p>テストを書いたらLintツールを実行して最終確認をします。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run lint my-package-name</span><br></pre></td></tr></table></figure>
+<h2 id="PRを作る"><a href="#PRを作る" class="headerlink" title="PRを作る"></a>PRを作る</h2><p>最後にDefinitelyTypedに対してPRを作成したら完了です。レビューなどで指摘がなければ、DefinitelyTypedにマージされて使えるようになると思います。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>型定義を作ってDefinitelyTypedにコントリビュートする手順でした。</p>
+<p>初めての時にプロセスを理解するまでに結構時間がかかったのでまとめてみました。<br>個人的には型定義のデバック方法を知れたのが一番の収穫でした。</p>
+<p>いつもお世話になっている型定義なので、気軽に貢献できると嬉しいですね。</p>
+
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-contribute-definitely-typed.html" data-id="cja13d6280003ig0ac8junww9" class="article-share-link">共有</a>
+      
+        <a href="http://blog.mitsuruog.info/2017/11/way-to-contribute-definitely-typed.html#disqus_thread" class="article-comment-link">コメント</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/definitelytyped/">definitelytyped</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/">typescript</a></li></ul>
+
+    </footer>
+  </div>
+  
     
-    <header class="archive-article-header">
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/use-salesforce-lightning-design-system-in-webpack.html">webpackでSalesforce Lightning Design Systemを使う</a>
-    </h1>
   
-
-      
-        
-  <div class="archive-article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/01/use-salesforce-lightning-design-system-in-webpack.html">
-      <time datetime="2016-01-02T15:00:21.000Z" itemprop="datePublished">2016-01-03 00:00</time>
+    <a href="/2017/11/way-to-publish-docker-image.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">古い記事</strong>
+      <div class="article-nav-title">docker imageをdocker hubに公開する方法</div>
     </a>
-  </div>
+  
+</nav>
 
 
-      
-    </header>
-  </div>
+  
 </article>
 
-  
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    
-    <div class="archive-article-thumbnail">
-      <a href="/2016/01/wellcome-2016.html" class="thumbnail">
-  
-    <span style="background-image:url(http://giantech.jp/assets/images/20150604/purpose_venn_diagram_ja.png
-)" alt="2015年の振り返りと2016年の抱負" class="thumbnail-image"></span>
-  
-</a>
-    </div>
-    
-    <header class="archive-article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/wellcome-2016.html">2015年の振り返りと2016年の抱負</a>
-    </h1>
-  
 
-      
-        
-  <div class="archive-article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/01/wellcome-2016.html">
-      <time datetime="2016-01-02T13:20:29.000Z" itemprop="datePublished">2016-01-02 22:20</time>
-    </a>
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
+</section>
 
-
-      
-    </header>
-  </div>
-</article>
-
-  
-    </div></section>
-  </section>
+</section>
       
         <aside id="sidebar">
   
@@ -393,7 +393,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
