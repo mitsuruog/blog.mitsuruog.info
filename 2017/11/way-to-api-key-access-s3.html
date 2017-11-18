@@ -3,27 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>NodeからSeleniumServerを動かすLearnBoost製クライアントがあるsoda | I am mitsuruog</title>
+  <title>特定のS3バケットにだけアクセスできるIAMユーザーを作る | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="socket.ioで有名なLearnBoostが公開しているNode製SeleniumServerクライアントをさくっと紹介します。だって、フロントエンドエンジニアはJavascriptでSelenium動かしたいんだもん。
-この記事はSelenium Advent Calendar 2013の19日目の記事です。
-前の記事は[hinac0さん]Selenium vs Mercury
-次の記事は[">
+  <meta name="description" content="よく忘れるシリーズ。
+AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法です。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NodeからSeleniumServerを動かすLearnBoost製クライアントがあるsoda">
-<meta property="og:url" content="http://blog.mitsuruog.info/2013/12/nodeseleniumserverlearnboostsoda.html">
+<meta property="og:title" content="特定のS3バケットにだけアクセスできるIAMユーザーを作る">
+<meta property="og:url" content="http://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="socket.ioで有名なLearnBoostが公開しているNode製SeleniumServerクライアントをさくっと紹介します。だって、フロントエンドエンジニアはJavascriptでSelenium動かしたいんだもん。
-この記事はSelenium Advent Calendar 2013の19日目の記事です。
-前の記事は[hinac0さん]Selenium vs Mercury
-次の記事は[">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:description" content="よく忘れるシリーズ。
+AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法です。">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png">
+<meta property="og:updated_time" content="2017-11-18T16:15:39.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NodeからSeleniumServerを動かすLearnBoost製クライアントがあるsoda">
-<meta name="twitter:description" content="socket.ioで有名なLearnBoostが公開しているNode製SeleniumServerクライアントをさくっと紹介します。だって、フロントエンドエンジニアはJavascriptでSelenium動かしたいんだもん。
-この記事はSelenium Advent Calendar 2013の19日目の記事です。
-前の記事は[hinac0さん]Selenium vs Mercury
-次の記事は[">
+<meta name="twitter:title" content="特定のS3バケットにだけアクセスできるIAMユーザーを作る">
+<meta name="twitter:description" content="よく忘れるシリーズ。
+AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法です。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -139,7 +134,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
       
-      <section id="main"><article id="post-2013/12/nodeseleniumserverlearnboostsoda" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-2017/11/way-to-api-key-access-s3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -148,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
   
     <h1 class="article-title" itemprop="name">
-      NodeからSeleniumServerを動かすLearnBoost製クライアントがあるsoda
+      特定のS3バケットにだけアクセスできるIAMユーザーを作る
     </h1>
   
 
@@ -156,8 +151,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2013/12/nodeseleniumserverlearnboostsoda.html">
-      <time datetime="2013-12-19T14:44:00.000Z" itemprop="datePublished">2013-12-19 23:44</time>
+    <a href="/2017/11/way-to-api-key-access-s3.html">
+      <time datetime="2017-11-18T15:00:00.000Z" itemprop="datePublished">2017-11-19 00:00</time>
     </a>
   </div>
 
@@ -169,51 +164,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <p>socket.ioで有名なLearnBoostが公開しているNode製SeleniumServerクライアントをさくっと紹介します。<br>だって、フロントエンドエンジニアはJavascriptでSelenium動かしたいんだもん。</p>
-<p>この記事は<a href="http://www.adventar.org/calendars/128" target="_blank" rel="external">Selenium Advent Calendar 2013</a>の19日目の記事です。</p>
-<p>前の記事は<a href="http://0dan5.wordpress.com/2013/12/18/1-3/" target="_blank" rel="external">[hinac0さん]Selenium vs Mercury</a></p>
-<p>次の記事は<a href="http://dolias2010.hatenablog.com/entry/2013/12/20/012714" target="_blank" rel="external">[らんさぶさん]Selenium Tips - つれづれなるままに。</a></p>
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png">
+<p>よく忘れるシリーズ。</p>
+<p>AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法です。</p>
 <a id="more"></a>
-<ol>
-<li>sodaとは</li>
-<li>sodaを使ってみる</li>
-<li>sodaの注意点</li>
-<li>まとめ</li>
-</ol>
-<h2 id="1-sodaとは"><a href="#1-sodaとは" class="headerlink" title="1. sodaとは"></a>1. sodaとは</h2><p><a href="https://github.com/LearnBoost/soda" target="_blank" rel="external">soda</a>とはsocket.ioで有名なLearnBoostが公開している、Node製SeleniumServerクライアントです。<br>簡単に言うと、Seleniumの実行コードをJavascriptで書いて、Nodejsで実行するためのモジュールです。<br>公式では「<strong>Selenium Node Adapter.</strong>」と謳ってます。</p>
-<h1 id="2-sodaを使ってみる。"><a href="#2-sodaを使ってみる。" class="headerlink" title="2. sodaを使ってみる。"></a>2. sodaを使ってみる。</h1><p>（ちなみに、私の環境はMacです。一応、会社のwindows7も動作してます。）</p>
-<p>まず、SeleniumServerをインストールします。Macの場合はbrewで一発インストールです。<br>本当にbrew偉大。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install selenium-server-standalone</span><br></pre></td></tr></table></figure>
-<p>公式サイトからダウンロードしても、もちろん構いません。<br><a href="http://www.seleniumhq.org/download/" target="_blank" rel="external">http://www.seleniumhq.org/download/</a></p>
-<p>brewでインストールすると起動用のコマンドが表示されまうので、一旦覚えておきます。<br>面倒なかたはailas張った方がいいでしょう。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar /usr/local/opt/selenium-server-standalone/selenium-server-standalone-2.37.0.jar -p 4444</span><br></pre></td></tr></table></figure>
-<p>sodaを動かす際は、事前にSeleniumServerを起動させておきます。</p>
-<p>まさか、SeleniumやるのにFirefoxインストールしていない方はいないと思いますが、インストールしていない方はインストールしましょう。(自分がそうでしたw)</p>
-<p>それでは、サンプルのプロジェクトを作成してsodaを動かしてみます。</p>
-<p>適当なフォルダにsodaをnpmからインストールします。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir soda-sample&#10;cd soda-sample&#10;npm init&#10;npm install --save soda</span><br></pre></td></tr></table></figure>
-<p>プロジェクト直下に「google.js」ファイルを作成して、次のようなテストコードを書きます。</p>
-<script src="//gist.github.com/8039638.js?file=google.js"></script>
-<p>後はnodeコマンドから起動してみます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node google.js</span><br></pre></td></tr></table></figure>
-<p>そうすると、横でFirefoxが勝手に起動してテストしてくれます。<br>正常にテストが行われた場合、ターミナルにはこのように表示されます。</p>
-<script src="//gist.github.com/8039638.js?file=test.sh"></script>
-<h2 id="3-sodaの注意点"><a href="#3-sodaの注意点" class="headerlink" title="3. sodaの注意点"></a>3. sodaの注意点</h2><p>このように簡単にNodeからSeleniumを呼び出せるsodaですがいくつか注意点があります。</p>
-<p>まず、「http.createClient is deprecated. Use <code>http.request</code> instead.」が象徴しているように、ここ１年くらいメンテナンスされていません。また、Chromeなど他のWebDriverには対応してないようです。つまり「Firefox only」です。</p>
-<h2 id="4-まとめ"><a href="#4-まとめ" class="headerlink" title="4. まとめ"></a>4. まとめ</h2><p>NodeでSeleniumを起動できるDriverモジュールsodaいかがだったでしょうか。</p>
-<p>機能限定ながらフロントエンジニアがJavascriptでテストコードを書けてNodeで実行できるというのは、ハマればメリットがあると思いました。</p>
-<p>また、NodeからSeleniumを起動できるものは他にも<a href="https://github.com/admc/wd/" target="_blank" rel="external">wd（https://github.com/admc/wd/）</a>というものがあり、他のWebDriverをサポートしているなど、機能が豊富でなかなか強力です。</p>
-<p>機会があれば、こちらも紹介したいですね。</p>
+<h2 id="想定される用途"><a href="#想定される用途" class="headerlink" title="想定される用途"></a>想定される用途</h2><p>自分の場合、最近のフロントエンドはSPAを作ることが多いので、コードはWebpackでbundleをビルドしてS3にデプロイするケースが多いです。</p>
+<p>この辺りはCIサービスを利用して自動化しているのですが、その時にAWSのIAMを作成して、そのアクセスキーを使って特定のS3バケットにデプロイします。</p>
+<blockquote>
+<p>特定のバケットにだけアクセスできるようにしているのは、不慮の事故で他のS3バケットに影響を及ぼさないためです。</p>
+</blockquote>
+<h2 id="IAMユーザーの作り方"><a href="#IAMユーザーの作り方" class="headerlink" title="IAMユーザーの作り方"></a>IAMユーザーの作り方</h2><p>IAMユーザーの作り方は至って単純で、AWSのコンソールにログインしてIAMユーザーを作成すればいいです。</p>
+<p>ところが、<strong>特定のS3にのみアクセスできる</strong>ようにするためには、<strong>カスタムポリシー</strong>を作成してIAMユーザーに適用する必要があります。<br>しかしまぁ、フロントエンドエンジニアの自分としては、AWSのポリシーのJSONを触る機会などあまりないので、その書き方を毎回すっかり忘れるわけです。</p>
+<p>というわけで、今回はこの面倒なJSONを忘れないようにするのがこの記事の目的です。</p>
+<p>特定のS3バケットにのみアクセスできるようにするには、次のようなJSONをポリシーに設定します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#10;  &#34;Version&#34;: &#34;2012-10-17&#34;,&#10;  &#34;Statement&#34;: [&#10;    &#123;&#10;      &#34;Effect&#34;: &#34;Allow&#34;,&#10;      &#34;Action&#34;: &#34;s3:*&#34;,&#10;      &#34;Resource&#34;: [&#10;          &#34;arn:aws:s3:::&#60;bucket-name&#62;&#34;,&#10;          &#34;arn:aws:s3:::&#60;bucket-name&#62;/*&#34;&#10;      ]&#10;    &#125;&#10;  ]&#10;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>&lt;bucket-name&gt;</code>の部分には、アクセスを許可したいS3バケット名を指定してください。</li>
+<li><code>&lt;bucket-name&gt;/*</code>となっているのは、サブディレクトに対してもアクセスを許可するための設定です。</li>
+</ul>
+<p>このポリシーを設定したIAMユーザーのアクセスキーを、CIサービスで使えば特定のS3バケットに対してデプロイできるようになります。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法でした。</p>
+<p>CI周りの設定はプロジェクトを初期構築するときにやるので、次やろうとした時には大抵忘れています。<br>なので、備忘も兼ねて記事にしてみました。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2013/12/nodeseleniumserverlearnboostsoda.html" data-id="cja5ikwq300ae8a0air7cqfd2" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html" data-id="cja5ilh0b00d78a0ar9y3qa28" class="article-share-link">共有</a>
       
-        <a href="http://blog.mitsuruog.info/2013/12/nodeseleniumserverlearnboostsoda.html#disqus_thread" class="article-comment-link">コメント</a>
+        <a href="http://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html#disqus_thread" class="article-comment-link">コメント</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Selenium/">Selenium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws/">aws</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/s3/">s3</a></li></ul>
 
     </footer>
   </div>
@@ -221,19 +202,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
 <nav id="article-nav">
   
-    <a href="/2013/12/yeomangruntfilejs.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新しい記事</strong>
-      <div class="article-nav-title">
-        
-          Yeomanに学ぶモテるGruntfile.jsの書き方
-        
-      </div>
-    </a>
   
-  
-    <a href="/2013/12/androidchromedevtoolsremote.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/11/react-router-redirect-parameter.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">古い記事</strong>
-      <div class="article-nav-title">Androidやってる人でChromeDevtoolsのRemote DebuggingとScreencasting知らない人は使ってみた方がいいよ！</div>
+      <div class="article-nav-title">react router v4のRedirectでURLパラメータを使う</div>
     </a>
   
 </nav>
