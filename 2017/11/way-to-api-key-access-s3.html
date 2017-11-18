@@ -14,7 +14,7 @@ AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作
 <meta property="og:description" content="よく忘れるシリーズ。
 AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法です。">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png">
-<meta property="og:updated_time" content="2017-11-18T16:15:39.484Z">
+<meta property="og:updated_time" content="2017-11-18T16:22:37.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="特定のS3バケットにだけアクセスできるIAMユーザーを作る">
 <meta name="twitter:description" content="よく忘れるシリーズ。
@@ -168,8 +168,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>よく忘れるシリーズ。</p>
 <p>AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法です。</p>
 <a id="more"></a>
-<h2 id="想定される用途"><a href="#想定される用途" class="headerlink" title="想定される用途"></a>想定される用途</h2><p>自分の場合、最近のフロントエンドはSPAを作ることが多いので、コードはWebpackでbundleをビルドしてS3にデプロイするケースが多いです。</p>
-<p>この辺りはCIサービスを利用して自動化しているのですが、その時にAWSのIAMを作成して、そのアクセスキーを使って特定のS3バケットにデプロイします。</p>
+<h2 id="想定される用途"><a href="#想定される用途" class="headerlink" title="想定される用途"></a>想定される用途</h2><p>自分の場合、最近のフロントエンドはSPAを作ることが多いので、フロントエンドのコードをWebpackでbundleにビルドしてS3へデプロイします。</p>
+<p>この辺りはCIサービスを利用して自動化しているのですが、その時にAWSのIAMを作成し、そのアクセスキーを使って特定のS3バケットにデプロイするようにします。</p>
 <blockquote>
 <p>特定のバケットにだけアクセスできるようにしているのは、不慮の事故で他のS3バケットに影響を及ぼさないためです。</p>
 </blockquote>
@@ -189,7 +189,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html" data-id="cja5ilh0b00d78a0ar9y3qa28" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html" data-id="cja5jl5yj000h7p0ae9yg9wxo" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html#disqus_thread" class="article-comment-link">コメント</a>
       
