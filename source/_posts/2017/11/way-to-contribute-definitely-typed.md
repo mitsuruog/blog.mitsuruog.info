@@ -82,7 +82,7 @@ DefinitelyTyped
 
 手前味噌ですが、自分が書いたテストを張っておきます。これも他のライブラリを見ながら書いていきます。
 
-```tsx
+```
 import * as React from "react";
 import Alert from "react-s-alert";
 

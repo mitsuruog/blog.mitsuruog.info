@@ -45,7 +45,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
 
 # Category & Tag
@@ -128,5 +128,5 @@ favicon: /favicon.png
 # Disqus
 disqus_shortname: mitsuruog
 
-plugins:
-- hexo-generator-cname
+# plugins:
+# - hexo-generator-cname

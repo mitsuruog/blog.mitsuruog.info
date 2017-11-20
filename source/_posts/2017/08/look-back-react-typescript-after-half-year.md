@@ -4,7 +4,7 @@ title: "ReactとTypeScriptで半年間サービスを走らせてみてよかっ
 date: 2017-08-03 0:00:00 +900
 comments: true
 tags:
-  - React
+  - react
   - TypeScript
   - CODEPREP
 ---
