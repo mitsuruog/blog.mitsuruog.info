@@ -15,7 +15,7 @@
 今回は、DefinitelyTypedにコントリビュートする機会が最近増えたので、個人的な手順をまとめておきます。">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png">
-<meta property="og:updated_time" content="2017-11-20T09:36:20.272Z">
+<meta property="og:updated_time" content="2017-11-23T13:40:46.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順">
 <meta name="twitter:description" content="TypeScriptを使っていると、結構必要になる型定義ファイル。型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。
@@ -184,6 +184,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">dts</span><span class="literal">-</span><span class="comment">gen</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">dt</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">my</span><span class="literal">-</span><span class="comment">package</span><span class="literal">-</span><span class="comment">name</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">template</span> <span class="comment">module</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>--template</code>の部分はいくつか指定があるのですが、あまり詳しく知らないです。<br>（この辺り、どのtemplate使ったらいいか、わかりやすいドキュメントがあるといいんだけどなー。）</p>
+<p>(2017.11.23 追記)テンプレートっぽいの見つけたので貼っておきます。</p>
+<ul>
+<li><a href="https://github.com/Microsoft/TypeScript-Handbook/tree/master/pages/declaration%20files/templates" target="_blank" rel="external">https://github.com/Microsoft/TypeScript-Handbook/tree/master/pages/declaration%20files/templates</a></li>
+</ul>
 </blockquote>
 <p>generateした結果はこんな感じで、<code>types</code>の下にディレクトリが作成されています。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DefinitelyTyped</span><br><span class="line">  types</span><br><span class="line">    my-package-name</span><br><span class="line">      index<span class="class">.d</span><span class="class">.ts</span></span><br><span class="line">      my-package-name-test<span class="class">.ts</span></span><br><span class="line">      tsconfig<span class="class">.json</span></span><br><span class="line">      tslint.json</span><br></pre></td></tr></table></figure>
@@ -214,7 +218,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-contribute-definitely-typed.html" data-id="cja87ot4s000c590arnpebnc1" class="article-share-link">共有</a>
+      <a data-url="http://blog.mitsuruog.info/2017/11/way-to-contribute-definitely-typed.html" data-id="cjacj0d5c000ctj0a9a75yke0" class="article-share-link">共有</a>
       
         <a href="http://blog.mitsuruog.info/2017/11/way-to-contribute-definitely-typed.html#disqus_thread" class="article-comment-link">コメント</a>
       
