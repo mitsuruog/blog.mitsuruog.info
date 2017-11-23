@@ -47,6 +47,9 @@ dts-gen --dt --name my-package-name --template module
 > `--template`の部分はいくつか指定があるのですが、あまり詳しく知らないです。
 > （この辺り、どのtemplate使ったらいいか、わかりやすいドキュメントがあるといいんだけどなー。）
 
+> (2017.11.23 追記)テンプレートっぽいの見つけたので貼っておきます。
+> - https://github.com/Microsoft/TypeScript-Handbook/tree/master/pages/declaration%20files/templates
+
 generateした結果はこんな感じで、`types`の下にディレクトリが作成されています。
 
 ```
