@@ -15,10 +15,10 @@ Gtihub：https://github.com/mitsuruog/Openui">
 <meta property="og:description" content="国内でのOpenUI5の注目度の低さに涙が出そうです。でも頑張ります。今回は「OpenUI5とODataを使ってどのようにWebシステムを作成するか」というチュートリアルを作って見ました。
 内容はこちらです。http://mitsuruog.github.io/Openui5-with-OdataService/
 Gtihub：https://github.com/mitsuruog/Openui">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata1.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/exjp_odata.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata2.png">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2014/openui5odata1.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2014/exjp_odata.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2014/openui5odata2.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SAPUI5/OpenUI5]ODataとOpenUI5でWebシステムを作るチュートリアルをつくりました">
 <meta name="twitter:description" content="国内でのOpenUI5の注目度の低さに涙が出そうです。でも頑張ります。今回は「OpenUI5とODataを使ってどのようにWebシステムを作成するか」というチュートリアルを作って見ました。
@@ -113,7 +113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -173,7 +173,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>内容はこちらです。<br><a href="http://mitsuruog.github.io/Openui5-with-OdataService/" target="_blank" rel="external">http://mitsuruog.github.io/Openui5-with-OdataService/</a></p>
 <p>Gtihub：<br><a href="https://github.com/mitsuruog/Openui5-with-OdataService" target="_blank" rel="external">https://github.com/mitsuruog/Openui5-with-OdataService</a><br>良かったらGithubでStar付けたり、SNSでシェアしてくださいね。</p>
 <a id="more"></a>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata1.png" width="580" height="326">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2014/openui5odata1.png" width="580" height="326">
 <ol>
 <li>ODataとは？</li>
 <li>なぜODataとOpenUi5なのか？</li>
@@ -182,7 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>まとめ</li>
 </ol>
 <blockquote>
-<p>(2014/11/13 追記)<br>このネタで<a href="http://html5experts.jp" target="_blank" rel="external">HTML5Experts.jp</a>に寄稿しました。こちらの方が分かりやすく書いてあると思います。<br><a href="http://html5experts.jp/mitsuruog/9518/" target="_blank" rel="external">実例から考える、HTML5時代のエンタープライズ・アーキテクチャ | HTML5Experts.jp</a><br><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/exjp_odata.png" title="483　246"></p>
+<p>(2014/11/13 追記)<br>このネタで<a href="http://html5experts.jp" target="_blank" rel="external">HTML5Experts.jp</a>に寄稿しました。こちらの方が分かりやすく書いてあると思います。<br><a href="http://html5experts.jp/mitsuruog/9518/" target="_blank" rel="external">実例から考える、HTML5時代のエンタープライズ・アーキテクチャ | HTML5Experts.jp</a><br><img src="https://blog-mitsuruog.s3.amazonaws.com/images/2014/exjp_odata.png" title="483　246"></p>
 </blockquote>
 <h2 id="1-ODataとは？"><a href="#1-ODataとは？" class="headerlink" title="1. ODataとは？"></a>1. ODataとは？</h2><p>ODataとは、<br>「Webシステムにおける、フロントエンドとバックエンドとの面倒なAjax問い合わせの手続きを標準化したプロトコル」</p>
 <p>皆さん、Webシステムを構築する際にWebAPIに渡すパラメータを独自設計していると思いますが、パラメータを含めたバックエンドへのデータアクセスの手順を標準化しているものです。</p>
@@ -205,7 +205,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>ここで言うUIフレームワークとはUIコンポーネントも持つもので、WebAPIから取得したデータを元に自動でUIを構築し、UI側の操作をダイレクトURLへ変換してバックエンドに連携できる機能を持っています。（以下、双方向データバインディング）</p>
 <p>ODataが持つデータアクセス方法の標準化とUIフレームワークの双方向データバインディングが組合わせることで、フロント部分の多くがフレームワークで隠蔽できます。</p>
 <p>従来のオープンソースを組み合わせた場合と比べ、データアクセスに関わる非常にセンシティブで難易度が高い部分実装がかなり省け、大規模なシステム開発においても比較的管理しやすく、安全に開発ができる可能性があり、非常に惹かれるものがあります。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/openui5odata2.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2014/openui5odata2.png">
 <h2 id="5-まとめ"><a href="#5-まとめ" class="headerlink" title="5. まとめ"></a>5. まとめ</h2><p>ODataとOpenUI5について少し関心を持っていただけたでしょうか？</p>
 <p>昨今は、AngularJSが最も注目されるJavascriptフレームワークです。私も非常に大好きです。</p>
 <p>しかし、企業向けWebシステムとして見た場合、様々なオープンソースを組み合わせて構築するより、様々な機能を統合した「エンタープライズUIフレームワーク」の方が、向いているのではないかと思っています。</p>
@@ -270,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -288,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -306,7 +306,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -324,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -342,7 +342,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

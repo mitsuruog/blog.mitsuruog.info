@@ -11,10 +11,10 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2017/08/look-back-react-typescript-after-half-year.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="自分はCODEPREPというオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript1.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript2.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript3.png">
-<meta property="og:updated_time" content="2017-11-20T13:11:45.969Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript1.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript2.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript3.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactとTypeScriptで半年間サービスを走らせてみてよかった点を振り返って見る">
 <meta name="twitter:description" content="自分はCODEPREPというオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。">
@@ -107,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -163,7 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript1.png">
+        <img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript1.png">
 <p>自分は<a href="https://codeprep.jp/" target="_blank" rel="external">CODEPREP</a>というオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。</p>
 <a id="more"></a>
 <h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p><a href="https://codeprep.jp/" target="_blank" rel="external">CODEPREP</a>は月間で50万PV以上あるWebサービスです。</p>
@@ -181,7 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h2 id="末端のUIコンポーネントを徹底的にStatelessにした"><a href="#末端のUIコンポーネントを徹底的にStatelessにした" class="headerlink" title="末端のUIコンポーネントを徹底的にStatelessにした"></a>末端のUIコンポーネントを徹底的にStatelessにした</h2><p>ここでのStatelessコンポーネントとは、Functional stateless componentのことで、内部に一切状態を保持せず、ただ外部から与えられた値を元に描画することに特化したコンポーネントのことです。</p>
 <p>ボタン・リンク・タブなどの共通的に利用できそうなUIパーツは、Statelessコンポーネントとして小分けに作成するようにしました。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript2.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript2.png">
 <p>これにより、Statelessコンポーネントはただ与えられた値を元にUIを描画するだけとなり、propsで渡される値のパターンだけ注意すればいい状態となりました。</p>
 <p>内部にstateにより状態遷移を持たないので、コンポーネントがシンプルで見通しがよくなり、ほとんど不具合を起こす要因が見当たらなくなりました。</p>
 <blockquote>
@@ -196,7 +196,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>Statelessコンポーネント</li>
 </ul>
 <p>大まかに「ページコンポーネント」が各画面1つに対応していて、「Statelessコンポーネント」は共通的に利用する小さいUI部品のことです。そして「コンテナ」とはいくつかページコンポーネントを束ねるコンポーネントのことです。<br>アプリケーションで共通で利用するデータなどを保持してたり、ページへの許可されていないアクセスをブロックする門番のような役割もしています。どちらかというと<strong>Gateway</strong>と言った方がしっくりくるかもしれません。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript3.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript3.png">
 <blockquote>
 <p>厳密にいうと世にあるReactのコンテナパターンのように綺麗に責務が別れていません。かなりオリジナル色が強いです。</p>
 </blockquote>
@@ -280,7 +280,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -298,7 +298,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -316,7 +316,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -334,7 +334,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -352,7 +352,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

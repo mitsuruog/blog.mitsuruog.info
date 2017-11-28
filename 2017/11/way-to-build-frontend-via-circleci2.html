@@ -13,11 +13,11 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
 今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-2.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-3.png">
-<meta property="og:updated_time" content="2017-11-27T14:57:48.631Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-1.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-2.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-3.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Circle CI 2.0でフロントエンドをビルドする">
 <meta name="twitter:description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
@@ -111,7 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -167,7 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png">
+        <img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png">
 <p><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a>で作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。</p>
 <p>今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。</p>
 <a id="more"></a>
@@ -175,7 +175,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="定義ファイルを作成する"><a href="#定義ファイルを作成する" class="headerlink" title="定義ファイルを作成する"></a>定義ファイルを作成する</h2><p>まずは定義ファイルを作成する必要があります。設定ファイルは<code>.circleci</code>フォルダの中に<code>config.yml</code>を作成して定義していきます。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">root</span></span><br><span class="line">  <span class="class">.circleci</span></span><br><span class="line">    <span class="tag">config</span><span class="class">.yml</span></span><br></pre></td></tr></table></figure>
 <p>定義ファイルのシンタックスについてはv1.0と比べると結構変わっているので注意が必要です。<br>Slackの作業ログを見ると、Dashboardのどこかで定義ファイルが生成できたようですが、どこだか忘れてしまいました。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-1.png">
 <p>定義ファイルを生成すると次のようなファイルが作成されます。</p>
 <p>デフォルトではCircleCIが準備したDocker imageを使います。(<code>image: circleci/node:8.9</code>の部分)<br>node, npm, yarnは既にimageに含まれているので、最小構成であればこれで大丈夫だと思います。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># Javascript Node CircleCI 2.0 configuration file</span><br><span class="line">#</span><br><span class="line"># <span class="operator"><span class="keyword">Check</span> https://circleci.com/docs/<span class="number">2.0</span>/<span class="keyword">language</span>-javascript/ <span class="keyword">for</span> more details</span><br><span class="line">#</span><br><span class="line"><span class="keyword">version</span>: <span class="number">2</span></span><br><span class="line">jobs:</span><br><span class="line">  <span class="keyword">build</span>:</span><br><span class="line">    docker:</span><br><span class="line">      # specify the <span class="keyword">version</span> you desire here</span><br><span class="line">      - image: circleci/node:<span class="number">8.9</span></span><br><span class="line"></span><br><span class="line">      # Specify service dependencies here <span class="keyword">if</span> necessary</span><br><span class="line">      # CircleCI maintains a <span class="keyword">library</span> <span class="keyword">of</span> pre-built images</span><br><span class="line">      # documented <span class="keyword">at</span> https://circleci.com/docs/<span class="number">2.0</span>/circleci-images/</span><br><span class="line">      # - image: circleci/mongo:<span class="number">3.4</span><span class="number">.4</span></span><br><span class="line"></span><br><span class="line">    working_directory: ~/workspace</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - checkout</span><br><span class="line"></span><br><span class="line">      # Download <span class="keyword">and</span> <span class="keyword">cache</span> dependencies</span><br><span class="line">      - restore_cache:</span><br><span class="line">          <span class="keyword">keys</span>:</span><br><span class="line">          - v1-dependencies-&#123;&#123; <span class="keyword">checksum</span> <span class="string">"package.json"</span> &#125;&#125;</span><br><span class="line">          # fallback <span class="keyword">to</span> <span class="keyword">using</span> the latest <span class="keyword">cache</span> <span class="keyword">if</span> <span class="keyword">no</span> exact <span class="keyword">match</span> <span class="keyword">is</span> <span class="keyword">found</span></span><br><span class="line">          - v1-dependencies-</span><br><span class="line"></span><br><span class="line">      - run: yarn <span class="keyword">install</span></span><br><span class="line"></span><br><span class="line">      - save_cache:</span><br><span class="line">          paths:</span><br><span class="line">            - node_modules</span><br><span class="line">          <span class="keyword">key</span>: v1-dependencies-&#123;&#123; <span class="keyword">checksum</span> <span class="string">"package.json"</span> &#125;&#125;</span><br><span class="line"></span><br><span class="line">      # run tests!</span><br><span class="line">      - run: yarn <span class="keyword">test</span></span></span><br></pre></td></tr></table></figure>
@@ -213,7 +213,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">workflows</span>:</span><br><span class="line">  <span class="attribute">version</span>: <span class="number">2</span></span><br><span class="line">  <span class="attribute">test_build_and_deploy</span>:</span><br><span class="line">    <span class="attribute">jobs</span>:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">          <span class="attribute">filters</span>:</span><br><span class="line">            <span class="attribute">branches</span>:</span><br><span class="line">              <span class="attribute">only</span>:</span><br><span class="line">                - develop</span><br></pre></td></tr></table></figure>
 <p>この場合は<code>develop</code>プランチの場合のみbuildのJobが実行されるようになります。</p>
 <p>定義したワークフローはCircleCI上の「WORKFLOWS」にて確認することができます。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-2.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-2.png">
 <h2 id="おまけ"><a href="#おまけ" class="headerlink" title="おまけ"></a>おまけ</h2><p>Circle CIのデフォルトのマシンリソースは<code>medium</code>(CPU 2.0 RAM 4GB)となっていて、最近のフロントエンドのテスト、デプロイにおいてはスペック不足感が否めません。</p>
 <blockquote>
 <p>CPUはコア数かな？</p>
@@ -226,7 +226,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <blockquote>
 <p>有効にしたいOrganization名と一緒に依頼すると割と早めに対応してくれました。Circle CIのカスタマーサポート素晴らしい！！</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-3.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-3.png">
 <p>とはいえ、将来的には<code>resource_class</code>はプレミアム機能になるかもしれないです。要注意！</p>
 </blockquote>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>CircleCI 2.0でフロントエンドをビルドするための大まかな手順でした。<br>本題とは全く関係ないのですが、Circle CIのカスタマーサポート迅速でよかったなー。</p>
@@ -284,7 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -302,7 +302,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -320,7 +320,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -338,7 +338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -356,7 +356,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

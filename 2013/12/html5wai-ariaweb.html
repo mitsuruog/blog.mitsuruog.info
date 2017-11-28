@@ -15,12 +15,12 @@
 <meta property="og:description" content="このエントリはHTML5 Advent Calendar 2013 ３日目の記事です。
 前後の記事はこちらです← youhei.iwasaki8 [iwaheiの日記]geolocation apiを使った位置情報取得→ あおいたん [GCG研究所]手元にあったHTML5アプリをFxOSとTizenで動かしてみるの巻
 「Internet of Things」と呼ばれる「モノがインターネットする」時">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb1.jpg">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb2.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb3.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb4.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb5.png">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb1.jpg">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb2.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb3.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb4.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb5.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5のセマンティックとWAI-ARIAでWebの未来がおもしろい件">
 <meta name="twitter:description" content="このエントリはHTML5 Advent Calendar 2013 ３日目の記事です。
@@ -115,7 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -181,7 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>「セマンティック」は再利用してこそ意味がある。</li>
 </ol>
 <p>エンタープライズにいるエンジニアとして、「なぜHTML5なのか？」「HTML5になると何かいいのか？」という問いに対する答えを探し続けています。<br>まだ、答えは見つけられていませんが、ぼんやりと「セマンティック」の先にある何かではないかと感じています。今日は、そんな頭の中のもやもやを少し文書化してみました。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb1.jpg" width="421" height="315">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb1.jpg" width="421" height="315">
 <h2 id="私が思うセマンティックとは"><a href="#私が思うセマンティックとは" class="headerlink" title="私が思うセマンティックとは"></a>私が思うセマンティックとは</h2><p>今日まで数々の論者の方がセマンティックについて語って来ましたので、今更わたしのセマンティック論なんて聞きたくないと思いますが、あえて言わせていただきます。</p>
 <p><strong>「HTML文書に意味付けを行って、機械がその意味を理解して振る舞えるようにすること」</strong></p>
 <p>セマンティックとは人が自己満足でやるものではなく、あくまで機械（デバイス）などでHTML文書が再利用できて初めて価値があると思います。エンタープライスにて今後「HTML5」を導入する企業は多いと思いますが、一度この辺りを真剣に検討した方がいいと思います。</p>
@@ -196,10 +196,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>WAI-ARIAでは、HTMLのタグにカスタム属性「role」にて役割を、「aria-」にて振る舞いや状態を定義することができます。<br>（変なマークアップがあるかもしれませんが、雰囲気をつかめればいいのでご了承ください。）</p>
 <p>なんからのポップアップのリンクがあったとします。<br>WAI-ARIA対応されてないマークアップの場合は、VoiceOverはただのリンクと解釈しています。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"//www.google.com"</span> <span class="attribute">target</span>=<span class="value">"_brank"</span>&gt;</span>google<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb2.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb2.png">
 <p>ところが、WAI-ARIAの「aria-haspopup」を使うことで、VoiceOverはポップアップリンクであることを認識しています。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"//www.google.com"</span> <span class="attribute">target</span>=<span class="value">"_brank"</span> <span class="attribute">aria-haspopup</span>=<span class="value">"true"</span>&gt;</span>google<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb3.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb3.png">
 <p>次は、状態の例です。</p>
 <p>Ajaxなどによるコンテンツを動的に更新するケースは非常に多いと思います。<br>WAI-ARIAでは次のように「aria-live」を使用することで、コンテンツの動的更新を通知することが可能です。</p>
 <p>Javascript側でタイマーを仕込んでコンテンツを動的更新させていきます。</p>
@@ -207,10 +207,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>HTMLのマークアップは次の通りです。</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p aria-live=<span class="string">"polite"</span> class=<span class="string">"hoge"</span>&amp;<span class="keyword">gt</span>;<span class="number">0</span>&amp;<span class="keyword">lt</span>;/p&amp;<span class="keyword">gt</span>;</span><br></pre></td></tr></table></figure>
 <p>このようにすることで、VoiceOverはコンテンツが動的に変わった瞬間を検知して読み上げてくれます。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb4.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb4.png">
 <p>必須入力も「aria-required」で知らせてくれます。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">aria-required</span>=<span class="value">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/ariaweb5.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2013/ariaweb5.png">
 <p>ほかにもWAI-AREAで定義されている属性は非常に沢山ありますので、詳しくは仕様書を読んでください。</p>
 <ul>
 <li><a href="http://www.w3.org/TR/wai-aria/" target="_blank" rel="external">Accessible Rich Internet Applications (WAI-ARIA) 1.0</a></li>
@@ -278,7 +278,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -296,7 +296,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -314,7 +314,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -332,7 +332,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -350,7 +350,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

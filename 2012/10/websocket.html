@@ -13,9 +13,9 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。
 今回はnodejitsuを使ってsockect.ioを使ったアプリをホスティングしたところ、websocket（以下、ws）まわりで思わぬハマりポイントがあったというお話しをします。（同じようなトラブルで悩む方に少しでもヒントをあげられたらと考えています。）">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2012/comp.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2012/block.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="websocketを使う際の意外な落とし穴">
 <meta name="twitter:description" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。
@@ -109,7 +109,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -180,13 +180,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><a href="http://wsping.jit.su/" target="_blank" rel="external">http://wsping.jit.su/</a>（nodejitsuのwebsoketPingサイトです。）</li>
 </ul>
 <p>例えばですが、80ポートのwsがブロックされている場合は次のような結果となります。</p>
-<p><a href="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png" target="_blank" rel="external"><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png" width="340" height="500"></a></p>
+<p><a href="https://blog-mitsuruog.s3.amazonaws.com/images/2012/comp.png" target="_blank" rel="external"><img src="https://blog-mitsuruog.s3.amazonaws.com/images/2012/comp.png" width="340" height="500"></a></p>
 <p>で、厄介なのが、セキュリティソフトにてブロックされている場合で、<br>wsの疎通確認自体はOKなのですが、wsがなぜか届かない状態となってしまったので、原因を特定するのに少し時間がかかりました。</p>
 <p><em>（私の場合はウイルスバスタークラウド2012がブロックしていました。<strong>こちらについてはTrend Microのサポートとやりとりしているので、</strong>何か進展あっておもしろそうだったら書くかもしれません。）</em></p>
 <h2 id="wsのみがブロックされた場合にsocket-ioが怪しい挙動をする…"><a href="#wsのみがブロックされた場合にsocket-ioが怪しい挙動をする…" class="headerlink" title="wsのみがブロックされた場合にsocket.ioが怪しい挙動をする…"></a>wsのみがブロックされた場合にsocket.ioが怪しい挙動をする…</h2><p>さて、nodejsでws使う際はsocket.ioを使うのがデファクトとなっているのは皆さんご存知だと思います。<br>socket.ioではクライアントがws使えない場合、通信手段をwsからXmlHttpRequestなどに自動でダウングレードしてくれる便利機能があるのですが、今回のようにwsのみがブロックされるような場合、そのダウングレード機能がうまく働きませんでした。</p>
 <p>wsの正しい挙動としては、まずhttpでハンドシェイクを行い、ハンドシェイクができた後にwsにプロトコルを変更して通信する流れなのですが、どうやらハンドシェイクを確立した後にwsのみがブロックされている場合、socket.ioにて通信手段の変更ができないようです。</p>
 <p>（念のため、Chromeで取ったヘッダーとか載せときますね。）</p>
-<p><a href="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png" target="_blank" rel="external"><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png"></a></p>
+<p><a href="https://blog-mitsuruog.s3.amazonaws.com/images/2012/block.png" target="_blank" rel="external"><img src="https://blog-mitsuruog.s3.amazonaws.com/images/2012/block.png"></a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Request URL:ws:<span class="comment">//wsping.jit.su/socket.io/1/websocket/dL7NXuBCnWhqnZMPAYkU</span></span><br><span class="line">Request Method:GET</span><br><span class="line">Status Code:<span class="number">101</span> Switching Protocols</span><br><span class="line">Request Headersview source</span><br><span class="line">Connection:Upgrade</span><br><span class="line">Host:wsping.jit.su</span><br><span class="line">Origin:http:<span class="comment">//wsping.jit.su</span></span><br><span class="line">Sec-WebSocket-Extensions:x-webkit-deflate-frame</span><br><span class="line">Sec-WebSocket-Key:<span class="number">4</span>EjkGu1WajTwi0MOvQjOyw==</span><br><span class="line">Sec-WebSocket-Version:<span class="number">13</span></span><br><span class="line">Upgrade:websocket</span><br><span class="line">(Key3):<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">Response Headersview source</span><br><span class="line">Connection:Upgrade</span><br><span class="line">Sec-WebSocket-Accept:lbl4DxvLmfnTm2okzQxld/Yb/sE=</span><br><span class="line">Upgrade:websocket</span><br><span class="line">(Challenge Response):<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
 <p>正直、この挙動が仕様なのかバグなのか、それとも私の実装が悪いのか判断できず、一度詳しい方の見解を聞いてみたいです。（Help me!）</p>
 <p>今回の件で、改めて新しいプロトコル導入期のライアント周辺環境（N/Wとかセキュリティとか）の課題が大きいなと感じました。（SPDYもそうなんですが･･･）<br>現状、より多くのユーザの元にsocket.ioを使った通信を届けるためには、wsの通信をwssとするか、通信手段をXmlHttpRequestなどにダウングレードするのが無難なのかもしれません。</p>
@@ -262,7 +262,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -280,7 +280,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -298,7 +298,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -316,7 +316,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -334,7 +334,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

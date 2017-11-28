@@ -11,11 +11,11 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2014/03/gruntcoffeescript.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="最近、Javascriptの実装なるべく楽したいので、CoffeeScriptを書いています。当然、ブラウザはCoffeeScriptを解釈できないため、Javascriptにコンパイルする必要があるのですが、やっぱここでもGruntです。GruntでのCoffeeScriptのコンパイル方法について、個人的に調べたので少しまとめます。">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee1.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee2.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee3.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee4.png">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee1.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee2.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee3.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee4.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gruntを使ってCoffeeScriptをいろいろコンパイルする">
 <meta name="twitter:description" content="最近、Javascriptの実装なるべく楽したいので、CoffeeScriptを書いています。当然、ブラウザはCoffeeScriptを解釈できないため、Javascriptにコンパイルする必要があるのですが、やっぱここでもGruntです。GruntでのCoffeeScriptのコンパイル方法について、個人的に調べたので少しまとめます。">
@@ -108,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -166,7 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
         <p>最近、Javascriptの実装なるべく楽したいので、CoffeeScriptを書いています。<br>当然、ブラウザはCoffeeScriptを解釈できないため、Javascriptにコンパイルする必要があるのですが、やっぱここでもGruntです。<br>GruntでのCoffeeScriptのコンパイル方法について、個人的に調べたので少しまとめます。</p>
 <a id="more"></a>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee1.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee1.png">
 <ol>
 <li>シンプル（1-&gt;1またはn-&gt;1）</li>
 <li>マルチ（n-&gt;n）</li>
@@ -178,16 +178,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install grunt-contrib-coffee --<span class="built_in">save</span>-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
 <p>インストールしたら、Gruntfile.jsにてプラグインを有効化します。</p>
 <figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.loadNpmTasks(<span class="symbol">'grunt</span>-contrib-coffee');</span><br></pre></td></tr></table></figure>
-<h2 id="1-シンプル（1-gt-1またはn-gt-1）"><a href="#1-シンプル（1-gt-1またはn-gt-1）" class="headerlink" title="1.シンプル（1-&gt;1またはn-&gt;1）"></a>1.シンプル（1-&gt;1またはn-&gt;1）</h2><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee2.png">
+<h2 id="1-シンプル（1-gt-1またはn-gt-1）"><a href="#1-シンプル（1-gt-1またはn-gt-1）" class="headerlink" title="1.シンプル（1-&gt;1またはn-&gt;1）"></a>1.シンプル（1-&gt;1またはn-&gt;1）</h2><img src="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee2.png">
 <p>まずは、最も単純なタスクです。1つの「.coffee」ファイルを「.js」にコンパイルしたり、複数の「.coffee」を1つの「.js」にまとめます。コンパイルしたJavascriptは後続のUglifyタスクでminifyしたり難読化したりします。</p>
 <p>良く使われるケースだと思います。Gruntタスクはこんな感じで書きます。</p>
 <script src="//gist.github.com/9392519.js?file=Gruntfile1.js"></script>
-<h2 id="2-マルチ（n-gt-n）"><a href="#2-マルチ（n-gt-n）" class="headerlink" title="2.マルチ（n-&gt;n）"></a>2.マルチ（n-&gt;n）</h2><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee3.png">
+<h2 id="2-マルチ（n-gt-n）"><a href="#2-マルチ（n-gt-n）" class="headerlink" title="2.マルチ（n-&gt;n）"></a>2.マルチ（n-&gt;n）</h2><img src="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee3.png">
 <p>次は、コンパイル時に1つのJavascriptとせず、フォルダ構成などを維持したままCoffeeScriptをコンパイルする方法です。JavascriptMV＊系フレームワークを使っていると割と遭遇するケースです。<br>Gruntタスクはこんな感じです。</p>
 <script src="//gist.github.com/9392519.js?file=Gruntfile2.js"></script>
 <p>Gruntでは、ファイルの指定を動的に行うためのDynamicMappingという仕組みを持っていて、今回はこれを使ってます。詳しくは本家のページをどうぞ。</p>
 <p>Configuring tasks - Grunt: The JavaScript Task Runner<br><a href="http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically" target="_blank" rel="external"> http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically</a></p>
-<h2 id="3-マルチ（n-gt-n）＋ちょっとカスタム"><a href="#3-マルチ（n-gt-n）＋ちょっとカスタム" class="headerlink" title="3.　マルチ（n-&gt;n）＋ちょっとカスタム"></a>3.　マルチ（n-&gt;n）＋ちょっとカスタム</h2><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee4.png">
+<h2 id="3-マルチ（n-gt-n）＋ちょっとカスタム"><a href="#3-マルチ（n-gt-n）＋ちょっとカスタム" class="headerlink" title="3.　マルチ（n-&gt;n）＋ちょっとカスタム"></a>3.　マルチ（n-&gt;n）＋ちょっとカスタム</h2><img src="https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee4.png">
 <p>最後は、ちょっと特殊（？）です。「.」が2つ以上あるファイルのコンパイルです。<br>上の方法で普通にコンパイルすると「hoge.view.coffee」が「hoge.js」になってしまいます。</p>
 <p>これはGruntでは最初の「.」の所までがファイル名で、それ以降は拡張子と扱う仕様となっているからです。そこでコンパイル時の拡張子を判定する処理をカスタムすることにしました。Gruntタスクはこんな感じです。</p>
 <script src="//gist.github.com/9392519.js?file=Gruntfile3.js"></script>
@@ -252,7 +252,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -270,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -288,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -306,7 +306,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -324,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

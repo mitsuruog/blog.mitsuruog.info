@@ -11,10 +11,10 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001319.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001409.png">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2016/angular2.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2016/IMG_20160229_001319.png">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2016/IMG_20160229_001409.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular2でSharedServiceを作りたい">
 <meta name="twitter:description" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。">
@@ -107,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -163,7 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png">
+        <img src="https://blog-mitsuruog.s3.amazonaws.com/images/2016/angular2.png">
 <p>SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。<br>Angular1の場合は、SharedServiceを利用するケースが多かったです。<br>そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。</p>
 <a id="more"></a>
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><ul>
@@ -176,10 +176,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>Hero一覧データはHeroServiceに格納され、各componentはHeroServiceを参照する。</li>
 </ul>
 <p>簡単な図に示すとこのような構造をしていると仮定します。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001319.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2016/IMG_20160229_001319.png">
 <h2 id="失敗パターン"><a href="#失敗パターン" class="headerlink" title="失敗パターン"></a>失敗パターン</h2><p>すべてのサンプルはこちら<br><a href="http://plnkr.co/edit/R1q9vzDa1gHXHBUClu1s?p=preview" target="_blank" rel="external">plnkr</a></p>
 <p>失敗パターンでは、HeroDetailComponentにてHeroを削除しても消えません。<br>これはHeroDetailComponentの<code>providers</code>でHeroServiceをDIした場合、新規でインスタンスを生成してしまうためです。<br>結果、HeroListComponentとHeroDetailComponentでは、別のHeroServiceのインスタンスを参照していることになっています。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/IMG_20160229_001409.png">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2016/IMG_20160229_001409.png">
 <p>HeroDetailComponentで<code>@Component</code>をDIしている箇所を抜粋します。</p>
 <p><strong>hero-detail.component.ts</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import &#123;Component,  Input&#125;  from 'angular2/core';</span><br><span class="line">import &#123;Hero, HeroService&#125;   from './hero.service';</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: 'hero-detail',</span><br><span class="line">  template: `</span><br><span class="line">  &lt;span class="badge"&gt;&#123;&#123;hero.id&#125;&#125;&lt;/span&gt; &#123;&#123;hero.name&#125;&#125;</span><br><span class="line">  &lt;button (click)="remove()"&gt;remove&lt;/button&gt;</span><br><span class="line">  `,</span><br><span class="line">  providers:  [HeroService]  // &lt;- ここ</span><br><span class="line">&#125;)</span><br><span class="line">export class HeroDetailComponent implements OnInit  &#123;</span><br><span class="line">  @Input() hero: Hero;</span><br><span class="line">  constructor(private service:HeroService)&#123; &#125;</span><br><span class="line">  remove() &#123;</span><br><span class="line">    this.service.remove(this.hero);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="成功パターン"><a href="#成功パターン" class="headerlink" title="成功パターン"></a>成功パターン</h2><p>すべてのサンプルはこちら<br><a href="http://plnkr.co/edit/iYFMhuldCBqay72eWjay?p=preview" target="_blank" rel="external">plnkr</a></p>
@@ -247,7 +247,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -265,7 +265,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -283,7 +283,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -301,7 +301,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -319,7 +319,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

@@ -11,8 +11,8 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2013/04/jspunderscorejstemplatejsp.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="最近、業務系のWebシステムでもAjaxでの非同期通信が当たり前となってきました。その際に困るのがDOMをどう書き出すかと言ったところで、昔はjavascriptから直でDOMを書き出すことを平気でやっていたのですが、そんなことをするとメンテナンスしにくいコードが量産されていくわけで、そろそろクライアントサイドテンプレート導入について真剣に考えないとと思う今日この頃です。">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/underscore.png">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2013/underscore.png">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSPでUnderscore.jsの.template()を使いながら、クライアントサイドテンプレートとJSPの融合について思いを馳せる">
 <meta name="twitter:description" content="最近、業務系のWebシステムでもAjaxでの非同期通信が当たり前となってきました。その際に困るのがDOMをどう書き出すかと言ったところで、昔はjavascriptから直でDOMを書き出すことを平気でやっていたのですが、そんなことをするとメンテナンスしにくいコードが量産されていくわけで、そろそろクライアントサイドテンプレート導入について真剣に考えないとと思う今日この頃です。">
@@ -105,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -167,7 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>JSPでunderscore.jsのテンプレートを使う方法</li>
 <li>JSPでクライアントサイドテンプレートを書き出すメリット</li>
 </ol>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/underscore.png" width="500" height="87">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2013/underscore.png" width="500" height="87">
 <p>まず、手軽にクライアントサイドテンプレートを導入するのであれば、<a href="https://github.com/jquery/jquery-tmpl" target="_blank" rel="external">jQueryTmplate</a>か<a href="http://underscorejs.org/" target="_blank" rel="external">Underscore.js</a>を使うのが良いと思います。<br>特に、Underscore.jsはJavaでいうapache commonsのような、かゆいところに手が届く系のUtility関数の詰め合わせなので、template以外でも使いどころがありオススメです。</p>
 <h2 id="JSPでunderscore-jsのテンプレートを使う際に少しハマッたこと"><a href="#JSPでunderscore-jsのテンプレートを使う際に少しハマッたこと" class="headerlink" title="JSPでunderscore.jsのテンプレートを使う際に少しハマッたこと"></a>JSPでunderscore.jsのテンプレートを使う際に少しハマッたこと</h2><p>まず、JSPでunderscore.jsのテンプレートを使う際に少しハマッたので、その話をします。</p>
 <p>underscore.jsのtemplate()のデリミタ（区切り文字）はデフォルトで<code>「&lt;%」「%&gt;」</code>となっています。<br>これは、JSPのスクリプトレットと同じなので、そのまま使った場合、JSPプリコンパイル時に落ちます。<br>（まぁ、当たり前と言えばそうです。）</p>
@@ -249,7 +249,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -267,7 +267,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -285,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -303,7 +303,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -321,7 +321,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>

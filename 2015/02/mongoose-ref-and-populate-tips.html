@@ -11,8 +11,8 @@
 <meta property="og:url" content="http://blog.mitsuruog.info/2015/02/mongoose-ref-and-populate-tips.html">
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="ずっとRDBを使っていると、mongodbなどNOSQLのスキーマ設計する際に正規化を意識してちょいちょい思考が固まるのですが、mongodbのO/Rマッパーとして有名なmongooseを使う事で、複数のCollection間のリレーションとjoinっぽいことをエミュレーションできるので紹介します。">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/mongoose-populate.jpg">
-<meta property="og:updated_time" content="2017-11-08T17:18:36.000Z">
+<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/mongoose-populate.jpg">
+<meta property="og:updated_time" content="2017-11-28T14:42:51.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと">
 <meta name="twitter:description" content="ずっとRDBを使っていると、mongodbなどNOSQLのスキーマ設計する際に正規化を意識してちょいちょい思考が固まるのですが、mongodbのO/Rマッパーとして有名なmongooseを使う事で、複数のCollection間のリレーションとjoinっぽいことをエミュレーションできるので紹介します。">
@@ -105,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span>投稿</span>
       </div>
       <div class="article-info-block">
-        112
+        113
         <span>タグ</span>
       </div>
     </div>
@@ -167,7 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>今回の内容は、こちらの公式ドキュメントに基づくものです。</p>
 <p><a href="http://mongoosejs.com/docs/populate.html" target="_blank" rel="external">Mongoose Query Population v3.8.23</a></p>
 <h2 id="スキーマ定義"><a href="#スキーマ定義" class="headerlink" title="スキーマ定義"></a>スキーマ定義</h2><p>今回のスキーマは「社員(Employee)」と「部署(Unit)」として、以下のような構造をしているとします。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/mongoose-populate.jpg">
+<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/mongoose-populate.jpg">
 <h2 id="refを使ったリレーションの表現"><a href="#refを使ったリレーションの表現" class="headerlink" title="refを使ったリレーションの表現"></a>refを使ったリレーションの表現</h2><p>mongooseの場合、Schema定義の部分で<code>ref</code>を使うことでリレーションを表現することができます。<br>mongodbはCollectionにDocumentが作成された際に一意な<code>ObjectId</code>が生成されるため、これを外部キーのように利用してリレーションを表現します。</p>
 <p>Schema定義(model.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>)</span><br><span class="line">  , Schema = mongoose.Schema</span><br><span class="line"></span><br><span class="line"><span class="comment">// Employee</span></span><br><span class="line"><span class="keyword">var</span> employeeSchema = Schema(&#123;</span><br><span class="line">  name: <span class="built_in">String</span>,</span><br><span class="line">  unit: &#123; type: Schema.Types.ObjectId, ref: <span class="string">'Unit'</span> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Unit</span></span><br><span class="line"><span class="keyword">var</span> unitSchema = Schema(&#123;</span><br><span class="line">  name: <span class="built_in">String</span>,</span><br><span class="line">  employees: [&#123; type: Schema.Types.ObjectId, ref: <span class="string">'Employee'</span> &#125;]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">exports.Employee = mongoose.model(<span class="string">'Employee'</span>, employeeSchema);</span><br><span class="line">exports.Unit = mongoose.model(<span class="string">'Unit'</span>, unitSchema);</span><br></pre></td></tr></table></figure></p>
 <p>これで、EmployeeとUnitの双方にObjectIdを通じた参照が定義されました。実際にはそれぞれのDocumentに参照先のObjectIdが設定されます。</p>
@@ -251,7 +251,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
 )" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
   
 </a>
@@ -269,7 +269,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
 )" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
   
 </a>
@@ -287,7 +287,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
 )" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
   
 </a>
@@ -305,7 +305,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/react-router-redirect-parameter.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png
 )" alt="react router v4のRedirectでURLパラメータを使う" class="thumbnail-image"></span>
   
 </a>
@@ -323,7 +323,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="item-thumbnail">
               <a href="/2017/11/way-to-contribute-definitely-typed.html" class="thumbnail">
   
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
+    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png
 )" alt="DefinitelyTypedに型定義ファイルを作ってコントリビュートする手順" class="thumbnail-image"></span>
   
 </a>
