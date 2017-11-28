@@ -7,7 +7,7 @@ tags:
   - docker
 ---
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/docker_hub.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/docker_hub.png %}
 
 docker imageをdocker hubに公開する方法についての小ネタです。
 

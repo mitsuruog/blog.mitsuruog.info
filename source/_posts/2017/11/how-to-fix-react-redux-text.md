@@ -9,7 +9,7 @@ tags:
   - redux
   - jest
 ---
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png %}
 
 ニッチ過ぎて誰得なのか全くわからないのですが、同じようなことで苦しめられるであろう**未来の誰かのため**に、ここに手がかりを残しておきます。
 

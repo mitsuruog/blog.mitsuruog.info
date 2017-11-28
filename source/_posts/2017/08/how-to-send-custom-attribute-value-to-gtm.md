@@ -7,7 +7,7 @@ tags:
   - その他
 ---
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/tagmanager_email.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/tagmanager_email.png %}
 
 Google tag managerを使った小ネタの紹介です。
 
@@ -42,13 +42,13 @@ Google tag managerのクリックイベントハンドラでは、ページのUR
 まず、変数のタイプは「カスタムJavaScript」とします。
 これを設定することで、Google tag manager何かのイベントを検知したタイミングで任意のJavaScriptを実行して、その結果をユーザー定義変数に格納します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/gtm_1.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/gtm_1.png %}
 
 #### Custom Attributeを取得するコードを設定する
 
 続いて、Custom Attributeを取得するために次のコードを入力します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/gtm_2.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/gtm_2.png %}
 
 実際のコードはこちらです。
 
@@ -69,11 +69,11 @@ function() {
 
 最後に、Google tag managerのタグの設定の際に、ユーザー定義変数を利用すればOKです。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/gtm_3.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/gtm_3.png %}
 
 変数のリストの中に含まれています。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/gtm_4.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/gtm_4.png %}
 
 ## まとめ
 

@@ -11,7 +11,7 @@ tags:
   - unit test
 ---
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/ng-sake.jpg %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2016/ng-sake.jpg %}
 
 3/31に酒を飲みながらAngularについて話す素敵な催し[ng-sake](http://connpass.com/event/27707/)が開催されたので、Angular2のユニットテストについて話て来ました。
 
@@ -53,7 +53,7 @@ https://github.com/mitsuruog/_angular2-unit-test-sample
 [Angular2 Unit Testing - カバレッジ編 | I am mitsuruog](http://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html)で紹介したカバレッジが出る仕組みが入っています。
 カバレッジフェチの方は動かして楽しめると思います。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/ng-sake-coverage.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2016/ng-sake-coverage.png %}
 
 ## まとめ
 

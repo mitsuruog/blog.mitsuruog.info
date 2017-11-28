@@ -8,7 +8,7 @@ tags:
   - TypeScript
   - CODEPREP
 ---
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript1.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript1.png %}
 
 自分は[CODEPREP](https://codeprep.jp/)というオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。
 
@@ -47,7 +47,7 @@ tags:
 
 ボタン・リンク・タブなどの共通的に利用できそうなUIパーツは、Statelessコンポーネントとして小分けに作成するようにしました。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript2.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript2.png %}
 
 
 これにより、Statelessコンポーネントはただ与えられた値を元にUIを描画するだけとなり、propsで渡される値のパターンだけ注意すればいい状態となりました。
@@ -71,7 +71,7 @@ tags:
 大まかに「ページコンポーネント」が各画面1つに対応していて、「Statelessコンポーネント」は共通的に利用する小さいUI部品のことです。そして「コンテナ」とはいくつかページコンポーネントを束ねるコンポーネントのことです。
 アプリケーションで共通で利用するデータなどを保持してたり、ページへの許可されていないアクセスをブロックする門番のような役割もしています。どちらかというと**Gateway**と言った方がしっくりくるかもしれません。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript3.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-typescript3.png %}
 
 
 > 厳密にいうと世にあるReactのコンテナパターンのように綺麗に責務が別れていません。かなりオリジナル色が強いです。

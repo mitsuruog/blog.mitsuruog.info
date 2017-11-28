@@ -8,7 +8,7 @@ tags:
   - react-router
   - reacr-router-4
 ---
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-router-4.png %}
 
 [react-router v4](https://github.com/ReactTraining/react-router)の小ネタ。
 

@@ -8,7 +8,7 @@ tags:
   - definitelytyped
 ---
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/TypeSctiptisfun.png %}
 
 TypeScriptを使っていると、結構必要になる型定義ファイル。
 型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。
@@ -70,7 +70,7 @@ DefinitelyTyped
 ## index.d.tsをデバックする
 型定義ファイルが出来上がったら、実際にプロジェクトに投入して正しく機能するかデバックします。実は、`npm`からインストールされた型定義ファイルは、`node_modules/@types`の中に格納されています。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png 250 %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/DefinitelyTyped.png 250 %}
 
 そのため、`@types`の下にライブラリ名と同じフォルダを作成して、その中に作成した`index.d.ts`を配置すると、あたかも`npm`インストールしたような振る舞いをします。
 

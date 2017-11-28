@@ -8,7 +8,7 @@ tags:
   - typescript
 ---
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2016/defaut-parameter-in-typescript.png %}
 
 最近、React＋Typescriptしか書いてないので、久々に小ネタを投下しようかなっと。。。
 

@@ -44,11 +44,11 @@ AzureMLの中では、一連のMLの流れを`experiment(実験)`と呼んでい
 
 実験キャンバスの左側の「データセットとモジュールのパレット(以下、パレット)」からAutomobile price data (Raw)を選択して、実験キャンバスにDrag&Dropします。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-1.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-1.png %}
 
 データの表示は、データセットの下の出力ポートを右クリックして`Visualize`を選択するとできます。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-2.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-2.png %}
 
 これでデータの準備はOKです。
 
@@ -60,52 +60,52 @@ AzureMLの中では、一連のMLの流れを`experiment(実験)`と呼んでい
 
 データの前処理は`Project Columns`モジュールを利用して行います。パレットから選択してください。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-3.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-3.png %}
 
 `Project Columns`モジュールを選択すると、右のプロパティウィンドウで内容を参照できます。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-4.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-4.png %}
 
 `Launch column selector`ボタンをクリックすると編集ダイアログが表示されます。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-5.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-5.png %}
 
 内容を変更するとプロパティウィンドウで内容を参照できます。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-6.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-6.png %}
 
 **歯抜けになっている行の除去**
 
 歯抜けデータ除去は、`Missing Values Scrubber`モジュールを利用して行います。パレットから選択してください。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-7.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-7.png %}
 
 プロパティウィンドウで内容を変更します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-8.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-8.png %}
 
 下部メニューの`RUN`をクリックすると、実験を実行できますので、ここまでで実行してみてください。
 結果の表示はモジュールの下の出力ポートを右クリックして`Visualize`を選択するとできます。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-9.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-9.png %}
 
 なんとなくですが、歯抜けデータの間引きができているようです。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-10.png 500 %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-10.png 500 %}
 
 **分析対象列のフィルタリング**
 
 最後に分析するデータをフィルタリングします。フィルタリングは`Project Columns`モジュールを利用して行います。パレットから選択してください。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-11.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-11.png %}
 
 プロパティウィンドウで内容を変更します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-12.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-12.png %}
 
 実験を`RUN`してみると、データが正しくフィルタリングできていることが確認できます。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-13.png 500 %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-13.png 500 %}
 
 ここまでで、データの作成部分が終わりました。  
 情報処理の世界にある、「ガーベジイン・ガーベジアウト」という言葉について、MLの世界では特に大事な気がします。
@@ -130,7 +130,7 @@ AzureMLの中では、一連のMLの流れを`experiment(実験)`と呼んでい
 
 分配は、`Split`モジュールを利用して行います。パレットから選択してプロパティウィンドウで内容を変更します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-14.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-14.png %}
 
 プロパティウィンドウで内容を変更します。
 
@@ -142,11 +142,11 @@ AzureMLの中では、一連のMLの流れを`experiment(実験)`と呼んでい
 
 先ほどの`Split`モジュールの左の出力ポートと`Linear Regression`モジュールの出力ポートを`Train Model`モジュールに接続します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-15.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-15.png %}
 
 `Train Model`モジュールのプロパティウィンドウで分析するカラムを選択します。今回は`price`を選択します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-16.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-16.png %}
 
 ## 3. モデルへのスコア付けとテスト
 
@@ -158,33 +158,33 @@ AzureMLの中では、一連のMLの流れを`experiment(実験)`と呼んでい
 
 `Split`モジュールの右の出力ポートと`Train Model`モジュールの出力ポートを`Score Model`モジュールに接続します。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-17.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-17.png %}
 
 ここまでで`RUN`すると実験を開始できます。`Score Model`モジュールにて`Visualize`すると統計分析の結果がみることでできます。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-18.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-18.png %}
 
 今回は価格での分析でしたので`Price`列を選択した後に、右の`Visualizations`にある、`compare to 〜`の部分を選択します。
 
 例えば、**メーカー対価格**  
 volvoが突出して高いですね。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-21.png 500 %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-21.png 500 %}
 
 **車種対価格**  
 セダンはピンキリですが、全体的に中心より下の価格対が多いようです。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-22.png 500 %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-22.png 500 %}
 
 **エンジンサイズ対価格**  
 エンジンサイズと価格は正比例のようです。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-23.png 500 %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-23.png 500 %}
 
 **馬力対価格**  
 正比例のようですが、うーんちょっとわかりませんね。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-24.png 500 %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-24.png 500 %}
 
 ここまででも、結構楽しいです。
 
@@ -192,11 +192,11 @@ volvoが突出して高いですね。
 
 最後に、分析モデルの予測結果に対する評価を行います。評価は、`Evaluate Model`モジュールを利用して行います。パレットから選択してください。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-30.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-30.png %}
 
 `RUN`して`Evaluate Model`モジュールの結果を`Visualize`すると次のような結果になります。
 
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-31.png %}
+{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-31.png %}
 
 各統計値は以下の通りです。
 
