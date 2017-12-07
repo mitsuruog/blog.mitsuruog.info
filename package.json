@@ -1,9 +1,12 @@
 {
-  "name": "hexo-site",
+  "name": "blog.mitsuruog.info",
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.1.1"
+    "version": "3.4.3"
+  },
+  "engines" : {
+    "node" : "~8.9.0"
   },
   "scripts": {
     "generate": "gulp clean && node_modules/.bin/hexo generate",
@@ -14,11 +17,10 @@
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-textlint": "^1.1.0",
-    "hexo": "^3.1.0",
+    "hexo": "^3.4.3",
     "hexo-deployer-git": "^0.3.1",
-    "hexo-generator-archive": "^0.1.2",
+    "hexo-generator-archive": "^0.1.5",
     "hexo-generator-category": "^0.1.2",
-    "hexo-generator-cname": "^0.3.0",
     "hexo-generator-index": "^0.1.2",
     "hexo-generator-tag": "^0.1.1",
     "hexo-renderer-ejs": "^0.1.0",
