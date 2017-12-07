@@ -3,24 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>MQTTクライアントをブラウザ上で動かす | I am mitsuruog</title>
+  <title>グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近MQTTが気になっているので、実際にクライアントを作ってブラウザ上で動かしてみました。作ったデモはhttp://mitsuruog.github.io/what-mqtt/で動かすことが出来ます。内容薄い記事なので、デモだけも動かしてMQTTの雰囲気感じてもらえればと思います。
-
-ブラウザ上で動作するか検証するのが目的だったのですが、いざ作ってみたらWebページが思ったよりリッチになってしまい">
+  <meta name="description" content="この記事はファシリテーター Advent Calendar 2017 - Adventar7日目の記事です。
+はじめに（たまには技術系じゃないことも書いてみようかな。。。）
+私はグローバルチームで働いている隠れファシリテーターです。今日は、私がミーティングを発起する際に事前に注意しているポイントを並べていきます。
+ちなみに、ここでのミーティングとはソフトウェア開発において、何らかの決定するような種">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MQTTクライアントをブラウザ上で動かす">
-<meta property="og:url" content="http://blog.mitsuruog.info/2015/02/what-mqtt.html">
+<meta property="og:title" content="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは">
+<meta property="og:url" content="http://blog.mitsuruog.info/2017/12/how-makes-meeting-better.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="最近MQTTが気になっているので、実際にクライアントを作ってブラウザ上で動かしてみました。作ったデモはhttp://mitsuruog.github.io/what-mqtt/で動かすことが出来ます。内容薄い記事なので、デモだけも動かしてMQTTの雰囲気感じてもらえればと思います。
-
-ブラウザ上で動作するか検証するのが目的だったのですが、いざ作ってみたらWebページが思ったよりリッチになってしまい">
-<meta property="og:updated_time" content="2017-11-28T14:42:51.721Z">
+<meta property="og:description" content="この記事はファシリテーター Advent Calendar 2017 - Adventar7日目の記事です。
+はじめに（たまには技術系じゃないことも書いてみようかな。。。）
+私はグローバルチームで働いている隠れファシリテーターです。今日は、私がミーティングを発起する際に事前に注意しているポイントを並べていきます。
+ちなみに、ここでのミーティングとはソフトウェア開発において、何らかの決定するような種">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png">
+<meta property="og:updated_time" content="2017-12-07T04:53:38.644Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MQTTクライアントをブラウザ上で動かす">
-<meta name="twitter:description" content="最近MQTTが気になっているので、実際にクライアントを作ってブラウザ上で動かしてみました。作ったデモはhttp://mitsuruog.github.io/what-mqtt/で動かすことが出来ます。内容薄い記事なので、デモだけも動かしてMQTTの雰囲気感じてもらえればと思います。
-
-ブラウザ上で動作するか検証するのが目的だったのですが、いざ作ってみたらWebページが思ったよりリッチになってしまい">
+<meta name="twitter:title" content="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは">
+<meta name="twitter:description" content="この記事はファシリテーター Advent Calendar 2017 - Adventar7日目の記事です。
+はじめに（たまには技術系じゃないことも書いてみようかな。。。）
+私はグローバルチームで働いている隠れファシリテーターです。今日は、私がミーティングを発起する際に事前に注意しているポイントを並べていきます。
+ちなみに、ここでのミーティングとはソフトウェア開発において、何らかの決定するような種">
   
   
     <link rel="icon" href="/favicon.png">
@@ -136,7 +140,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
       
-      <section id="main"><article id="post-2015/02/what-mqtt" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-2017/12/how-makes-meeting-better" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -145,7 +149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
   
     <h1 class="article-title" itemprop="name">
-      MQTTクライアントをブラウザ上で動かす
+      グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは
     </h1>
   
 
@@ -153,8 +157,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2015/02/what-mqtt.html">
-      <time datetime="2015-02-05T14:41:35.000Z" itemprop="datePublished">2015-02-05 23:41</time>
+    <a href="/2017/12/how-makes-meeting-better.html">
+      <time datetime="2017-12-06T15:00:00.000Z" itemprop="datePublished">2017-12-07 00:00</time>
     </a>
   </div>
 
@@ -166,54 +170,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <p>最近MQTTが気になっているので、実際にクライアントを作ってブラウザ上で動かしてみました。<br>作ったデモは<a href="http://mitsuruog.github.io/what-mqtt/" target="_blank" rel="external">http://mitsuruog.github.io/what-mqtt/</a>で動かすことが出来ます。<br>内容薄い記事なので、デモだけも動かしてMQTTの雰囲気感じてもらえればと思います。</p>
-<blockquote>
-<p>ブラウザ上で動作するか検証するのが目的だったのですが、いざ作ってみたらWebページが思ったよりリッチになってしまいました。フロントエンド屋はそんなもんですよねーw</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="MQTTとは"><a href="#MQTTとは" class="headerlink" title="MQTTとは"></a>MQTTとは</h2><p>MQTTはPUB/SUB型のプロトコルで、従来のHTTPより軽量・省電力であることから、センサーなどの機器で永続的に発生する小さいデータを送受信する用途に向いているとされています。もともとはIBMが仕様を作っていました。</p>
-<p>もうすでに<a href="https://shiguredo.jp/news/20141209/" target="_blank" rel="external">時雨堂さん</a>で商用化されてますし、MQTTは仕様自体が小さいため、良質な日本語の記事が多い印象です。<br>次に紹介する記事を読むとなんとなく全容がわかるかと思います。</p>
-<ul>
-<li><a href="http://ngm2m.jp/m2m/files/symp2014_suzuki_pm.pdf" target="_blank" rel="external">IoTに最適化されたMQTTプロトコルとそれを実現する技術(PDF)</a></li>
-<li><a href="http://tdoc.info/blog/2014/01/27/mqtt.html" target="_blank" rel="external">MQTTについてのまとめ — そこはかとなく書くよん。</a></li>
-<li><a href="http://tomowatanabe.hatenablog.com/entry/2014/04/21/095650" target="_blank" rel="external">Mosquitto(MQTT)を動かしてみた - 人と技術のマッシュアップ</a></li>
-<li><a href="https://gist.github.com/voluntas/89000a06a7b79f1230ab" target="_blank" rel="external">初めての MQTT</a></li>
-<li><a href="http://ledsun.hatenablog.com/entry/2014/08/13/141908" target="_blank" rel="external">MQTTとJavaScript - @ledsun blog</a></li>
-</ul>
-<h2 id="Nodeで動かす"><a href="#Nodeで動かす" class="headerlink" title="Nodeで動かす"></a>Nodeで動かす</h2><p>フロントエンドエンジニアが最も簡単にMQTTを動かすためには、Node.js上で<a href="https://github.com/mqttjs/MQTT.js" target="_blank" rel="external">mqttjs/MQTT.js</a>を使うのが一番簡単だと思います。モジュールを<code>npm install</code>して、少しスクリプトを書くと動きます。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> mqtt <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
-<p>hello_mqtt.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt    = <span class="built_in">require</span>(<span class="string">'mqtt'</span>);</span><br><span class="line"><span class="keyword">var</span> client  = mqtt.connect(<span class="string">'mqtt://test.mosquitto.org'</span>);</span><br><span class="line"></span><br><span class="line">client.subscribe(<span class="string">'presence'</span>);</span><br><span class="line">client.publish(<span class="string">'presence'</span>, <span class="string">'Hello mqtt'</span>);</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">topic, message</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// message is Buffer</span></span><br><span class="line">  <span class="built_in">console</span>.log(message.toString());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">client.end();</span><br></pre></td></tr></table></figure></p>
-<h2 id="MQTT-on-Websocket"><a href="#MQTT-on-Websocket" class="headerlink" title="MQTT on Websocket"></a>MQTT on Websocket</h2><p>Node.js上では簡単に動作するMQTTですが、ブラウザ上で動作するためにはMQTTをWebsocketで置き換えて動かすのが一般的のようです。</p>
-<ul>
-<li><a href="http://test.mosquitto.org/ws.html" target="_blank" rel="external">MQTT over WebSockets</a></li>
-<li><a href="http://www.hivemq.com/mqtt-over-websockets-with-hivemq/" target="_blank" rel="external">MQTT over Websockets with HiveMQ</a></li>
-</ul>
-<p>軽量で双方向通信を得意としているということで、Websocketと機能的に被るところがあると思っていたのですが、<code>Websocket vs MQTT</code>の関係ではなく、ブラウザ上では仲良く共存させるようです。  </p>
-<blockquote>
-<p>MQTTはTCP/IP上で動作してHTTPと同列なので、よく考えれば当然だったのですが。。。</p>
-</blockquote>
-<p>Websocketの上をMQTTが走ることですべてのブラウザがMQTTデバイスになることができます。そんな凄い未来なのかイマイチ想像できませんが・・・今回は<a href="https://github.com/mcollina/mows" target="_blank" rel="external">mcollina/mows</a>を使いました。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mows   = <span class="built_in">require</span>(<span class="string">'mows'</span>);</span><br><span class="line"><span class="keyword">var</span> client = mows.createClient(<span class="string">'ws://test.mosquitto.org:8080/mqtt'</span>);</span><br><span class="line"></span><br><span class="line">client.subscribe(<span class="string">'presence'</span>);</span><br><span class="line">client.publish(<span class="string">'presence'</span>, <span class="string">'Hello mqtt'</span>);</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">topic, message</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// message is Buffer  </span></span><br><span class="line">  <span class="built_in">console</span>.log(message.toString());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">client.end();</span><br></pre></td></tr></table></figure>
-<p>Node.jsで動かしたときとあまり大差ないですね。<code>mows</code>は内部的に<code>MQTT.js</code>のAPIをコールしています。  </p>
-<p>注意する点としては接続先のプロトコルが<code>mqtt://</code>から<code>ws://</code>に変わっているとこでしょうか。Brokerによっては<code>mqtt://</code>と<code>ws://</code>での接続先ポートが異なる場合がありますので、ご注意ください。<br>また、BrokerがWebsocketに対応している必要があります。</p>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>MQTTクライアントをブラウザ上で動かすにはWebsocketを使うという話でした。先日行われた<a href="http://events.html5j.org/conference/2015/1/" target="_blank" rel="external">HTML5 Conference 2015</a>でもIoT系のセッションが多く、今年のトレンドはIoT一色だなと感じています。</p>
-<p>デモのWebページではmosquitto社が提供するテスト用のBrokerに接続しています。チャットアプリ程度ではまだMQTTの本当の価値って気付きにくいですが、ノード側で配置さえるセンサー機器を想像すると、Topicの考え方ってマッチしているなと思う次第です。<br>一番身近なところではFacebook messengerでつかっているそうです。</p>
-<p>こちらの記事も参考になりますよー。</p>
-<ul>
-<li><a href="http://codezine.jp/article/detail/8000" target="_blank" rel="external">IoT時代を支えるプロトコル「MQTT」（前編）：CodeZine</a></li>
-<li><a href="http://codezine.jp/article/detail/8019" target="_blank" rel="external">IoT時代を支えるプロトコル「MQTT」（中編）：CodeZine</a></li>
-<li><a href="http://codezine.jp/article/detail/8020" target="_blank" rel="external">IoT時代を支えるプロトコル「MQTT」（後編）：CodeZine</a></li>
-<li><a href="http://mqtt.org/" target="_blank" rel="external">MQTT(本家)</a></li>
-</ul>
+        <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png">
+<p>この記事は<a href="https://adventar.org/calendars/2310" target="_blank" rel="external">ファシリテーター Advent Calendar 2017 - Adventar</a>7日目の記事です。</p>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>（たまには技術系じゃないことも書いてみようかな。。。）</p>
+<p>私はグローバルチームで働いている隠れファシリテーターです。<br>今日は、私がミーティングを発起する際に事前に注意しているポイントを並べていきます。</p>
+<p>ちなみに、ここでのミーティングとはソフトウェア開発において、何らかの決定するような種類のミーティングで、アイデアを出す種類のオープンなミーティングではありません。</p>
+<h2 id="いいミーティングをデザインするための心得"><a href="#いいミーティングをデザインするための心得" class="headerlink" title="いいミーティングをデザインするための心得"></a>いいミーティングをデザインするための心得</h2><h3 id="事前にアジェンダと資料を共有する"><a href="#事前にアジェンダと資料を共有する" class="headerlink" title="事前にアジェンダと資料を共有する"></a>事前にアジェンダと資料を共有する</h3><p>この目的は、<strong>ミーティングの時間を短くする</strong>ことと、<strong>参加者の目線を合わせる</strong>ことです。</p>
+<p>アジェンダはどんなトピックを議論するのか、資料はそこで提案される内容など事前に知ることができます。<br>ミーティングが始まってから資料を共有することもあるかと思いますが、この資料に目を通すだけでも時間がかかってしまいますので、この時間を節約する上でも有効です。</p>
+<p>よくあるパターンとして時間ギリギリまで長い文字だけで書かれた資料作成して、始まってから共有するということがあります。<br>この場合は読んで理解するプロセスが必要で時間もかかりますし、そのプロセスを省略した場合、そもそも議論が頭に入ってこなくなったりします。</p>
+<p>人によっては少し考えて意見を言いたい人もいますし、代替え案を提示するために準備の時間が欲しい人もいるでしょう。<br>事前にいろいろと共有することは、それだけでもミーティング開始時点から議題に集中して議論できる可能性が高くなるので有効だと思います。</p>
+<h3 id="時間内に収まるサイズにアジェンダを設計する"><a href="#時間内に収まるサイズにアジェンダを設計する" class="headerlink" title="時間内に収まるサイズにアジェンダを設計する"></a>時間内に収まるサイズにアジェンダを設計する</h3><p>ここで「<strong>設計</strong>」という言葉を使いましたが、アジェンダの作成はミーティングの「場」がどうなるかを予測しながら組み立てる、まさしく「場の設計」という作業だと思います。</p>
+<p>人は終わる見込みが到底ないものには諦めて手を抜いてしまいがちなのに対し、もう少しで終わりそうというものには、無理をしてでも終わらせようとする傾向があると思います。</p>
+<p>私はアジェンダをこの「ギリギリ終わる」か「少し余裕がある」状態に設計するようにしています。</p>
+<p>どうしても収まりそうにない場合は、事前にメンバーに関連する質問をチャットなどでしておいて、議論の核心でないものをそぎ落してスリムにしておきます。<br>この過程で、そのまま結論に至りミーティングをしないということも多々あるので非常に有効な手段だと思います。</p>
+<h3 id="アジェンダにはタイムスケジュールを載せる"><a href="#アジェンダにはタイムスケジュールを載せる" class="headerlink" title="アジェンダにはタイムスケジュールを載せる"></a>アジェンダにはタイムスケジュールを載せる</h3><p>アジェンダを作成する際に大事なことは、<strong>タイムスケジュールをあらかじめ決めておく</strong>ことです。<br>アジェンダで議題だけ列挙しただけでは、どの議論がどのくらいの時間を使って議論されるかを予想できていません。<br>これでは特定の話題で話が盛り上がったときに、この先順調にミーティングが推移しているのかが判断できません。</p>
+<p>私はタイムスケジュールをあらかじめ決めておいて、特定の話題で時間がオーバーしそうな場合、参加者に対して議論を続けるか、ひとまず結論を出して次の話題に取り掛かるか問いかけるようにしています。</p>
+<h3 id="時間を守ること"><a href="#時間を守ること" class="headerlink" title="時間を守ること"></a>時間を守ること</h3><p><strong>時間通りに始まり、時間通りに終わる。</strong></p>
+<p>当然のことですが、ミーティングはそれぞれの参加者の時間を奪って成立しています。<br>時間通りに始まり終わりましょう。</p>
+<p>特に海外のエンジニアは「<strong>時間＝有限な資源</strong>」という当たり前の感覚をしっかりと持っているので、ミーティングの時間が伸びてプライベートな時間に食い込むことを本当に嫌がります。</p>
+<p>個人的にはミーティングに<strong>タイムキーパー</strong>を専任で置いた方がいいと思います。</p>
+<h3 id="決まらないことを恐れない"><a href="#決まらないことを恐れない" class="headerlink" title="決まらないことを恐れない"></a>決まらないことを恐れない</h3><p>ミーティングを時間内に納めようとした時に起こるのが、アジェンダを最後まで消化できなかった時や、議論が迷走して結論に至れなかった時です。</p>
+<p>そんな時は無理に延長せず、「決まらない・合意できない」ことを合意しましょう。<br>そんな時はまた仕切り直しです。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>個人的に気をつけていることをつらつらと書いてみました。</p>
+<p>私の英語力はそれほど高くないので、話があまりややこしくならないように、事前準備を入念にする必要がありました。<br>が、あまりグローバルに限ったことではないですよね。。。はは。</p>
+<p>個人的には最終的にミーティングをしないことが「最高のミーティングデザイン」だと思います。</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a href="http://blog.mitsuruog.info/2015/02/what-mqtt.html#disqus_thread" class="article-comment-link">コメント</a>
+        <a href="http://blog.mitsuruog.info/2017/12/how-makes-meeting-better.html#disqus_thread" class="article-comment-link">コメント</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iot/">Iot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mows/">mows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mqtt/">mqtt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wot/">wot</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/その他/">その他</a></li></ul>
 
     </footer>
   </div>
@@ -221,19 +210,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
 <nav id="article-nav">
   
-    <a href="/2015/02/input-date-trouble-tips-in-angularjs.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新しい記事</strong>
-      <div class="article-nav-title">
-        
-          AngularJSでinput[type=date]にデータバインドしようとしてError: [ngModel:datefmt]で怒られて困っている人向けの小ネタ
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/01/hosting-angularjs-application-on-s3-via-cloudfront.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/12/introduce-stripe-react-component.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">古い記事</strong>
-      <div class="article-nav-title">AngularJSで作ったSPAをAWS上の「S3＋CloudFront」でお手軽ホスティングして、クラウドサービスってやっぱ素晴らしいなと思った話</div>
+      <div class="article-nav-title">StripeをReactで作られたサービスに組み込んでみた話</div>
     </a>
   
 </nav>
