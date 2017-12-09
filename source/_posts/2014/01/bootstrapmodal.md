@@ -14,7 +14,7 @@ tags:
 
 <!-- more -->
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/bootstrap-modal.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/bootstrap-modal.png %}
 
 Modalにパラメータを渡す方法は昔から議論されていて、最近まで変更がされているようです。Github上のIssueはこちら
 

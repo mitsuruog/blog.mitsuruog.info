@@ -7,7 +7,7 @@ tags:
   - docker
 ---
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/docker.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/docker.png %}
 
 docker imageを作る際のデバック方法についての小ネタです。
 

@@ -15,7 +15,7 @@ tags:
 
 <!-- more -->
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/spa.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/spa.png %}
 
 ### 目次
 

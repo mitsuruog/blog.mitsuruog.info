@@ -7,7 +7,7 @@ tags:
   - react
 ---
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-uncontrolled-input.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-uncontrolled-input.png %}
 
 たまに見る`uncontrolled input`関連の警告についての小ネタです。
 知っていると原因がすぐわかるのですが、知らないと結構デバックに時間が掛かる面倒な警告です。

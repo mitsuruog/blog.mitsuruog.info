@@ -7,7 +7,7 @@ tags:
   - react
   - stripe
 ---
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-stripe.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png %}
 
 この記事は[Stripe Advent Calendar 2017 \- Adventar](https://adventar.org/calendars/2339react-stripe-elements)2日目の記事です。
 
@@ -26,7 +26,7 @@ CODEPREPはReactで作られているので、こちらのReactコンポーネ�
 仕上がりはこんな感じです。
 スタイル周りのカスタマイズが結構できたので、サービスに溶け込ませるように組み込むことができました。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/stripe-1.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/stripe-1.png %}
 
 ## 導入方法
 
@@ -278,7 +278,7 @@ Stripeのコンポーネントはスタイルをカスタマイズすること�
 
 こんな感じでスタイルをカスタマイズできます。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/stripe-2.png 400 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/stripe-2.png 400 %}
 
 > 現在は、`Elements`の`style`にCSSスタイルをセットするとスタイルが適用されるようです。便利。
 > - https://stripe.com/docs/stripe-js/reference#element-options
@@ -295,4 +295,4 @@ Stripeのコンポーネントはスタイルをカスタマイズすること�
 導入当時はJCBに対応してなかったので、Stripeが対応してくれた時はチーム全員で大喜びしました。懐かしい記憶です。
 
 > (Slackのログを確認したら、2017-08-22の出来事のようですね)
-> {% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/stripe-3.png 350 %}
+> {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/stripe-3.png 350 %}

@@ -17,7 +17,7 @@ tags:
 
 <!-- more -->
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/handson1.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/handson1.png %}
 
 1.  ハンズオンとは
 2.  ハンズオンの心得
@@ -51,7 +51,7 @@ tags:
 ゴールの設定で間違いやすいことは「技術の正確さを伝える」ことがゴールとなっているケースです。経験的に、ハンズオンは「今、覚える技術の価値」に重きを置いて、ハンズオンではその**価値を体験させて感じさせることをゴールにするべき**だと思います。
 これはハンズオンを受けた参加者の満足度に最も関わってくるポイントだと思うのですが、後日、参加者が自主的に考えて不足分を学習するように仕向けられるのが理想です。その楽しみをハンズオンで奪ってはいけません。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/handson2.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/handson2.png %}
 
 
 つまり、**魚のつり方ではなく魚を釣ることの価値についてゴールを置くべきです**。
@@ -72,7 +72,7 @@ tags:
 
 こちらがWeb Componentsハンズオンを行った際のタイムテーブルです。当日はこれをベースにいろいろ時間のやりくりしてました。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/handson3.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/handson3.png %}
 
 
 

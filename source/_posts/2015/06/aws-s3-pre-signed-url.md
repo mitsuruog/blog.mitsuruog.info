@@ -28,11 +28,11 @@ tags:
 S3上にアップロードしたファイル(オブジェクト)には、
 アクセスするための一意なURLが付与されていますが、今の状態では外部からアクセスできません。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/aws-s3-pre-signed-url%E2%88%9201.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9201.png %}
 
 確認してみます。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/aws-s3-pre-signed-url%E2%88%9202.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9202.png %}
 
 では、aws sdkを利用して「期限付きURL」を発行してみます。
 
@@ -56,7 +56,7 @@ s3.getSignedUrl('getObject', params, function(err, url) {
 
 では、生成された期限付きURLでアクセスしてみます。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/aws-s3-pre-signed-url%E2%88%9203.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9203.png %}
 
 ファイルの中身についてアクセスできました。
 

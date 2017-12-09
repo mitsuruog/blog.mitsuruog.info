@@ -10,7 +10,7 @@ tags:
   - typescript
 ---
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2016/angular2.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png %}
 
 Angular2学習のため、大量に素振りする必要がでてきたので、素振り用のStarterKitを作成してみました。
 

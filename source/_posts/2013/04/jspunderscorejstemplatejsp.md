@@ -18,7 +18,7 @@ tags:
 1.  JSPでunderscore.jsのテンプレートを使う方法
 2.  JSPでクライアントサイドテンプレートを書き出すメリット
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2013/underscore.png 500 87 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/underscore.png 500 87 %}
 
 まず、手軽にクライアントサイドテンプレートを導入するのであれば、[jQueryTmplate](https://github.com/jquery/jquery-tmpl)か[Underscore.js](http://underscorejs.org/)を使うのが良いと思います。
 特に、Underscore.jsはJavaでいうapache commonsのような、かゆいところに手が届く系のUtility関数の詰め合わせなので、template以外でも使いどころがありオススメです。

@@ -15,7 +15,7 @@ tags:
 
 <!-- more -->
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/html5fun.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/html5fun.png %}
 
 1.  エンタープライズでHTML5は必要なのか？
 2.  IoTとバリューチェーン
@@ -43,7 +43,7 @@ tags:
 その一方で、IoT時代の企業システムが生み出すバリューチェーンについても改めて考える必要があると感じています。
 その象徴的なものが、Java One Tokyo 2014の基調講演にてNandini Ramani氏が語ったこのスライドでしょう。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/IMG_20140522_104924.jpg 681 510 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/IMG_20140522_104924.jpg 681 510 %}
 
 両側に「データセンター」「デバイス」があって、その間を「繋ぐ」３層レイアーになっています。
 

@@ -23,7 +23,7 @@ tags:
 
 今回のスキーマは「社員(Employee)」と「部署(Unit)」として、以下のような構造をしているとします。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/mongoose-populate.jpg %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/mongoose-populate.jpg %}
 
 ## refを使ったリレーションの表現
 

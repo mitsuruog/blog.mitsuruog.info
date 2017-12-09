@@ -7,7 +7,7 @@ tags:
   - angular2
 ---
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2016/No_more.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png %}
 
 先日、学生向けにTodoワークショップを開催した時の話です。
 Angular1のように`ngFor`とPipeを組み合わせて、リストのソート機能をつくろうとしたところ、初め上手く動かせませんでした。

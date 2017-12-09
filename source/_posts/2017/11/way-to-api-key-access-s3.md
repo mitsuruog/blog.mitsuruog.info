@@ -7,7 +7,7 @@ tags:
   - aws
   - s3
 ---
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png %}
 よく忘れるシリーズ。
 
 AWSの特定のS3バケットにだけアクセスできるIAMユーザーを作る方法です。

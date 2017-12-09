@@ -20,7 +20,7 @@ tags:
 
 <!-- more -->
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2013/RICOH_THETA.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/RICOH_THETA.png %}
 
 ### 目次
 

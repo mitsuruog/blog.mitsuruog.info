@@ -247,14 +247,14 @@ bento$お店: 正規屋
 > boxplot(売上個数~お店, data=bento)
 ```
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/leaning-r-1-1.png 400 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/leaning-r-1-1.png 400 %}
 
 ```
 # 売上個数を弁当名ごと(水準)に箱ひげ図化
 > boxplot(売上個数~弁当名, data=omu)
 ```
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/leaning-r-1-2.png 400 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/leaning-r-1-2.png 400 %}
 
 外にある○は外れ値みたい。
 

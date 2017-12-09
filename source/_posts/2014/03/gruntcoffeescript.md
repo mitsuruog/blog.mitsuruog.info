@@ -14,7 +14,7 @@ GruntでのCoffeeScriptのコンパイル方法について、個人的に調べ
 
 <!-- more -->
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee1.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee1.png %}
 
 1.  シンプル（1->1またはn->1）
 2.  マルチ（n->n）
@@ -39,7 +39,7 @@ grunt.loadNpmTasks('grunt-contrib-coffee');
 
 ## 1.シンプル（1->1またはn->1）
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee2.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee2.png %}
 
 まずは、最も単純なタスクです。1つの「.coffee」ファイルを「.js」にコンパイルしたり、複数の「.coffee」を1つの「.js」にまとめます。コンパイルしたJavascriptは後続のUglifyタスクでminifyしたり難読化したりします。
 
@@ -49,7 +49,7 @@ grunt.loadNpmTasks('grunt-contrib-coffee');
 
 ## 2.マルチ（n->n）
  
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee3.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee3.png %}
 
 次は、コンパイル時に1つのJavascriptとせず、フォルダ構成などを維持したままCoffeeScriptをコンパイルする方法です。JavascriptMV＊系フレームワークを使っていると割と遭遇するケースです。
 Gruntタスクはこんな感じです。
@@ -62,7 +62,7 @@ Configuring tasks - Grunt: The JavaScript Task Runner
 
 ## 3.　マルチ（n->n）＋ちょっとカスタム
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/coffee4.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/coffee4.png %}
 
 最後は、ちょっと特殊（？）です。「.」が2つ以上あるファイルのコンパイルです。
 上の方法で普通にコンパイルすると「hoge.view.coffee」が「hoge.js」になってしまいます。

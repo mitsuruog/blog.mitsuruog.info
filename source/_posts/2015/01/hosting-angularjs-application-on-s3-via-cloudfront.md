@@ -29,12 +29,12 @@ S3でのサイト公開は非常に簡単です。次の3ステップで即公�
 * AngularJSで作成したSPAをアップロードする。
 * BucketのStatic Website HostingをONにする。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-s3-cloudfront-1.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-1.png %}
 
 Static Website HostingをONにすることでアクセス可能なURLが取得できます。  
 アクセスした際に「`AccessDenied`」エラーになる場合は、アップロードしたファイルの`Permissions`が**Everyoneアクセス可能**になっていないことが多いです。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-s3-cloudfront-2.png 500 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-2.png 500 %}
 
 しかし、この**Everyoneアクセス可能**状態はあまりいい状態ではありませんので、CloudFrontを利用します。  
 (後で紹介しますが、S3はCloudFront経由のアクセスのみ有効にする設定を推奨します。)
@@ -66,7 +66,7 @@ S3のStatic Website Hosting機能はお手軽で非常に魅力を感じるの�
 * Origin Domain NameにS3のBucketを指定
 * Restrict Bucket Accessで「Yes」を設定してS3へのアクセスを制限
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-s3-cloudfront-3.png 500 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-3.png 500 %}
 
 これでCloudFront経由でS3へアクセスすることができますが、SPAをホスティングするに当たって追加で以下の設定をしました。
 
@@ -77,14 +77,14 @@ S3のStatic Website Hosting機能はお手軽で非常に魅力を感じるの�
 しかも、デフォルトの(*.cloudfront.net)ドメインであればSSL証明書までついてきます。  
 まじで至れり尽くせりです。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-s3-cloudfront-5.png 500 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-5.png 500 %}
 
 ### Behaviors > Viewer Protocol Policy
 
 新しいBehaviorを作成して`Viewer Protocol Policy`にて`Redirect HTTP to HTTPS`を選択します。これでHTTPでアクセスされた場合に、HTTPSにリダイレクトすることが可能です。  
 (あまりこだわりなければ`Path Pattern`は`Default (*)`1つで事足りるはず。)
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-s3-cloudfront-4.png 500 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-4.png 500 %}
 
 ## CloudFront利用上の注意点
 
@@ -99,7 +99,7 @@ CloudFrontにはInvalidationsというキャッシュクリアをする仕組み
 
 CloudFrontでDistributionsを選択すると「`Invalidations`」というタブがあるので、ここで「`Create Invalidation`」ボタンをクリックします。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-s3-cloudfront-6.png 500 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-s3-cloudfront-6.png 500 %}
 
 クリアするファイルを指定する必要があるので、例えば「`/index.html`」とか入力します。  
 私の場合、フロントのリソースは結合＆minify＆バージョニングして最適化してしまうので、普段は`index.html`だけで十分です。

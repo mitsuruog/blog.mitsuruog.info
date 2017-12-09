@@ -29,7 +29,7 @@ tags:
 
 まず、AngularJSを選定する際に外せないのが、「HTML5」の存在です。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/why_angular1.png 520 370 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular1.png 520 370 %}
 
 ブラウザだけではなくモバイルアプリなど利用範囲が広いため、今後のWebアプリケーションのマルチプラットフォーム実行環境としては主役だなと思います。
 
@@ -44,7 +44,7 @@ AngularJSで注目しているポイントとしては次のような部分で�
 
 いくつかJSフレームワークを触っていきた経験的に、AngularJSの各モジュール分割(controllerやfilterなど)の考え方は割とBetterかなと思います。強いて言えば、規模が大きくなってくると細かなServiceがたくさんできてDIが多くなるのが辛いといったとこでしょうか。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/why_angular2.png 520 370 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular2.png 520 370 %}
 
 スキルチェンジに関しては、JSPとAngularJSはテンプレート部分にロジックを記述していくため、Javascriptで全てテンプレートを生成するものより、理解しやすいと思います。またDIの概念や、各モジュールについての役割についてもJavaでのWeb開発を例に説明できると思います。
 
@@ -60,7 +60,7 @@ AngularJS開発にあたってYeomanが必須な訳ではありませんので�
 私の場合、当初はYeomanを利用しない方向で考えていましたが、AngularJSを開発するにあたりいろいろとタスクを追加した結果、Yeomanでのタスクの劣化版を作っていることに気づきました。  
 いまでは既存のYeomanジェネレーターを自組織に合うようにカスタムして利用しています。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2014/why_angular3.png 520 370 %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/why_angular3.png 520 370 %}
 
 > 本来は、なぜフロント開発がこんなにも複雑になってしまったのかを嘆くべきなのでしょうが。。。
 

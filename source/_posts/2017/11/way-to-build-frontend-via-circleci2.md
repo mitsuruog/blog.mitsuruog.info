@@ -7,7 +7,7 @@ tags:
   - circleci2
   - ci
 ---
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png %}
 [create-react-app](https://github.com/facebookincubator/create-react-app)で作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
 
 今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。
@@ -30,7 +30,7 @@ root
 定義ファイルのシンタックスについてはv1.0と比べると結構変わっているので注意が必要です。
 Slackの作業ログを見ると、Dashboardのどこかで定義ファイルが生成できたようですが、どこだか忘れてしまいました。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-1.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png %}
 
 定義ファイルを生成すると次のようなファイルが作成されます。
 
@@ -180,7 +180,7 @@ workflows:
 
 定義したワークフローはCircleCI上の「WORKFLOWS」にて確認することができます。
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-2.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-2.png %}
 
 ## おまけ
 Circle CIのデフォルトのマシンリソースは`medium`(CPU 2.0 RAM 4GB)となっていて、最近のフロントエンドのテスト、デプロイにおいてはスペック不足感が否めません。
@@ -200,7 +200,7 @@ ENOMEM: not enough memory, read
 
 > 有効にしたいOrganization名と一緒に依頼すると割と早めに対応してくれました。Circle CIのカスタマーサポート素晴らしい！！
 
-> {% img https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-3.png %}
+> {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-3.png %}
 
 > とはいえ、将来的には`resource_class`はプレミアム機能になるかもしれないです。要注意！
 

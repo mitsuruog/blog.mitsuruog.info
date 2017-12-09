@@ -5,9 +5,8 @@ date: 2017-12-07 0:00:00 +900
 comments: true
 tags:
   - その他
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png
 ---
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png %}
-
 この記事は[ファシリテーター Advent Calendar 2017 \- Adventar](https://adventar.org/calendars/2310)7日目の記事です。
 
 <!-- more -->

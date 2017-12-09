@@ -20,7 +20,7 @@ Backbone.jsでアプリケーションを作る場合、ついつい手軽さを
 1.  Backbone.js with Handlebars.js!!
 2.  ここでもやっぱりGrunt最高
 
-{% img https://blog-mitsuruog.s3.amazonaws.com/images/2013/handlebar.png %}
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/handlebar.png %}
  
 ## Handlebars.jsとは
 
