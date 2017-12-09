@@ -1,0 +1,3 @@
+[submodule "themes/simple-japanese"]
+	path = themes/simple-japanese
+	url = https://github.com/mitsuruog/hexo-theme-simple-japanese

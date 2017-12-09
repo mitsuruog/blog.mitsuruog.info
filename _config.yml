@@ -68,7 +68,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: icarus
+theme: simple-japanese
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
@@ -93,37 +93,19 @@ tag_generator:
 # following theme setting
 # -------
 
-# Header
-menu:
-  Home: /
-  Archives: archives
-
-# brand logo
-logo_text: I am mitsuruog
-
-# Content
-excerpt_link: もっと読む
-toc: true
-fancybox: true
-
 # Sidebar
-sidebar: right
 widgets:
-- recent_posts
-- tagcloud
-- archive
-thumbnail: true
+  - search
+  - profile
+  - recent_posts
+  - tagcloud
+  - archive
 
 # Contacts
-contacts:
-  github: https://github.com/mitsuruog
-  twitter: https://twitter.com/mitsuruog
-  slideshare: http://www.slideshare.net/mitsuruogawa33
-  rss: atom.xml
+contact:
+  url: https://github.com/mitsuruog
+  icon: github
 
 # Miscellaneous
 google_analytics: GTM-K7XMZ2
 favicon: /favicon.png
-
-# Disqus
-disqus_shortname: mitsuruog
