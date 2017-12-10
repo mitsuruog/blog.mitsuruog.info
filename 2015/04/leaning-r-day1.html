@@ -1,42 +1,28 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  
   <title>とあるフロントエンド屋のR事始め その1 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。
-この記事は自分のための学習記録なので、特に有用な情報などありません。あしからず。
-学習はこちらのサイトをベースに行います。とある弁当屋の統計技師様感謝です！
-とある弁当屋の統計技師（データサイエンティスト）">
+  <meta name="description" content="4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。 この記事は自分のための学習記録なので、特に有用な情報などありません。あしからず。 学習はこちらのサイトをベースに行います。とある弁当屋の統計技師様感謝です！ とある弁当屋の統計技師（データサイエンティスト）">
+<meta name="keywords" content="統計,r">
 <meta property="og:type" content="article">
 <meta property="og:title" content="とあるフロントエンド屋のR事始め その1">
 <meta property="og:url" content="http://blog.mitsuruog.info/2015/04/leaning-r-day1.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。
-この記事は自分のための学習記録なので、特に有用な情報などありません。あしからず。
-学習はこちらのサイトをベースに行います。とある弁当屋の統計技師様感謝です！
-とある弁当屋の統計技師（データサイエンティスト）">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/leaning-r-1-1.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/leaning-r-1-2.png">
-<meta property="og:updated_time" content="2017-11-28T14:42:51.720Z">
+<meta property="og:description" content="4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。 この記事は自分のための学習記録なので、特に有用な情報などありません。あしからず。 学習はこちらのサイトをベースに行います。とある弁当屋の統計技師様感謝です！ とある弁当屋の統計技師（データサイエンティスト）">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/leaning-r-1-1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/leaning-r-1-2.png">
+<meta property="og:updated_time" content="2017-12-09T15:31:05.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="とあるフロントエンド屋のR事始め その1">
-<meta name="twitter:description" content="4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。
-この記事は自分のための学習記録なので、特に有用な情報などありません。あしからず。
-学習はこちらのサイトをベースに行います。とある弁当屋の統計技師様感謝です！
-とある弁当屋の統計技師（データサイエンティスト）">
-  
+<meta name="twitter:description" content="4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。 この記事は自分のための学習記録なので、特に有用な情報などありません。あしからず。 学習はこちらのサイトをベースに行います。とある弁当屋の統計技師様感謝です！ とある弁当屋の統計技師（データサイエンティスト）">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/leaning-r-1-1.png">
   
     <link rel="icon" href="/favicon.png">
   
-  
- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
- <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
   
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
@@ -49,160 +35,79 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-  
-
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-  <div id="container">
-    <header id="header">
-  <div id="header-main" class="header-inner">
-    <div class="outer">
-      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
-      <nav id="main-nav">
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      
-        <nav id="sub-nav">
-          <div class="profile" id="profile-nav">
-            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"><i class="fa fa-caret-down"></i></a>
-          </div>
-        </nav>
-      
-      <div id="search-form-wrap">
-        
-          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-        
-      </div>
-    </div>
-  </div>
-  <div id="main-nav-mobile" class="header-sub header-inner">
-    <table class="menu outer">
-      <tr>
-        
-          <td><a class="main-nav-link" href="/">Home</a></td>
-        
-          <td><a class="main-nav-link" href="/archives">Archives</a></td>
-        
-        <td>
-          
-            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-          
-        </td>
-      </tr>
-    </table>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
   </div>
 </header>
 
-    <div class="outer">
-      
-        <aside id="profile">
-  <div class="inner profile-inner">
-    <div class="base-info profile-block">
-      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320">
-      <h2 id="name">mitsuruog</h2>
-      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
-      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
-      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
-    </div>
-    <div class="article-info profile-block">
-      <div class="article-info-block">
-        102
-        <span>投稿</span>
-      </div>
-      <div class="article-info-block">
-        113
-        <span>タグ</span>
-      </div>
-    </div>
-    
-    <div class="contact-info profile-block">
-      <table class="contact-list">
-        <tr>
-          
-          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
-          
-          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
-          
-          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
-          
-          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
-          
-        </tr>
-      </table>
-    </div>
+  <div class="container">
+    <div class="columns">
+      <div class="main column">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
+  <meta itemprop="dateModified" content="2017-12-10"></meta>
+  <meta itemprop="headline" content="4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。
+この記事は自分のための学習記録なので、特に有用な情報などありません。あしからず。
+学習はこちらのサ"></meta>
+  <figure class="post-thumbnail">
     
     
-  </div>
-</aside>
 
-      
-      <section id="main"><article id="post-2015/04/leaning-r-day1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
+  </figure>
+  <span itemprop="datePublished">2015-04-06
+</span>
+  <h1 class="title" itemprop="name">とあるフロントエンド屋のR事始め その1</h1>
   
-    <h1 class="article-title" itemprop="name">
-      とあるフロントエンド屋のR事始め その1
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2015/04/leaning-r-day1.html">
-      <time datetime="2015-04-06T07:25:03.000Z" itemprop="datePublished">2015-04-06 16:25</time>
-    </a>
+  <div class="tags">
+    
+      <a class="tag" href="/tags/統計/">統計</a>
+    
+      <a class="tag" href="/tags/r/">r</a>
+    
   </div>
 
 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-                
-        <p>4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。</p>
+  <div class="content" itemprop="articleBody">
+    <p>4月に少しまとまった時間があるということもあり、以前から興味があったのRの統計解析について、せっかくなので勉強してみる。</p>
 <p>この記事は自分のための学習記録なので、特に有用な情報などありません。<br>あしからず。</p>
 <p>学習はこちらのサイトをベースに行います。とある弁当屋の統計技師様感謝です！</p>
-<p><a href="http://rmecab.jp/ranko/" target="_blank" rel="external">とある弁当屋の統計技師（データサイエンティスト）</a></p>
+<p><a href="http://rmecab.jp/ranko/" target="_blank" rel="noopener">とある弁当屋の統計技師（データサイエンティスト）</a></p>
 <a id="more"></a>
 <h2 id="導入など"><a href="#導入など" class="headerlink" title="導入など"></a>導入など</h2><p>Rをインストールしてから、こちらのコマンドで学習用のパッケージをインストールします。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install<span class="class">.packages</span> (<span class="string">"Ranko"</span>, repos = <span class="string">"http://rmecab.jp/R"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install<span class="selector-class">.packages</span> (<span class="string">"Ranko"</span>, repos = <span class="string">"http://rmecab.jp/R"</span>)</span><br></pre></td></tr></table></figure>
 <p>なお、プロキシ通す場合はこうする。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sys.<span class="function"><span class="title">setenv</span><span class="params">(<span class="string">"http_proxy"</span>=<span class="string">"http://&lt;プロキシサーバー&gt;:&lt;ポート&gt;/"</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Sys</span><span class="selector-class">.setenv</span>(<span class="string">"http_proxy"</span>=<span class="string">"http://&lt;プロキシサーバー&gt;:&lt;ポート&gt;/"</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="利用するデータ"><a href="#利用するデータ" class="headerlink" title="利用するデータ"></a>利用するデータ</h2><p>チュートリアルで扱うデータは以下の通り。<code>Ranko</code>パッケージに入っているデータを利用します。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 店別の売上個数</span></span><br><span class="line">&gt; bento</span><br><span class="line">   売上個数     お店</span><br><span class="line"><span class="number">1</span>       <span class="number">181</span>   正規屋</span><br><span class="line"><span class="number">2</span>       <span class="number">194</span>   正規屋</span><br><span class="line"><span class="number">3</span>       <span class="number">265</span>   正規屋</span><br><span class="line"><span class="number">4</span>       <span class="number">206</span>   正規屋</span><br><span class="line"><span class="number">5</span>       <span class="number">208</span>   正規屋</span><br><span class="line"><span class="number">6</span>       <span class="number">272</span>   正規屋</span><br><span class="line">...(省略)</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 弁当別の売上個数</span></span><br><span class="line">&gt; omu</span><br><span class="line">   売上個数         弁当名</span><br><span class="line"><span class="number">1</span>        <span class="number">10</span> オムライス弁当</span><br><span class="line"><span class="number">2</span>        <span class="number">15</span> オムライス弁当</span><br><span class="line"><span class="number">3</span>        <span class="number">17</span> オムライス弁当</span><br><span class="line"><span class="number">4</span>         <span class="number">7</span> オムライス弁当</span><br><span class="line"><span class="number">5</span>        <span class="number">15</span> オムライス弁当</span><br><span class="line">...(省略)</span><br><span class="line"></span><br><span class="line">&gt; bento7</span><br><span class="line"> 月  火  水  木  金  土  日</span><br><span class="line"><span class="number">181</span> <span class="number">194</span> <span class="number">265</span> <span class="number">206</span> <span class="number">208</span> <span class="number">272</span> <span class="number">221</span></span><br></pre></td></tr></table></figure>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="変数代入-lt"><a href="#変数代入-lt" class="headerlink" title="変数代入(&lt;-)"></a>変数代入(&lt;-)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; x &lt;- <span class="number">8</span></span><br><span class="line">&gt; x</span><br><span class="line">[<span class="number">1</span>] <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 店別の売上個数</span><br><span class="line">&gt; bento</span><br><span class="line">   売上個数     お店</span><br><span class="line"><span class="number">1</span>       <span class="number">181</span>   正規屋</span><br><span class="line"><span class="number">2</span>       <span class="number">194</span>   正規屋</span><br><span class="line"><span class="number">3</span>       <span class="number">265</span>   正規屋</span><br><span class="line"><span class="number">4</span>       <span class="number">206</span>   正規屋</span><br><span class="line"><span class="number">5</span>       <span class="number">208</span>   正規屋</span><br><span class="line"><span class="number">6</span>       <span class="number">272</span>   正規屋</span><br><span class="line">...(省略)</span><br><span class="line"></span><br><span class="line"># 弁当別の売上個数</span><br><span class="line">&gt; omu</span><br><span class="line">   売上個数         弁当名</span><br><span class="line"><span class="number">1</span>        <span class="number">10</span> オムライス弁当</span><br><span class="line"><span class="number">2</span>        <span class="number">15</span> オムライス弁当</span><br><span class="line"><span class="number">3</span>        <span class="number">17</span> オムライス弁当</span><br><span class="line"><span class="number">4</span>         <span class="number">7</span> オムライス弁当</span><br><span class="line"><span class="number">5</span>        <span class="number">15</span> オムライス弁当</span><br><span class="line">...(省略)</span><br><span class="line"></span><br><span class="line">&gt; bento7</span><br><span class="line"> 月  火  水  木  金  土  日</span><br><span class="line"><span class="number">181</span> <span class="number">194</span> <span class="number">265</span> <span class="number">206</span> <span class="number">208</span> <span class="number">272</span> <span class="number">221</span></span><br></pre></td></tr></table></figure>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="変数代入-lt"><a href="#変数代入-lt" class="headerlink" title="変数代入(&lt;-)"></a>変数代入(&lt;-)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> x &lt;- 8</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> x</span></span><br><span class="line">[1] 8</span><br></pre></td></tr></table></figure>
 <h3 id="ベクトル-c"><a href="#ベクトル-c" class="headerlink" title="ベクトル(c)"></a>ベクトル(c)</h3><p>とある数値の集合を表したもの</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; x2 &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)</span><br><span class="line">&gt; x2</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; x2 &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)</span><br><span class="line">&gt; x2</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
 <h3 id="データフレーム"><a href="#データフレーム" class="headerlink" title="データフレーム"></a>データフレーム</h3><p>R上で操作するデータの塊のこと。(Excelの計算シートっぽい)<br>添字を指定して任意のデータ集合を作成できる<br>(チュートリアルではデフォルトでcarsのデータセットが設定してある。)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&gt; cars</span><br><span class="line">   speed dist</span><br><span class="line"><span class="number">1</span>      <span class="number">4</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2</span>      <span class="number">4</span>   <span class="number">10</span></span><br><span class="line"><span class="number">3</span>      <span class="number">7</span>    <span class="number">4</span></span><br><span class="line"><span class="number">4</span>      <span class="number">7</span>   <span class="number">22</span></span><br><span class="line"></span><br><span class="line">...(省略)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 任意の行を取得するには[]で添字をつける。</span></span><br><span class="line"><span class="preprocessor"># `,`の後ろに取得する列数を設定するが、通常はいらないと思う。</span></span><br><span class="line">&gt; cars[<span class="number">1</span>,]</span><br><span class="line">  speed dist</span><br><span class="line"><span class="number">1</span>     <span class="number">4</span>    <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 範囲は[start:end]で指定する</span></span><br><span class="line">&gt; cars[<span class="number">1</span>:<span class="number">5</span>,]</span><br><span class="line">  speed dist</span><br><span class="line"><span class="number">1</span>     <span class="number">4</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2</span>     <span class="number">4</span>   <span class="number">10</span></span><br><span class="line"><span class="number">3</span>     <span class="number">7</span>    <span class="number">4</span></span><br><span class="line"><span class="number">4</span>     <span class="number">7</span>   <span class="number">22</span></span><br><span class="line"><span class="number">5</span>     <span class="number">8</span>   <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># $をつけることで特定の列を取得</span></span><br><span class="line">&gt; cars$speed</span><br><span class="line"> [<span class="number">1</span>]  <span class="number">4</span>  <span class="number">4</span>  <span class="number">7</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">10</span> <span class="number">10</span> <span class="number">11</span> <span class="number">11</span> <span class="number">12</span> <span class="number">12</span> <span class="number">12</span> <span class="number">12</span> <span class="number">13</span> <span class="number">13</span> <span class="number">13</span> <span class="number">13</span> <span class="number">14</span> <span class="number">14</span> <span class="number">14</span> <span class="number">14</span> <span class="number">15</span> <span class="number">15</span> <span class="number">15</span> <span class="number">16</span> <span class="number">16</span> <span class="number">17</span> <span class="number">17</span> <span class="number">17</span></span><br><span class="line">[<span class="number">32</span>] <span class="number">18</span> <span class="number">18</span> <span class="number">18</span> <span class="number">18</span> <span class="number">19</span> <span class="number">19</span> <span class="number">19</span> <span class="number">20</span> <span class="number">20</span> <span class="number">20</span> <span class="number">20</span> <span class="number">20</span> <span class="number">22</span> <span class="number">23</span> <span class="number">24</span> <span class="number">24</span> <span class="number">24</span> <span class="number">24</span> <span class="number">25</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 添字を[]をつけることで任意の行列を取得</span></span><br><span class="line">&gt; cars$speed [<span class="number">2</span>]</span><br><span class="line">[<span class="number">1</span>] <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 範囲指定も可能</span></span><br><span class="line">&gt; cars$speed [<span class="number">2</span>:<span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>] <span class="number">4</span> <span class="number">7</span> <span class="number">7</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
-<h2 id="関数"><a href="#関数" class="headerlink" title="関数"></a>関数</h2><h3 id="平均-mean"><a href="#平均-mean" class="headerlink" title="平均(mean)"></a>平均(mean)</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="title">mean</span><span class="params">(bento7)</span></span></span><br><span class="line">[<span class="number">1</span>] <span class="number">221</span></span><br></pre></td></tr></table></figure>
-<h3 id="中央値-median"><a href="#中央値-median" class="headerlink" title="中央値(median)"></a>中央値(median)</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="title">median</span><span class="params">(bento7)</span></span></span><br><span class="line">[<span class="number">1</span>] <span class="number">208</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&gt; cars</span><br><span class="line">   speed dist</span><br><span class="line">1     <span class="number"> 4 </span>   2</span><br><span class="line">2     <span class="number"> 4 </span>  10</span><br><span class="line">3     <span class="number"> 7 </span>   4</span><br><span class="line">4     <span class="number"> 7 </span>  22</span><br><span class="line"></span><br><span class="line">...(省略)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 任意の行を取得するには[]で添字をつける。</span></span><br><span class="line"><span class="comment"># `,`の後ろに取得する列数を設定するが、通常はいらないと思う。</span></span><br><span class="line">&gt; cars[1,]</span><br><span class="line">  speed dist</span><br><span class="line">1    <span class="number"> 4 </span>   2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範囲は[start:end]で指定する</span></span><br><span class="line">&gt; cars[1:5,]</span><br><span class="line">  speed dist</span><br><span class="line">1    <span class="number"> 4 </span>   2</span><br><span class="line">2    <span class="number"> 4 </span>  10</span><br><span class="line">3    <span class="number"> 7 </span>   4</span><br><span class="line">4    <span class="number"> 7 </span>  22</span><br><span class="line">5    <span class="number"> 8 </span>  16</span><br><span class="line"></span><br><span class="line"><span class="comment"># $をつけることで特定の列を取得</span></span><br><span class="line">&gt; cars$speed</span><br><span class="line"> [1] <span class="number"> 4 </span><span class="number"> 4 </span><span class="number"> 7 </span><span class="number"> 7 </span><span class="number"> 8 </span><span class="number"> 9 </span>10<span class="number"> 10 </span>10<span class="number"> 11 </span>11<span class="number"> 12 </span>12<span class="number"> 12 </span>12<span class="number"> 13 </span>13<span class="number"> 13 </span>13<span class="number"> 14 </span>14<span class="number"> 14 </span>14<span class="number"> 15 </span>15<span class="number"> 15 </span>16<span class="number"> 16 </span>17<span class="number"> 17 </span>17</span><br><span class="line">[32]<span class="number"> 18 </span>18<span class="number"> 18 </span>18<span class="number"> 19 </span>19<span class="number"> 19 </span>20<span class="number"> 20 </span>20<span class="number"> 20 </span>20<span class="number"> 22 </span>23<span class="number"> 24 </span>24<span class="number"> 24 </span>24 25</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添字を[]をつけることで任意の行列を取得</span></span><br><span class="line">&gt; cars$speed [2]</span><br><span class="line">[1] 4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範囲指定も可能</span></span><br><span class="line">&gt; cars$speed [2:5]</span><br><span class="line">[1]<span class="number"> 4 </span>7<span class="number"> 7 </span>8</span><br></pre></td></tr></table></figure>
+<h2 id="関数"><a href="#関数" class="headerlink" title="関数"></a>関数</h2><h3 id="平均-mean"><a href="#平均-mean" class="headerlink" title="平均(mean)"></a>平均(mean)</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="selector-tag">mean</span>(bento7)</span><br><span class="line"><span class="selector-attr">[1]</span> <span class="selector-tag">221</span></span><br></pre></td></tr></table></figure>
+<h3 id="中央値-median"><a href="#中央値-median" class="headerlink" title="中央値(median)"></a>中央値(median)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> median(bento7)</span></span><br><span class="line">[1] 208</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
 <h3 id="条件指定"><a href="#条件指定" class="headerlink" title="条件指定(==)"></a>条件指定(==)</h3><p><code>==</code>で条件していできる。普通に演算するよと各データがマッチするがが評価される。</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 条件を指定する</span></span><br><span class="line">&gt; bento$お店==<span class="string">"正規屋"</span></span><br><span class="line"> [<span class="number">1</span>]  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span></span><br><span class="line">[<span class="number">13</span>]  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span></span><br><span class="line">[<span class="number">25</span>]  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></span><br><span class="line">[<span class="number">37</span>] <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></span><br><span class="line">[<span class="number">49</span>] <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 条件を指定する</span><br><span class="line">&gt; bento$お店==<span class="string">"正規屋"</span></span><br><span class="line"> [<span class="number">1</span>]  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span></span><br><span class="line">[<span class="number">13</span>]  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span></span><br><span class="line">[<span class="number">25</span>]  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span>  <span class="literal">TRUE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></span><br><span class="line">[<span class="number">37</span>] <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></span><br><span class="line">[<span class="number">49</span>] <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></span><br></pre></td></tr></table></figure>
 <p>データセットの範囲に指定することで、データセットに対する条件指定ができる。</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># お店=="正規屋のデータを全件取得</span></span><br><span class="line">&gt; bento[bento<span class="variable">$お</span>店==<span class="string">"正規屋"</span>,]</span><br><span class="line">   売上個数   お店</span><br><span class="line"><span class="number">1</span>       <span class="number">181</span> 正規屋</span><br><span class="line"><span class="number">2</span>       <span class="number">194</span> 正規屋</span><br><span class="line"><span class="number">3</span>       <span class="number">265</span> 正規屋</span><br><span class="line">...(省略)</span><br></pre></td></tr></table></figure>
-<h3 id="先頭-head"><a href="#先頭-head" class="headerlink" title="先頭(head)"></a>先頭(head)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; head(bento[bento$お店==<span class="string">"正規屋"</span>,],<span class="number">5</span>)</span><br><span class="line">  売上個数   お店</span><br><span class="line"><span class="number">1</span>      <span class="number">181</span> 正規屋</span><br><span class="line"><span class="number">2</span>      <span class="number">194</span> 正規屋</span><br><span class="line"><span class="number">3</span>      <span class="number">265</span> 正規屋</span><br><span class="line"><span class="number">4</span>      <span class="number">206</span> 正規屋</span><br><span class="line"><span class="number">5</span>      <span class="number">208</span> 正規屋</span><br></pre></td></tr></table></figure>
-<h3 id="末尾-tail"><a href="#末尾-tail" class="headerlink" title="末尾(tail)"></a>末尾(tail)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; tail(bento[bento$お店==<span class="string">"正規屋"</span>,],<span class="number">5</span>)</span><br><span class="line">   売上個数   お店</span><br><span class="line"><span class="number">26</span>      <span class="number">136</span> 正規屋</span><br><span class="line"><span class="number">27</span>      <span class="number">237</span> 正規屋</span><br><span class="line"><span class="number">28</span>      <span class="number">209</span> 正規屋</span><br><span class="line"><span class="number">29</span>      <span class="number">157</span> 正規屋</span><br><span class="line"><span class="number">30</span>      <span class="number">253</span> 正規屋</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> お店==<span class="string">"正規屋のデータを全件取得</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> bento[bento$お店==<span class="string">"正規屋"</span>,]</span></span><br><span class="line">   売上個数   お店</span><br><span class="line">1       181 正規屋</span><br><span class="line">2       194 正規屋</span><br><span class="line">3       265 正規屋</span><br><span class="line">...(省略)</span><br></pre></td></tr></table></figure>
+<h3 id="先頭-head"><a href="#先頭-head" class="headerlink" title="先頭(head)"></a>先頭(head)</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; head(bento[bento$お店==<span class="string">"正規屋"</span>,],<span class="number">5</span>)</span><br><span class="line">  売上個数   お店</span><br><span class="line"><span class="number">1</span>      <span class="number">181</span> 正規屋</span><br><span class="line"><span class="number">2</span>      <span class="number">194</span> 正規屋</span><br><span class="line"><span class="number">3</span>      <span class="number">265</span> 正規屋</span><br><span class="line"><span class="number">4</span>      <span class="number">206</span> 正規屋</span><br><span class="line"><span class="number">5</span>      <span class="number">208</span> 正規屋</span><br></pre></td></tr></table></figure>
+<h3 id="末尾-tail"><a href="#末尾-tail" class="headerlink" title="末尾(tail)"></a>末尾(tail)</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; tail(bento[bento$お店==<span class="string">"正規屋"</span>,],<span class="number">5</span>)</span><br><span class="line">   売上個数   お店</span><br><span class="line"><span class="number">26</span>      <span class="number">136</span> 正規屋</span><br><span class="line"><span class="number">27</span>      <span class="number">237</span> 正規屋</span><br><span class="line"><span class="number">28</span>      <span class="number">209</span> 正規屋</span><br><span class="line"><span class="number">29</span>      <span class="number">157</span> 正規屋</span><br><span class="line"><span class="number">30</span>      <span class="number">253</span> 正規屋</span><br></pre></td></tr></table></figure>
 <h3 id="うーんなんて表現すればいいんでしょう。。。-by"><a href="#うーんなんて表現すればいいんでしょう。。。-by" class="headerlink" title="うーんなんて表現すればいいんでしょう。。。(by)"></a>うーんなんて表現すればいいんでしょう。。。(by)</h3><blockquote>
 <p>by？うーん。便利関数？？</p>
 </blockquote>
 <p>指定したデータセットのサブセットに対して何かの関数処理をさせて結果を表示する。</p>
-<p><a href="http://d.hatena.ne.jp/myopomme/20120708/1341740574" target="_blank" rel="external">by関数について質問を受けたのでまとめてみた - 日々のつれづれ、良かった探し</a></p>
+<p><a href="http://d.hatena.ne.jp/myopomme/20120708/1341740574" target="_blank" rel="noopener">by関数について質問を受けたのでまとめてみた - 日々のつれづれ、良かった探し</a></p>
 <p><code>summary</code>は要約統計量を算出する便利関数みたい。</p>
-<p><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r/59.html" target="_blank" rel="external">R-Source 59. 基本統計量の算出</a></p>
-<p><a href="http://www.yukun.info/blog/2008/09/r-summary-mean-median.html" target="_blank" rel="external">Rで統計: データ集合中の最大、最小、平均、中央値 ? summary()関数</a></p>
+<p><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r/59.html" target="_blank" rel="noopener">R-Source 59. 基本統計量の算出</a></p>
+<p><a href="http://www.yukun.info/blog/2008/09/r-summary-mean-median.html" target="_blank" rel="noopener">Rで統計: データ集合中の最大、最小、平均、中央値 ? summary()関数</a></p>
 <p> summary関数の戻り値</p>
 <ul>
 <li>Min(最小値)</li>
@@ -212,156 +117,210 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>3rd Qu(第三四分位数：大きいほうから1/4の値)</li>
 <li>Max(最大値)</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># この例だと売上個数のデータセットにサブセットのお店を渡して`summary`した結果を取得。。。といったとこでしょうか</span></span><br><span class="line">&gt; by(bento$売上個数, bento$お店, summary)</span><br><span class="line">bento$お店: がんま亭</span><br><span class="line">   Min. <span class="number">1</span>st Qu.  Median    Mean <span class="number">3</span>rd Qu.    Max.</span><br><span class="line">  <span class="number">197.0</span>   <span class="number">203.2</span>   <span class="number">205.5</span>   <span class="number">205.9</span>   <span class="number">208.8</span>   <span class="number">216.0</span></span><br><span class="line">---------------------------------------------------------</span><br><span class="line">bento$お店: 正規屋</span><br><span class="line">   Min. <span class="number">1</span>st Qu.  Median    Mean <span class="number">3</span>rd Qu.    Max.</span><br><span class="line">  <span class="number">124.0</span>   <span class="number">176.5</span>   <span class="number">200.0</span>   <span class="number">201.1</span>   <span class="number">222.5</span>   <span class="number">274.0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># この例だと売上個数のデータセットにサブセットのお店を渡して<span class="code">`summary`</span>した結果を取得。。。といったとこでしょうか</span><br><span class="line">&gt; by(bento$売上個数, bento$お店, summary)</span><br><span class="line">bento$お店: がんま亭</span><br><span class="line"><span class="code">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span></span><br><span class="line"><span class="code">  197.0   203.2   205.5   205.9   208.8   216.0</span></span><br><span class="line">---------------------------------------------------------</span><br><span class="line">bento$お店: 正規屋</span><br><span class="line"><span class="code">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span></span><br><span class="line"><span class="code">  124.0   176.5   200.0   201.1   222.5   274.0</span></span><br></pre></td></tr></table></figure>
 <h2 id="グラフ表示"><a href="#グラフ表示" class="headerlink" title="グラフ表示"></a>グラフ表示</h2><p><code>ggplot2</code>を使ってグラフを表示。</p>
-<h3 id="箱ひげ図-boxplot"><a href="#箱ひげ図-boxplot" class="headerlink" title="箱ひげ図(boxplot)"></a>箱ひげ図(boxplot)</h3><p><a href="http://stat.biopapyrus.net/graph/boxplot.html" target="_blank" rel="external">ボックスプロット | Rのboxplot関数の使い方</a></p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 売上個数をお店ごと(水準)に箱ひげ図化</span></span><br><span class="line">&gt; boxplot(売上個数~お店, <span class="typedef"><span class="keyword">data</span>=bento)</span></span><br></pre></td></tr></table></figure>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/leaning-r-1-1.png" width="400">
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 売上個数を弁当名ごと(水準)に箱ひげ図化</span></span><br><span class="line">&gt; boxplot(売上個数~弁当名, <span class="typedef"><span class="keyword">data</span>=omu)</span></span><br></pre></td></tr></table></figure>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/leaning-r-1-2.png" width="400">
+<h3 id="箱ひげ図-boxplot"><a href="#箱ひげ図-boxplot" class="headerlink" title="箱ひげ図(boxplot)"></a>箱ひげ図(boxplot)</h3><p><a href="http://stat.biopapyrus.net/graph/boxplot.html" target="_blank" rel="noopener">ボックスプロット | Rのboxplot関数の使い方</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 売上個数をお店ごと(水準)に箱ひげ図化</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> boxplot(売上個数~お店, data=bento)</span></span><br></pre></td></tr></table></figure>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/leaning-r-1-1.png" width="400">
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 売上個数を弁当名ごと(水準)に箱ひげ図化</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> boxplot(売上個数~弁当名, data=omu)</span></span><br></pre></td></tr></table></figure>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/leaning-r-1-2.png" width="400">
 <p>外にある○は外れ値みたい。</p>
 <h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>なんとなくグラフ表示までできましたが、まだ全然わかりません。<br>まだわからないのでやらさせてる感が半端ないですw。早く自分の道具として扱えるようにしたいですね。<br>いつまで続くかわかりませんが、頑張ります。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a href="http://blog.mitsuruog.info/2015/04/leaning-r-day1.html#disqus_thread" class="article-comment-link">コメント</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/r/">r</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/統計/">統計</a></li></ul>
-
-    </footer>
   </div>
   
-    
-<nav id="article-nav">
+<nav class="footer-nav">
   
-    <a href="/2015/04/hello-azure-machine-learning.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新しい記事</strong>
-      <div class="article-nav-title">
-        
-          Azure Machine Learningをやってみた
-        
+    <div class="footer-nav__prev">
+      <div class="footer-nav__label">
+        新しい記事
       </div>
-    </a>
+      <a href="/2015/04/hello-azure-machine-learning.html">
+        Azure Machine Learningをやってみた
+      </a>
+    </div>
   
   
-    <a href="/2015/03/web-securuty-handson.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">古い記事</strong>
-      <div class="article-nav-title">Webセキュリティ・ハンズオン 〜攻撃して学ぶ、HTML5のセキュリティ〜に参加してみた話</div>
-    </a>
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2015/03/web-securuty-handson.html">
+        Webセキュリティ・ハンズオン 〜攻撃して学ぶ、HTML5のセキュリティ〜に参加してみた話
+      </a>
+    </div>
   
 </nav>
 
 
-  
 </article>
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info">
+  </form>
+</aside>
 
-</section>
-      
-        <aside id="sidebar">
+  
+    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
+      <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span itemprop="name">mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span itemprop="description">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget-title">最近の記事</div>
     <div class="widget">
-      <ul id="recent-post" class="">
+      <ul class="recent-post">
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/how-makes-meeting-better.html" class="thumbnail">
-  
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png
-)" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/how-makes-meeting-better.html" class="title">グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは</a></p>
-              <p class="item-date"><time datetime="2017-12-06T15:00:00.000Z" itemprop="datePublished">2017-12-07 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/how-makes-meeting-better.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png')" class="thumbnail" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/how-makes-meeting-better.html" class="">
+                  グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-07
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/introduce-stripe-react-component.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-stripe.png
-)" alt="StripeをReactで作られたサービスに組み込んでみた話" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/introduce-stripe-react-component.html" class="title">StripeをReactで作られたサービスに組み込んでみた話</a></p>
-              <p class="item-date"><time datetime="2017-12-01T15:00:00.000Z" itemprop="datePublished">2017-12-02 00:00</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
-)" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="title">Circle CI 2.0でフロントエンドをビルドする</a></p>
-              <p class="item-date"><time datetime="2017-11-27T15:00:00.000Z" itemprop="datePublished">2017-11-28 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/introduce-stripe-react-component.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png')" class="thumbnail" alt="StripeをReactで作られたサービスに組み込んでみた話"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/introduce-stripe-react-component.html" class="">
+                  StripeをReactで作られたサービスに組み込んでみた話
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-02
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
-)" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/how-to-fix-react-redux-text.html" class="title">react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント</a></p>
-              <p class="item-date"><time datetime="2017-11-20T15:00:00.000Z" itemprop="datePublished">2017-11-21 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-build-frontend-via-circleci2.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png')" class="thumbnail" alt="Circle CI 2.0でフロントエンドをビルドする"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="">
+                  Circle CI 2.0でフロントエンドをビルドする
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-28
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
-)" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
-  
-</a>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/how-to-fix-react-redux-text.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png')" class="thumbnail" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/how-to-fix-react-redux-text.html" class="">
+                  react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-21
+
+                </small>
+              </p>
             </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-api-key-access-s3.html" class="title">特定のS3バケットにだけアクセスできるIAMユーザーを作る</a></p>
-              <p class="item-date"><time datetime="2017-11-18T15:00:00.000Z" itemprop="datePublished">2017-11-19 00:00</time></p>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-api-key-access-s3.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png')" class="thumbnail" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-api-key-access-s3.html" class="">
+                  特定のS3バケットにだけアクセスできるIAMユーザーを作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-19
+
+                </small>
+              </p>
             </div>
           </li>
         
@@ -369,14 +328,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
-    <div class="widget tagcloud">
+    <div class="widget">
       <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 11.82px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 15.45px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/s3/" style="font-size: 11.82px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12.73px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 10.91px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
     </div>
   </div>
+
 
   
     
@@ -387,52 +348,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
-  <div id="toTop" class="fa fa-chevron-up"></div>
 </aside>
-      
+
+      </div>
     </div>
-    <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
       <p>
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
       </p>
-      &copy; 2017 mitsuruog<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
     </div>
   </div>
 </footer>
 
-    
-
-<script>
-  var disqus_shortname = 'mitsuruog';
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-
-
-<script src="/js/script.js" type="text/javascript"></script>
-
-  </div>
 </body>
 </html>

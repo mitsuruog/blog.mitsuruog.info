@@ -1,38 +1,29 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  
   <title>Circle CI 2.0でフロントエンドをビルドする | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
-今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。">
+  <meta name="description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。 今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。">
+<meta name="keywords" content="ci,circleci2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Circle CI 2.0でフロントエンドをビルドする">
 <meta property="og:url" content="http://blog.mitsuruog.info/2017/11/way-to-build-frontend-via-circleci2.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
-今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-1.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-2.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-3.png">
-<meta property="og:updated_time" content="2017-12-06T03:37:49.469Z">
+<meta property="og:description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。 今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-3.png">
+<meta property="og:updated_time" content="2017-12-10T08:09:17.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Circle CI 2.0でフロントエンドをビルドする">
-<meta name="twitter:description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
-今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。">
-  
+<meta name="twitter:description" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。 今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
   
     <link rel="icon" href="/favicon.png">
   
-  
- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
- <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
   
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
@@ -45,151 +36,74 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-  
-
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-  <div id="container">
-    <header id="header">
-  <div id="header-main" class="header-inner">
-    <div class="outer">
-      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
-      <nav id="main-nav">
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      
-        <nav id="sub-nav">
-          <div class="profile" id="profile-nav">
-            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"><i class="fa fa-caret-down"></i></a>
-          </div>
-        </nav>
-      
-      <div id="search-form-wrap">
-        
-          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-        
-      </div>
-    </div>
-  </div>
-  <div id="main-nav-mobile" class="header-sub header-inner">
-    <table class="menu outer">
-      <tr>
-        
-          <td><a class="main-nav-link" href="/">Home</a></td>
-        
-          <td><a class="main-nav-link" href="/archives">Archives</a></td>
-        
-        <td>
-          
-            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-          
-        </td>
-      </tr>
-    </table>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
   </div>
 </header>
 
-    <div class="outer">
-      
-        <aside id="profile">
-  <div class="inner profile-inner">
-    <div class="base-info profile-block">
-      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320">
-      <h2 id="name">mitsuruog</h2>
-      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
-      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
-      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
-    </div>
-    <div class="article-info profile-block">
-      <div class="article-info-block">
-        102
-        <span>投稿</span>
-      </div>
-      <div class="article-info-block">
-        113
-        <span>タグ</span>
-      </div>
-    </div>
-    
-    <div class="contact-info profile-block">
-      <table class="contact-list">
-        <tr>
-          
-          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
-          
-          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
-          
-          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
-          
-          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
-          
-        </tr>
-      </table>
-    </div>
-    
-    
-  </div>
-</aside>
+  <div class="container">
+    <div class="columns">
+      <div class="main column">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
+  <meta itemprop="dateModified" content="2017-12-10"></meta>
+  <meta itemprop="headline" content="create-react-appで作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
+今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。
 
-      
-      <section id="main"><article id="post-2017/11/way-to-build-frontend-via-circleci2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
+前提条件フ"></meta>
+  <figure class="post-thumbnail">
+    
+      <meta itemprop="image" content="  https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png"></meta>
     
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Circle CI 2.0でフロントエンドをビルドする
-    </h1>
-  
+  <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png')" class="thumbnail" alt="Circle CI 2.0でフロントエンドをビルドする"></div>
 
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2017/11/way-to-build-frontend-via-circleci2.html">
-      <time datetime="2017-11-27T15:00:00.000Z" itemprop="datePublished">2017-11-28 00:00</time>
-    </a>
+
+  </figure>
+  <span itemprop="datePublished">2017-11-28
+</span>
+  <h1 class="title" itemprop="name">Circle CI 2.0でフロントエンドをビルドする</h1>
+  
+  <div class="tags">
+    
+      <a class="tag" href="/tags/ci/">ci</a>
+    
+      <a class="tag" href="/tags/circleci2/">circleci2</a>
+    
   </div>
 
 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-                
-        <img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png">
-<p><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a>で作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。</p>
+  <div class="content" itemprop="articleBody">
+    <p><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="noopener">create-react-app</a>で作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。</p>
 <p>今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。</p>
 <a id="more"></a>
 <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>フロントエンドのプロジェクトには<code>test</code>と<code>build</code>のタスクがあって、全て<code>npm run</code>で実行できるとします。<br>またデプロイについては、<code>build</code>タスクで1つのバンドルファイルを作成してS3にデプロイします。</p>
 <h2 id="定義ファイルを作成する"><a href="#定義ファイルを作成する" class="headerlink" title="定義ファイルを作成する"></a>定義ファイルを作成する</h2><p>まずは定義ファイルを作成する必要があります。設定ファイルは<code>.circleci</code>フォルダの中に<code>config.yml</code>を作成して定義していきます。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">root</span></span><br><span class="line">  <span class="class">.circleci</span></span><br><span class="line">    <span class="tag">config</span><span class="class">.yml</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root</span><br><span class="line">  .circleci</span><br><span class="line">    config.yml</span><br></pre></td></tr></table></figure>
 <p>定義ファイルのシンタックスについてはv1.0と比べると結構変わっているので注意が必要です。<br>Slackの作業ログを見ると、Dashboardのどこかで定義ファイルが生成できたようですが、どこだか忘れてしまいました。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
 <p>定義ファイルを生成すると次のようなファイルが作成されます。</p>
 <p>デフォルトではCircleCIが準備したDocker imageを使います。(<code>image: circleci/node:8.9</code>の部分)<br>node, npm, yarnは既にimageに含まれているので、最小構成であればこれで大丈夫だと思います。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># Javascript Node CircleCI 2.0 configuration file</span><br><span class="line">#</span><br><span class="line"># <span class="operator"><span class="keyword">Check</span> https://circleci.com/docs/<span class="number">2.0</span>/<span class="keyword">language</span>-javascript/ <span class="keyword">for</span> more details</span><br><span class="line">#</span><br><span class="line"><span class="keyword">version</span>: <span class="number">2</span></span><br><span class="line">jobs:</span><br><span class="line">  <span class="keyword">build</span>:</span><br><span class="line">    docker:</span><br><span class="line">      # specify the <span class="keyword">version</span> you desire here</span><br><span class="line">      - image: circleci/node:<span class="number">8.9</span></span><br><span class="line"></span><br><span class="line">      # Specify service dependencies here <span class="keyword">if</span> necessary</span><br><span class="line">      # CircleCI maintains a <span class="keyword">library</span> <span class="keyword">of</span> pre-built images</span><br><span class="line">      # documented <span class="keyword">at</span> https://circleci.com/docs/<span class="number">2.0</span>/circleci-images/</span><br><span class="line">      # - image: circleci/mongo:<span class="number">3.4</span><span class="number">.4</span></span><br><span class="line"></span><br><span class="line">    working_directory: ~/workspace</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - checkout</span><br><span class="line"></span><br><span class="line">      # Download <span class="keyword">and</span> <span class="keyword">cache</span> dependencies</span><br><span class="line">      - restore_cache:</span><br><span class="line">          <span class="keyword">keys</span>:</span><br><span class="line">          - v1-dependencies-&#123;&#123; <span class="keyword">checksum</span> <span class="string">"package.json"</span> &#125;&#125;</span><br><span class="line">          # fallback <span class="keyword">to</span> <span class="keyword">using</span> the latest <span class="keyword">cache</span> <span class="keyword">if</span> <span class="keyword">no</span> exact <span class="keyword">match</span> <span class="keyword">is</span> <span class="keyword">found</span></span><br><span class="line">          - v1-dependencies-</span><br><span class="line"></span><br><span class="line">      - run: yarn <span class="keyword">install</span></span><br><span class="line"></span><br><span class="line">      - save_cache:</span><br><span class="line">          paths:</span><br><span class="line">            - node_modules</span><br><span class="line">          <span class="keyword">key</span>: v1-dependencies-&#123;&#123; <span class="keyword">checksum</span> <span class="string">"package.json"</span> &#125;&#125;</span><br><span class="line"></span><br><span class="line">      # run tests!</span><br><span class="line">      - run: yarn <span class="keyword">test</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># Javascript Node CircleCI 2.0 configuration file</span><br><span class="line">#</span><br><span class="line"># Check https://circleci.com/docs/2.0/language-javascript/ for more details</span><br><span class="line">#</span><br><span class="line">version: 2</span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    docker:</span><br><span class="line">      # specify the version you desire here</span><br><span class="line">      - image: circleci/node:8.9</span><br><span class="line"></span><br><span class="line">      # Specify service dependencies here if necessary</span><br><span class="line">      # CircleCI maintains a library of pre-built images</span><br><span class="line">      # documented at https://circleci.com/docs/2.0/circleci-images/</span><br><span class="line">      # - image: circleci/mongo:3.4.4</span><br><span class="line"></span><br><span class="line">    working_directory: ~/workspace</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - checkout</span><br><span class="line"></span><br><span class="line">      # Download and cache dependencies</span><br><span class="line">      - restore_cache:</span><br><span class="line">          keys:</span><br><span class="line">          - v1-dependencies-&#123;&#123; checksum &quot;package.json&quot; &#125;&#125;</span><br><span class="line">          # fallback to using the latest cache if no exact match is found</span><br><span class="line">          - v1-dependencies-</span><br><span class="line"></span><br><span class="line">      - run: yarn install</span><br><span class="line"></span><br><span class="line">      - save_cache:</span><br><span class="line">          paths:</span><br><span class="line">            - node_modules</span><br><span class="line">          key: v1-dependencies-&#123;&#123; checksum &quot;package.json&quot; &#125;&#125;</span><br><span class="line"></span><br><span class="line">      # run tests!</span><br><span class="line">      - run: yarn test</span><br></pre></td></tr></table></figure>
 <p>定義ファイルの書き方については公式サンプルプロジェクトを見てください。</p>
 <ul>
-<li><a href="https://github.com/CircleCI-Public/circleci-demo-javascript-express" target="_blank" rel="external">https://github.com/CircleCI-Public/circleci-demo-javascript-express</a></li>
+<li><a href="https://github.com/CircleCI-Public/circleci-demo-javascript-express" target="_blank" rel="noopener">https://github.com/CircleCI-Public/circleci-demo-javascript-express</a></li>
 </ul>
 <h2 id="Docker-imageを作成する"><a href="#Docker-imageを作成する" class="headerlink" title="Docker imageを作成する"></a>Docker imageを作成する</h2><p><strong>（この工程は必要な場合のみです。）</strong></p>
 <p>デフォルトではCircleCIが準備したDocker imageを使うのですが、これをさらにカスタムしてツールなどを導入したい場合は、新しくDocker imageを準備する必要があります。</p>
 <p>自分の場合、S3にデプロイする場合はAWS-CLIツールを利用するので、これをインストールしたimageを作成する必要がありました。<br>imageを作成する際は、<code>circleci/node:8.9</code>を継承することができますので、ぜひそうしましょう。</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM circleci/<span class="keyword">node</span><span class="identifier"></span><span class="title">:8</span>.<span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ここから下にいろいろ定義する</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM circleci/node:8.9</span><br><span class="line"></span><br><span class="line"># ここから下にいろいろ定義する</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>実際に作成したimageはこちらです。</p>
 <ul>
-<li><a href="https://hub.docker.com/r/mitsuruog/cool-build-frontend/" target="_blank" rel="external">https://hub.docker.com/r/mitsuruog/cool-build-frontend/</a></li>
+<li><a href="https://hub.docker.com/r/mitsuruog/cool-build-frontend/" target="_blank" rel="noopener">https://hub.docker.com/r/mitsuruog/cool-build-frontend/</a></li>
 </ul>
 <p>docker imageの作成方法についてはこちらを参照してください。</p>
 <ul>
@@ -198,183 +112,237 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="Jobを定義する"><a href="#Jobを定義する" class="headerlink" title="Jobを定義する"></a>Jobを定義する</h2><p>次にJobを定義します。この後の手順としては、<code>Job</code>を定義してこれをワークフローの中で順番に呼び出していきます。</p>
 <p>Jobとは、CircleCIの中で再利用できると便利だなと思う一連のタスクをまとめたものです。例えば、<code>test</code> とか<code>test and build</code>などがそれにあたります。<br>とにかく次のワークフローの中ではこの<strong>ジョブ名</strong>を利用してフローを作成するので、このことを意識して定義するといいと思います。</p>
 <p>基本的には<code>jobs:</code>の直下にタスク名(上の例では<code>build:</code>)を定義して、<code>steps:</code>の中にやりたいことを順番に書いていきます。<br>この辺りは1.0をやったことがある人であれば、想像できると思います。</p>
-<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">version: 2</span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    steps:</span><br><span class="line">      -<span class="ruby"> run step1</span><br><span class="line"></span>      -<span class="ruby"> run step2</span><br><span class="line"></span>      -<span class="ruby"> run step3</span><br><span class="line"></span>      ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">version: 2</span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    steps:</span><br><span class="line">      - run step1</span><br><span class="line">      - run step2</span><br><span class="line">      - run step3</span><br><span class="line">      ...</span><br></pre></td></tr></table></figure>
 <p>細かな設定は公式ドキュメントを参考にしてください。</p>
 <ul>
-<li><a href="https://circleci.com/docs/2.0/configuration-reference/" target="_blank" rel="external">Configuration Reference</a></li>
+<li><a href="https://circleci.com/docs/2.0/configuration-reference/" target="_blank" rel="noopener">Configuration Reference</a></li>
 </ul>
 <h2 id="ワークフローを定義する"><a href="#ワークフローを定義する" class="headerlink" title="ワークフローを定義する"></a>ワークフローを定義する</h2><p>最後に定義したJobをワークフローとして組み立てていきます。</p>
 <p>基本的には<code>workflows:</code>の直下にワークフロー名を定義して、<code>jobs:</code>の中にやりたいことを順番に書いていきます。</p>
-<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      -<span class="ruby"> test</span><br><span class="line"></span>      -<span class="ruby"> build</span><br><span class="line"></span>      -<span class="ruby"> deploy</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">      - deploy</span><br></pre></td></tr></table></figure>
 <p>ちなみに<code>test</code>などの、次のJobに進む前に完了していなければならないJobがある場合、<code>requires</code>を使うことで表現することができます。</p>
-<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      -<span class="ruby"> test</span><br><span class="line"></span>      -<span class="ruby"> build</span><br><span class="line"></span>          requires:</span><br><span class="line">            -<span class="ruby"> test</span><br><span class="line"></span>      -<span class="ruby"> deploy</span><br><span class="line"></span>          requires:</span><br><span class="line">            -<span class="ruby"> build</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">          requires:</span><br><span class="line">            - test</span><br><span class="line">      - deploy</span><br><span class="line">          requires:</span><br><span class="line">            - build</span><br></pre></td></tr></table></figure>
 <p>この場合、<code>test</code> -&gt; <code>build</code> -&gt; <code>deploy</code>の順にワークフローが実行されます。<br>ワークフローを定義する場合、同じ階層にあるJobは並列に実行されるため、<code>requires</code>でフローの制御は必須だと思います。</p>
 <p>また、特定のブランチのみ実行させたい場合は、<code>filters</code>と<code>branches</code>を組み合わせることで表現可能です。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">workflows</span>:</span><br><span class="line">  <span class="attribute">version</span>: <span class="number">2</span></span><br><span class="line">  <span class="attribute">test_build_and_deploy</span>:</span><br><span class="line">    <span class="attribute">jobs</span>:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">          <span class="attribute">filters</span>:</span><br><span class="line">            <span class="attribute">branches</span>:</span><br><span class="line">              <span class="attribute">only</span>:</span><br><span class="line">                - develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">          filters:</span><br><span class="line">            branches:</span><br><span class="line">              only:</span><br><span class="line">                - develop</span><br></pre></td></tr></table></figure>
 <p>この場合は<code>develop</code>プランチの場合のみbuildのJobが実行されるようになります。</p>
 <p>定義したワークフローはCircleCI上の「WORKFLOWS」にて確認することができます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-2.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-2.png">
 <h2 id="おまけ"><a href="#おまけ" class="headerlink" title="おまけ"></a>おまけ</h2><p>Circle CIのデフォルトのマシンリソースは<code>medium</code>(CPU 2.0 RAM 4GB)となっていて、最近のフロントエンドのテスト、デプロイにおいてはスペック不足感が否めません。</p>
 <blockquote>
 <p>CPUはコア数かな？</p>
 </blockquote>
 <p>自分の場合は、テストでjs-domを使っているのですが、頻繁に次のようなエラーが発生していました。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ENOMEM: <span class="keyword">not</span> enough memory, <span class="command">read</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ENOMEM: not enough memory, read</span><br></pre></td></tr></table></figure>
 <p>そんな時は、<code>resource_class</code>でマシンスペックをあげることができます。<br>しかし、今のところCircle CIのカスタマーサポートに依頼する必要があります。詳しくはこちらを見てください。</p>
 <ul>
-<li><a href="https://circleci.com/docs/2.0/configuration-reference/#resource_class" target="_blank" rel="external">https://circleci.com/docs/2.0/configuration-reference/#resource_class</a></li>
+<li><a href="https://circleci.com/docs/2.0/configuration-reference/#resource_class" target="_blank" rel="noopener">https://circleci.com/docs/2.0/configuration-reference/#resource_class</a></li>
 </ul>
 <blockquote>
 <p>有効にしたいOrganization名と一緒に依頼すると割と早めに対応してくれました。Circle CIのカスタマーサポート素晴らしい！！</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0-3.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-3.png">
 <p>とはいえ、将来的には<code>resource_class</code>はプレミアム機能になるかもしれないです。要注意！</p>
 </blockquote>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>CircleCI 2.0でフロントエンドをビルドするための大まかな手順でした。<br>本題とは全く関係ないのですが、Circle CIのカスタマーサポート迅速でよかったなー。</p>
 <p>CircleCI 2.0の公式ドキュメントについてはこちらを参照してください。</p>
 <ul>
-<li><a href="https://circleci.com/docs/2.0/" target="_blank" rel="external">https://circleci.com/docs/2.0/</a></li>
+<li><a href="https://circleci.com/docs/2.0/" target="_blank" rel="noopener">https://circleci.com/docs/2.0/</a></li>
 </ul>
 
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a href="http://blog.mitsuruog.info/2017/11/way-to-build-frontend-via-circleci2.html#disqus_thread" class="article-comment-link">コメント</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/circleci2/">circleci2</a></li></ul>
-
-    </footer>
   </div>
   
-    
-<nav id="article-nav">
+<nav class="footer-nav">
   
-    <a href="/2017/12/introduce-stripe-react-component.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新しい記事</strong>
-      <div class="article-nav-title">
-        
-          StripeをReactで作られたサービスに組み込んでみた話
-        
+    <div class="footer-nav__prev">
+      <div class="footer-nav__label">
+        新しい記事
       </div>
-    </a>
+      <a href="/2017/12/introduce-stripe-react-component.html">
+        StripeをReactで作られたサービスに組み込んでみた話
+      </a>
+    </div>
   
   
-    <a href="/2017/11/how-to-fix-react-redux-text.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">古い記事</strong>
-      <div class="article-nav-title">react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント</div>
-    </a>
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2017/11/how-to-fix-react-redux-text.html">
+        react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント
+      </a>
+    </div>
   
 </nav>
 
 
-  
 </article>
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info">
+  </form>
+</aside>
 
-</section>
-      
-        <aside id="sidebar">
+  
+    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
+      <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span itemprop="name">mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span itemprop="description">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget-title">最近の記事</div>
     <div class="widget">
-      <ul id="recent-post" class="">
+      <ul class="recent-post">
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/how-makes-meeting-better.html" class="thumbnail">
-  
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png
-)" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/how-makes-meeting-better.html" class="title">グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは</a></p>
-              <p class="item-date"><time datetime="2017-12-06T15:00:00.000Z" itemprop="datePublished">2017-12-07 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/how-makes-meeting-better.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png')" class="thumbnail" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/how-makes-meeting-better.html" class="">
+                  グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-07
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/introduce-stripe-react-component.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-stripe.png
-)" alt="StripeをReactで作られたサービスに組み込んでみた話" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/introduce-stripe-react-component.html" class="title">StripeをReactで作られたサービスに組み込んでみた話</a></p>
-              <p class="item-date"><time datetime="2017-12-01T15:00:00.000Z" itemprop="datePublished">2017-12-02 00:00</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
-)" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="title">Circle CI 2.0でフロントエンドをビルドする</a></p>
-              <p class="item-date"><time datetime="2017-11-27T15:00:00.000Z" itemprop="datePublished">2017-11-28 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/introduce-stripe-react-component.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png')" class="thumbnail" alt="StripeをReactで作られたサービスに組み込んでみた話"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/introduce-stripe-react-component.html" class="">
+                  StripeをReactで作られたサービスに組み込んでみた話
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-02
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
-)" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/how-to-fix-react-redux-text.html" class="title">react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント</a></p>
-              <p class="item-date"><time datetime="2017-11-20T15:00:00.000Z" itemprop="datePublished">2017-11-21 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-build-frontend-via-circleci2.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png')" class="thumbnail" alt="Circle CI 2.0でフロントエンドをビルドする"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="">
+                  Circle CI 2.0でフロントエンドをビルドする
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-28
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
-)" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
-  
-</a>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/how-to-fix-react-redux-text.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png')" class="thumbnail" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/how-to-fix-react-redux-text.html" class="">
+                  react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-21
+
+                </small>
+              </p>
             </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-api-key-access-s3.html" class="title">特定のS3バケットにだけアクセスできるIAMユーザーを作る</a></p>
-              <p class="item-date"><time datetime="2017-11-18T15:00:00.000Z" itemprop="datePublished">2017-11-19 00:00</time></p>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-api-key-access-s3.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png')" class="thumbnail" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-api-key-access-s3.html" class="">
+                  特定のS3バケットにだけアクセスできるIAMユーザーを作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-19
+
+                </small>
+              </p>
             </div>
           </li>
         
@@ -382,14 +350,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
-    <div class="widget tagcloud">
+    <div class="widget">
       <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 11.82px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 15.45px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/s3/" style="font-size: 11.82px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12.73px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 10.91px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
     </div>
   </div>
+
 
   
     
@@ -400,52 +370,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
-  <div id="toTop" class="fa fa-chevron-up"></div>
 </aside>
-      
+
+      </div>
     </div>
-    <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
       <p>
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
       </p>
-      &copy; 2017 mitsuruog<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
     </div>
   </div>
 </footer>
 
-    
-
-<script>
-  var disqus_shortname = 'mitsuruog';
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-
-
-<script src="/js/script.js" type="text/javascript"></script>
-
-  </div>
 </body>
 </html>

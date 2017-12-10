@@ -1,58 +1,50 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  
   <title>Azure Machine Learningをやってみた | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。内容はこちらにあるチュートリアルです。
-Create a simple experiment in Machine Learning Studio | Azure">
+  <meta name="description" content="機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。内容はこちらにあるチュートリアルです。 Create a simple experiment in Machine Learning Studio | Azure">
+<meta name="keywords" content="azure,統計,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Machine Learningをやってみた">
 <meta property="og:url" content="http://blog.mitsuruog.info/2015/04/hello-azure-machine-learning.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。内容はこちらにあるチュートリアルです。
-Create a simple experiment in Machine Learning Studio | Azure">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-1.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-2.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-3.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-4.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-5.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-6.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-7.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-8.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-9.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-10.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-11.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-12.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-13.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-14.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-15.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-16.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-17.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-18.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-21.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-22.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-23.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-24.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-30.png">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-31.png">
-<meta property="og:updated_time" content="2017-11-28T14:42:51.719Z">
+<meta property="og:description" content="機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。内容はこちらにあるチュートリアルです。 Create a simple experiment in Machine Learning Studio | Azure">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-1.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-2.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-3.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-4.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-5.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-6.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-7.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-8.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-9.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-10.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-11.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-12.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-13.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-14.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-15.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-16.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-17.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-18.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-21.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-22.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-23.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-24.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-30.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-31.png">
+<meta property="og:updated_time" content="2017-12-09T15:31:05.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Azure Machine Learningをやってみた">
-<meta name="twitter:description" content="機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。内容はこちらにあるチュートリアルです。
-Create a simple experiment in Machine Learning Studio | Azure">
-  
+<meta name="twitter:description" content="機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。内容はこちらにあるチュートリアルです。 Create a simple experiment in Machine Learning Studio | Azure">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-1.png">
   
     <link rel="icon" href="/favicon.png">
   
-  
- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
- <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
   
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
@@ -65,133 +57,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-  
-
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-  <div id="container">
-    <header id="header">
-  <div id="header-main" class="header-inner">
-    <div class="outer">
-      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
-      <nav id="main-nav">
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      
-        <nav id="sub-nav">
-          <div class="profile" id="profile-nav">
-            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"><i class="fa fa-caret-down"></i></a>
-          </div>
-        </nav>
-      
-      <div id="search-form-wrap">
-        
-          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-        
-      </div>
-    </div>
-  </div>
-  <div id="main-nav-mobile" class="header-sub header-inner">
-    <table class="menu outer">
-      <tr>
-        
-          <td><a class="main-nav-link" href="/">Home</a></td>
-        
-          <td><a class="main-nav-link" href="/archives">Archives</a></td>
-        
-        <td>
-          
-            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-          
-        </td>
-      </tr>
-    </table>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
   </div>
 </header>
 
-    <div class="outer">
-      
-        <aside id="profile">
-  <div class="inner profile-inner">
-    <div class="base-info profile-block">
-      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320">
-      <h2 id="name">mitsuruog</h2>
-      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
-      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
-      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
-    </div>
-    <div class="article-info profile-block">
-      <div class="article-info-block">
-        102
-        <span>投稿</span>
-      </div>
-      <div class="article-info-block">
-        113
-        <span>タグ</span>
-      </div>
-    </div>
-    
-    <div class="contact-info profile-block">
-      <table class="contact-list">
-        <tr>
-          
-          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
-          
-          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
-          
-          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
-          
-          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
-          
-        </tr>
-      </table>
-    </div>
+  <div class="container">
+    <div class="columns">
+      <div class="main column">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
+  <meta itemprop="dateModified" content="2017-12-10"></meta>
+  <meta itemprop="headline" content="機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。内容はこちらにあるチュートリアルです。
+Create a sim"></meta>
+  <figure class="post-thumbnail">
     
     
-  </div>
-</aside>
 
-      
-      <section id="main"><article id="post-2015/04/hello-azure-machine-learning" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
+  </figure>
+  <span itemprop="datePublished">2015-04-16
+</span>
+  <h1 class="title" itemprop="name">Azure Machine Learningをやってみた</h1>
   
-    <h1 class="article-title" itemprop="name">
-      Azure Machine Learningをやってみた
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2015/04/hello-azure-machine-learning.html">
-      <time datetime="2015-04-16T06:18:50.000Z" itemprop="datePublished">2015-04-16 15:18</time>
-    </a>
+  <div class="tags">
+    
+      <a class="tag" href="/tags/azure/">azure</a>
+    
+      <a class="tag" href="/tags/統計/">統計</a>
+    
+      <a class="tag" href="/tags/Machine-Learning/">Machine Learning</a>
+    
   </div>
 
 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-                
-        <p>機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。<br>内容はこちらにあるチュートリアルです。</p>
-<p><a href="http://azure.microsoft.com/en-us/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="external">Create a simple experiment in Machine Learning Studio | Azure</a></p>
+  <div class="content" itemprop="articleBody">
+    <p>機械学習(以下、ML)についてもそろそろやったおかないといけないので、Azure Machine Learning(以下、AzureML)を試してみました。<br>内容はこちらにあるチュートリアルです。</p>
+<p><a href="http://azure.microsoft.com/en-us/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="noopener">Create a simple experiment in Machine Learning Studio | Azure</a></p>
 <a id="more"></a>
 <p>こちらが上の日本語版です。</p>
-<p><a href="http://azure.microsoft.com/ja-jp/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="external">Machine Learning Studio での簡単な実験の作成 | Azure</a></p>
+<p><a href="http://azure.microsoft.com/ja-jp/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="noopener">Machine Learning Studio での簡単な実験の作成 | Azure</a></p>
 <p>AzureMLの中では、一連のMLの流れを<code>experiment(実験)</code>と呼んでいるようです。<br>このチュートリアルでは、自動車の価格データを元に分析モデルを機械学習で構築するものです。<br>実験の手順を整理するとこちらの通りです。</p>
 <ol>
 <li>モデルの作成<ol>
@@ -213,45 +125,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>ではやってみましょう。</p>
 <h2 id="1-モデルの作成"><a href="#1-モデルの作成" class="headerlink" title="1. モデルの作成"></a>1. モデルの作成</h2><h3 id="1-1-データを準備する"><a href="#1-1-データを準備する" class="headerlink" title="1.1. データを準備する"></a>1.1. データを準備する</h3><p>まず、学習するためのデータを準備します。今回は、AzureMLにビルトインされている<code>Automobile price data (Raw)</code>データを利用します。</p>
 <p>実験キャンバスの左側の「データセットとモジュールのパレット(以下、パレット)」からAutomobile price data (Raw)を選択して、実験キャンバスにDrag&amp;Dropします。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-1.png">
 <p>データの表示は、データセットの下の出力ポートを右クリックして<code>Visualize</code>を選択するとできます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-2.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-2.png">
 <p>これでデータの準備はOKです。</p>
 <h3 id="1-2-データの前処理をする"><a href="#1-2-データの前処理をする" class="headerlink" title="1.2. データの前処理をする"></a>1.2. データの前処理をする</h3><p>分析を行うためにデータ前処理(加工)を行います。ここでは歯抜けになっている列や行を削除します。</p>
 <p><strong><code>normalized-losses</code>行を削除する。</strong></p>
 <p>データの前処理は<code>Project Columns</code>モジュールを利用して行います。パレットから選択してください。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-3.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-3.png">
 <p><code>Project Columns</code>モジュールを選択すると、右のプロパティウィンドウで内容を参照できます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-4.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-4.png">
 <p><code>Launch column selector</code>ボタンをクリックすると編集ダイアログが表示されます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-5.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-5.png">
 <p>内容を変更するとプロパティウィンドウで内容を参照できます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-6.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-6.png">
 <p><strong>歯抜けになっている行の除去</strong></p>
 <p>歯抜けデータ除去は、<code>Missing Values Scrubber</code>モジュールを利用して行います。パレットから選択してください。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-7.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-7.png">
 <p>プロパティウィンドウで内容を変更します。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-8.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-8.png">
 <p>下部メニューの<code>RUN</code>をクリックすると、実験を実行できますので、ここまでで実行してみてください。<br>結果の表示はモジュールの下の出力ポートを右クリックして<code>Visualize</code>を選択するとできます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-9.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-9.png">
 <p>なんとなくですが、歯抜けデータの間引きができているようです。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-10.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-10.png" width="500">
 <p><strong>分析対象列のフィルタリング</strong></p>
 <p>最後に分析するデータをフィルタリングします。フィルタリングは<code>Project Columns</code>モジュールを利用して行います。パレットから選択してください。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-11.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-11.png">
 <p>プロパティウィンドウで内容を変更します。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-12.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-12.png">
 <p>実験を<code>RUN</code>してみると、データが正しくフィルタリングできていることが確認できます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-13.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-13.png" width="500">
 <p>ここまでで、データの作成部分が終わりました。<br>情報処理の世界にある、「ガーベジイン・ガーベジアウト」という言葉について、MLの世界では特に大事な気がします。</p>
-<p><a href="http://www.itmedia.co.jp/im/articles/0609/11/news088.html" target="_blank" rel="external">GIGO</a></p>
+<p><a href="http://www.itmedia.co.jp/im/articles/0609/11/news088.html" target="_blank" rel="noopener">GIGO</a></p>
 <h2 id="2-モデルのトレーニング"><a href="#2-モデルのトレーニング" class="headerlink" title="2. モデルのトレーニング"></a>2. モデルのトレーニング</h2><p>続いて、作成したデータに特定の学習アルゴリズムを適用して分析モデルを構築していきます。</p>
 <p>&gt;<br>データが準備できると、分析モデルの構築に必要なのは、トレーニングとテストになります。分類と回帰は、2 種類の管理された機械学習の手法です。  </p>
 <ul>
 <li>分類(Classification)は、色 (赤、青、または緑) のような定義された一連の値から予測するために使用します。  </li>
 <li>回帰(Regression)は、人の年齢のような連続した一連の値から予測するために使用します。  <blockquote>
 <blockquote>
-<p><a href="http://azure.microsoft.com/ja-jp/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="external">Machine Learning Studio での簡単な実験の作成 | Azure</a>より</p>
+<p><a href="http://azure.microsoft.com/ja-jp/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="noopener">Machine Learning Studio での簡単な実験の作成 | Azure</a>より</p>
 </blockquote>
 </blockquote>
 </li>
@@ -259,34 +171,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>今回予測する自動車の価格は、連続した値をとると予測できるので、最も単純な<code>線形回帰</code>を用いて学習させていきます。</p>
 <h3 id="2-1-トレーニングとテストへモデルを分配"><a href="#2-1-トレーニングとテストへモデルを分配" class="headerlink" title="2.1. トレーニングとテストへモデルを分配"></a>2.1. トレーニングとテストへモデルを分配</h3><p>作成したモデルをトレーニングとテストへ分配します。今回は75%をトレーニング、残りの25%をテストに割り振ります。</p>
 <p>分配は、<code>Split</code>モジュールを利用して行います。パレットから選択してプロパティウィンドウで内容を変更します。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-14.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-14.png">
 <p>プロパティウィンドウで内容を変更します。</p>
 <h3 id="2-2-学習アルゴリズムを選択して分析モデルを構築"><a href="#2-2-学習アルゴリズムを選択して分析モデルを構築" class="headerlink" title="2.2. 学習アルゴリズムを選択して分析モデルを構築"></a>2.2. 学習アルゴリズムを選択して分析モデルを構築</h3><p>線形回帰は、<code>Linear Regression</code>モジュールを利用して行います。トレーニングは、<code>Train Model</code>モジュールを利用して行います。</p>
 <p>ぞれぞれパレットから選択してください。</p>
 <p>先ほどの<code>Split</code>モジュールの左の出力ポートと<code>Linear Regression</code>モジュールの出力ポートを<code>Train Model</code>モジュールに接続します。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-15.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-15.png">
 <p><code>Train Model</code>モジュールのプロパティウィンドウで分析するカラムを選択します。今回は<code>price</code>を選択します。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-16.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-16.png">
 <h2 id="3-モデルへのスコア付けとテスト"><a href="#3-モデルへのスコア付けとテスト" class="headerlink" title="3. モデルへのスコア付けとテスト"></a>3. モデルへのスコア付けとテスト</h2><p>最後に、モデル分割で残っている25%のデータについて、先ほど学習した分析モデルを元に結果の予測を行います。</p>
 <h3 id="3-1-分析モデルを元に、新しいデータについての予測を行う"><a href="#3-1-分析モデルを元に、新しいデータについての予測を行う" class="headerlink" title="3.1. 分析モデルを元に、新しいデータについての予測を行う"></a>3.1. 分析モデルを元に、新しいデータについての予測を行う</h3><p>線形回帰は、<code>Score Model</code>モジュールを利用して行います。パレットから選択してください。</p>
 <p><code>Split</code>モジュールの右の出力ポートと<code>Train Model</code>モジュールの出力ポートを<code>Score Model</code>モジュールに接続します。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-17.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-17.png">
 <p>ここまでで<code>RUN</code>すると実験を開始できます。<code>Score Model</code>モジュールにて<code>Visualize</code>すると統計分析の結果がみることでできます。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-18.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-18.png">
 <p>今回は価格での分析でしたので<code>Price</code>列を選択した後に、右の<code>Visualizations</code>にある、<code>compare to 〜</code>の部分を選択します。</p>
 <p>例えば、<strong>メーカー対価格</strong><br>volvoが突出して高いですね。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-21.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-21.png" width="500">
 <p><strong>車種対価格</strong><br>セダンはピンキリですが、全体的に中心より下の価格対が多いようです。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-22.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-22.png" width="500">
 <p><strong>エンジンサイズ対価格</strong><br>エンジンサイズと価格は正比例のようです。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-23.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-23.png" width="500">
 <p><strong>馬力対価格</strong><br>正比例のようですが、うーんちょっとわかりませんね。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-24.png" width="500">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-24.png" width="500">
 <p>ここまででも、結構楽しいです。</p>
 <h3 id="3-2-結果を評価"><a href="#3-2-結果を評価" class="headerlink" title="3.2. 結果を評価"></a>3.2. 結果を評価</h3><p>最後に、分析モデルの予測結果に対する評価を行います。評価は、<code>Evaluate Model</code>モジュールを利用して行います。パレットから選択してください。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-30.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-30.png">
 <p><code>RUN</code>して<code>Evaluate Model</code>モジュールの結果を<code>Visualize</code>すると次のような結果になります。</p>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/azureML-learning-31.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/azureML-learning-31.png">
 <p>各統計値は以下の通りです。</p>
 <p>&gt;</p>
 <ul>
@@ -297,7 +209,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>決定係数(Coefficient of Determination)<br>　* <code>R squared value</code>ともいいます。どの程度モデルが高い精度でデータと適合するかを示す統計指標です。  </li>
 </ul>
 <blockquote>
-<p>各誤差の統計値は、小さいほど優れています。つまり値が小さくなるほど、予測が実際の値に近くなることを意味します。<br>決定係数では、値が 1 (1.0) に近づくほど、予測の精度が高くなります。<br><a href="http://azure.microsoft.com/ja-jp/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="external">Machine Learning Studio での簡単な実験の作成 | Azure</a>より</p>
+<p>各誤差の統計値は、小さいほど優れています。つまり値が小さくなるほど、予測が実際の値に近くなることを意味します。<br>決定係数では、値が 1 (1.0) に近づくほど、予測の精度が高くなります。<br><a href="http://azure.microsoft.com/ja-jp/documentation/articles/machine-learning-create-experiment/" target="_blank" rel="noopener">Machine Learning Studio での簡単な実験の作成 | Azure</a>より</p>
 </blockquote>
 <p>す、すみません。まったくわかりません。</p>
 <p>今回の分析モデルに関しては決定係数が1に近いので、精度としては良いという評価なんでしょうかね？</p>
@@ -311,148 +223,202 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p>まだ、表面的に触っただけなので、この辺りに足を踏み入れるとMLの深淵に触れられそうです。</p>
 <p>既に面白いことやられている方もいるようで、目的に応じてカジュアルに使いこなせるようになるといいなと思います。</p>
-<p><a href="http://garicchi.hatenablog.jp/entry/2015/03/01/155845" target="_blank" rel="external">Azure Machine LearningとIoTを駆使して室温予測システムを構築してみた - がりらぼ</a></p>
+<p><a href="http://garicchi.hatenablog.jp/entry/2015/03/01/155845" target="_blank" rel="noopener">Azure Machine LearningとIoTを駆使して室温予測システムを構築してみた - がりらぼ</a></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a href="http://blog.mitsuruog.info/2015/04/hello-azure-machine-learning.html#disqus_thread" class="article-comment-link">コメント</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure/">azure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/統計/">統計</a></li></ul>
-
-    </footer>
   </div>
   
-    
-<nav id="article-nav">
+<nav class="footer-nav">
   
-    <a href="/2015/04/ionic-7days-war.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新しい記事</strong>
-      <div class="article-nav-title">
-        
-          Androidアプリ開発初心者がionicでアプリを作って公開するまでの7日間の道のり
-        
+    <div class="footer-nav__prev">
+      <div class="footer-nav__label">
+        新しい記事
       </div>
-    </a>
+      <a href="/2015/04/ionic-7days-war.html">
+        Androidアプリ開発初心者がionicでアプリを作って公開するまでの7日間の道のり
+      </a>
+    </div>
   
   
-    <a href="/2015/04/leaning-r-day1.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">古い記事</strong>
-      <div class="article-nav-title">とあるフロントエンド屋のR事始め その1</div>
-    </a>
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2015/04/leaning-r-day1.html">
+        とあるフロントエンド屋のR事始め その1
+      </a>
+    </div>
   
 </nav>
 
 
-  
 </article>
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info">
+  </form>
+</aside>
 
-</section>
-      
-        <aside id="sidebar">
+  
+    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
+      <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span itemprop="name">mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span itemprop="description">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget-title">最近の記事</div>
     <div class="widget">
-      <ul id="recent-post" class="">
+      <ul class="recent-post">
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/how-makes-meeting-better.html" class="thumbnail">
-  
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png
-)" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/how-makes-meeting-better.html" class="title">グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは</a></p>
-              <p class="item-date"><time datetime="2017-12-06T15:00:00.000Z" itemprop="datePublished">2017-12-07 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/how-makes-meeting-better.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png')" class="thumbnail" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/how-makes-meeting-better.html" class="">
+                  グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-07
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/introduce-stripe-react-component.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-stripe.png
-)" alt="StripeをReactで作られたサービスに組み込んでみた話" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/introduce-stripe-react-component.html" class="title">StripeをReactで作られたサービスに組み込んでみた話</a></p>
-              <p class="item-date"><time datetime="2017-12-01T15:00:00.000Z" itemprop="datePublished">2017-12-02 00:00</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
-)" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="title">Circle CI 2.0でフロントエンドをビルドする</a></p>
-              <p class="item-date"><time datetime="2017-11-27T15:00:00.000Z" itemprop="datePublished">2017-11-28 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/introduce-stripe-react-component.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png')" class="thumbnail" alt="StripeをReactで作られたサービスに組み込んでみた話"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/introduce-stripe-react-component.html" class="">
+                  StripeをReactで作られたサービスに組み込んでみた話
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-02
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
-)" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/how-to-fix-react-redux-text.html" class="title">react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント</a></p>
-              <p class="item-date"><time datetime="2017-11-20T15:00:00.000Z" itemprop="datePublished">2017-11-21 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-build-frontend-via-circleci2.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png')" class="thumbnail" alt="Circle CI 2.0でフロントエンドをビルドする"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="">
+                  Circle CI 2.0でフロントエンドをビルドする
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-28
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
-)" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
-  
-</a>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/how-to-fix-react-redux-text.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png')" class="thumbnail" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/how-to-fix-react-redux-text.html" class="">
+                  react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-21
+
+                </small>
+              </p>
             </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-api-key-access-s3.html" class="title">特定のS3バケットにだけアクセスできるIAMユーザーを作る</a></p>
-              <p class="item-date"><time datetime="2017-11-18T15:00:00.000Z" itemprop="datePublished">2017-11-19 00:00</time></p>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-api-key-access-s3.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png')" class="thumbnail" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-api-key-access-s3.html" class="">
+                  特定のS3バケットにだけアクセスできるIAMユーザーを作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-19
+
+                </small>
+              </p>
             </div>
           </li>
         
@@ -460,14 +426,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
-    <div class="widget tagcloud">
+    <div class="widget">
       <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 11.82px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 15.45px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/s3/" style="font-size: 11.82px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12.73px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 10.91px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
     </div>
   </div>
+
 
   
     
@@ -478,52 +446,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
-  <div id="toTop" class="fa fa-chevron-up"></div>
 </aside>
-      
+
+      </div>
     </div>
-    <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
       <p>
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
       </p>
-      &copy; 2017 mitsuruog<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
     </div>
   </div>
 </footer>
 
-    
-
-<script>
-  var disqus_shortname = 'mitsuruog';
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-
-
-<script src="/js/script.js" type="text/javascript"></script>
-
-  </div>
 </body>
 </html>

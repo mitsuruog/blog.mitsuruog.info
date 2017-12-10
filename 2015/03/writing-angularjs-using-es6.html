@@ -1,35 +1,27 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  
   <title>Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。
-内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
+  <meta name="description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。 内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
+<meta name="keywords" content="AngularJs,es6,babel,jspm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜">
 <meta property="og:url" content="http://blog.mitsuruog.info/2015/03/writing-angularjs-using-es6.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。
-内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
-<meta property="og:image" content="https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-refactor.png">
-<meta property="og:updated_time" content="2017-11-28T14:42:51.710Z">
+<meta property="og:description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。 内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-refactor.png">
+<meta property="og:updated_time" content="2017-12-09T15:31:05.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜">
-<meta name="twitter:description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。
-内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
-  
+<meta name="twitter:description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。 内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-refactor.png">
   
     <link rel="icon" href="/favicon.png">
   
-  
- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
- <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
   
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
@@ -42,171 +34,93 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-  
-
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-  <div id="container">
-    <header id="header">
-  <div id="header-main" class="header-inner">
-    <div class="outer">
-      <a href="/" id="logo"><span class="site-title">I am mitsuruog</span></a>
-      <nav id="main-nav">
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      
-        <nav id="sub-nav">
-          <div class="profile" id="profile-nav">
-            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"><i class="fa fa-caret-down"></i></a>
-          </div>
-        </nav>
-      
-      <div id="search-form-wrap">
-        
-          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-        
-      </div>
-    </div>
-  </div>
-  <div id="main-nav-mobile" class="header-sub header-inner">
-    <table class="menu outer">
-      <tr>
-        
-          <td><a class="main-nav-link" href="/">Home</a></td>
-        
-          <td><a class="main-nav-link" href="/archives">Archives</a></td>
-        
-        <td>
-          
-            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="検索"><input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info"></form>
-          
-        </td>
-      </tr>
-    </table>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
   </div>
 </header>
 
-    <div class="outer">
-      
-        <aside id="profile">
-  <div class="inner profile-inner">
-    <div class="base-info profile-block">
-      <img id="avatar" src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320">
-      <h2 id="name">mitsuruog</h2>
-      <h3 id="title">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</h3>
-      <span id="location"><i class="fa fa-map-marker"></i>Japan</span>
-      <a id="follow" href="https://github.com/mitsuruog">フォローする</a>
-    </div>
-    <div class="article-info profile-block">
-      <div class="article-info-block">
-        102
-        <span>投稿</span>
-      </div>
-      <div class="article-info-block">
-        113
-        <span>タグ</span>
-      </div>
-    </div>
-    
-    <div class="contact-info profile-block">
-      <table class="contact-list">
-        <tr>
-          
-          <td><a href="https://github.com/mitsuruog" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
-          
-          <td><a href="https://twitter.com/mitsuruog" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
-          
-          <td><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank" title="slideshare"><i class="fa fa-slideshare"></i></a></td>
-          
-          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
-          
-        </tr>
-      </table>
-    </div>
+  <div class="container">
+    <div class="columns">
+      <div class="main column">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
+  <meta itemprop="dateModified" content="2017-12-10"></meta>
+  <meta itemprop="headline" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。
+内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、"></meta>
+  <figure class="post-thumbnail">
     
     
-  </div>
-</aside>
 
-      
-      <section id="main"><article id="post-2015/03/writing-angularjs-using-es6" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
+  </figure>
+  <span itemprop="datePublished">2015-03-11
+</span>
+  <h1 class="title" itemprop="name">Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜</h1>
   
-    <h1 class="article-title" itemprop="name">
-      Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2015/03/writing-angularjs-using-es6.html">
-      <time datetime="2015-03-10T16:36:47.000Z" itemprop="datePublished">2015-03-11 01:36</time>
-    </a>
+  <div class="tags">
+    
+      <a class="tag" href="/tags/AngularJs/">AngularJs</a>
+    
+      <a class="tag" href="/tags/es6/">es6</a>
+    
+      <a class="tag" href="/tags/babel/">babel</a>
+    
+      <a class="tag" href="/tags/jspm/">jspm</a>
+    
   </div>
 
 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-                
-        <p>2015/3/7に<a href="https://github.com/MSakamaki" target="_blank" rel="external">MSakamaki</a>氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。</p>
+  <div class="content" itemprop="articleBody">
+    <p>2015/3/7に<a href="https://github.com/MSakamaki" target="_blank" rel="noopener">MSakamaki</a>氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。</p>
 <p>内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。<br>ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しかったです。</p>
 <p>Angular1.3をES6でリファクタするポイントや、書き換えてみての所感とかまとめようと思います。<br>(注 今回のコードは実験的な試みです。プロダクションコードに適用するかは自己責任でお願いします。)</p>
-<p><a href="https://angularjs-jp.doorkeeper.jp/events/21008" target="_blank" rel="external">AngularJS ES6リファクタソン - AngularJs Japan User Group | Doorkeeper</a></p>
+<p><a href="https://angularjs-jp.doorkeeper.jp/events/21008" target="_blank" rel="noopener">AngularJS ES6リファクタソン - AngularJs Japan User Group | Doorkeeper</a></p>
 <a id="more"></a>
-<img src="https://blog-mitsuruog.s3.amazonaws.com/images/2015/angular-refactor.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-refactor.png">
 <h2 id="Angular1-X系はES6と相性が悪い？？"><a href="#Angular1-X系はES6と相性が悪い？？" class="headerlink" title="Angular1.X系はES6と相性が悪い？？"></a>Angular1.X系はES6と相性が悪い？？</h2><p>始めにやってみた感じの所感を先に紹介すると、<strong>ES6の新機能は非常に魅力的だけど、Angular1.X系のDIとの組み合わせ(特にModules)が、非常に相性が悪い</strong> と思いました。<br>残念な部分も含めてES6へのリファクタのポイント紹介します。</p>
 <h2 id="環境周り"><a href="#環境周り" class="headerlink" title="環境周り"></a>環境周り</h2><p>ES6にはまだブラウザ上で動作しない仕様もあるため、Babelを使ってES6で書いたコードをES5へコンパイルしました。また、最近Babelとセットで使われることが多いjspmを利用ました。</p>
 <ul>
-<li><a href="https://babeljs.io/" target="_blank" rel="external">Babel · The transpiler for writing next generation JavaScript</a></li>
-<li><a href="http://jspm.io/" target="_blank" rel="external">jspm.io - Frictionless Browser Package Management</a></li>
+<li><a href="https://babeljs.io/" target="_blank" rel="noopener">Babel · The transpiler for writing next generation JavaScript</a></li>
+<li><a href="http://jspm.io/" target="_blank" rel="noopener">jspm.io - Frictionless Browser Package Management</a></li>
 </ul>
 <p>リファクタソンの課題はこちらです。</p>
 <ul>
-<li><a href="https://github.com/MSakamaki/AngularEs6Son" target="_blank" rel="external">MSakamaki/AngularEs6Son</a></li>
+<li><a href="https://github.com/MSakamaki/AngularEs6Son" target="_blank" rel="noopener">MSakamaki/AngularEs6Son</a></li>
 </ul>
 <p>こちらがリファクタソンの内容を持ち帰って、私が書き直してみたコードです。今回紹介するコードはこちらのリポジトリにあります。全体を見たい場合はこちらを見てください。</p>
 <ul>
-<li><a href="https://github.com/mitsuruog/angular-es6" target="_blank" rel="external">mitsuruog/angular-es6</a></li>
+<li><a href="https://github.com/mitsuruog/angular-es6" target="_blank" rel="noopener">mitsuruog/angular-es6</a></li>
 </ul>
 <h2 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h2><p>contorllerはES6のclassを使って置き換えます。</p>
-<p>(client/app/list/list.controller.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ListController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  constructor(BeanService, RegionsService) &#123;</span><br><span class="line">    <span class="keyword">this</span>.beans = [];</span><br><span class="line">    <span class="keyword">this</span>.regions = [];</span><br><span class="line">    <span class="keyword">this</span>.beanService = BeanService;</span><br><span class="line">    <span class="keyword">this</span>.regionsService = RegionsService;</span><br><span class="line">    <span class="comment">// APIアクセス部分</span></span><br><span class="line">    <span class="comment">// Arrow Functionはthisを固定してくれるので、</span></span><br><span class="line">    <span class="comment">// promiseの中がthisと書けて非常に嬉しい</span></span><br><span class="line">    <span class="keyword">this</span>.beanService.query().$promise.then((data) =&gt; <span class="keyword">this</span>.beans = data);</span><br><span class="line">    <span class="keyword">this</span>.regionsService.query().$promise.then((data) =&gt; <span class="keyword">this</span>.regions = data);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// template側で利用する機能</span></span><br><span class="line">  <span class="keyword">delete</span>(id) &#123;</span><br><span class="line">    <span class="keyword">this</span>.beanService.delete(&#123;</span><br><span class="line">        id: id</span><br><span class="line">      &#125;).$promise</span><br><span class="line">      .then(() =&gt; &#123;</span><br><span class="line">        <span class="keyword">this</span>.beanService.query().$promise.then((data) =&gt; <span class="keyword">this</span>.beans = data)</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">ListController.$inject = [<span class="string">'BeanService'</span>, <span class="string">'RegionsService'</span>];</span><br></pre></td></tr></table></figure></p>
+<p>(client/app/list/list.controller.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ListController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(BeanService, RegionsService) &#123;</span><br><span class="line">    <span class="keyword">this</span>.beans = [];</span><br><span class="line">    <span class="keyword">this</span>.regions = [];</span><br><span class="line">    <span class="keyword">this</span>.beanService = BeanService;</span><br><span class="line">    <span class="keyword">this</span>.regionsService = RegionsService;</span><br><span class="line">    <span class="comment">// APIアクセス部分</span></span><br><span class="line">    <span class="comment">// Arrow Functionはthisを固定してくれるので、</span></span><br><span class="line">    <span class="comment">// promiseの中がthisと書けて非常に嬉しい</span></span><br><span class="line">    <span class="keyword">this</span>.beanService.query().$promise.then(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="keyword">this</span>.beans = data);</span><br><span class="line">    <span class="keyword">this</span>.regionsService.query().$promise.then(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="keyword">this</span>.regions = data);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// template側で利用する機能</span></span><br><span class="line">  <span class="keyword">delete</span>(id) &#123;</span><br><span class="line">    <span class="keyword">this</span>.beanService.delete(&#123;</span><br><span class="line">        id: id</span><br><span class="line">      &#125;).$promise</span><br><span class="line">      .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.beanService.query().$promise.then(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="keyword">this</span>.beans = data)</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">ListController.$inject = [<span class="string">'BeanService'</span>, <span class="string">'RegionsService'</span>];</span><br></pre></td></tr></table></figure></p>
 <p>class内で再利用するObjectは一旦<code>this</code>に格納します。<br><code>this</code>の利用頻度が多いですが、普段<code>controllerAs</code>でcontorllerを利用している人にとっては、あまり違和感なのではないでしょうか。<br>moduleへの登録は次のように行います。</p>
 <p>(client/app/app.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ListController <span class="keyword">from</span> <span class="string">'./list/list.controller'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> app = angular.module(<span class="string">'Es6App'</span>, [<span class="string">'ui.router'</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// controllers</span></span><br><span class="line">app.controller(ListController.name, ListController);</span><br></pre></td></tr></table></figure></p>
 <p>このあたりまではES6のArrow Functions・Classes・Modulesなどの新機能を使ってAngular1.X系でもいけるんじゃないかと思います。わたしにもそんなこと思っていた時期がありました。</p>
 <p>ES6のClassとArrow Functionsは本当にいいですね。</p>
 <h2 id="factory"><a href="#factory" class="headerlink" title="factory"></a>factory</h2><p>factoryもcontollerと同様にclassを使って置き換えます。</p>
-<p>(client/dataservices/beans/beans.service.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  constructor($resource) &#123;</span><br><span class="line">    <span class="keyword">return</span> $resource(<span class="string">'http://localhost:8000/api/beans/:id'</span>, &#123;</span><br><span class="line">      id: <span class="string">'@id'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      update: &#123;</span><br><span class="line">        method: <span class="string">'PUT'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">BeanService.activate.$inject = [<span class="string">'$resource'</span>];</span><br></pre></td></tr></table></figure></p>
+<p>(client/dataservices/beans/beans.service.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>($resource) &#123;</span><br><span class="line">    <span class="keyword">return</span> $resource(<span class="string">'http://localhost:8000/api/beans/:id'</span>, &#123;</span><br><span class="line">      id: <span class="string">'@id'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      update: &#123;</span><br><span class="line">        method: <span class="string">'PUT'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">BeanService.activate.$inject = [<span class="string">'$resource'</span>];</span><br></pre></td></tr></table></figure></p>
 <p>moduleへの登録は次のように行います。</p>
 <p>(client/dataservices/index.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> BeanService <span class="keyword">from</span> <span class="string">'./beans/beans.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> app = angular.module(<span class="string">'Es6AppDataServices'</span>, [<span class="string">'ngResource'</span>]);</span><br><span class="line"></span><br><span class="line">app.factory(<span class="string">'BeanService'</span>, ($resource) =&gt; <span class="keyword">new</span> BeanService($resource));</span><br></pre></td></tr></table></figure></p>
 <p>module登録の際にfactory Classをインスタンス化する必要があります。さらにDIの注入がある場合は、依存関係のモジュールを渡さなければなりせん。<br>Angular1.X系のDIの仕組みは、ES6のModulesとは相性が悪いようです。そこで、Classのインスタンスを返すstaticなfunctionを追加して次のように改善してみました。</p>
-<p>(client/dataservices/beans/beans.service.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  constructor($resource) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static activate($resource)&#123;</span><br><span class="line">    BeanService.instance = <span class="keyword">new</span> BeanService($resource);</span><br><span class="line">    <span class="keyword">return</span> BeanService.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">BeanService.activate.$inject = [<span class="string">'$resource'</span>];</span><br></pre></td></tr></table></figure></p>
+<p>(client/dataservices/beans/beans.service.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>($resource) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> activate($resource)&#123;</span><br><span class="line">    BeanService.instance = <span class="keyword">new</span> BeanService($resource);</span><br><span class="line">    <span class="keyword">return</span> BeanService.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">BeanService.activate.$inject = [<span class="string">'$resource'</span>];</span><br></pre></td></tr></table></figure></p>
 <p>これでmoduleへの登録は少しスッキリします。</p>
 <p>(client/dataservices/index.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">app.factory(<span class="string">'BeanService'</span>, BeanService.activate);</span><br></pre></td></tr></table></figure></p>
 <h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>filterも同様にclassで置き換えます。</p>
-<p>(client/filters/regionName/regionName.filter.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">regionName</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    <span class="keyword">return</span> (input, regions) =&gt; &#123;</span><br><span class="line">      <span class="keyword">let</span> regionName = <span class="string">''</span>;</span><br><span class="line">      angular.forEach(regions, <span class="function"><span class="keyword">function</span>(<span class="params">region</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (region.id === input) regionName = region.name;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> regionName;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static activate()&#123;</span><br><span class="line">    regionName.instance = <span class="keyword">new</span> regionName();</span><br><span class="line">    <span class="keyword">return</span> regionName.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>(client/filters/regionName/regionName.filter.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">regionName</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">input, regions</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> regionName = <span class="string">''</span>;</span><br><span class="line">      angular.forEach(regions, <span class="function"><span class="keyword">function</span>(<span class="params">region</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (region.id === input) regionName = region.name;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> regionName;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> activate()&#123;</span><br><span class="line">    regionName.instance = <span class="keyword">new</span> regionName();</span><br><span class="line">    <span class="keyword">return</span> regionName.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>moduleの登録はfactoryと一緒なので省略します。</p>
 <h2 id="directive"><a href="#directive" class="headerlink" title="directive"></a>directive</h2><p>directiveも同じです。</p>
-<p>(client/components/amountLabel/amountLabel.directive.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">amountLabel</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    <span class="comment">// directiveの設定系</span></span><br><span class="line">    <span class="keyword">this</span>.templateUrl = <span class="string">'components/amountLabel/amountLabel.html'</span>;</span><br><span class="line">    <span class="keyword">this</span>.restrict = <span class="string">'EA'</span>;</span><br><span class="line">    <span class="keyword">this</span>.scope = &#123;</span><br><span class="line">      amount: <span class="string">'='</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  link(scope, element, attrs) &#123;</span><br><span class="line">    <span class="keyword">if</span> (scope.amount &gt; <span class="number">1000</span>) &#123;</span><br><span class="line">      scope.styleClass = <span class="string">'text-info'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (scope.amount &lt;= <span class="number">1000</span> &amp;&amp; scope.amount &gt; <span class="number">500</span>) &#123;</span><br><span class="line">      scope.styleClass = <span class="string">'text-success'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (scope.amount &lt;= <span class="number">500</span>) &#123;</span><br><span class="line">      scope.styleClass = <span class="string">'text-danger'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static activate() &#123;</span><br><span class="line">    amountLabel.instance = <span class="keyword">new</span> amountLabel();</span><br><span class="line">    <span class="keyword">return</span> amountLabel.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>(client/components/amountLabel/amountLabel.directive.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">amountLabel</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">// directiveの設定系</span></span><br><span class="line">    <span class="keyword">this</span>.templateUrl = <span class="string">'components/amountLabel/amountLabel.html'</span>;</span><br><span class="line">    <span class="keyword">this</span>.restrict = <span class="string">'EA'</span>;</span><br><span class="line">    <span class="keyword">this</span>.scope = &#123;</span><br><span class="line">      amount: <span class="string">'='</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  link(scope, element, attrs) &#123;</span><br><span class="line">    <span class="keyword">if</span> (scope.amount &gt; <span class="number">1000</span>) &#123;</span><br><span class="line">      scope.styleClass = <span class="string">'text-info'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (scope.amount &lt;= <span class="number">1000</span> &amp;&amp; scope.amount &gt; <span class="number">500</span>) &#123;</span><br><span class="line">      scope.styleClass = <span class="string">'text-success'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (scope.amount &lt;= <span class="number">500</span>) &#123;</span><br><span class="line">      scope.styleClass = <span class="string">'text-danger'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> activate() &#123;</span><br><span class="line">    amountLabel.instance = <span class="keyword">new</span> amountLabel();</span><br><span class="line">    <span class="keyword">return</span> amountLabel.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>moduleの登録はfactoryと一緒なので省略します。</p>
 <h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>ConfigやrouterもES6のClassで置き換えてみます。</p>
-<p>(client/app/app.config.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  constructor($locationProvider) &#123;</span><br><span class="line">    <span class="comment">// アプリ共通の設定系</span></span><br><span class="line">    $locationProvider.html5Mode(<span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static activate($locationProvider) &#123;</span><br><span class="line">    AppConfig.instance = <span class="keyword">new</span> AppConfig($locationProvider);</span><br><span class="line">    <span class="keyword">return</span> AppConfig.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">AppConfig.$inject = [<span class="string">'$locationProvider'</span>];</span><br></pre></td></tr></table></figure></p>
-<p>(client/app/app.route.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">AppRouter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  constructor($stateProvider, $urlRouterProvider) &#123;</span><br><span class="line"></span><br><span class="line">    $urlRouterProvider.otherwise(<span class="string">'/list'</span>);</span><br><span class="line">    $stateProvider.state(<span class="string">'app'</span>, &#123;</span><br><span class="line">      abstract: <span class="literal">true</span>,</span><br><span class="line">      url: <span class="string">'/#'</span>,</span><br><span class="line">      template: <span class="string">`&lt;div ui-view="header"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div ui-view="contents" class="main"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div ui-view="footer"&gt;&lt;/div&gt;`</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static activate($stateProvider, $urlRouterProvider) &#123;</span><br><span class="line">    AppRouter.instance = <span class="keyword">new</span> AppRouter($stateProvider, $urlRouterProvider);</span><br><span class="line">    <span class="keyword">return</span> AppRouter.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">AppRouter.$inject = [<span class="string">'$stateProvider'</span>, <span class="string">'$urlRouterProvider'</span>];</span><br></pre></td></tr></table></figure></p>
+<p>(client/app/app.config.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>($locationProvider) &#123;</span><br><span class="line">    <span class="comment">// アプリ共通の設定系</span></span><br><span class="line">    $locationProvider.html5Mode(<span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> activate($locationProvider) &#123;</span><br><span class="line">    AppConfig.instance = <span class="keyword">new</span> AppConfig($locationProvider);</span><br><span class="line">    <span class="keyword">return</span> AppConfig.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">AppConfig.$inject = [<span class="string">'$locationProvider'</span>];</span><br></pre></td></tr></table></figure></p>
+<p>(client/app/app.route.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">AppRouter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>($stateProvider, $urlRouterProvider) &#123;</span><br><span class="line"></span><br><span class="line">    $urlRouterProvider.otherwise(<span class="string">'/list'</span>);</span><br><span class="line">    $stateProvider.state(<span class="string">'app'</span>, &#123;</span><br><span class="line">      abstract: <span class="literal">true</span>,</span><br><span class="line">      url: <span class="string">'/#'</span>,</span><br><span class="line">      template: <span class="string">`&lt;div ui-view="header"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;div ui-view="contents" class="main"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;div ui-view="footer"&gt;&lt;/div&gt;`</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> activate($stateProvider, $urlRouterProvider) &#123;</span><br><span class="line">    AppRouter.instance = <span class="keyword">new</span> AppRouter($stateProvider, $urlRouterProvider);</span><br><span class="line">    <span class="keyword">return</span> AppRouter.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Strict DI</span></span><br><span class="line">AppRouter.$inject = [<span class="string">'$stateProvider'</span>, <span class="string">'$urlRouterProvider'</span>];</span><br></pre></td></tr></table></figure></p>
 <p>アプリのトップレベルのmoduleへの最終的な登録はつぎのとおりです。</p>
 <p>(client/app/app.js)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> angular <span class="keyword">from</span> <span class="string">'angular'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'angular-ui-router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> AppConfig <span class="keyword">from</span> <span class="string">'./app.config'</span>;</span><br><span class="line"><span class="keyword">import</span> AppRouter <span class="keyword">from</span> <span class="string">'./app.route'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ListController <span class="keyword">from</span> <span class="string">'./list/list.controller'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'../filters/index'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'../dataservices/index'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'../components/index'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> app = angular.module(<span class="string">'Es6App'</span>, [</span><br><span class="line">  <span class="string">'ui.router'</span>,</span><br><span class="line">  <span class="string">'Es6AppFilters'</span>,</span><br><span class="line">  <span class="string">'Es6AppDataServices'</span>,</span><br><span class="line">  <span class="string">'Es6AppComponents'</span></span><br><span class="line">]);</span><br><span class="line"><span class="comment">// 設定系</span></span><br><span class="line">app.config(AppConfig.activate);</span><br><span class="line">app.config(AppRouter.activate);</span><br><span class="line"><span class="comment">// controllers</span></span><br><span class="line">app.controller(ListController.name, ListController);</span><br></pre></td></tr></table></figure></p>
 <h2 id="課題"><a href="#課題" class="headerlink" title="課題"></a>課題</h2><p>とりあえずES6に置き換えることはできそうですが、テスト周りについての変更点については、まだ検証できてません。<br>個人的にはテストのspecがES6で書けるだけでも嬉しいです！！</p>
@@ -222,155 +136,209 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="さいごに"><a href="#さいごに" class="headerlink" title="さいごに"></a>さいごに</h2><p>今や最も優れている(？)Angular1.X系。<br>2年後くらいにES6が主流になったとき、今のBackboneを見る時に感じるものと同じ感覚を覚えるのではないかと思いました。<br>また、来年にはAngular2が来ると言われているのですが、1.X系とは全く別物なんですよねー(白目)。</p>
 <p>にしても、いつになったらフロントエンド開発のデファクトが定まるのか、まだまだJSフレームワークの長い旅は続きそうです。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://blog.thoughtram.io/angularjs/es6/2015/01/23/exploring-angular-1.3-using-es6.html" target="_blank" rel="external">Using ES6 with Angular today</a></li>
-<li><a href="http://www.michaelbromley.co.uk/blog/350/exploring-es6-classes-in-angularjs-1-x" target="_blank" rel="external">Exploring ES6 Classes In AngularJS 1.x</a></li>
-<li><a href="http://www.sitepoint.com/writing-angularjs-apps-using-es6/" target="_blank" rel="external">Writing AngularJS Apps Using ES6</a></li>
-<li><a href="https://gocardless.com/blog/es6-angular/" target="_blank" rel="external">Using ES6 Modules with AngularJS 1.3 — GoCardless Blog</a></li>
-<li><a href="https://github.com/gocardless/es6-angularjs" target="_blank" rel="external">gocardless/es6-angularjs</a></li>
-<li><a href="https://github.com/lukehoban/es6features" target="_blank" rel="external">lukehoban/es6features</a></li>
-<li><a href="https://github.com/yoheiMune/es6features" target="_blank" rel="external">yoheiMune/es6features(上の日本語訳)</a></li>
+<li><a href="http://blog.thoughtram.io/angularjs/es6/2015/01/23/exploring-angular-1.3-using-es6.html" target="_blank" rel="noopener">Using ES6 with Angular today</a></li>
+<li><a href="http://www.michaelbromley.co.uk/blog/350/exploring-es6-classes-in-angularjs-1-x" target="_blank" rel="noopener">Exploring ES6 Classes In AngularJS 1.x</a></li>
+<li><a href="http://www.sitepoint.com/writing-angularjs-apps-using-es6/" target="_blank" rel="noopener">Writing AngularJS Apps Using ES6</a></li>
+<li><a href="https://gocardless.com/blog/es6-angular/" target="_blank" rel="noopener">Using ES6 Modules with AngularJS 1.3 — GoCardless Blog</a></li>
+<li><a href="https://github.com/gocardless/es6-angularjs" target="_blank" rel="noopener">gocardless/es6-angularjs</a></li>
+<li><a href="https://github.com/lukehoban/es6features" target="_blank" rel="noopener">lukehoban/es6features</a></li>
+<li><a href="https://github.com/yoheiMune/es6features" target="_blank" rel="noopener">yoheiMune/es6features(上の日本語訳)</a></li>
 </ul>
 
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a href="http://blog.mitsuruog.info/2015/03/writing-angularjs-using-es6.html#disqus_thread" class="article-comment-link">コメント</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJs/">AngularJs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/babel/">babel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jspm/">jspm</a></li></ul>
-
-    </footer>
   </div>
   
-    
-<nav id="article-nav">
+<nav class="footer-nav">
   
-    <a href="/2015/03/web-securuty-handson.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新しい記事</strong>
-      <div class="article-nav-title">
-        
-          Webセキュリティ・ハンズオン 〜攻撃して学ぶ、HTML5のセキュリティ〜に参加してみた話
-        
+    <div class="footer-nav__prev">
+      <div class="footer-nav__label">
+        新しい記事
       </div>
-    </a>
+      <a href="/2015/03/web-securuty-handson.html">
+        Webセキュリティ・ハンズオン 〜攻撃して学ぶ、HTML5のセキュリティ〜に参加してみた話
+      </a>
+    </div>
   
   
-    <a href="/2015/02/mongoose-ref-and-populate-tips.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">古い記事</strong>
-      <div class="article-nav-title">RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと</div>
-    </a>
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2015/02/mongoose-ref-and-populate-tips.html">
+        RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと
+      </a>
+    </div>
   
 </nav>
 
 
-  
 </article>
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="http://blog.mitsuruog.info">
+  </form>
+</aside>
 
-</section>
-      
-        <aside id="sidebar">
+  
+    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
+      <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span itemprop="name">mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span itemprop="description">front-end developer with a passion for making the maintainable web. working for the improvement of old Web experience.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">最近の記事</h3>
+    <div class="widget-title">最近の記事</div>
     <div class="widget">
-      <ul id="recent-post" class="">
+      <ul class="recent-post">
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/how-makes-meeting-better.html" class="thumbnail">
-  
-    <span style="background-image:url(https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png
-)" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/how-makes-meeting-better.html" class="title">グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは</a></p>
-              <p class="item-date"><time datetime="2017-12-06T15:00:00.000Z" itemprop="datePublished">2017-12-07 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/how-makes-meeting-better.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png')" class="thumbnail" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/how-makes-meeting-better.html" class="">
+                  グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-07
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/12/introduce-stripe-react-component.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/react-stripe.png
-)" alt="StripeをReactで作られたサービスに組み込んでみた話" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/12/introduce-stripe-react-component.html" class="title">StripeをReactで作られたサービスに組み込んでみた話</a></p>
-              <p class="item-date"><time datetime="2017-12-01T15:00:00.000Z" itemprop="datePublished">2017-12-02 00:00</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/circleci2.0.png
-)" alt="Circle CI 2.0でフロントエンドをビルドする" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="title">Circle CI 2.0でフロントエンドをビルドする</a></p>
-              <p class="item-date"><time datetime="2017-11-27T15:00:00.000Z" itemprop="datePublished">2017-11-28 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/introduce-stripe-react-component.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png')" class="thumbnail" alt="StripeをReactで作られたサービスに組み込んでみた話"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/introduce-stripe-react-component.html" class="">
+                  StripeをReactで作られたサービスに組み込んでみた話
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-02
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/how-to-fix-react-redux-text.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/invariant-violation.png
-)" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/how-to-fix-react-redux-text.html" class="title">react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント</a></p>
-              <p class="item-date"><time datetime="2017-11-20T15:00:00.000Z" itemprop="datePublished">2017-11-21 00:00</time></p>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-build-frontend-via-circleci2.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png')" class="thumbnail" alt="Circle CI 2.0でフロントエンドをビルドする"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-build-frontend-via-circleci2.html" class="">
+                  Circle CI 2.0でフロントエンドをビルドする
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-28
+
+                </small>
+              </p>
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2017/11/way-to-api-key-access-s3.html" class="thumbnail">
-  
-    <span style="background-image:url(https://blog-mitsuruog.s3.amazonaws.com/images/2017/iam-s3-bucket.png
-)" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る" class="thumbnail-image"></span>
-  
-</a>
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/how-to-fix-react-redux-text.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/invariant-violation.png')" class="thumbnail" alt="react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/how-to-fix-react-redux-text.html" class="">
+                  react-reduxのconnectを使ったコンポーネントをテストする時にInvariant Violationが発生して困っている人のためのヒント
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-21
+
+                </small>
+              </p>
             </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2017/11/way-to-api-key-access-s3.html" class="title">特定のS3バケットにだけアクセスできるIAMユーザーを作る</a></p>
-              <p class="item-date"><time datetime="2017-11-18T15:00:00.000Z" itemprop="datePublished">2017-11-19 00:00</time></p>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/11/way-to-api-key-access-s3.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/iam-s3-bucket.png')" class="thumbnail" alt="特定のS3バケットにだけアクセスできるIAMユーザーを作る"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/11/way-to-api-key-access-s3.html" class="">
+                  特定のS3バケットにだけアクセスできるIAMユーザーを作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-11-19
+
+                </small>
+              </p>
             </div>
           </li>
         
@@ -378,14 +346,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
-    <div class="widget tagcloud">
+    <div class="widget">
       <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 11.82px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 15.45px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/s3/" style="font-size: 11.82px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12.73px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 10.91px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
     </div>
   </div>
+
 
   
     
@@ -396,52 +366,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   
-  <div id="toTop" class="fa fa-chevron-up"></div>
 </aside>
-      
+
+      </div>
     </div>
-    <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
       <p>
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
       </p>
-      &copy; 2017 mitsuruog<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
     </div>
   </div>
 </footer>
 
-    
-
-<script>
-  var disqus_shortname = 'mitsuruog';
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-
-
-<script src="/js/script.js" type="text/javascript"></script>
-
-  </div>
 </body>
 </html>
