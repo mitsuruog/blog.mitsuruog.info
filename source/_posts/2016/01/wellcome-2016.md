@@ -5,6 +5,7 @@ date: 2016-01-02 22:20:29 +0900
 comments: true
 tags:
   - その他
+thumbnail: http://giantech.jp/assets/images/20150604/purpose_venn_diagram_ja.png
 ---
 
 あけましておめでとうございます。  

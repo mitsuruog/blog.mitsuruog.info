@@ -5,8 +5,8 @@
   "hexo": {
     "version": "3.4.3"
   },
-  "engines" : {
-    "node" : "~8.9.0"
+  "engines": {
+    "node": "~8.9.0"
   },
   "scripts": {
     "generate": "gulp clean && node_modules/.bin/hexo generate",

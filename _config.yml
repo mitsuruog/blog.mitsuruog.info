@@ -45,8 +45,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: true
-  tab_replace:
+  auto_detect: false
 
 # Category & Tag
 default_category: uncategorized
