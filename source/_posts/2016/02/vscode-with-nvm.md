@@ -6,10 +6,8 @@ comments: true
 tags:
   - vscode
   - nvm
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/vscode-with-nvm.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/vscode-with-nvm.png %}
-
 # vscodeとnvmを一緒に使う小ネタ
 
 ローカルのnode環境を[nvm](https://github.com/creationix/nvm)で作ってて、typescriptをnpm経由でインストールした時に少しハマったので自分用メモ

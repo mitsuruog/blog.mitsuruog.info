@@ -6,10 +6,8 @@ comments: true
 tags:
   - typescript
   - definitelytyped
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/TypeSctiptisfun.png %}
-
 TypeScriptを使っていると、結構必要になる型定義ファイル。
 型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。
 

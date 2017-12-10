@@ -5,10 +5,8 @@ date: 2016-07-19 23:58:00 +900
 comments: true
 tags:
   - angular2
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/No_more.png %}
-
 先日、学生向けにTodoワークショップを開催した時の話です。
 Angular1のように`ngFor`とPipeを組み合わせて、リストのソート機能をつくろうとしたところ、初め上手く動かせませんでした。
 StackOverFlowで解決策を見つけてなんとか動かすことはできたのですが、腑に落ちず後日改めて調べたところ、Pipeを使う上で知っておくべき事を知らなかったことに気づきました。
@@ -75,4 +73,3 @@ Angular2でも同様に、`ngFor`と`impure`Pipeをうっかり組み合わせ�
 - (とりあえず)参考にしたStackOverFlowの記事
   - [angular2 - How to apply filters to *ngFor - Stack Overflow](http://stackoverflow.com/questions/34164413/how-to-apply-filters-to-ngfor)
   - NgFor doesn't update data with Pipe in Angular2 - Stack Overflow http://stackoverflow.com/questions/34456430/ngfor-doesnt-update-data-with-pipe-in-angular2
-

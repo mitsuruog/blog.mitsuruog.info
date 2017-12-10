@@ -6,8 +6,8 @@ comments: true
 tags:
   - circleci2
   - ci
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
 ---
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png %}
 [create-react-app](https://github.com/facebookincubator/create-react-app)で作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
 
 今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。

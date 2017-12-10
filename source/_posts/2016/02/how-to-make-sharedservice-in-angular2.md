@@ -7,10 +7,8 @@ tags:
   - angular
   - angular2
   - typescript
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png %}
-
 SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。  
 Angular1の場合は、SharedServiceを利用するケースが多かったです。  
 そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。

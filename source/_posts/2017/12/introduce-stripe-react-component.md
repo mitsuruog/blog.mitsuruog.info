@@ -6,9 +6,8 @@ comments: true
 tags:
   - react
   - stripe
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png
 ---
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png %}
-
 この記事は[Stripe Advent Calendar 2017 \- Adventar](https://adventar.org/calendars/2339react-stripe-elements)2日目の記事です。
 
 自分がフロントエンドをやっている、オンラインプログラミング学習サービス[CODEPREP](https://codeprep.jp/)に、[Stripe](https://stripe.com/)決済を組み込んでみた時の話です。

@@ -7,10 +7,8 @@ tags:
   - react
   - react-intl
   - i18n
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/localization.png %}
-
 [react-intl](https://github.com/yahoo/react-intl)を使ってReactアプリを国際化してみたところ、結構良かったので紹介します。
 
 <!-- more -->
@@ -66,7 +64,7 @@ class App extends React.Component {
       </IntlProvider>
     );
   }
-  
+
 }
 ```
 

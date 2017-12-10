@@ -8,10 +8,8 @@ tags:
   - heroku
   - vscode
   - typescript
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png %}
-
 Angular2学習のため、大量に素振りする必要がでてきたので、素振り用のStarterKitを作成してみました。
 
 これから学習する方は、公式の[5 Min Quickstart](https://angular.io/docs/ts/latest/quickstart.html)を最初にやる場合が多いと思うので、ベースは5 Min Quickstartを利用しています。

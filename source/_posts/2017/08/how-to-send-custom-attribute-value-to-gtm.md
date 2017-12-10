@@ -5,10 +5,8 @@ date: 2017-08-01 0:00:00 +900
 comments: true
 tags:
   - その他
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/tagmanager_email.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/tagmanager_email.png %}
-
 Google tag managerを使った小ネタの紹介です。
 
 <!-- more -->

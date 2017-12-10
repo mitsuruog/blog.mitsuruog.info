@@ -5,10 +5,8 @@ date: 2017-05-17 0:00:00 +900
 comments: true
 tags:
   - その他
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/dropbox2cloudinary.png %}
-
 ~~当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。
 画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。~~
 

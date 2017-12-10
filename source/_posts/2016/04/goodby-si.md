@@ -5,10 +5,8 @@ date: 2016-04-03 22:40:00 +900
 comments: true
 tags:
   - その他
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/sakura.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/sakura.png %}
-
 4月からWebサービス会社にフロントエンドエンジニアとしてJoinしました。
 新卒で就職して以降、多くの時間(※)をSIとして過ごしてきたので、今回は大きなチャレンジとなりそうです。
 

@@ -8,10 +8,8 @@ tags:
   - react
   - Sass
   - font
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/custom-font.png %}
-
 アイコンなどの画像には、少し前までCSS Spritesを使うことが多かったと思います。しかし、最近はCSSでスタイリングできるため、カスタムフォントを作成して使用することが増えてきたように感じます。
 
 今回は、webpackとSassを使ってカスタムフォントを使用する方法と、その際にハマりやすい`url()`での相対パス指定方法について紹介します。

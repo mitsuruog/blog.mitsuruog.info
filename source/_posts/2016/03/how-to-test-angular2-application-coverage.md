@@ -11,10 +11,8 @@ tags:
   - coverage
   - istanbul
   - unit test
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png %}
-
 Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 
 今回はカバレッジ編。
@@ -69,7 +67,7 @@ module.exports = function (config) {
   config.set({
 
     // ...省略
-    
+
     // (1)
     // (*.spec.js, *.mock.js)以外のJavaScriptファイルをカバレッジ測定の対象とします
     preprocessors: {
@@ -89,7 +87,7 @@ module.exports = function (config) {
         type: 'html'
       }]
     }
-    
+
     // ...省略
 
   })
@@ -135,7 +133,7 @@ module.exports = function (config) {
   config.set({
 
     // ...省略
-    
+
     // (1)
     // (*.spec.js, *.mock.js)以外のJavaScriptファイルをカバレッジ測定の対象とします
     preprocessors: {
@@ -157,7 +155,7 @@ module.exports = function (config) {
         file : 'coverage-final.json',
       }]
     }
-    
+
     // ...省略
 
   })

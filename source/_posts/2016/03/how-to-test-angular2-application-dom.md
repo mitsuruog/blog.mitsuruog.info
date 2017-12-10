@@ -9,10 +9,8 @@ tags:
   - karma
   - jasmine
   - unit test
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png %}
-
 Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 
 今回はDOMが関連するテスト。
@@ -73,7 +71,7 @@ describe('DOMのテスト', () => {
   it('なにかのテスト', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
     // ここに実際のテストコードを書く
   }));
-  
+
 });
 
 // fixture用Component
@@ -109,7 +107,7 @@ it('なにかのテスト', injectAsync([TestComponentBuilder], (tcb: TestCompon
 
 実際には、テンプレートにComponentやDirectiveを含めることが多いかと思います。
 Angular1での`$compile(template)($rootScope)`とほぼ同じものだと考えて大丈夫です。
- 
+
 `TestComponentBuilder`で作成されたfixtureは`ComponentFixture`クラスなり、次のようなテストで利用するAPIが準備されています。
 
 - debugElement
@@ -141,7 +139,7 @@ it('なにかのテスト', injectAsync([TestComponentBuilder], (tcb: TestCompon
     .then((fixture) => {
       let div = fixture.nativeElement.querySelector('div');
       // HTMLElementを検証する
-      expect(div).toHaveText('Hello Angular2 :)'); 
+      expect(div).toHaveText('Hello Angular2 :)');
     });
 }));
 ```
@@ -182,7 +180,7 @@ describe('DOMのテスト', () => {
       .createAsync(TestComponent)
       .then((fixture) => {
         let div = fixture.nativeElement.querySelector('div');
-        
+
         // mouseenterイベントを強制的に起こします
 　　　　　div.dispatchEvent(mouseenter);
 

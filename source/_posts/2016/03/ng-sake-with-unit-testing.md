@@ -9,10 +9,8 @@ tags:
   - karma
   - jasmine
   - unit test
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/ng-sake.jpg
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/ng-sake.jpg %}
-
 3/31に酒を飲みながらAngularについて話す素敵な催し[ng-sake](http://connpass.com/event/27707/)が開催されたので、Angular2のユニットテストについて話て来ました。
 
 <!-- more -->

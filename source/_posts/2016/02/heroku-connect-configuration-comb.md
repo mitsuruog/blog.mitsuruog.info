@@ -7,10 +7,8 @@ tags:
   - heroku
   - heroku connect
   - nodejs
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/heroku-connect.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/heroku-connect.png %}
-
 [Heroku Connect](https://www.heroku.com/connect)は、SalesforceとHeroku上のpostgresとを接続するアドオンです。
 
 Heroku Connectを使うことで、ほぼリアルタイムにSalesforceとHerokuのデータを同期させることができます。

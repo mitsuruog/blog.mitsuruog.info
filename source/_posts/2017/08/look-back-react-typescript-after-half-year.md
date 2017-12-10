@@ -7,9 +7,8 @@ tags:
   - react
   - TypeScript
   - CODEPREP
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript1.png
 ---
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-typescript1.png %}
-
 自分は[CODEPREP](https://codeprep.jp/)というオンラインプログラミング学習サービスをやっているのですが、今年の2月にReactとTypeScriptを使ってフロントエンドを再構築し、半年間サービスを走らせてみた結果について振り返ってみたいと思います。
 
 <!-- more -->

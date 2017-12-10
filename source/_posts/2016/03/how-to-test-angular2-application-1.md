@@ -9,10 +9,8 @@ tags:
   - karma
   - jasmine
   - unit test
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png %}
-
 Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 
 今回は準備編。
@@ -40,7 +38,7 @@ E2Eテストはprotractorがそのまま利用できると思うので、ここ�
 Angular1の場合と同様に、Angular2でもユニットテストを実行する前に少し下準備が必要です。
 今回は、Angular1経験者向けに変更点などを紹介します。
 
-サンプルはこちらを参考にしてください。 
+サンプルはこちらを参考にしてください。
 [mitsuruog/angular2-minimum-starter: Minimum starter kit for angular2](https://github.com/mitsuruog/angular2-minimum-starter)
 
 ## Karma＋Jasmineの構成はそのまま利用できる
@@ -51,7 +49,7 @@ Angular1の場合と同様に、Angular2でもユニットテストを実行す�
   - [Karma](https://karma-runner.github.io/0.13/index.html)
 - テスティングフレームワーク
   - [Jasmine](http://jasmine.github.io/2.4/introduction.html)
-  
+
 Karmaの設定は次のような形です。
 
 **karma.conf.js**
@@ -216,7 +214,7 @@ karma start karma.conf.js
 
 モジュールロードシステムがSystemJSに変更されたことで、少し面倒になりましたがこれでAngular1と同様にユニットテストを行う準備ができるはず！！
 
-### PR 
+### PR
 
 こちらに初学者のためのMinimum starter kitを作成しましたので、ぜひ利用してください。
 (もちろんすぐテストできます！！)

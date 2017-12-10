@@ -6,10 +6,8 @@ comments: true
 tags:
   - angular
   - angular2
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/HTTP_Intercept.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/HTTP_Intercept.png %}
-
 Way of httpInterceptor in Angular 2
 
 4/10に開催された[Angular 2ハンズオン](http://connpass.com/event/28985/)のチューターとして参加してきました。  
@@ -36,7 +34,7 @@ refs: [AngularJS: API: $http](https://docs.angularjs.org/api/ng/service/$http)
 Angular2でも簡単に実現できると考えていたのですが、思ったより面倒でした。
 公式リポジトリのIssueにて実現方法について議論されていました。(めっちゃ長いです)
 
-[RFC: Http interceptors and transformers · Issue #2684 · angular/angular](https://github.com/angular/angular/issues/2684) 
+[RFC: Http interceptors and transformers · Issue #2684 · angular/angular](https://github.com/angular/angular/issues/2684)
 
 ## Angualr2でのHttpInterceptorの実現方法
 
@@ -76,7 +74,7 @@ export class CustomHttp extends Http {
 
   //
   // Here's to handle error stuff
-  // 
+  //
   private handleResponseError(res:Response) {
     if (res.status === 401) {
       // do something

@@ -9,10 +9,8 @@ tags:
   - karma
   - jasmine
   - unit test
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png %}
-
 Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。
 
 今回は基本編。
@@ -95,15 +93,15 @@ import {HeroService} from './hero.service';
 
 ```ts
 describe('Test: なにかのServiceのテスト', () => {
-  
+
   describe('Test: 正常系', () => {
 
   });
-  
+
   describe('Test: 異常系', () => {
 
   });
-  
+
 });
 ```
 
@@ -115,7 +113,7 @@ describe('Test: なにかのServiceのテスト', () => {
 describe('Test: 正常系', () => {
 
   it('ステータスコードが200であること', () => {
-   
+
   });
 
 });

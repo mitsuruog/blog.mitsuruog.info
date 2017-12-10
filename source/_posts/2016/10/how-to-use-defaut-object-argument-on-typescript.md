@@ -6,10 +6,8 @@ comments: true
 tags:
   - react
   - typescript
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png
 ---
-
-{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/defaut-parameter-in-typescript.png %}
-
 最近、React＋Typescriptしか書いてないので、久々に小ネタを投下しようかなっと。。。
 
 <!-- more -->
@@ -17,7 +15,7 @@ tags:
 ## tl;dr
 
 - JavaScriptでよくやる引数の `object = object || {}` を、Typescriptでコンパイルエラーを回避しながらどうやるか。
- 
+
 ## ユースケース
 
 例えば、Reactでこのようなstateless function components(以下、`Book`)を作ったとします。
