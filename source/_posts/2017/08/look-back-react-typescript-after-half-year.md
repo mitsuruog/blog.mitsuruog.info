@@ -111,5 +111,3 @@ thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/re
 おそらく別のフレームワークを使ったとしたら、戦略レベルでは考えることは一緒であっても、戦術レベルではもう少し違うアプローチをしていたと思います。
 
 技術は正しく使ってこそ価値がある。
-
-> 時間がある時にフロントエンドのコンサルなどもしているので、もし興味がある方がいたら[twitter](https://twitter.com/mitsuruog)などでメッセください。
