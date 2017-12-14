@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html">
   <meta name="description" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。   本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。(もっと早く読んでいれば・・・) 今回は、その中でS3上のセキュアな環境下にある任意のオブジェクトに">
 <meta name="keywords" content="aws,s3">
 <meta property="og:type" content="article">
@@ -16,7 +17,7 @@
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9201.png">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9202.png">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9203.png">
-<meta property="og:updated_time" content="2017-12-09T15:31:05.697Z">
+<meta property="og:updated_time" content="2017-12-09T15:31:05.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる">
 <meta name="twitter:description" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。   本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。(もっと早く読んでいれば・・・) 今回は、その中でS3上のセキュアな環境下にある任意のオブジェクトに">
@@ -37,6 +38,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる",
+  "name": "期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる",
+  "datePublished": "2015-06-02T15:14:49.000Z",
+  "dateModified": "2017-12-09T15:31:05.698Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -51,18 +84,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。  
-本書を読んでみると、AWSについて初めて知る機能も多く、"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
     
 
   </figure>
-  <span itemprop="datePublished">2015-06-03
+  <span>2015-06-03
 </span>
-  <h1 class="title" itemprop="name">期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる</h1>
+  <h1 class="title">期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる</h1>
   
   <div class="tags">
     
@@ -73,7 +102,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <p>小ネタです。<br>最近、真面目にawsを触っていて、今更ながら<a href="http://www.amazon.co.jp/gp/product/4822277372/ref=as_li_tf_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4822277372&amp;linkCode=as2&amp;tag=mitsuruog-22" target="_blank" rel="noopener">Amazon Web Services クラウドデザインパターン 設計ガイド 改訂版</a>を読み始めました。  </p>
 <p>本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。<br>(もっと早く読んでいれば・・・)</p>
 <p>今回は、その中でS3上のセキュアな環境下にある任意のオブジェクトに対して、「期限付きURL(pre-signed URL)」を発行してアクセスさせる方法を試してみました。</p>
@@ -144,17 +173,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -162,7 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>

@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2015/02/mongoose-ref-and-populate-tips.html">
   <meta name="description" content="ずっとRDBを使っていると、mongodbなどNOSQLのスキーマ設計する際に正規化を意識してちょいちょい思考が固まるのですが、mongodbのO/Rマッパーとして有名なmongooseを使う事で、複数のCollection間のリレーションとjoinっぽいことをエミュレーションできるので紹介します。">
 <meta name="keywords" content="mongodb,mongoose">
 <meta property="og:type" content="article">
@@ -35,6 +36,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと",
+  "name": "RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと",
+  "datePublished": "2015-02-14T17:28:15.000Z",
+  "dateModified": "2017-12-09T15:31:05.693Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2015/02/mongoose-ref-and-populate-tips.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -49,17 +82,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="ずっとRDBを使っていると、mongodbなどNOSQLのスキーマ設計する際に正規化を意識してちょいちょい思考が固まるのですが、mongodbのO/Rマッパーとして有名なmongooseを使う事で、複数のCollecti"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
     
 
   </figure>
-  <span itemprop="datePublished">2015-02-15
+  <span>2015-02-15
 </span>
-  <h1 class="title" itemprop="name">RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと</h1>
+  <h1 class="title">RDB脳でもできた、mongooseを使ってmongodbでリレーションとjoinっぽいこと</h1>
   
   <div class="tags">
     
@@ -70,7 +100,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <p>ずっとRDBを使っていると、mongodbなどNOSQLのスキーマ設計する際に正規化を意識してちょいちょい思考が固まるのですが、mongodbのO/Rマッパーとして有名な<a href="https://github.com/learnboost/mongoose" target="_blank" rel="noopener">mongoose</a>を使う事で、複数のCollection間のリレーションとjoinっぽいことをエミュレーションできるので紹介します。</p>
 <a id="more"></a>
 <p>まず最初に、mongodbでRDBのような第3正規化までやって、、、うんぬんみたいなことを本気でやりたかったら素直にRDBを使いましょう。<br>今回はあくまで、mongodbのお作法に従いながら、たまに「リレーションっぽいことできればいいよねー」といった程度のTipsです。多用注意です。</p>
@@ -149,17 +179,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -167,7 +196,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>

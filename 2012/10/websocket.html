@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>websocketを使う際の意外な落とし穴 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2012/10/websocket.html">
   <meta name="description" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。 今回はnodejitsuを使ってsockect.ioを使ったアプリをホスティングしたところ、websocket（以下、ws）まわりで思わぬハマりポイントがあったというお話しをします。（同じようなトラブルで悩む方に少しでもヒントをあげられたらと考えています。）">
 <meta name="keywords" content="nodejs,websocket">
 <meta property="og:type" content="article">
@@ -15,7 +16,7 @@
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png">
-<meta property="og:updated_time" content="2017-12-09T15:31:05.700Z">
+<meta property="og:updated_time" content="2017-12-09T15:31:05.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="websocketを使う際の意外な落とし穴">
 <meta name="twitter:description" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。 今回はnodejitsuを使ってsockect.ioを使ったアプリをホスティングしたところ、websocket（以下、ws）まわりで思わぬハマりポイントがあったというお話しをします。（同じようなトラブルで悩む方に少しでもヒントをあげられたらと考えています。）">
@@ -36,6 +37,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "websocketを使う際の意外な落とし穴",
+  "name": "websocketを使う際の意外な落とし穴",
+  "datePublished": "2012-10-20T11:00:00.000Z",
+  "dateModified": "2017-12-09T15:31:05.701Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2012/10/websocket.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -50,18 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。
-今回はnodejitsuを使ってsockect.ioを使ったアプリをホスティングしたところ、websocket（以下、ws）まわりで思わぬハ"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
     
 
   </figure>
-  <span itemprop="datePublished">2012-10-20
+  <span>2012-10-20
 </span>
-  <h1 class="title" itemprop="name">websocketを使う際の意外な落とし穴</h1>
+  <h1 class="title">websocketを使う際の意外な落とし穴</h1>
   
   <div class="tags">
     
@@ -72,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <p>本ブログは<a href="http://atnd.org/events/33022" target="_blank" rel="noopener">東京Node学園祭2012 アドベントカレンダー</a>の6日目の記事です。</p>
 <p>今回は<a href="http://nodejitsu.com/" target="_blank" rel="noopener">nodejitsu</a>を使ってsockect.ioを使ったアプリをホスティングしたところ、websocket（以下、ws）まわりで思わぬハマりポイントがあったというお話しをします。<br>（同じようなトラブルで悩む方に少しでもヒントをあげられたらと考えています。）</p>
 <a id="more"></a>
@@ -158,17 +187,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -176,7 +204,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>

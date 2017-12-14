@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>Angular2でSharedServiceを作りたい | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html">
   <meta name="description" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。">
 <meta name="keywords" content="angular2,typescript,angular">
 <meta property="og:type" content="article">
@@ -14,7 +15,7 @@
 <meta property="og:description" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png">
-<meta property="og:updated_time" content="2017-12-10T08:09:17.555Z">
+<meta property="og:updated_time" content="2017-12-10T08:09:17.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular2でSharedServiceを作りたい">
 <meta name="twitter:description" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。">
@@ -35,6 +36,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Angular2でSharedServiceを作りたい",
+  "name": "Angular2でSharedServiceを作りたい",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png",
+  "datePublished": "2016-02-28T15:35:00.000Z",
+  "dateModified": "2017-12-10T08:09:17.556Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -49,21 +83,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。Angular1の場合は、SharedServiceを利用するケースが多かったです。そこでAngular2でも試"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
-      <meta itemprop="image" content="  https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png"></meta>
-    
     
   <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png')" class="thumbnail" alt="Angular2でSharedServiceを作りたい"></div>
 
 
   </figure>
-  <span itemprop="datePublished">2016-02-29
+  <span>2016-02-29
 </span>
-  <h1 class="title" itemprop="name">Angular2でSharedServiceを作りたい</h1>
+  <h1 class="title">Angular2でSharedServiceを作りたい</h1>
   
   <div class="tags">
     
@@ -76,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <p>SPAを構築する場合、Componentをまたがったデータの共有をどのように実現するかが重要になってきます。<br>Angular1の場合は、SharedServiceを利用するケースが多かったです。<br>そこでAngular2でも試してみようとしたところ、少し勝手が違ったので自分用メモを残しておきます。</p>
 <a id="more"></a>
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><ul>
@@ -148,17 +177,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -166,7 +194,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>

@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2015/03/writing-angularjs-using-es6.html">
   <meta name="description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。 内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
 <meta name="keywords" content="AngularJs,es6,babel,jspm">
 <meta property="og:type" content="article">
@@ -14,7 +15,7 @@
 <meta property="og:description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。 内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/angular-refactor.png">
-<meta property="og:updated_time" content="2017-12-09T15:31:05.681Z">
+<meta property="og:updated_time" content="2017-12-09T15:31:05.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜">
 <meta name="twitter:description" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。 内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しか">
@@ -35,6 +36,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜",
+  "name": "Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜",
+  "datePublished": "2015-03-10T16:36:47.000Z",
+  "dateModified": "2017-12-09T15:31:05.682Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2015/03/writing-angularjs-using-es6.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -49,18 +82,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="2015/3/7にMSakamaki氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。
-内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
     
 
   </figure>
-  <span itemprop="datePublished">2015-03-11
+  <span>2015-03-11
 </span>
-  <h1 class="title" itemprop="name">Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜</h1>
+  <h1 class="title">Angular1.X系をES6で書いてみたらちょっと残念だった話〜AngularJS ES6リファクタソンを終えて〜</h1>
   
   <div class="tags">
     
@@ -75,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <p>2015/3/7に<a href="https://github.com/MSakamaki" target="_blank" rel="noopener">MSakamaki</a>氏に声を掛けられれて一緒にAngularJS ES6リファクタソンを開催しました。</p>
 <p>内容は参加者が2〜3人のチームに分かれてES5で書かれたAngular1.3ベースのWebアプリを、ES6でリファクタするという企画です。<br>ES5のコードの中にクソコードを仕込んでおいて、ついでにリファクタしてくれるかなーなんて思いながら主催側ですが、一緒にリファクタして結構楽しかったです。</p>
 <p>Angular1.3をES6でリファクタするポイントや、書き換えてみての所感とかまとめようと思います。<br>(注 今回のコードは実験的な試みです。プロダクションコードに適用するかは自己責任でお願いします。)</p>
@@ -189,17 +218,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -207,7 +235,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>

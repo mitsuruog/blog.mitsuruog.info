@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(後編) | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2014/10/sapui5openui5ui.html">
   <meta name="description" content="How to create new own controls in OpenUI5(Part 2)  前回に引き続き、OpenUI5にてカスタムUIコントロールを作成する方法の後編です。今回のパートは「既存のUIを拡張する」方法についてです。 今回のデモはこちらで参照できます。http://mitsuruog.github.io/sapui5-showroom/#/controls">
 <meta name="keywords" content="SAPUI5,OpenUI5">
 <meta property="og:type" content="article">
@@ -13,7 +14,7 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="How to create new own controls in OpenUI5(Part 2)  前回に引き続き、OpenUI5にてカスタムUIコントロールを作成する方法の後編です。今回のパートは「既存のUIを拡張する」方法についてです。 今回のデモはこちらで参照できます。http://mitsuruog.github.io/sapui5-showroom/#/controls">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2017-12-09T15:31:05.662Z">
+<meta property="og:updated_time" content="2017-12-09T15:31:05.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SAPUI5&#x2F;OpenUI5]カスタムUIコントロールを作成する方法(後編)">
 <meta name="twitter:description" content="How to create new own controls in OpenUI5(Part 2)  前回に引き続き、OpenUI5にてカスタムUIコントロールを作成する方法の後編です。今回のパートは「既存のUIを拡張する」方法についてです。 今回のデモはこちらで参照できます。http://mitsuruog.github.io/sapui5-showroom/#/controls">
@@ -33,6 +34,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(後編)",
+  "name": "[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(後編)",
+  "datePublished": "2014-10-04T14:56:00.000Z",
+  "dateModified": "2017-12-09T15:31:05.663Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2014/10/sapui5openui5ui.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -47,20 +80,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="
-How to create new own controls in OpenUI5(Part 2)
-
-前回に引き続き、OpenUI5にてカスタムUIコントロールを作成する方法の後編です。今回のパートは「既存のUIを拡張"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
     
 
   </figure>
-  <span itemprop="datePublished">2014-10-04
+  <span>2014-10-04
 </span>
-  <h1 class="title" itemprop="name">[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(後編)</h1>
+  <h1 class="title">[SAPUI5/OpenUI5]カスタムUIコントロールを作成する方法(後編)</h1>
   
   <div class="tags">
     
@@ -71,7 +98,7 @@ How to create new own controls in OpenUI5(Part 2)
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <blockquote>
 <p>How to create new own controls in OpenUI5(Part 2)</p>
 </blockquote>
@@ -156,17 +183,16 @@ How to create new own controls in OpenUI5(Part 2)
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -174,7 +200,7 @@ How to create new own controls in OpenUI5(Part 2)
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>

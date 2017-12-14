@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>react router v4のRedirectでURLパラメータを使う | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html">
   <meta name="description" content="react-router v4の小ネタ。">
 <meta name="keywords" content="react,react-router,reacr-router-4">
 <meta property="og:type" content="article">
@@ -14,7 +15,7 @@
 <meta property="og:description" content="react-router v4の小ネタ。">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png">
-<meta property="og:updated_time" content="2017-12-10T08:09:17.565Z">
+<meta property="og:updated_time" content="2017-12-10T08:09:17.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react router v4のRedirectでURLパラメータを使う">
 <meta name="twitter:description" content="react-router v4の小ネタ。">
@@ -35,6 +36,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "react router v4のRedirectでURLパラメータを使う",
+  "name": "react router v4のRedirectでURLパラメータを使う",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png",
+  "datePublished": "2017-11-16T15:00:00.000Z",
+  "dateModified": "2017-12-10T08:09:17.566Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -49,26 +83,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="react-router v4の小ネタ。
-
-やりたかったこと
-昔は&lt;IndexRoute /&gt;があったんだけどね。。。
-
-例えば、/users/1というURLにアクセスがきた時に/users/1/infoのペ"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
-      <meta itemprop="image" content="  https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png"></meta>
-    
     
   <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-router-4.png')" class="thumbnail" alt="react router v4のRedirectでURLパラメータを使う"></div>
 
 
   </figure>
-  <span itemprop="datePublished">2017-11-17
+  <span>2017-11-17
 </span>
-  <h1 class="title" itemprop="name">react router v4のRedirectでURLパラメータを使う</h1>
+  <h1 class="title">react router v4のRedirectでURLパラメータを使う</h1>
   
   <div class="tags">
     
@@ -81,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <p><a href="https://github.com/ReactTraining/react-router" target="_blank" rel="noopener">react-router v4</a>の小ネタ。</p>
 <a id="more"></a>
 <h2 id="やりたかったこと"><a href="#やりたかったこと" class="headerlink" title="やりたかったこと"></a>やりたかったこと</h2><blockquote>
@@ -148,17 +172,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -166,7 +189,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>

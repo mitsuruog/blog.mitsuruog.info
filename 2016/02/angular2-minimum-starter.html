@@ -1,12 +1,13 @@
 
 <!DOCTYPE html>
-<html>
+<html amp>
 <head>
   <meta charset="utf-8">
   <title>Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html">
   <meta name="description" content="Angular2学習のため、大量に素振りする必要がでてきたので、素振り用のStarterKitを作成してみました。 これから学習する方は、公式の5 Min Quickstartを最初にやる場合が多いと思うので、ベースは5 Min Quickstartを利用しています。その上で、気軽にHerokuへDeployして公開できるよう工夫しました。 mitsuruog/angular2-minimum-s">
-<meta name="keywords" content="angular2,heroku,vscode,typescript">
+<meta name="keywords" content="heroku,angular2,vscode,typescript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた">
 <meta property="og:url" content="https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html">
@@ -35,6 +36,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた",
+  "name": "Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png",
+  "datePublished": "2016-02-21T14:43:00.000Z",
+  "dateModified": "2017-12-10T08:09:17.553Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -49,28 +83,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div class="columns">
       <div class="main column">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" itemref="author">
-  <meta itemprop="dateModified" content="2017-12-10"></meta>
-  <meta itemprop="headline" content="Angular2学習のため、大量に素振りする必要がでてきたので、素振り用のStarterKitを作成してみました。
-これから学習する方は、公式の5 Min Quickstartを最初にやる場合が多いと思うので、ベースは5"></meta>
+        <article class="post">
   <figure class="post-thumbnail">
-    
-      <meta itemprop="image" content="  https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png"></meta>
-    
     
   <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png')" class="thumbnail" alt="Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた"></div>
 
 
   </figure>
-  <span itemprop="datePublished">2016-02-21
+  <span>2016-02-21
 </span>
-  <h1 class="title" itemprop="name">Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた</h1>
+  <h1 class="title">Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた</h1>
   
   <div class="tags">
     
-      <a class="tag" href="/tags/angular2/">angular2</a>
-    
       <a class="tag" href="/tags/heroku/">heroku</a>
+    
+      <a class="tag" href="/tags/angular2/">angular2</a>
     
       <a class="tag" href="/tags/vscode/">vscode</a>
     
@@ -79,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
 
-  <div class="content" itemprop="articleBody">
+  <div class="content">
     <p>Angular2学習のため、大量に素振りする必要がでてきたので、素振り用のStarterKitを作成してみました。</p>
 <p>これから学習する方は、公式の<a href="https://angular.io/docs/ts/latest/quickstart.html" target="_blank" rel="noopener">5 Min Quickstart</a>を最初にやる場合が多いと思うので、ベースは5 Min Quickstartを利用しています。<br>その上で、気軽にHerokuへDeployして公開できるよう工夫しました。</p>
 <p>mitsuruog/angular2-minimum-starter: Minimum starter kit for angular2 <a href="https://github.com/mitsuruog/angular2-minimum-starter" target="_blank" rel="noopener">https://github.com/mitsuruog/angular2-minimum-starter</a></p>
@@ -147,17 +175,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 
   
-    <div class="widget-wrap" id="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <div class="widget-wrap">
   <div class="widget-title">著者</div>
   <aside class="profile media widget">
     <figure class="profile-avatar media-left">
-      <meta itemprop="image" content="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"></meta>
       <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
     </figure>
     <div class="media-content">
       <p>
         <strong>
-          <span itemprop="name">mitsuruog</span>
+          <span>mitsuruog</span>
           <span class="icon">
             <a href="https://github.com/mitsuruog" target="_blank">
               <i class="fa fa-github"></i>
@@ -165,7 +192,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </strong>
         <br>
-        <span itemprop="description">I am a frontend developer and happy hacking every time for learning something new.</span>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
       </p>
     </div>
   </aside>
