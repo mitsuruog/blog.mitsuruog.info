@@ -4,11 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title>Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた | I am mitsuruog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <link rel="amphtml" href="https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html">
   <link rel="canonical" href="https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html">
   <meta name="description" content="Angular2学習のため、大量に素振りする必要がでてきたので、素振り用のStarterKitを作成してみました。 これから学習する方は、公式の5 Min Quickstartを最初にやる場合が多いと思うので、ベースは5 Min Quickstartを利用しています。その上で、気軽にHerokuへDeployして公開できるよう工夫しました。 mitsuruog/angular2-minimum-s">
-<meta name="keywords" content="angular2,heroku,vscode,typescript">
+<meta name="keywords" content="heroku,angular2,vscode,typescript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular2を最速でHerokuにDeployするMinimum Starter Kitを作成してみた">
 <meta property="og:url" content="https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html">
@@ -23,15 +23,15 @@
 <meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2.png">
   <link rel="icon" href="favicon.ico">
   
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7XMZ2"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
-<!-- End Google Tag Manager -->
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
@@ -72,7 +72,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
+<body>
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
   <header class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a href="/" class="navbar-item">
@@ -97,9 +109,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   <div class="tags">
     
-      <a class="tag" href="/tags/angular2/">angular2</a>
-    
       <a class="tag" href="/tags/heroku/">heroku</a>
+    
+      <a class="tag" href="/tags/angular2/">angular2</a>
     
       <a class="tag" href="/tags/vscode/">vscode</a>
     
