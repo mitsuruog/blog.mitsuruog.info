@@ -2,31 +2,29 @@
 <html ⚡>
   <head>
     <meta charset="utf-8">
-    <link rel="canonical" href="https://blog.mitsuruog.info/2014/09/web-components.html" >
-    <title>Web Components ハンズオンをやってみた - I am mitsuruog</title>
+    <link rel="canonical" href="https://blog.mitsuruog.info/2012/10/nodejitsu.html" >
+    <title>nodejitsuでカスタムドメインを使う方法 - I am mitsuruog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     
-    <meta property="og:title" content="Web Components ハンズオンをやってみた">
+    <meta property="og:title" content="nodejitsuでカスタムドメインを使う方法">
 	<meta property="og:type" content="article">
-	<meta property="og:url" content="https://blog.mitsuruog.info/2014/09/web-components.html">
+	<meta property="og:url" content="https://blog.mitsuruog.info/2012/10/nodejitsu.html">
 	
-		<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson1.png">
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
 	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
-		<meta property="og:description" content="&lt;p&gt;2014/09/09に美人で有名なおだんみつさんのいる&lt;a href=&#34;http://www.ni-ichicafe.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;21cafe&lt;/a&gt;で「&lt;a href=&#34;https://atnd.org/events/55761&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;エンタープライヤーのためのWeb Componentsハンズオン&lt;/a&gt;」を開催しました。内容は「Web名刺」をWeb Componentsで作るというものです。&lt;/p&gt;
-&lt;p&gt;Web Componentsについての解説記事はそこそこ出てきましたが、ハンズオンだと国内初の試みかと思います。それなりに難しい技術に関するハンズオンでしたが、なかなか好評だったようですので少し振り返ってみます。&lt;/p&gt;">
+		<meta property="og:description" content="&lt;p&gt;nodejitsuでホスティングした場合、ドメインは「&lt;em&gt;hoehoe&lt;/em&gt;.jit.su」か「&lt;em&gt;hoehoe&lt;/em&gt;.nodejitsu.com」（&lt;em&gt;hoehoe&lt;/em&gt;は自分で決めれる。）となります。&lt;br&gt;やっぱり自分で持ってるカスタムドメインで使いたいなと思ったので、やってみました。&lt;/p&gt;">
 	
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="I am mitsuruog">
-	<meta name="twitter:url" content="https://blog.mitsuruog.info/2014/09/web-components.html">
-	<meta name="twitter:title" content="Web Components ハンズオンをやってみた - I am mitsuruog">
+	<meta name="twitter:url" content="https://blog.mitsuruog.info/2012/10/nodejitsu.html">
+	<meta name="twitter:title" content="nodejitsuでカスタムドメインを使う方法 - I am mitsuruog">
 	
-		<meta name="twitter:description" content="&lt;p&gt;2014/09/09に美人で有名なおだんみつさんのいる&lt;a href=&#34;http://www.ni-ichicafe.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;21cafe&lt;/a&gt;で「&lt;a href=&#34;https://atnd.org/events/55761&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;エンタープライヤーのためのWeb Componentsハンズオン&lt;/a&gt;」を開催しました。内容は「Web名刺」をWeb Componentsで作るというものです。&lt;/p&gt;
-&lt;p&gt;Web Componentsについての解説記事はそこそこ出てきましたが、ハンズオンだと国内初の試みかと思います。それなりに難しい技術に関するハンズオンでしたが、なかなか好評だったようですので少し振り返ってみます。&lt;/p&gt;">
+		<meta name="twitter:description" content="&lt;p&gt;nodejitsuでホスティングした場合、ドメインは「&lt;em&gt;hoehoe&lt;/em&gt;.jit.su」か「&lt;em&gt;hoehoe&lt;/em&gt;.nodejitsu.com」（&lt;em&gt;hoehoe&lt;/em&gt;は自分で決めれる。）となります。&lt;br&gt;やっぱり自分で持ってるカスタムドメインで使いたいなと思ったので、やってみました。&lt;/p&gt;">
 	
     
-    	<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson1.png">
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
 	
 	
 	
@@ -41,12 +39,8 @@
     
     
     
-    <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
     
     
-    
-    
-    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     
     
     
@@ -55,23 +49,22 @@
 		{
 			"@context": "http://schema.org",
 			"@type": "BlogPosting",
-			"headline": "Web Components ハンズオンをやってみた",
+			"headline": "nodejitsuでカスタムドメインを使う方法",
 			
-			"description": "&lt;p&gt;2014/09/09に美人で有名なおだんみつさんのいる&lt;a href=&#34;http://www.ni-ichicafe.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;21cafe&lt;/a&gt;で「&lt;a href=&#34;https://atnd.org/events/55761&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;エンタープライヤーのためのWeb Componentsハンズオン&lt;/a&gt;」を開催しました。内容は「Web名刺」をWeb Componentsで作るというものです。&lt;/p&gt;
-&lt;p&gt;Web Componentsについての解説記事はそこそこ出てきましたが、ハンズオンだと国内初の試みかと思います。それなりに難しい技術に関するハンズオンでしたが、なかなか好評だったようですので少し振り返ってみます。&lt;/p&gt;",
+			"description": "&lt;p&gt;nodejitsuでホスティングした場合、ドメインは「&lt;em&gt;hoehoe&lt;/em&gt;.jit.su」か「&lt;em&gt;hoehoe&lt;/em&gt;.nodejitsu.com」（&lt;em&gt;hoehoe&lt;/em&gt;は自分で決めれる。）となります。&lt;br&gt;やっぱり自分で持ってるカスタムドメインで使いたいなと思ったので、やってみました。&lt;/p&gt;",
 			
 			"mainEntityOfPage":{
 			    "@type":"WebPage",
-			    "@id":"https://blog.mitsuruog.info/2014/09/web-components.html"
+			    "@id":"https://blog.mitsuruog.info/2012/10/nodejitsu.html"
 			},
-			"datePublished": "2014-09-14T14:37:00.000Z",
-			"dateModified": "2017-12-09T15:31:05.670Z",
+			"datePublished": "2012-10-31T13:16:00.000Z",
+			"dateModified": "2017-12-09T15:31:05.700Z",
 			
 			"image": {
 				"@type": "ImageObject",
-				"url": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson1.png",
-				"width" : "713",
-				"height" : "182"
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
 			},
 			
 			"author": {
@@ -1777,7 +1770,7 @@ h6.categories {
   	<!-- container -->
   	<div id="container">
 	  	<div id="main">
-		    <article id="post-2014/09/web-components" class="post">
+		    <article id="post-2012/10/nodejitsu" class="post">
 		    
 		   		<!-- categories and bread crumb -->
 		    	
@@ -1790,7 +1783,7 @@ h6.categories {
 						
 			          	<div class="header-thumb flx">
 			          		<div class="thumbImg-w circle">
-			          			<amp-img class="thumbImg" layout="fixed" width="391" height="100" src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson1.png">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
 			          			</amp-img>
 			          		</div>
 			          	</div>
@@ -1799,7 +1792,7 @@ h6.categories {
 			            <div class="header-cap flx">
 							
 							  <h1 class="article-title entry-title" itemprop="name">
-							    <a href="https://blog.mitsuruog.info/2014/09/web-components.html" target="_blank" itemprop="url">Web Components ハンズオンをやってみた</a>
+							    <a href="https://blog.mitsuruog.info/2012/10/nodejitsu.html" target="_blank" itemprop="url">nodejitsuでカスタムドメインを使う方法</a>
 							  </h1>
 							
 						</div>
@@ -1809,7 +1802,7 @@ h6.categories {
 					<div class="entry-meta-header">
 						<span class="meta-elements date">
 							<span class="fa fa-fw fa-clock-o"></span>
-							<time datetime="2014-09-14 23:37" itemprop="datePublished">2014.09.14</time>
+							<time datetime="2012-10-31 22:16" itemprop="datePublished">2012.10.31</time>
 						</span>
 					</div>
 				</div>
@@ -1823,52 +1816,28 @@ h6.categories {
 			    	
 			    	
 			    	<!-- content -->
-			  		<p>2014/09/09&#x306B;&#x7F8E;&#x4EBA;&#x3067;&#x6709;&#x540D;&#x306A;&#x304A;&#x3060;&#x3093;&#x307F;&#x3064;&#x3055;&#x3093;&#x306E;&#x3044;&#x308B;<a href="http://www.ni-ichicafe.com/" target="_blank" rel="noopener">21cafe</a>&#x3067;&#x300C;<a href="https://atnd.org/events/55761" target="_blank" rel="noopener">&#x30A8;&#x30F3;&#x30BF;&#x30FC;&#x30D7;&#x30E9;&#x30A4;&#x30E4;&#x30FC;&#x306E;&#x305F;&#x3081;&#x306E;Web Components&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;</a>&#x300D;&#x3092;&#x958B;&#x50AC;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;&#x5185;&#x5BB9;&#x306F;&#x300C;Web&#x540D;&#x523A;&#x300D;&#x3092;Web Components&#x3067;&#x4F5C;&#x308B;&#x3068;&#x3044;&#x3046;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;</p>
-<p>Web Components&#x306B;&#x3064;&#x3044;&#x3066;&#x306E;&#x89E3;&#x8AAC;&#x8A18;&#x4E8B;&#x306F;&#x305D;&#x3053;&#x305D;&#x3053;&#x51FA;&#x3066;&#x304D;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3060;&#x3068;&#x56FD;&#x5185;&#x521D;&#x306E;&#x8A66;&#x307F;&#x304B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;&#x305D;&#x308C;&#x306A;&#x308A;&#x306B;&#x96E3;&#x3057;&#x3044;&#x6280;&#x8853;&#x306B;&#x95A2;&#x3059;&#x308B;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3067;&#x3057;&#x305F;&#x304C;&#x3001;&#x306A;&#x304B;&#x306A;&#x304B;&#x597D;&#x8A55;&#x3060;&#x3063;&#x305F;&#x3088;&#x3046;&#x3067;&#x3059;&#x306E;&#x3067;&#x5C11;&#x3057;&#x632F;&#x308A;&#x8FD4;&#x3063;&#x3066;&#x307F;&#x307E;&#x3059;&#x3002;</p>
+			  		<p>nodejitsu&#x3067;&#x30DB;&#x30B9;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x3057;&#x305F;&#x5834;&#x5408;&#x3001;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306F;&#x300C;<em>hoehoe</em>.jit.su&#x300D;&#x304B;&#x300C;<em>hoehoe</em>.nodejitsu.com&#x300D;&#xFF08;<em>hoehoe</em>&#x306F;&#x81EA;&#x5206;&#x3067;&#x6C7A;&#x3081;&#x308C;&#x308B;&#x3002;&#xFF09;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;<br>&#x3084;&#x3063;&#x3071;&#x308A;&#x81EA;&#x5206;&#x3067;&#x6301;&#x3063;&#x3066;&#x308B;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3067;&#x4F7F;&#x3044;&#x305F;&#x3044;&#x306A;&#x3068;&#x601D;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x3084;&#x3063;&#x3066;&#x307F;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <a id="more"></a>
-<div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson1.png" width="713" height="182" layout="responsive"></amp-img></div>
-<ol>
-<li>Web Components&#x3068;&#x306F;</li>
-<li>&#x82E6;&#x52B4;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;</li>
-<li>&#x6210;&#x529F;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;</li>
-<li>&#x3055;&#x3044;&#x3054;&#x306B;</li>
-</ol>
-<h2 id="Web-Components&#x3068;&#x306F;"><a href="#Web-Components&#x3068;&#x306F;" class="headerlink" title="Web Components&#x3068;&#x306F;"></a>Web Components&#x3068;&#x306F;</h2><p>UI&#x90E8;&#x54C1;&#x304C;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x5316;&#x3057;&#x3066;&#x518D;&#x5229;&#x7528;&#x3057;&#x3084;&#x3059;&#x304F;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x308B;&#x6280;&#x8853;&#x3067;&#x3059;&#x3002;&#x8A73;&#x7D30;&#x306F;Google&#x306E;&#x3048;&#x30FC;&#x3058;&#x3055;&#x3093;&#x304C;<a href="http://blog.agektmr.com/2014/05/web-components.html" target="_blank" rel="noopener">&#x306A;&#x305C; Web Components &#x306F;&#x30A6;&#x30A7;&#x30D6;&#x958B;&#x767A;&#x306B;&#x9769;&#x547D;&#x3092;&#x8D77;&#x3053;&#x3059;&#x306E;&#x304B;</a>&#x3067;&#x66F8;&#x3044;&#x3066;&#x3044;&#x308B;&#x8A18;&#x4E8B;&#x304C;&#x5206;&#x304B;&#x308A;&#x3084;&#x3059;&#x3044;&#x304B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;&#x3068;&#x306B;&#x304B;&#x304F;&#x5C06;&#x6765;&#x306E;Web&#x958B;&#x767A;&#x306B;&#x9769;&#x547D;&#x3092;&#x8D77;&#x3053;&#x3059;&#x3068;&#x8A00;&#x308F;&#x308C;&#x308B;&#x6280;&#x8853;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="&#x82E6;&#x52B4;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;"><a href="#&#x82E6;&#x52B4;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;" class="headerlink" title="&#x82E6;&#x52B4;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;"></a>&#x82E6;&#x52B4;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;</h2><p>2&#x6642;&#x9593;&#x306E;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x30B3;&#x30FC;&#x30B9;&#x3067;&#x3059;&#x306E;&#x3067;&#x3001;&#x305D;&#x306E;&#x9650;&#x3089;&#x308C;&#x305F;&#x6642;&#x9593;&#x5185;&#x3067;&#x7D50;&#x679C;&#x3092;&#x51FA;&#x3055;&#x306A;&#x3051;&#x308C;&#x3070;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;<br>&#x4ECA;&#x56DE;&#x82E6;&#x52B4;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x306F;2&#x3064;&#x3067;&#x3059;&#x3002;</p>
-<ol>
-<li>Web Components&#x306E;&#x30E1;&#x30EA;&#x30C3;&#x30C8;&#x3092;&#x611F;&#x3058;&#x3064;&#x3064;&#x3001;&#x4F5C;&#x3063;&#x3066;&#x3066;&#x9762;&#x767D;&#x304F;&#x3001;&#x53C2;&#x52A0;&#x8005;&#x304C;&#x672C;&#x6C17;&#x306B;&#x306A;&#x308B;&#x984C;&#x6750;&#x306F;&#x306A;&#x306B;&#x304B;&#x3002;</li>
-<li>Web Components&#x306E;&#x8907;&#x96D1;&#x306B;&#x7D61;&#x307F;&#x5408;&#x3063;&#x305F;&#x4ED5;&#x69D8;&#x3092;&#x6700;&#x77ED;&#x3067;&#x7406;&#x89E3;&#x3057;&#x3066;&#x3082;&#x3089;&#x3046;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;&#x3069;&#x3046;&#x3059;&#x308C;&#x3070;&#x3044;&#x3044;&#x304B;&#x3002;</li>
-</ol>
-<p>&#x300C;&#x984C;&#x6750;&#x300D;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x81EA;&#x5206;&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30BF;&#x30B0;&#x304C;&#x4F5C;&#x308C;&#x3066;&#x6C17;&#x8EFD;&#x306B;&#x914D;&#x5E03;&#x3067;&#x304D;&#x308B;&#x3068;&#x5B09;&#x3057;&#x3044;&#x300C;Web&#x540D;&#x523A;&#x300D;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;<br>&#x6700;&#x77ED;&#x3067;&#x7406;&#x89E3;&#x3057;&#x3066;&#x3082;&#x3089;&#x3046;&#x305F;&#x3081;&#x306E;&#x69CB;&#x6210;&#x3068;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;&#x4F5C;&#x308A;&#x306B;&#x306F;&#x96E3;&#x5100;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;Web Components&#x306E;&#x30B3;&#x30F3;&#x30BB;&#x30D7;&#x30C8;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x300C;&#x82B1;&#x306E;&#x7A2E;&#x300D;&#x3092;&#x4F8B;&#x3048;&#x3066;&#x3001;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;&#x306E;&#x65B9;&#x306F;&#x3001;&#x8B1B;&#x5E2B;&#x304C;&#x3044;&#x306A;&#x304F;&#x3066;&#x3082;&#x51FA;&#x6765;&#x308B;&#x3088;&#x3046;&#x306B;<a href="https://github.com/html5bizj/x-business-card" target="_blank" rel="noopener">Github</a>&#x4E0A;&#x306B;&#x4F5C;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;<br>(Github&#x306E;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x304B;&#x306A;&#x308A;&#x8A66;&#x884C;&#x932F;&#x8AA4;&#x3057;&#x3066;&#x60A9;&#x3093;&#x3060;&#x306E;&#x306F;&#x4E8B;&#x5B9F;&#x3067;&#x3059;&#x3002;)</p>
-<div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson2.png" width="554" height="393" layout="responsive"></amp-img></div>
-<amp-twitter data-tweetid="509291557111885825" width="800" height="600" layout="responsive"></amp-twitter>
-
-
-<p>&#x53C2;&#x52A0;&#x8005;&#x304B;&#x3089;&#x306F;&#x5B09;&#x3057;&#x3044;&#x53CD;&#x5FDC;&#x3082;&#x3044;&#x305F;&#x3060;&#x3051;&#x305F;&#x306E;&#x3067;&#x3001;&#x306A;&#x304B;&#x306A;&#x304B;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3068;&#x3057;&#x3066;&#x306F;&#x6210;&#x529F;&#x3060;&#x3063;&#x305F;&#x3088;&#x3046;&#x3067;&#x3059;&#x3002;&#x4E3B;&#x50AC;&#x3068;&#x3057;&#x3066;&#x306F;&#x30DB;&#x30C3;&#x3068;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x3061;&#x3089;&#x304C;&#x5F53;&#x65E5;&#x306E;&#x69D8;&#x5B50;&#x3067;&#x3059;&#x3002;</p>
-<div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson3.JPG" width="554" height="415" layout="responsive"></amp-img></div>
-<amp-twitter data-tweetid="509540957809692672" width="800" height="600" layout="responsive"></amp-twitter>
-
-
-<amp-twitter data-tweetid="509320071731109888" width="800" height="600" layout="responsive"></amp-twitter>
-
-
-<p>&#x767A;&#x8868;&#x8CC7;&#x6599;&#x306F;&#x3053;&#x3061;&#x3089;&#x3067;&#x3059;&#x3002;</p>
-<p><amp-iframe height="356" sandbox="allow-scripts allow-same-origin allow-popups" layout="fixed-height" frameborder="0" src="https://www.slideshare.net/slideshow/embed_code/38850199"><amp-img layout="fill" src="/amp-dist/sample/sample-placeholder.png" placeholder=""></amp-img></amp-iframe> </p>
-<div><br><strong> <a href="https://www.slideshare.net/mitsuruogawa33/webcompoents" target="_blank" title="&#x30A8;&#x30F3;&#x30BF;&#x30FC;&#x30D7;&#x30E9;&#x30A4;&#x30E4;&#x30FC;&#x306E;&#x305F;&#x3081;&#x306E;Web Components&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;">&#x30A8;&#x30F3;&#x30BF;&#x30FC;&#x30D7;&#x30E9;&#x30A4;&#x30E4;&#x30FC;&#x306E;&#x305F;&#x3081;&#x306E;Web Components&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;</a> </strong> from <strong><a href="http://www.slideshare.net/mitsuruogawa33" target="_blank">Mitsuru Ogawa</a></strong> </div>
-<p>&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x306E;&#x5185;&#x5BB9;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x3053;&#x3061;&#x3089;&#x306B;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><a href="https://github.com/html5bizj/x-business-card" target="_blank" rel="noopener">html5bizj/x-business-card</a></p>
-<h2 id="&#x6210;&#x529F;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;"><a href="#&#x6210;&#x529F;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;" class="headerlink" title="&#x6210;&#x529F;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;"></a>&#x6210;&#x529F;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;</h2><p>&#x6210;&#x529F;&#x3057;&#x305F;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x306F;&#x3044;&#x304F;&#x3064;&#x304B;&#x3042;&#x308B;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x7C21;&#x5358;&#x306B;&#x8A00;&#x3046;&#x3068;<a href="https://twitter.com/kara_d" target="_blank" rel="noopener">@kara_d&#x3055;&#x3093;</a>&#x306E;&#x3053;&#x306E;&#x4E00;&#x8A00;&#x3001;&#x300C;&#x4F01;&#x753B;&#x300D;&#x306A;&#x306E;&#x304B;&#x306A;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<amp-twitter data-tweetid="509314331154980864" width="800" height="600" layout="responsive"></amp-twitter>
-
-
-<p>&#x300C;&#x4F01;&#x753B;&#x300D;&#x304C;&#x6700;&#x3082;&#x5927;&#x4E8B;&#x306A;&#x306E;&#x306F;&#x4E8B;&#x5B9F;&#x306A;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x88CF;&#x3067;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x3092;&#x6210;&#x529F;&#x3055;&#x305B;&#x308B;&#x305F;&#x3081;&#x306E;&#x904B;&#x55B6;&#x7684;&#x306A;&#x5C0F;&#x7D30;&#x5DE5;&#x3092;&#x3044;&#x308D;&#x3044;&#x308D;&#x3084;&#x3063;&#x3066;&#x3044;&#x305F;&#x306E;&#x3067;&#x3001;&#x6A5F;&#x4F1A;&#x304C;&#x3042;&#x3063;&#x305F;&#x3089;&#x30CE;&#x30A6;&#x30CF;&#x30A6;&#x307E;&#x3068;&#x3081;&#x305F;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="&#x3055;&#x3044;&#x3054;&#x306B;"><a href="#&#x3055;&#x3044;&#x3054;&#x306B;" class="headerlink" title="&#x3055;&#x3044;&#x3054;&#x306B;"></a>&#x3055;&#x3044;&#x3054;&#x306B;</h2><p>&#x4ECA;&#x56DE;&#x3001;<a href="https://atnd.org/events/55761" target="_blank" rel="noopener">&#x30A8;&#x30F3;&#x30BF;&#x30FC;&#x30D7;&#x30E9;&#x30A4;&#x30E4;&#x30FC;&#x306E;&#x305F;&#x3081;&#x306E;Web Components&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;</a>&#x3092;&#x958B;&#x50AC;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;2&#x6642;&#x9593;&#x3067;&#x53C2;&#x52A0;&#x8005;&#x304C;&#x6E80;&#x8DB3;&#x3067;&#x304D;&#x308B;&#x30CF;&#x30F3;&#x30BA;&#x30AA;&#x30F3;&#x304C;&#x3067;&#x304D;&#x308B;&#x304B;&#x4E0D;&#x5B89;&#x3067;&#x3057;&#x305F;&#x304C;&#x3001;&#x306A;&#x3093;&#x3068;&#x304B;&#x6210;&#x529F;&#x3055;&#x305B;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x305F;&#x3088;&#x3046;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x304A;&#x5FD9;&#x3057;&#x3044;&#x4E2D;&#x3001;&#x53C2;&#x52A0;&#x3057;&#x3066;&#x3044;&#x305F;&#x3060;&#x3044;&#x305F;&#x7686;&#x3055;&#x3093;&#x3042;&#x308A;&#x304C;&#x3068;&#x3046;&#x3054;&#x3056;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;&#x30C1;&#x30E5;&#x30FC;&#x30BF;&#x30FC;&#x306E;<a href="https://twitter.com/albatrosary" target="_blank" rel="noopener">@albatrosary&#x3055;&#x3093;</a>&#x3001;<a href="https://twitter.com/can_i_do_web" target="_blank" rel="noopener">@can_i_do_web</a>&#x3055;&#x3093;&#x3042;&#x308A;&#x304C;&#x3068;&#x3046;&#xFF01;&#x3042;&#x306A;&#x305F;&#x9054;&#x306E;&#x30D5;&#x30A9;&#x30ED;&#x30FC;&#x304C;&#x306A;&#x304B;&#x3063;&#x305F;&#x3089;&#x6210;&#x529F;&#x3057;&#x306A;&#x304B;&#x3063;&#x305F;&#x3067;&#x3059;&#x3002;&#x4F1A;&#x5834;&#x63D0;&#x4F9B;&#x306E;<a href="http://www.ni-ichicafe.com/" target="_blank" rel="noopener">21cafe</a>&#x3055;&#x3093;&#x3082;&#x3042;&#x308A;&#x304C;&#x3068;&#x3046;&#x3054;&#x3056;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<p>&#x4F5C;&#x6210;&#x3057;&#x305F;Web&#x540D;&#x523A;</p>
-<div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson4.JPG" width="554" height="415" layout="responsive"></amp-img></div>
-<p>&#x6700;&#x5F8C;&#x306F;&#x53C2;&#x52A0;&#x8005;&#x3067;&#x8A18;&#x5FF5;&#x64AE;&#x5F71;</p>
-<div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2014/wc_handson5.JPG" width="554" height="415" layout="responsive"></amp-img></div>
+<p>&#x3068;&#x306F;&#x8A00;&#x3063;&#x3066;&#x3082;&#xFF65;&#xFF65;&#xFF65;<br>&#x57FA;&#x672C;&#x7684;&#x306B;&#x65E5;&#x672C;&#x4EBA;&#x3067;nodejitsu&#x3092;&#x4F7F;&#x304A;&#x3046;&#x3068;&#x601D;&#x3063;&#x3066;&#x3044;&#x308B;&#x3088;&#x3046;&#x306A;&#x4EBA;&#x306F;&#x3001;&#x82F1;&#x8A9E;&#x306B;&#x62B5;&#x6297;&#x304C;&#x306A;&#x3044;&#x90E8;&#x985E;&#x306E;&#x4EBA;&#x3060;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x306E;&#x3067;&#x3001;<a href="http://dns.jit.su/" target="_blank" rel="noopener">&#x3053;&#x3053;&#x306E;&#x30DA;&#x30FC;&#x30B8;</a>&#x306B;&#x66F8;&#x3044;&#x3066;&#x3044;&#x308B;&#x624B;&#x9806;&#x306B;&#x6CBF;&#x3063;&#x3066;&#x30B5;&#x30AF;&#x30C3;&#x3068;&#x3084;&#x3063;&#x3066;&#x3057;&#x307E;&#x3046;&#x3068;&#x601D;&#x3046;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;nodejitsu&#x306E;&#x6577;&#x5C45;&#x3092;&#x4E0B;&#x3052;&#x308B;&#x305F;&#x3081;&#x306B;&#x9811;&#x5F35;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="1-nodejitsu-com&#x306E;IP&#x3092;&#x8ABF;&#x3079;&#x308B;&#x3002;"><a href="#1-nodejitsu-com&#x306E;IP&#x3092;&#x8ABF;&#x3079;&#x308B;&#x3002;" class="headerlink" title="1.nodejitsu.com&#x306E;IP&#x3092;&#x8ABF;&#x3079;&#x308B;&#x3002;"></a>1.nodejitsu.com&#x306E;IP&#x3092;&#x8ABF;&#x3079;&#x308B;&#x3002;</h2><p>&#x307E;&#x305A;&#x3001;nodejitsu.com&#x306E;IP&#x3092;&#x8ABF;&#x3079;&#x307E;&#x3059;&#x3002;&#x79C1;&#x306F;windows&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306A;&#x306E;&#x3067;&#x3001;&#x9ED2;&#x3044;&#x753B;&#x9762;&#x3067;ping&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping nodejitsu.com</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x304A;&#x305D;&#x3089;&#x304F;&#x3001;&#x6B21;&#x306E;IP&#x306E;&#x3046;&#x3061;&#x306E;&#x3069;&#x308C;&#x304B;&#x304C;&#x5E30;&#x3063;&#x3066;&#x304F;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x306E;&#x3067;&#x3001;&#x30E1;&#x30E2;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">165.225.129.253</span><br><span class="line">165.225.130.235</span><br><span class="line">165.225.130.237</span><br><span class="line">165.225.130.238</span><br><span class="line">165.225.130.239</span><br><span class="line">165.225.130.240</span><br><span class="line">165.225.130.241</span><br><span class="line">165.225.131.4</span><br><span class="line">165.225.131.5</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="2-&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x7BA1;&#x7406;&#x3057;&#x3066;&#x3044;&#x308B;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;&#x306E;DNS&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3002;"><a href="#2-&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x7BA1;&#x7406;&#x3057;&#x3066;&#x3044;&#x308B;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;&#x306E;DNS&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3002;" class="headerlink" title="2.&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x7BA1;&#x7406;&#x3057;&#x3066;&#x3044;&#x308B;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;&#x306E;DNS&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3002;"></a>2.&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x7BA1;&#x7406;&#x3057;&#x3066;&#x3044;&#x308B;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;&#x306E;DNS&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3002;</h2><p>&#x79C1;&#x306E;&#x5834;&#x5408;&#x306F;<a href="http://www.godaddy.com/" target="_blank" rel="noopener">GoDaddy</a>&#x3067;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3001;&#x3053;&#x3053;&#x3067;&#x306E;&#x8AAC;&#x660E;&#x306F;GoDaddy&#x3092;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x884C;&#x3044;&#x307E;&#x3059;&#x304C;&#x4ED6;&#x306E;&#x30D7;&#x30ED;&#x30D0;&#x30A4;&#x30C0;&#x3067;&#x3082;&#x57FA;&#x672C;&#x7684;&#x306B;&#x306F;&#x3084;&#x308B;&#x3053;&#x3068;&#x306F;&#x540C;&#x3058;&#x3060;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x624B;&#x9806;&#x306F;GoDaddy&#x306E;&#x300C;DNS&#x3000;Manager&#x300D;&#x306B;&#x3066;&#x300C;A&#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x300D;&#x3092;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x4F8B;&#x3048;&#x3070;&#x3001;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x304C;&#x300C;mitsuruog.com&#x300D;&#x3060;&#x3063;&#x305F;&#x3068;&#x3057;&#x3066;&#x3001;</p>
+<p>&#x300C;mitsuruog.com&#x300D;&#x3092;nodejitsu&#x306E;&#x30C8;&#x30C3;&#x30D7;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3044;&#x305F;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x8A2D;&#x5B9A;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Host&#x3000;=&#x3000;@</span><br><span class="line">Points to&#x3000;=&#x3000;1.&#x3067;&#x8ABF;&#x3079;&#x305F;IP&#xFF08;165.225.129.253&#x3068;&#x304B;&#xFF09;</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306E;&#x30B5;&#x30D6;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#xFF08;node.mitsuruog.com&#x3068;&#x304B;&#xFF09;&#x3092;nodejitsu&#x306E;&#x30C8;&#x30C3;&#x30D7;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3044;&#x305F;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x8A2D;&#x5B9A;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Host&#x3000;=&#x3000;node</span><br><span class="line">Points to&#x3000;=&#x3000;1.&#x3067;&#x8ABF;&#x3079;&#x305F;IP&#xFF08;165.225.129.253&#x3068;&#x304B;&#xFF09;</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x300C;TTL&#x300D;&#x306F;&#x7279;&#x306B;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x3051;&#x308C;&#x3070;&#x305D;&#x306E;&#x307E;&#x307E;&#x3067;&#x3001;&#x5909;&#x66F4;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x306F;&#x306A;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3061;&#x306A;&#x307F;&#x306B;&#x3001;DNS&#x3092;&#x5909;&#x66F4;&#x3057;&#x305F;&#x5834;&#x5408;&#x3001;&#x53CD;&#x6620;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;48&#x6642;&#x9593;&#x304F;&#x3089;&#x3044;&#x639B;&#x304B;&#x308A;&#x307E;&#x3059;&#x3001;&#x6C17;&#x9577;&#x306B;&#x5F85;&#x3061;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;<br>DNS&#x304C;&#x53CD;&#x6620;&#x3055;&#x308C;&#x305F;&#x5834;&#x5408;&#x3001;&#x4E0A;&#x306E;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#xFF08;<code>http://mitsuruog.com</code>&#x3068;&#x304B;&#xFF09;&#x3092;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x958B;&#x304F;&#x3068;&#x3001;nodejitsu&#x306E;404&#x30DA;&#x30FC;&#x30B8;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x306E;&#x3067;&#x3001;&#x76EE;&#x5B89;&#x306B;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<h2 id="3-package-json&#x306E;&#x5909;&#x66F4;"><a href="#3-package-json&#x306E;&#x5909;&#x66F4;" class="headerlink" title="3.package.json&#x306E;&#x5909;&#x66F4;"></a>3.package.json&#x306E;&#x5909;&#x66F4;</h2><p>nodejitsu&#x5074;&#x306E;&#x8A2D;&#x5B9A;&#x306F;&#x3059;&#x3079;&#x3066;package.json&#x306B;&#x3066;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#xFF08;&#x3055;&#x3059;&#x304C;Paas&#xFF01;&#xFF09;</p>
+<p>&#x624B;&#x9806;&#x306F;package.json&#x306B;&#x4E0A;&#x3067;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x3060;&#x3051;&#x3067;&#x3059;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  &quot;name&quot;: &quot;mitsuruog&quot;,</span><br><span class="line">  &quot;subdomain&quot;: &quot;mitsuruog&quot;,</span><br><span class="line">  &quot;domains&quot;: [</span><br><span class="line">    &quot;node.mitsuruog.com&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;scripts&quot;: {</span><br><span class="line">    &quot;start&quot;: &quot;./server.js&quot;</span><br><span class="line">  },</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&#x30FB;&#x30FB;&#x30FB;&#xFF08;&#x4E2D;&#x7565;&#xFF09;&#x30FB;&#x30FB;&#x30FB;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">  &quot;engines&quot;: {</span><br><span class="line">    &quot;node&quot;: &quot;v0.8.x&quot;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="4-nodejitsu&#x4E0A;&#x306B;&#x30C7;&#x30D7;&#x30ED;&#x30A4;"><a href="#4-nodejitsu&#x4E0A;&#x306B;&#x30C7;&#x30D7;&#x30ED;&#x30A4;" class="headerlink" title="4.nodejitsu&#x4E0A;&#x306B;&#x30C7;&#x30D7;&#x30ED;&#x30A4;"></a>4.nodejitsu&#x4E0A;&#x306B;&#x30C7;&#x30D7;&#x30ED;&#x30A4;</h2><p>&#x6700;&#x5F8C;&#x306F;nodejitsu&#x306B;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x3057;&#x3066;&#x5B8C;&#x4E86;&#x3067;&#x3059;&#x3002;<br>&#x9ED2;&#x3044;&#x753B;&#x9762;&#x3067;&#x64CD;&#x4F5C;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jitsu login</span><br><span class="line">jitsu deploy</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4EE5;&#x4E0A;&#x306E;&#x624B;&#x9806;&#x3067;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3067;&#x904B;&#x7528;&#x3067;&#x304D;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x306E;&#x3067;&#x3001;&#x9811;&#x5F35;&#x3063;&#x3066;&#x307F;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
 
 			  		
 			  		<!-- google Adsense -->
@@ -1896,20 +1865,14 @@ h6.categories {
 						<ul class="article-tag-list">
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/ハンズオン/" class="link-gaTrack" data-linkType="link-tag">
-					    				ハンズオン
+					    			<a class="article-tag-list-link" href="/tags/nodejitsu/" class="link-gaTrack" data-linkType="link-tag">
+					    				nodejitsu
 					    			</a>
 					    		</li>
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/HTML5/" class="link-gaTrack" data-linkType="link-tag">
-					    				HTML5
-					    			</a>
-					    		</li>
-							
-					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/Web-Components/" class="link-gaTrack" data-linkType="link-tag">
-					    				Web Components
+					    			<a class="article-tag-list-link" href="/tags/nodejs/" class="link-gaTrack" data-linkType="link-tag">
+					    				nodejs
 					    			</a>
 					    		</li>
 							
