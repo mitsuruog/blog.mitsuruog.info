@@ -19,6 +19,7 @@
     "gulp-textlint": "^1.1.0",
     "hexo": "^3.4.3",
     "hexo-deployer-git": "^0.3.1",
+    "hexo-generator-amp": "^3.0.12",
     "hexo-generator-archive": "^0.1.5",
     "hexo-generator-category": "^0.1.2",
     "hexo-generator-index": "^0.1.2",
