@@ -5,8 +5,6 @@
   <meta charset="utf-8">
   <title>Angular2 Unit Testing - カバレッジ編 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <link rel="amphtml" href="https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html">
-  <link rel="canonical" href="https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html">
   <meta name="description" content="Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。 今回はカバレッジ編。">
 <meta name="keywords" content="jasmine,karma,unit test,angular2,angular,coverage,istanbul">
 <meta property="og:type" content="article">
@@ -21,6 +19,9 @@
 <meta name="twitter:title" content="Angular2 Unit Testing - カバレッジ編">
 <meta name="twitter:description" content="Angular2の実装の方法は記事をよく目にする機会が増えたので、テストについての自分が困らないように調べてみたシリーズ。 今回はカバレッジ編。">
 <meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/angular2-testing-logo.png">
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html/amp/index.html">
+  
   <link rel="icon" href="favicon.ico">
   
   
@@ -34,8 +35,8 @@
   
 
 
-  <link amp-custom rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  <link amp-custom rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
   
 <script type="application/ld+json">
@@ -68,8 +69,6 @@
 }
 </script>
 
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body>

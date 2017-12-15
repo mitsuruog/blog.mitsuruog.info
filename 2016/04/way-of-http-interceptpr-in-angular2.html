@@ -5,8 +5,6 @@
   <meta charset="utf-8">
   <title>Angular2でHTTP Interceptorを使いたい | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <link rel="amphtml" href="https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html">
-  <link rel="canonical" href="https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html">
   <meta name="description" content="Way of httpInterceptor in Angular 2 4/10に開催されたAngular 2ハンズオンのチューターとして参加してきました。チューターしている合間に、Angular2でのHttpInterceporのやり方を調べてたので、その辺りを紹介します。">
 <meta name="keywords" content="angular2,angular">
 <meta property="og:type" content="article">
@@ -21,6 +19,9 @@
 <meta name="twitter:title" content="Angular2でHTTP Interceptorを使いたい">
 <meta name="twitter:description" content="Way of httpInterceptor in Angular 2 4/10に開催されたAngular 2ハンズオンのチューターとして参加してきました。チューターしている合間に、Angular2でのHttpInterceporのやり方を調べてたので、その辺りを紹介します。">
 <meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/HTTP_Intercept.png">
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html/amp/index.html">
+  
   <link rel="icon" href="favicon.ico">
   
   
@@ -34,8 +35,8 @@
   
 
 
-  <link amp-custom rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  <link amp-custom rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
   
 <script type="application/ld+json">
@@ -68,8 +69,6 @@
 }
 </script>
 
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body>

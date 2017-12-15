@@ -5,8 +5,6 @@
   <meta charset="utf-8">
   <title>期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <link rel="amphtml" href="https://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html">
-  <link rel="canonical" href="https://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html">
   <meta name="description" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。   本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。(もっと早く読んでいれば・・・) 今回は、その中でS3上のセキュアな環境下にある任意のオブジェクトに">
 <meta name="keywords" content="aws,s3">
 <meta property="og:type" content="article">
@@ -15,14 +13,17 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。   本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。(もっと早く読んでいれば・・・) 今回は、その中でS3上のセキュアな環境下にある任意のオブジェクトに">
 <meta property="og:locale" content="ja">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9201.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9202.png">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9203.png">
-<meta property="og:updated_time" content="2017-12-09T15:31:05.698Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url_01.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url_02.png">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url_03.png">
+<meta property="og:updated_time" content="2017-12-15T13:07:52.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる">
 <meta name="twitter:description" content="小ネタです。最近、真面目にawsを触っていて、今更ながらAmazon Web Services クラウドデザインパターン 設計ガイド 改訂版を読み始めました。   本書を読んでみると、AWSについて初めて知る機能も多く、本当にAWSを利用してシステム構築するためのバイブルのような本だなと感じました。(もっと早く読んでいれば・・・) 今回は、その中でS3上のセキュアな環境下にある任意のオブジェクトに">
-<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9201.png">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url_01.png">
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html/amp/index.html">
+  
   <link rel="icon" href="favicon.ico">
   
   
@@ -36,8 +37,8 @@
   
 
 
-  <link amp-custom rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  <link amp-custom rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
   
 <script type="application/ld+json">
@@ -47,7 +48,7 @@
   "headline": "期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる",
   "name": "期限付きURLを発行してセキュアなS3のオブジェクトにアクセスしてみる",
   "datePublished": "2015-06-02T15:14:49.000Z",
-  "dateModified": "2017-12-09T15:31:05.698Z",
+  "dateModified": "2017-12-15T13:07:52.929Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html"
@@ -69,8 +70,6 @@
 }
 </script>
 
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body>
@@ -123,14 +122,14 @@
 <h2 id="やってみる"><a href="#やってみる" class="headerlink" title="やってみる"></a>やってみる</h2><p>では、早速やってみます。<br>私はnoderなので、node.js版のaws sdkを利用して行います。</p>
 <p>まず、S3上に「Bucket」を作成して、任意のファイルをアップロードしておきます。</p>
 <p>S3上にアップロードしたファイル(オブジェクト)には、<br>アクセスするための一意なURLが付与されていますが、今の状態では外部からアクセスできません。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9201.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url_01.png">
 <p>確認してみます。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9202.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url_02.png">
 <p>では、aws sdkを利用して「期限付きURL」を発行してみます。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> AWS = <span class="built_in">require</span>(<span class="string">'aws-sdk'</span>);</span><br><span class="line"><span class="keyword">var</span> s3 = <span class="keyword">new</span> AWS.S3();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> params = &#123;</span><br><span class="line">  Bucket: <span class="string">'&lt;Bucket名&gt;'</span>,</span><br><span class="line">  Key: <span class="string">'&lt;アクセスするオブジェクト&gt;'</span>,</span><br><span class="line">  Expires: <span class="number">60</span> <span class="comment">//sec</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">s3.getSignedUrl(<span class="string">'getObject'</span>, params, <span class="function"><span class="keyword">function</span>(<span class="params">err, url</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'The URL is'</span>, url);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>これをコンソール上で実行すると期限付きURLが発行されます。<br>デフォルトではURLの有効期間が15分なので、<code>Expires</code>に有効期限(sec)を指定することもできます。</p>
 <p>では、生成された期限付きURLでアクセスしてみます。</p>
-<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url%E2%88%9203.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/aws-s3-pre-signed-url_03.png">
 <p>ファイルの中身についてアクセスできました。</p>
 <h2 id="さいごに"><a href="#さいごに" class="headerlink" title="さいごに"></a>さいごに</h2><p>S3上に静的コンテンツを配置して、任意のユーザーに限定公開できるので、<br>ユーザーへ期限付きURLを配布してパスワードの再入力など、特定の業務フローに組み込むことで効果を発揮しそうだと思いました。</p>
 <p>AWSについて、もっと学習しないとなーと思います。</p>

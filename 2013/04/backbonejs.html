@@ -5,8 +5,6 @@
   <meta charset="utf-8">
   <title>Backbone.jsともっと仲良くなるためのヒント | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <link rel="amphtml" href="https://blog.mitsuruog.info/2013/04/backbonejs.html">
-  <link rel="canonical" href="https://blog.mitsuruog.info/2013/04/backbonejs.html">
   <meta name="description" content="先日めでたく1.0.0をリリースしたBackbone.jsですが、よくも悪くも「どう作るか」について、作成者側の思いで自由にできるため、始めの取っ掛かりとして、どう作ればよいかと言うことで結構悩む方も多いかと思います。 そこで、同じように悩んでいる人になんらかのヒントを与えられればと思い、シングルページアプリケーションを題材にチュートリアルを作成して公開してみました。また、私がBackbone.j">
 <meta name="keywords" content="backbone,SPA,チュートリアル">
 <meta property="og:type" content="article">
@@ -21,6 +19,9 @@
 <meta name="twitter:title" content="Backbone.jsともっと仲良くなるためのヒント">
 <meta name="twitter:description" content="先日めでたく1.0.0をリリースしたBackbone.jsですが、よくも悪くも「どう作るか」について、作成者側の思いで自由にできるため、始めの取っ掛かりとして、どう作ればよいかと言うことで結構悩む方も多いかと思います。 そこで、同じように悩んでいる人になんらかのヒントを与えられればと思い、シングルページアプリケーションを題材にチュートリアルを作成して公開してみました。また、私がBackbone.j">
 <meta name="twitter:image" content="http://farm1.static.flickr.com/184/438710250_9184e08ac0.jpg">
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2013/04/backbonejs.html/amp/index.html">
+  
   <link rel="icon" href="favicon.ico">
   
   
@@ -34,8 +35,8 @@
   
 
 
-  <link amp-custom rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  <link amp-custom rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
   
 <script type="application/ld+json">
@@ -67,8 +68,6 @@
 }
 </script>
 
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 
 <body>
