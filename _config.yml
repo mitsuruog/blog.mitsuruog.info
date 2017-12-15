@@ -94,9 +94,13 @@ contact:
 # Miscellaneous
 google_analytics: GTM-K7XMZ2
 
+# hexo-generator-sitemap
+sitemap:
+  path: sitemap.xml
+  template: ./sitemap_template/sitemap_template.xml
+
 # hexo-generator-amp
 # The following settings is the quick start options.
-
 generator_amp:
   generateAmpPath: :title/amp/
   templateDir:  amp-template
