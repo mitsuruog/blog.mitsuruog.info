@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>highlight.jsを小さくバンドルする方法 | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta name="description" content="プロジェクトのwebpackのバンドルサイズを計測して見たところ、highlight.jsが結構な割合を占めていたので、サイズを小さくする方法を試してみました。 はじめにこの辺りの記事を参考にしています。  Reducing bundle size of Highlight.js with Webpack | Brian Jacobel Reducing bundle size of Highli">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="highlight.jsを小さくバンドルする方法">
+<meta property="og:url" content="https://blog.mitsuruog.info/2017/12/how-bundle-size-makes-smaller.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="プロジェクトのwebpackのバンドルサイズを計測して見たところ、highlight.jsが結構な割合を占めていたので、サイズを小さくする方法を試してみました。 はじめにこの辺りの記事を参考にしています。  Reducing bundle size of Highlight.js with Webpack | Brian Jacobel Reducing bundle size of Highli">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/bundle.png">
+<meta property="og:updated_time" content="2017-12-21T13:39:57.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="highlight.jsを小さくバンドルする方法">
+<meta name="twitter:description" content="プロジェクトのwebpackのバンドルサイズを計測して見たところ、highlight.jsが結構な割合を占めていたので、サイズを小さくする方法を試してみました。 はじめにこの辺りの記事を参考にしています。  Reducing bundle size of Highlight.js with Webpack | Brian Jacobel Reducing bundle size of Highli">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/bundle.png">
+  <link rel="icon" href="/favicon.ico">
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "highlight.jsを小さくバンドルする方法",
+  "name": "highlight.jsを小さくバンドルする方法",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/bundle.png",
+  "datePublished": "2017-12-20T15:00:00.000Z",
+  "dateModified": "2017-12-21T13:39:57.437Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2017/12/how-bundle-size-makes-smaller.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2017/12/how-bundle-size-makes-smaller/amp/index.html">
+  
+</head>
+
+<body>
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="columns">
+      <div class="main column">
+        <article class="post">
+  <figure class="post-thumbnail">
+    
+  <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/bundle.png')" class="thumbnail" alt="highlight.jsを小さくバンドルする方法"></div>
+
+
+  </figure>
+  <span>2017-12-21
+</span>
+  <h1 class="title">highlight.jsを小さくバンドルする方法</h1>
+  
+  <div class="tags">
+    
+      <a class="tag" href="/tags/webpack/">webpack</a>
+    
+  </div>
+
+
+  <div class="content">
+    <p>プロジェクトのwebpackのバンドルサイズを計測して見たところ、<a href="https://highlightjs.org/" target="_blank" rel="noopener">highlight.js</a>が結構な割合を占めていたので、サイズを小さくする方法を試してみました。</p>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>この辺りの記事を参考にしています。</p>
+<ul>
+<li><a href="https://bjacobel.com/2016/12/04/highlight-bundle-size/" target="_blank" rel="noopener">Reducing bundle size of Highlight.js with Webpack | Brian Jacobel</a></li>
+<li><a href="https://irisschaffer.com/reducing-bundle-size-of-highlight.js-with-webpack2" target="_blank" rel="noopener">Reducing bundle size of Highlight.js with Webpack 2 | Iris Schaffer</a></li>
+</ul>
+<h2 id="import文の書き方でサイズが小さくなる"><a href="#import文の書き方でサイズが小さくなる" class="headerlink" title="import文の書き方でサイズが小さくなる"></a>import文の書き方でサイズが小さくなる</h2><p>結論からいうと、面倒でも利用する言語ファイルを<code>import</code>した方がサイズが小さくなります。</p>
+<p>通常のやり方。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 750.01KB</span></span><br><span class="line"><span class="keyword">import</span> highlight <span class="keyword">from</span> <span class="string">"highlight.js"</span>;</span><br></pre></td></tr></table></figure>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/bundle-before.png">
+<p><strong>750.01KB</strong>。うーん。でかい。。。<br>なんだか全ての言語ファイルがバンドルされている気がする。。。</p>
+<p>次は使う言語だけ<code>import</code>した場合。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 36.36KB</span></span><br><span class="line"><span class="keyword">import</span> highlight <span class="keyword">from</span> <span class="string">"highlight.js/lib/highlight"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javascript <span class="keyword">from</span> <span class="string">"highlight.js/lib/languages/javascript"</span>;</span><br><span class="line"><span class="keyword">import</span> css <span class="keyword">from</span> <span class="string">"highlight.js/lib/languages/css"</span>;</span><br><span class="line"><span class="keyword">import</span> java <span class="keyword">from</span> <span class="string">"highlight.js/lib/languages/java"</span>;</span><br><span class="line"><span class="keyword">import</span> xml <span class="keyword">from</span> <span class="string">"highlight.js/lib/languages/xml"</span>;</span><br><span class="line"></span><br><span class="line">highlight.registerLanguage(<span class="string">"javascript"</span>, javascript);</span><br><span class="line">highlight.registerLanguage(<span class="string">"css"</span>, css);</span><br><span class="line">highlight.registerLanguage(<span class="string">"java"</span>, java);</span><br><span class="line">highlight.registerLanguage(<span class="string">"xml"</span>, xml);</span><br></pre></td></tr></table></figure>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/bundle-after.png">
+<p><strong>36.36KB</strong>！！<br>かなりスリムになりました。</p>
+<h2 id="なぜサイズが小さくなったのか？"><a href="#なぜサイズが小さくなったのか？" class="headerlink" title="なぜサイズが小さくなったのか？"></a>なぜサイズが小さくなったのか？</h2><p>npm installしたhighlight.jsの中身を見ると、全ての言語ファイルを呼び出していました。<br>そのため、<code>import highlight from &quot;highlight.js</code>しただけの場合、自動的に全ての言語ファイルもバンドルされてしまいます。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hljs = <span class="built_in">require</span>(<span class="string">'./highlight'</span>);</span><br><span class="line"></span><br><span class="line">hljs.registerLanguage(<span class="string">'1c'</span>, <span class="built_in">require</span>(<span class="string">'./languages/1c'</span>));</span><br><span class="line">hljs.registerLanguage(<span class="string">'abnf'</span>, <span class="built_in">require</span>(<span class="string">'./languages/abnf'</span>));</span><br><span class="line">hljs.registerLanguage(<span class="string">'accesslog'</span>, <span class="built_in">require</span>(<span class="string">'./languages/accesslog'</span>));</span><br><span class="line">hljs.registerLanguage(<span class="string">'actionscript'</span>, <span class="built_in">require</span>(<span class="string">'./languages/actionscript'</span>));</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = hljs;</span><br></pre></td></tr></table></figure>
+<p>なるほど、面倒でも一つ一つ<code>import</code>した方が良さそうですね。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>こんな単純なことでバンドルサイズが減らせるとは。恐ろしや。。。</p>
+<blockquote>
+<p>サイズの測定は一度webpackでビルドしてから<a href="https://github.com/danvk/source-map-explorer" target="_blank" rel="noopener">danvk/source-map-explorer</a>を使って測定しました。</p>
+</blockquote>
+<p>作業していたらこんな記事を見つけました。アプローチは同じです。</p>
+<ul>
+<li>RxJSを小さくバンドルする方法。import文の書き方で容量が変わる - Qiita <a href="https://qiita.com/clockmaker/items/5e2207b14dac97c4ede1" target="_blank" rel="noopener">https://qiita.com/clockmaker/items/5e2207b14dac97c4ede1</a></li>
+</ul>
+
+  </div>
+  
+<nav class="footer-nav">
+  
+  
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2017/12/muscle-makes-me-great-again.html">
+        4ヶ月間ジムに通って得たもの
+      </a>
+    </div>
+  
+</nav>
+
+
+</article>
+
+
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form" target="_blank">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="https://blog.mitsuruog.info">
+  </form>
+</aside>
+
+  
+    <div class="widget-wrap">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <div style="background-image:url('https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320')" class="avatar" alt="mitsuruog"></div>
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span>mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget-title">最近の記事</div>
+    <div class="widget">
+      <ul class="recent-post">
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/how-bundle-size-makes-smaller.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/bundle.png')" class="thumbnail" alt="highlight.jsを小さくバンドルする方法"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/how-bundle-size-makes-smaller.html" class="">
+                  highlight.jsを小さくバンドルする方法
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-21
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/muscle-makes-me-great-again.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/gym.png')" class="thumbnail" alt="4ヶ月間ジムに通って得たもの"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/muscle-makes-me-great-again.html" class="">
+                  4ヶ月間ジムに通って得たもの
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-20
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/simple-japanese-theme.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/japanese.png')" class="thumbnail" alt="日本語が読みやすいブログテーマを作ってみた"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/simple-japanese-theme.html" class="">
+                  日本語が読みやすいブログテーマを作ってみた
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-10
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/how-makes-meeting-better.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/meeting.png')" class="thumbnail" alt="グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/how-makes-meeting-better.html" class="">
+                  グローバルチームをファシリテートして気づいた「いいミーティング」をデザインするための心得とは
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-07
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2017/12/introduce-stripe-react-component.html">
+    <div style="background-image:url('https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/react-stripe.png')" class="thumbnail" alt="StripeをReactで作られたサービスに組み込んでみた話"></div>
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2017/12/introduce-stripe-react-component.html" class="">
+                  StripeをReactで作られたサービスに組み込んでみた話
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2017-12-02
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget">
+      <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 11.82px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 15.45px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/s3/" style="font-size: 11.82px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 12.73px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11.82px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
