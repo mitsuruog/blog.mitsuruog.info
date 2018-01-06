@@ -58,6 +58,10 @@ s3.putObject({
 
 - [Class: AWS\.S3 — AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property)
 
+S3バケットのメタデータを確認すると、次のように表示されます。(上の値と違いますが。。。)
+
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/lambda-s3-01.png 600 %}
+
 ### 画像をアップロード時に「public」設定にする
 
 これも`S3.putObject`の`ACL`を使って設定を渡すことができます。
@@ -93,6 +97,10 @@ s3.putObject({
 
 ## さいごに
 Lambdaの動作確認にちょうどいい感じだったので、正月休みに画像の最適化用のLambda関数を作ってみた話でした。
+出始めの頃と比べるとGUIでできる範囲が増えたので楽でした。
+
+> こちらはGUIのDesignerで確認することができる、関数の概要図です。わかりやすい。
+> ![](https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/lambda-s3-02.png)
 
 もう少しいいものがあるので、自分で試さない場合はこのあたりもチェックしてみてください。
 
