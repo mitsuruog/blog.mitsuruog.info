@@ -14,7 +14,7 @@
 <meta property="og:description" content="あけましておめでとうございます。 PageSpeed Insightsを使ってこのブログを計測したところ、画像の最適化とキャッシュを提案されたので、年末年始はAWS Lambdaを使って画像の最適化を試していました。 はじめにやりたかったことは、ブログで使う画像を最適化してサイズを小さくすることです。 ブログの画像ファイルは全てS3から配信しているので、特定のS3バケットに画像がアップロードして、">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/lambda-s3.png">
-<meta property="og:updated_time" content="2018-01-05T14:38:53.510Z">
+<meta property="og:updated_time" content="2018-01-06T07:15:29.550Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AWS Lambdaを使ってS3にアップロードしたイメージを最適化する">
 <meta name="twitter:description" content="あけましておめでとうございます。 PageSpeed Insightsを使ってこのブログを計測したところ、画像の最適化とキャッシュを提案されたので、年末年始はAWS Lambdaを使って画像の最適化を試していました。 はじめにやりたかったことは、ブログで使う画像を最適化してサイズを小さくすることです。 ブログの画像ファイルは全てS3から配信しているので、特定のS3バケットに画像がアップロードして、">
@@ -44,7 +44,7 @@
   "name": "AWS Lambdaを使ってS3にアップロードしたイメージを最適化する",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/lambda-s3.png",
   "datePublished": "2018-01-04T15:00:00.000Z",
-  "dateModified": "2018-01-05T14:38:53.510Z",
+  "dateModified": "2018-01-06T07:15:29.550Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2018/01/lambda-s3-image-optimizer.html"
@@ -140,6 +140,8 @@
 <ul>
 <li><a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property" target="_blank" rel="noopener">Class: AWS.S3 — AWS SDK for JavaScript</a></li>
 </ul>
+<p>S3バケットのメタデータを確認すると、次のように表示されます。(上の値と違いますが。。。)</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/lambda-s3-01.png" width="600">
 <h3 id="画像をアップロード時に「public」設定にする"><a href="#画像をアップロード時に「public」設定にする" class="headerlink" title="画像をアップロード時に「public」設定にする"></a>画像をアップロード時に「public」設定にする</h3><p>これも<code>S3.putObject</code>の<code>ACL</code>を使って設定を渡すことができます。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s3.putObject(&#123;</span><br><span class="line">  Bucket: YOUR_TARGET_BUCKET_NAME,</span><br><span class="line">  Key: <span class="string">"image.png"</span>,</span><br><span class="line">  Body: data, <span class="comment">// image data</span></span><br><span class="line">  ContentType: <span class="string">"image/png"</span>,</span><br><span class="line">  CacheControl: <span class="string">"max-age=86400"</span>, <span class="comment">// 86400s =&gt; 1day</span></span><br><span class="line">  Expires: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() + (<span class="number">86400</span> * <span class="number">1000</span>)), <span class="comment">// 現在日時より1日後</span></span><br><span class="line">  ACL: <span class="string">"public-read"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -157,7 +159,10 @@
 <h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><p>結果どれくらいサイズが小さくなったかというと。。。</p>
 <p>「<strong>22.3MB =&gt; 16.2MB</strong>」</p>
 <p>うん、微妙。ちょっと減りました。<br>画像最適化をもう少し強くするともう少しサイズは減るかもしれません。</p>
-<h2 id="さいごに"><a href="#さいごに" class="headerlink" title="さいごに"></a>さいごに</h2><p>Lambdaの動作確認にちょうどいい感じだったので、正月休みに画像の最適化用のLambda関数を作ってみた話でした。</p>
+<h2 id="さいごに"><a href="#さいごに" class="headerlink" title="さいごに"></a>さいごに</h2><p>Lambdaの動作確認にちょうどいい感じだったので、正月休みに画像の最適化用のLambda関数を作ってみた話でした。<br>出始めの頃と比べるとGUIでできる範囲が増えたので楽でした。</p>
+<blockquote>
+<p>こちらはGUIのDesignerで確認することができる、関数の概要図です。わかりやすい。<br><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/lambda-s3-02.png" alt=""></p>
+</blockquote>
 <p>もう少しいいものがあるので、自分で試さない場合はこのあたりもチェックしてみてください。</p>
 <ul>
 <li><a href="https://github.com/sourcey/s3-image-optimizer" target="_blank" rel="noopener">https://github.com/sourcey/s3-image-optimizer</a></li>
