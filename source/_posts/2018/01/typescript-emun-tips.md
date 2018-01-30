@@ -21,7 +21,7 @@ TypeScriptのEnumを使っていると、**Enumの値やメンバー名以外に
 
 ```ts
 enum Type {
-  Nomal,   // 0
+  Normal,  // 0
   Special, // 1
 }
 ```
@@ -30,17 +30,17 @@ enum Type {
 
 ```ts
 // Enumのメンバーを指定して値を取得する
-console.log(Type.Nomal);   // 0
-console.log(Type.Special); // 1
+console.log(Type.Normal);   // 0
+console.log(Type.Special);  // 1
 
-console.log(Type["Nomal"]);   // 0
-console.log(Type["Special"]); // 1
+console.log(Type["Normal"]);   // 0
+console.log(Type["Special"]);  // 1
 
 // Enumの値を指定してメンバー名を取得する
-console.log(Type[0]); // Nomal
+console.log(Type[0]); // Normal
 console.log(Type[1]); // Special
 
-console.log(Type[Type.Nomal]); // Nomal
+console.log(Type[Type.Normal]);  // Normal
 console.log(Type[Type.Special]); // Special
 ```
 
@@ -51,8 +51,8 @@ Enumに関数を追加するには、Enumと同名の`namespace`定義して、�
 namespace Type {
   export function toMessageKey(type: Type) {
     switch(type) {
-      case Type.Nomal:
-        return "message.nomal";
+      case Type.Normal:
+        return "message.normal";
       case Type.Special:
         return "message.special";
     }
@@ -63,10 +63,10 @@ namespace Type {
 次のように呼び出すと、メッセージキーを取得することができます。
 
 ```ts
-console.log(Type.toMessageKey(Type.Nomal)); // message.nomal
+console.log(Type.toMessageKey(Type.Normal));  // message.Normal
 console.log(Type.toMessageKey(Type.Special)); // message.special
 
-console.log(Type.toMessageKey(0)); // message.nomal
+console.log(Type.toMessageKey(0)); // message.Normal
 console.log(Type.toMessageKey(1)); // message.special
 ```
 
@@ -85,6 +85,30 @@ JavaScriptにコンパイルされると次のようなコードになってい�
     }
     Type.toMessageKey = toMessageKey;
 })(Type || (Type = {}));
+```
+
+### (2018/01/30) 追記
+
+1つのファイルにEnumを複数定義して個別で`export`している場合は、次のエラーが出るかもしれません。
+
+```
+Error:(81, 11) TS2395: Individual declarations in merged declaration 'Type' must be all exported or all local.
+```
+
+その場合は`export`を一箇所にまとめて行うようにしてください。
+
+```ts
+enum Type {
+  ...
+}
+
+namespace Type {
+  ...
+}
+
+export {
+  Type,
+}
 ```
 
 ## まとめ
