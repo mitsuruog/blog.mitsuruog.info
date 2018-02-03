@@ -12,8 +12,9 @@ thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/re
 
 自分がフロントエンドをやっている、オンラインプログラミング学習サービス[CODEPREP](https://codeprep.jp/)に、[Stripe](https://stripe.com/)決済を組み込んでみた時の話です。
 
-<!-- more -->
+> (注意)CODEPREPは**2018年1月4日をもってプレミアム会員プランを停止した**ため、このページはもう見ることはできません。
 
+<!-- more -->
 
 ## はじめに
 CODEPREPはReactで作られているので、こちらのReactコンポーネントを使ってみました。
