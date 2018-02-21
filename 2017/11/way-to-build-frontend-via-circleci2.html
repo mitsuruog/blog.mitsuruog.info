@@ -69,7 +69,8 @@
   
     <link rel="amphtml" href="https://blog.mitsuruog.info/2017/11/way-to-build-frontend-via-circleci2/amp/index.html">
   
-</head>
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
   
@@ -121,21 +122,62 @@
 <a id="more"></a>
 <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>フロントエンドのプロジェクトには<code>test</code>と<code>build</code>のタスクがあって、全て<code>npm run</code>で実行できるとします。<br>またデプロイについては、<code>build</code>タスクで1つのバンドルファイルを作成してS3にデプロイします。</p>
 <h2 id="定義ファイルを作成する"><a href="#定義ファイルを作成する" class="headerlink" title="定義ファイルを作成する"></a>定義ファイルを作成する</h2><p>まずは定義ファイルを作成する必要があります。設定ファイルは<code>.circleci</code>フォルダの中に<code>config.yml</code>を作成して定義していきます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root</span><br><span class="line">  .circleci</span><br><span class="line">    config.yml</span><br></pre></td></tr></table></figure>
-<p>定義ファイルのシンタックスについてはv1.0と比べると結構変わっているので注意が必要です。<br>Slackの作業ログを見ると、Dashboardのどこかで定義ファイルが生成できたようですが、どこだか忘れてしまいました。</p>
+<pre><code>root
+  .circleci
+    config.yml
+</code></pre><p>定義ファイルのシンタックスについてはv1.0と比べると結構変わっているので注意が必要です。<br>Slackの作業ログを見ると、Dashboardのどこかで定義ファイルが生成できたようですが、どこだか忘れてしまいました。</p>
 <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
 <p>定義ファイルを生成すると次のようなファイルが作成されます。</p>
 <p>デフォルトではCircleCIが準備したDocker imageを使います。(<code>image: circleci/node:8.9</code>の部分)<br>node, npm, yarnは既にimageに含まれているので、最小構成であればこれで大丈夫だと思います。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># Javascript Node CircleCI 2.0 configuration file</span><br><span class="line">#</span><br><span class="line"># Check https://circleci.com/docs/2.0/language-javascript/ for more details</span><br><span class="line">#</span><br><span class="line">version: 2</span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    docker:</span><br><span class="line">      # specify the version you desire here</span><br><span class="line">      - image: circleci/node:8.9</span><br><span class="line"></span><br><span class="line">      # Specify service dependencies here if necessary</span><br><span class="line">      # CircleCI maintains a library of pre-built images</span><br><span class="line">      # documented at https://circleci.com/docs/2.0/circleci-images/</span><br><span class="line">      # - image: circleci/mongo:3.4.4</span><br><span class="line"></span><br><span class="line">    working_directory: ~/workspace</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - checkout</span><br><span class="line"></span><br><span class="line">      # Download and cache dependencies</span><br><span class="line">      - restore_cache:</span><br><span class="line">          keys:</span><br><span class="line">          - v1-dependencies-&#123;&#123; checksum &quot;package.json&quot; &#125;&#125;</span><br><span class="line">          # fallback to using the latest cache if no exact match is found</span><br><span class="line">          - v1-dependencies-</span><br><span class="line"></span><br><span class="line">      - run: yarn install</span><br><span class="line"></span><br><span class="line">      - save_cache:</span><br><span class="line">          paths:</span><br><span class="line">            - node_modules</span><br><span class="line">          key: v1-dependencies-&#123;&#123; checksum &quot;package.json&quot; &#125;&#125;</span><br><span class="line"></span><br><span class="line">      # run tests!</span><br><span class="line">      - run: yarn test</span><br></pre></td></tr></table></figure>
-<p>定義ファイルの書き方については公式サンプルプロジェクトを見てください。</p>
+<pre><code># Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.9
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/workspace
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: yarn test
+</code></pre><p>定義ファイルの書き方については公式サンプルプロジェクトを見てください。</p>
 <ul>
 <li><a href="https://github.com/CircleCI-Public/circleci-demo-javascript-express" target="_blank" rel="noopener">https://github.com/CircleCI-Public/circleci-demo-javascript-express</a></li>
 </ul>
 <h2 id="Docker-imageを作成する"><a href="#Docker-imageを作成する" class="headerlink" title="Docker imageを作成する"></a>Docker imageを作成する</h2><p><strong>（この工程は必要な場合のみです。）</strong></p>
 <p>デフォルトではCircleCIが準備したDocker imageを使うのですが、これをさらにカスタムしてツールなどを導入したい場合は、新しくDocker imageを準備する必要があります。</p>
 <p>自分の場合、S3にデプロイする場合はAWS-CLIツールを利用するので、これをインストールしたimageを作成する必要がありました。<br>imageを作成する際は、<code>circleci/node:8.9</code>を継承することができますので、ぜひそうしましょう。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM circleci/node:8.9</span><br><span class="line"></span><br><span class="line"># ここから下にいろいろ定義する</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>実際に作成したimageはこちらです。</p>
+<pre><code>FROM circleci/node:8.9
+
+# ここから下にいろいろ定義する
+...
+</code></pre><p>実際に作成したimageはこちらです。</p>
 <ul>
 <li><a href="https://hub.docker.com/r/mitsuruog/cool-build-frontend/" target="_blank" rel="noopener">https://hub.docker.com/r/mitsuruog/cool-build-frontend/</a></li>
 </ul>
@@ -146,20 +188,52 @@
 <h2 id="Jobを定義する"><a href="#Jobを定義する" class="headerlink" title="Jobを定義する"></a>Jobを定義する</h2><p>次にJobを定義します。この後の手順としては、<code>Job</code>を定義してこれをワークフローの中で順番に呼び出していきます。</p>
 <p>Jobとは、CircleCIの中で再利用できると便利だなと思う一連のタスクをまとめたものです。例えば、<code>test</code> とか<code>test and build</code>などがそれにあたります。<br>とにかく次のワークフローの中ではこの<strong>ジョブ名</strong>を利用してフローを作成するので、このことを意識して定義するといいと思います。</p>
 <p>基本的には<code>jobs:</code>の直下にタスク名(上の例では<code>build:</code>)を定義して、<code>steps:</code>の中にやりたいことを順番に書いていきます。<br>この辺りは1.0をやったことがある人であれば、想像できると思います。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">version: 2</span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    steps:</span><br><span class="line">      - run step1</span><br><span class="line">      - run step2</span><br><span class="line">      - run step3</span><br><span class="line">      ...</span><br></pre></td></tr></table></figure>
-<p>細かな設定は公式ドキュメントを参考にしてください。</p>
+<pre><code>version: 2
+jobs:
+  build:
+    steps:
+      - run step1
+      - run step2
+      - run step3
+      ...
+</code></pre><p>細かな設定は公式ドキュメントを参考にしてください。</p>
 <ul>
 <li><a href="https://circleci.com/docs/2.0/configuration-reference/" target="_blank" rel="noopener">Configuration Reference</a></li>
 </ul>
 <h2 id="ワークフローを定義する"><a href="#ワークフローを定義する" class="headerlink" title="ワークフローを定義する"></a>ワークフローを定義する</h2><p>最後に定義したJobをワークフローとして組み立てていきます。</p>
 <p>基本的には<code>workflows:</code>の直下にワークフロー名を定義して、<code>jobs:</code>の中にやりたいことを順番に書いていきます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">      - deploy</span><br></pre></td></tr></table></figure>
-<p>ちなみに<code>test</code>などの、次のJobに進む前に完了していなければならないJobがある場合、<code>requires</code>を使うことで表現することができます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">          requires:</span><br><span class="line">            - test</span><br><span class="line">      - deploy</span><br><span class="line">          requires:</span><br><span class="line">            - build</span><br></pre></td></tr></table></figure>
-<p>この場合、<code>test</code> -&gt; <code>build</code> -&gt; <code>deploy</code>の順にワークフローが実行されます。<br>ワークフローを定義する場合、同じ階層にあるJobは並列に実行されるため、<code>requires</code>でフローの制御は必須だと思います。</p>
+<pre><code>workflows:
+  version: 2
+  test_build_and_deploy:
+    jobs:
+      - test
+      - build
+      - deploy
+</code></pre><p>ちなみに<code>test</code>などの、次のJobに進む前に完了していなければならないJobがある場合、<code>requires</code>を使うことで表現することができます。</p>
+<pre><code>workflows:
+  version: 2
+  test_build_and_deploy:
+    jobs:
+      - test
+      - build
+          requires:
+            - test
+      - deploy
+          requires:
+            - build
+</code></pre><p>この場合、<code>test</code> -&gt; <code>build</code> -&gt; <code>deploy</code>の順にワークフローが実行されます。<br>ワークフローを定義する場合、同じ階層にあるJobは並列に実行されるため、<code>requires</code>でフローの制御は必須だと思います。</p>
 <p>また、特定のブランチのみ実行させたい場合は、<code>filters</code>と<code>branches</code>を組み合わせることで表現可能です。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  test_build_and_deploy:</span><br><span class="line">    jobs:</span><br><span class="line">      - test</span><br><span class="line">      - build</span><br><span class="line">          filters:</span><br><span class="line">            branches:</span><br><span class="line">              only:</span><br><span class="line">                - develop</span><br></pre></td></tr></table></figure>
-<p>この場合は<code>develop</code>プランチの場合のみbuildのJobが実行されるようになります。</p>
+<pre><code>workflows:
+  version: 2
+  test_build_and_deploy:
+    jobs:
+      - test
+      - build
+          filters:
+            branches:
+              only:
+                - develop
+</code></pre><p>この場合は<code>develop</code>プランチの場合のみbuildのJobが実行されるようになります。</p>
 <p>定義したワークフローはCircleCI上の「WORKFLOWS」にて確認することができます。</p>
 <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-2.png">
 <h2 id="おまけ"><a href="#おまけ" class="headerlink" title="おまけ"></a>おまけ</h2><p>Circle CIのデフォルトのマシンリソースは<code>medium</code>(CPU 2.0 RAM 4GB)となっていて、最近のフロントエンドのテスト、デプロイにおいてはスペック不足感が否めません。</p>
@@ -167,8 +241,8 @@
 <p>CPUはコア数かな？</p>
 </blockquote>
 <p>自分の場合は、テストでjs-domを使っているのですが、頻繁に次のようなエラーが発生していました。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ENOMEM: not enough memory, read</span><br></pre></td></tr></table></figure>
-<p>そんな時は、<code>resource_class</code>でマシンスペックをあげることができます。<br>しかし、今のところCircle CIのカスタマーサポートに依頼する必要があります。詳しくはこちらを見てください。</p>
+<pre><code>ENOMEM: not enough memory, read
+</code></pre><p>そんな時は、<code>resource_class</code>でマシンスペックをあげることができます。<br>しかし、今のところCircle CIのカスタマーサポートに依頼する必要があります。詳しくはこちらを見てください。</p>
 <ul>
 <li><a href="https://circleci.com/docs/2.0/configuration-reference/#resource_class" target="_blank" rel="noopener">https://circleci.com/docs/2.0/configuration-reference/#resource_class</a></li>
 </ul>
@@ -258,6 +332,30 @@
     <div class="widget-title">最近の記事</div>
     <div class="widget">
       <ul class="recent-post">
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/react-typescript-hoc.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/hoc2.png" class="thumbnail is-6x6" alt="ReactのHigher order component(HOC)をTypeScriptで作る">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/react-typescript-hoc.html" class="">
+                  ReactのHigher order component(HOC)をTypeScriptで作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-21
+
+                </small>
+              </p>
+            </div>
+          </li>
         
           <li class="recent-post-item media">
             <figure class="media-left">
@@ -355,30 +453,6 @@
             </div>
           </li>
         
-          <li class="recent-post-item media">
-            <figure class="media-left">
-              
-  <a href="/2017/12/merge-gatekeeper-for-github.html">
-    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/gatekeeper00.png" class="thumbnail is-6x6" alt="GitHubでのうっかりPRマージ事故を防ぐChrome拡張機能を作ってみた">
-  </a>
-
-
-            </figure>
-            <div class="media-content">
-              <p class="">
-                <a href="/2017/12/merge-gatekeeper-for-github.html" class="">
-                  GitHubでのうっかりPRマージ事故を防ぐChrome拡張機能を作ってみた
-                </a>
-              </p>
-              <p class="">
-                <small>
-                  2017-12-28
-
-                </small>
-              </p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -389,7 +463,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
     <div class="widget">
-      <a href="/tags/Android/" style="font-size: 10.83px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.5px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 14.17px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.83px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.33px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.33px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.5px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.67px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.17px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.5px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 15px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.83px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.83px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.83px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.83px;">docker</a> <a href="/tags/es6/" style="font-size: 10.83px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.67px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.67px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.83px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.67px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.83px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.83px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.83px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.33px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.83px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 15.83px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.5px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.67px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 13.33px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.5px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.83px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.83px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11.67px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.67px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.67px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.83px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.83px;">翻訳</a>
+      <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.73px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 16.36px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.73px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 13.64px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11.82px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
     </div>
   </div>
 
@@ -399,7 +473,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">アーカイブ</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

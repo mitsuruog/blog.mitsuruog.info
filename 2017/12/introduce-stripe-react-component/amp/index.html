@@ -1848,24 +1848,126 @@ h6.categories {
 </blockquote>
 <p>&#x5C0E;&#x5165;&#x65B9;&#x6CD5;&#x306F;<code>npm install --save react-stripe-elements</code>&#x3057;&#x3066;&#x304B;&#x3089;&#x3001;React&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <h3 id="StripeProvider&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"><a href="#StripeProvider&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;" class="headerlink" title="StripeProvider&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"></a>StripeProvider&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;</h3><p>&#x307E;&#x305A;&#x6700;&#x521D;&#x306B;<code>StripeProvider</code>&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x3053;&#x306E;&#x6642;&#x306B;<code>apiKey</code>&#x306B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x30AD;&#x30FC;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// index.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import { render } from &apos;react-dom&apos;;</span><br><span class="line">import { StripeProvider } from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">import Main from &apos;./Main.jsx&apos;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; {</span><br><span class="line">  return (</span><br><span class="line">    &lt;StripeProvider apiKey=&quot;&lt;YOUR_APP_KEY&gt;&quot;&gt;</span><br><span class="line">      &lt;Main /&gt;</span><br><span class="line">    &lt;/StripeProvider&gt;</span><br><span class="line">  );</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">render(&lt;App /&gt;, document.getElementById(&apos;root&apos;));</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"><a href="#Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;" class="headerlink" title="Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"></a>Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;</h2><p>&#x6B21;&#x306B;<code>Elements</code>&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x307E;&#x3059;&#x3002;<code>Elements</code>&#x306F;&#x3001;Stripe&#x306E;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30B0;&#x30EB;&#x30FC;&#x30D4;&#x30F3;&#x30B0;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x5229;&#x7528;&#x3059;&#x308B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x3088;&#x3046;&#x3067;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// myCheckout.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import { Elements } from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">import CheckoutForm from &apos;./CheckoutForm.jsx&apos;</span><br><span class="line"></span><br><span class="line">class MyCheckout extends React.Component {</span><br><span class="line">  render() {</span><br><span class="line">    return (</span><br><span class="line">      &lt;Elements&gt;</span><br><span class="line">        &lt;CheckoutForm /&gt;</span><br><span class="line">      &lt;/Elements&gt;</span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export default MyCheckout;</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"><a href="#injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;" class="headerlink" title="injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"></a>injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;</h2><p>&#x3055;&#x3089;&#x306B;<code>injectStripe</code>&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>// index.jsx
+import React from &apos;react&apos;;
+import { render } from &apos;react-dom&apos;;
+import { StripeProvider } from &apos;react-stripe-elements&apos;;
+
+import Main from &apos;./Main.jsx&apos;
+
+const App = () =&gt; {
+  return (
+    &lt;StripeProvider apiKey=&quot;&lt;YOUR_APP_KEY&gt;&quot;&gt;
+      &lt;Main /&gt;
+    &lt;/StripeProvider&gt;
+  );
+};
+
+render(&lt;App /&gt;, document.getElementById(&apos;root&apos;));
+</code></pre><h2 id="Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"><a href="#Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;" class="headerlink" title="Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"></a>Elements&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;</h2><p>&#x6B21;&#x306B;<code>Elements</code>&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x307E;&#x3059;&#x3002;<code>Elements</code>&#x306F;&#x3001;Stripe&#x306E;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30B0;&#x30EB;&#x30FC;&#x30D4;&#x30F3;&#x30B0;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x5229;&#x7528;&#x3059;&#x308B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x3088;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<pre><code>// myCheckout.jsx
+import React from &apos;react&apos;;
+import { Elements } from &apos;react-stripe-elements&apos;;
+
+import CheckoutForm from &apos;./CheckoutForm.jsx&apos;
+
+class MyCheckout extends React.Component {
+  render() {
+    return (
+      &lt;Elements&gt;
+        &lt;CheckoutForm /&gt;
+      &lt;/Elements&gt;
+    );
+  }
+}
+
+export default MyCheckout;
+</code></pre><h2 id="injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"><a href="#injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;" class="headerlink" title="injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;"></a>injectStripe&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;</h2><p>&#x3055;&#x3089;&#x306B;<code>injectStripe</code>&#x3067;&#x652F;&#x6255;&#x3044;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p><code>injectStripe</code>&#x306F;&#x3001;Stripe&#x306E;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x69D8;&#x3005;&#x306A;&#x5165;&#x529B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x51E6;&#x7406;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x5229;&#x7528;&#x3059;&#x308B;<strong>Higher-Order Component(HOC)</strong>&#x3067;&#x3059;&#x3002;</p>
 <p>&#x516C;&#x5F0F;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x3067;&#x306F;&#x3001;<code>injectStripe</code>&#x306F;<code>Elements</code>&#x3068;<strong>&#x4E00;&#x7DD2;&#x306B;&#x4F7F;&#x3048;&#x306A;&#x3044;</strong>&#x3053;&#x3068;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3001;&#x4F55;&#x3082;&#x8003;&#x3048;&#x305A;<code>Elements</code>&#x3068;<code>injectStripe</code>&#x3092;&#x4F7F;&#x3046;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;2&#x3064;&#x306B;&#x5206;&#x3051;&#x305F;&#x65B9;&#x304C;&#x3044;&#x3044;&#x3067;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import { injectStripe } from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component {</span><br><span class="line">  render() {</span><br><span class="line">    return (</span><br><span class="line">      &lt;form&gt;</span><br><span class="line">        &#x3053;&#x3053;&#x306B;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x304C;&#x5165;&#x308B;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export default injectStripe(CheckoutForm);</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;"><a href="#&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;" class="headerlink" title="&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;"></a>&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;</h2><p>&#x6700;&#x5F8C;&#x306B;&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x7528;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x914D;&#x7F6E;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>// checkoutForm.jsx
+import React from &apos;react&apos;;
+import { injectStripe } from &apos;react-stripe-elements&apos;;
+
+class CheckoutForm extends React.Component {
+  render() {
+    return (
+      &lt;form&gt;
+        &#x3053;&#x3053;&#x306B;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x304C;&#x5165;&#x308B;
+      &lt;/form&gt;
+    );
+  }
+}
+
+export default injectStripe(CheckoutForm);
+</code></pre><h2 id="&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;"><a href="#&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;" class="headerlink" title="&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;"></a>&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x914D;&#x7F6E;&#x3059;&#x308B;</h2><p>&#x6700;&#x5F8C;&#x306B;&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x5165;&#x529B;&#x7528;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x914D;&#x7F6E;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <p>Stripe&#x306E;React&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x306F;&#x3001;All-on-one&#x578B;&#x306E;<code>CardElement</code>&#x3068;&#x3001;&#x3053;&#x308C;&#x3089;&#x3092;&#x5225;&#x3005;&#x306B;&#x5206;&#x5272;&#x3057;&#x305F;<code>CardNumberElement</code>, <code>CardExpiryElement</code>, <code>CardCVCElement</code>&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x81EA;&#x5206;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x30EC;&#x30A4;&#x30A2;&#x30A6;&#x30C8;&#x3092;&#x81EA;&#x7531;&#x306B;&#x3057;&#x305F;&#x304B;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x5225;&#x3005;&#x306B;&#x5206;&#x5272;&#x3055;&#x308C;&#x305F;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<p>&#x304B;&#x306A;&#x308A;&#x30E9;&#x30D5;&#x3067;&#x3059;&#x304C;&#x3002;&#x3002;&#x3002;&#x5165;&#x529B;&#x90E8;&#x54C1;&#x3092;&#x914D;&#x7F6E;&#x3057;&#x305F;&#x3089;&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x611F;&#x3058;&#x306B;&#x306A;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import { injectStripe } from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component {</span><br><span class="line">  render() {</span><br><span class="line">    return (</span><br><span class="line">      &lt;form&gt;</span><br><span class="line">        &lt;CardNumberElement /&gt;</span><br><span class="line">        &lt;CardExpiryElement /&gt;</span><br><span class="line">        &lt;CardCVCElement /&gt;</span><br><span class="line">        &lt;button&gt;&#x652F;&#x6255;&#x3044;&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export default injectStripe(CheckoutForm);</span><br></pre></td></tr></tbody></table></figure>
-<p>&#x3053;&#x308C;&#x3067;&#x5C0E;&#x5165;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x7D42;&#x308F;&#x308A;&#x3067;&#x3059;&#x3002;&#x6B21;&#x304B;&#x3089;&#x306F;&#x7D30;&#x304B;&#x306A;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x65B9;&#x6CD5;&#x3084;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x306B;&#x3064;&#x3044;&#x3066;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x304B;&#x306A;&#x308A;&#x30E9;&#x30D5;&#x3067;&#x3059;&#x304C;&#x3002;&#x3002;&#x3002;&#x5165;&#x529B;&#x90E8;&#x54C1;&#x3092;&#x914D;&#x7F6E;&#x3057;&#x305F;&#x3089;&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x611F;&#x3058;&#x306B;&#x306A;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>// checkoutForm.jsx
+import React from &apos;react&apos;;
+import { injectStripe } from &apos;react-stripe-elements&apos;;
+
+class CheckoutForm extends React.Component {
+  render() {
+    return (
+      &lt;form&gt;
+        &lt;CardNumberElement /&gt;
+        &lt;CardExpiryElement /&gt;
+        &lt;CardCVCElement /&gt;
+        &lt;button&gt;&#x652F;&#x6255;&#x3044;&lt;/button&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+
+export default injectStripe(CheckoutForm);
+</code></pre><p>&#x3053;&#x308C;&#x3067;&#x5C0E;&#x5165;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x7D42;&#x308F;&#x308A;&#x3067;&#x3059;&#x3002;&#x6B21;&#x304B;&#x3089;&#x306F;&#x7D30;&#x304B;&#x306A;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x65B9;&#x6CD5;&#x3084;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x306B;&#x3064;&#x3044;&#x3066;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <h2 id="&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;"><a href="#&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;" class="headerlink" title="&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;"></a>&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;</h2><p>&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x65B9;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <h3 id="&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5165;&#x529B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;"><a href="#&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5165;&#x529B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;" class="headerlink" title="&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5165;&#x529B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;"></a>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5165;&#x529B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;</h3><p>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5165;&#x529B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x306F;Stripe&#x306E;&#x5165;&#x529B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;<code>onChange</code>&#x306B;&#x30CF;&#x30F3;&#x30C9;&#x30E9;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x51E6;&#x7406;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight diff"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component {</span><br><span class="line"><span class="addition">+  constructor(props) {</span></span><br><span class="line"><span class="addition">+    super(props);</span></span><br><span class="line"><span class="addition">+    this.handleChange = this.handleChange.bind(this);</span></span><br><span class="line"><span class="addition">+  }</span></span><br><span class="line"></span><br><span class="line">  render() {</span><br><span class="line">    return (</span><br><span class="line">      &lt;form&gt;</span><br><span class="line"><span class="deletion">-        &lt;CardNumberElement /&gt;</span></span><br><span class="line"><span class="addition">+        &lt;CardNumberElement onChange={this.handleChange}/&gt;</span></span><br><span class="line">        &lt;CardExpiryElement /&gt;</span><br><span class="line">        &lt;CardCVCElement /&gt;</span><br><span class="line">        &lt;button&gt;&#x652F;&#x6255;&#x3044;&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="addition">+  handleChange(data) {</span></span><br><span class="line"><span class="addition">+    if (!data.complete) {</span></span><br><span class="line"><span class="addition">+      // ERROR</span></span><br><span class="line"><span class="addition">+      console.log(data.error.message);</span></span><br><span class="line"><span class="addition">+    }</span></span><br><span class="line"><span class="addition">+  }</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-diff"><code class="language-diff">// checkoutForm.jsx
+
+...
+
+class CheckoutForm extends React.Component {
+<span class="token inserted">+  constructor(props) {</span>
+<span class="token inserted">+    super(props);</span>
+<span class="token inserted">+    this.handleChange = this.handleChange.bind(this);</span>
+<span class="token inserted">+  }</span>
+
+  render() {
+    return (
+      &lt;form&gt;
+<span class="token deleted">-        &lt;CardNumberElement /&gt;</span>
+<span class="token inserted">+        &lt;CardNumberElement onChange={this.handleChange}/&gt;</span>
+        &lt;CardExpiryElement /&gt;
+        &lt;CardCVCElement /&gt;
+        &lt;button&gt;&#x652F;&#x6255;&#x3044;&lt;/button&gt;
+      &lt;/form&gt;
+    );
+  }
+
+<span class="token inserted">+  handleChange(data) {</span>
+<span class="token inserted">+    if (!data.complete) {</span>
+<span class="token inserted">+      // ERROR</span>
+<span class="token inserted">+      console.log(data.error.message);</span>
+<span class="token inserted">+    }</span>
+<span class="token inserted">+  }</span>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>onChange&#x30CF;&#x30F3;&#x30C9;&#x30E9;&#x306B;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;Stripe&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x6E21;&#x3055;&#x308C;&#x3066;&#x304F;&#x308B;&#x306E;&#x3067;&#x3001;&#x3053;&#x308C;&#x3092;&#x5143;&#x306B;&#x30A8;&#x30E9;&#x30FC;&#x304B;&#x3069;&#x3046;&#x304B;&#x5224;&#x65AD;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  brand: &quot;amex&quot;,</span><br><span class="line">  complete: false,</span><br><span class="line">  empty: false,</span><br><span class="line">  error: {</span><br><span class="line">    code: &quot;invalid_number&quot;,</span><br><span class="line">    message: &quot;&#x30AB;&#x30FC;&#x30C9;&#x756A;&#x53F7;&#x304C;&#x7121;&#x52B9;&#x3067;&#x3059;&#x3002;&quot;,</span><br><span class="line">    type: &quot;validation_error&quot;</span><br><span class="line">  },</span><br><span class="line">  value: undefined</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>&#x30A8;&#x30E9;&#x30FC;&#x304B;&#x3069;&#x3046;&#x304B;&#x306F;<code>complete</code>&#x3092;&#x3001;&#x30E1;&#x30C3;&#x30BB;&#x30FC;&#x30B8;&#x306F;<code>error.massage</code>&#x3092;&#x898B;&#x308C;&#x3070;&#x3044;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>{
+  brand: &quot;amex&quot;,
+  complete: false,
+  empty: false,
+  error: {
+    code: &quot;invalid_number&quot;,
+    message: &quot;&#x30AB;&#x30FC;&#x30C9;&#x756A;&#x53F7;&#x304C;&#x7121;&#x52B9;&#x3067;&#x3059;&#x3002;&quot;,
+    type: &quot;validation_error&quot;
+  },
+  value: undefined
+}
+</code></pre><p>&#x30A8;&#x30E9;&#x30FC;&#x304B;&#x3069;&#x3046;&#x304B;&#x306F;<code>complete</code>&#x3092;&#x3001;&#x30E1;&#x30C3;&#x30BB;&#x30FC;&#x30B8;&#x306F;<code>error.massage</code>&#x3092;&#x898B;&#x308C;&#x3070;&#x3044;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x6CE8;&#x610F;&#x70B9;&#x3068;&#x3057;&#x3066;&#x306F;&#x3001;&#x3053;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x5165;&#x529B;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x5358;&#x4F53;&#x3067;&#x9001;&#x3089;&#x308C;&#x3066;&#x304F;&#x308B;&#x306E;&#x3067;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x5168;&#x4F53;&#x3092;&#x7BA1;&#x7406;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x5225;&#x9014;State&#x306A;&#x3069;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x72B6;&#x614B;&#x3092;&#x7BA1;&#x7406;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;<br>&#x3061;&#x3087;&#x3063;&#x3068;&#x6CE5;&#x81ED;&#x3044;&#x5B9F;&#x88C5;&#x3067;&#x3059;&#x304C;&#x3001;&#x81EA;&#x5206;&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x5165;&#x529B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x30CF;&#x30F3;&#x30C9;&#x30E9;&#x3092;&#x5225;&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x51E6;&#x7406;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <h2 id="&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x51E6;&#x7406;"><a href="#&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x51E6;&#x7406;" class="headerlink" title="&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x51E6;&#x7406;"></a>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x51E6;&#x7406;</h2><p>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x51E6;&#x7406;&#x306F;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;<code>onSubmit</code>&#x306B;&#x30CF;&#x30F3;&#x30C9;&#x30E9;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x51E6;&#x7406;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <blockquote>
@@ -1873,7 +1975,51 @@ h6.categories {
 </blockquote>
 <p>Stripe&#x3078;&#x306E;&#x652F;&#x6255;&#x3044;&#x51E6;&#x7406;&#x306B;&#x306F;<code>stripe.createToken</code>&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3066;&#x3001;&#x30AB;&#x30FC;&#x30C9;&#x60C5;&#x5831;&#x3068;&#x652F;&#x6255;&#x3044;&#x60C5;&#x5831;&#x3092;Stripe&#x4E0A;&#x306B;&#x767B;&#x9332;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;&#x51E6;&#x7406;&#x304C;&#x5B8C;&#x4E86;&#x3059;&#x308B;&#x3068;&#x3001;Stripe&#x306F;&#x30C8;&#x30FC;&#x30AF;&#x30F3;&#x3092;&#x767A;&#x884C;&#x3059;&#x308B;&#x306E;&#x3067;&#x3053;&#x308C;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A8;&#x30F3;&#x30C9;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306A;&#x3069;&#x306B;&#x4FDD;&#x5B58;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <p><code>stripe.createToken</code>&#x306F;<code>injectStripe</code>&#x3067;&#x8A2D;&#x5B9A;&#x3055;&#x308C;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x3002;<code>injectStripe</code>&#x3067;&#x30E9;&#x30C3;&#x30D7;&#x3055;&#x308C;&#x305F;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306F;<code>props</code>&#x304B;&#x3089;&#x3053;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
-<figure class="highlight diff"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component {</span><br><span class="line">  constructor(props) {</span><br><span class="line">    super(props);</span><br><span class="line"><span class="addition">+    this.handleSubmit = this.handleSubmit.bind(this);</span></span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  render() {</span><br><span class="line">    return (</span><br><span class="line"><span class="deletion">-      &lt;form&gt;</span></span><br><span class="line"><span class="addition">+      &lt;form onSubmit={this.handleSubmit}&gt;</span></span><br><span class="line">        &lt;CardNumberElement onChange={this.handleChange}/&gt;</span><br><span class="line">        &lt;CardExpiryElement /&gt;</span><br><span class="line">        &lt;CardCVCElement /&gt;</span><br><span class="line">        &lt;button&gt;&#x652F;&#x6255;&#x3044;&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  handleChange(data) {</span><br><span class="line">    if (!data.complete) {</span><br><span class="line">      // ERROR</span><br><span class="line">      console.log(data.error.message);</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="addition">+  handleSubmit(e) {</span></span><br><span class="line"><span class="addition">+    // &#x3053;&#x3053;&#x306B;&#x30D0;&#x30EA;&#x30C7;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x51E6;&#x7406;</span></span><br><span class="line"><span class="addition">+   </span></span><br><span class="line"><span class="addition">+    this.props.stripe.createToken().then(result =&gt; {</span></span><br><span class="line"><span class="addition">+      if (result.error) {</span></span><br><span class="line"><span class="addition">+        // ERROR</span></span><br><span class="line"><span class="addition">+        console.log(result.error.message);</span></span><br><span class="line"><span class="addition">+        return;</span></span><br><span class="line"><span class="addition">+      }</span></span><br><span class="line"><span class="addition">+      // &#x3053;&#x3053;&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C8;&#x30FC;&#x30AF;&#x30F3;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A8;&#x30F3;&#x30C9;&#x306B;&#x9001;&#x4FE1;&#x3057;&#x3066;&#x5B8C;&#x4E86;&#xFF01;&#xFF01;</span></span><br><span class="line"><span class="addition">+      console.log(result.token);</span></span><br><span class="line"><span class="addition">+    });</span></span><br><span class="line"><span class="addition">+  }</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-diff"><code class="language-diff">// checkoutForm.jsx
+
+...
+
+class CheckoutForm extends React.Component {
+  constructor(props) {
+    super(props);
+<span class="token inserted">+    this.handleSubmit = this.handleSubmit.bind(this);</span>
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  render() {
+    return (
+<span class="token deleted">-      &lt;form&gt;</span>
+<span class="token inserted">+      &lt;form onSubmit={this.handleSubmit}&gt;</span>
+        &lt;CardNumberElement onChange={this.handleChange}/&gt;
+        &lt;CardExpiryElement /&gt;
+        &lt;CardCVCElement /&gt;
+        &lt;button&gt;&#x652F;&#x6255;&#x3044;&lt;/button&gt;
+      &lt;/form&gt;
+    );
+  }
+
+  handleChange(data) {
+    if (!data.complete) {
+      // ERROR
+      console.log(data.error.message);
+    }
+  }
+
+<span class="token inserted">+  handleSubmit(e) {</span>
+<span class="token inserted">+    // &#x3053;&#x3053;&#x306B;&#x30D0;&#x30EA;&#x30C7;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x51E6;&#x7406;</span>
+<span class="token inserted">+   </span>
+<span class="token inserted">+    this.props.stripe.createToken().then(result =&gt; {</span>
+<span class="token inserted">+      if (result.error) {</span>
+<span class="token inserted">+        // ERROR</span>
+<span class="token inserted">+        console.log(result.error.message);</span>
+<span class="token inserted">+        return;</span>
+<span class="token inserted">+      }</span>
+<span class="token inserted">+      // &#x3053;&#x3053;&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C8;&#x30FC;&#x30AF;&#x30F3;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A8;&#x30F3;&#x30C9;&#x306B;&#x9001;&#x4FE1;&#x3057;&#x3066;&#x5B8C;&#x4E86;&#xFF01;&#xFF01;</span>
+<span class="token inserted">+      console.log(result.token);</span>
+<span class="token inserted">+    });</span>
+<span class="token inserted">+  }</span>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x65B9;&#x6CD5;"><a href="#&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x65B9;&#x6CD5;" class="headerlink" title="&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x65B9;&#x6CD5;"></a>&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x65B9;&#x6CD5;</h2><p>Stripe&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306F;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;&#x3053;&#x308C;&#x3092;&#x884C;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x306B;&#x6EB6;&#x3051;&#x8FBC;&#x307E;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;Stripe&#x3092;&#x7D44;&#x307F;&#x8FBC;&#x3080;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x81EA;&#x5206;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x30D0;&#x30EA;&#x30C7;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x30A8;&#x30E9;&#x30FC;&#x306E;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;&#x306A;&#x306E;&#x3067;&#x3001;&#x3053;&#x306E;&#x624B;&#x9806;&#x306F;&#x307B;&#x307C;&#x5FC5;&#x9808;&#x304B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;<br>&#x6700;&#x521D;&#x3084;&#x308A;&#x65B9;&#x304C;&#x308F;&#x304B;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x306E;&#x3067;Stack Overflow&#x3067;&#x805E;&#x3044;&#x3066;&#x307F;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <ul>
@@ -1881,8 +2027,18 @@ h6.categories {
 </ul>
 <p>&#x5B9F;&#x969B;&#x306B;render&#x3055;&#x308C;&#x305F;&#x5F8C;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x898B;&#x308B;&#x3068;&#x308F;&#x304B;&#x308B;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;Stripe&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306F;<code>.StripeElement</code>&#x3068;&#x3044;&#x3046;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x6301;&#x3064;DOM&#x306B;&#x30E9;&#x30C3;&#x30D7;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <p><code>.StripeElement</code>&#x306F;CSS&#x547D;&#x540D;&#x898F;&#x5247;&#x306E;BEM&#x306B;&#x5247;&#x3063;&#x305F;&#x3044;&#x304F;&#x3064;&#x304B;&#x306E;&#x72B6;&#x614B;(modifier)&#x3092;&#x6301;&#x3064;&#x306E;&#x3067;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x304B;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.StripeElement {</span><br><span class="line">  border: 1px solid #eee;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">.StripeElement--invalid {</span><br><span class="line">  border: 1px solid red;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">.StripeElement--focus {</span><br><span class="line">  border: 1px solid blue;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>&#x3053;&#x3093;&#x306A;&#x611F;&#x3058;&#x3067;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>.StripeElement {
+  border: 1px solid #eee;
+}
+
+.StripeElement--invalid {
+  border: 1px solid red;
+}
+
+.StripeElement--focus {
+  border: 1px solid blue;
+}
+</code></pre><p>&#x3053;&#x3093;&#x306A;&#x611F;&#x3058;&#x3067;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/stripe-2.png" width="1020" height="424" layout="responsive"></amp-img></div>
 <blockquote>
 <p>&#x73FE;&#x5728;&#x306F;&#x3001;<code>Elements</code>&#x306E;<code>style</code>&#x306B;CSS&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;&#x3068;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x304C;&#x9069;&#x7528;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x3067;&#x3059;&#x3002;&#x4FBF;&#x5229;&#x3002;</p>

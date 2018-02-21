@@ -1821,12 +1821,27 @@ h6.categories {
 <p>&#x304A;&#x4ED5;&#x4E8B;&#x3067;docker image&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x516C;&#x958B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x3063;&#x305F;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x3084;&#x308A;&#x65B9;&#x3088;&#x304F;&#x77E5;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x540C;&#x50DA;&#x306E;docker&#x5F97;&#x610F;&#x306A;&#x30A8;&#x30F3;&#x30B8;&#x30CB;&#x30A2;&#x306B;&#x6559;&#x3048;&#x3066;&#x3082;&#x3089;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <h2 id="docker-image&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;"><a href="#docker-image&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;" class="headerlink" title="docker image&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;"></a>docker image&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</h2><p>&#x307E;&#x305A;&#x306F;&#x3001;docker image&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x4ECA;&#x56DE;&#x306F;CircleCI 2.0&#x3067;&#x4F7F;&#x3046;&#x30D5;&#x30ED;&#x30F3;&#x30C8;&#x30A8;&#x30F3;&#x30C9;&#x30D3;&#x30EB;&#x30C9;&#x7528;&#x306E;image&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30D9;&#x30FC;&#x30B9;&#x306E;image&#x306B;<code>circleci/node:8.9</code>&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<p>BuildDockerfile<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM circleci/node:8.9</span><br><span class="line"></span><br><span class="line">ENV PATH /home/circleci/.local/bin:<!--figure0-->#123;PATH}</span><br><span class="line"></span><br><span class="line"># Install AWS CLI</span><br><span class="line">RUN sudo apt-get install python-dev</span><br><span class="line">RUN sudo curl -O https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">RUN python get-pip.py --user</span><br><span class="line">RUN pip install awscli --upgrade --user</span><br></pre></td></tr></tbody></table></figure>
-<p>image&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x3067;&#x304D;&#x305F;&#x3089;&#x3001;docker image&#x3092;&#x30D3;&#x30EB;&#x30C9;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -f BuildDockerfile .</span><br></pre></td></tr></tbody></table></figure>
-<p>&#x30D3;&#x30EB;&#x30C9;&#x304C;&#x7D42;&#x308F;&#x3063;&#x305F;&#x3089;image&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x8868;&#x793A;&#x3057;&#x3066;&#x3001;image id&#x3092;&#x899A;&#x3048;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;&#x4ECA;&#x56DE;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x4E00;&#x756A;&#x4E0A;&#x306B;&#x3042;&#x308B;<code>&lt;none&gt;</code>&#x304C;&#x4F5C;&#x6210;&#x3057;&#x305F;image&#x3067;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">&lt;none&gt;              &lt;none&gt;              680c58dbd0f9        29 seconds ago      986MB</span><br><span class="line">circleci/node       8.9                 66a65e08d915        9 hours ago         894MB</span><br><span class="line">codeprep/sqlite     latest              0c3ec62e9c37        7 days ago          13.6MB</span><br><span class="line">...</span><br></pre></td></tr></tbody></table></figure>
-<blockquote>
+<p>BuildDockerfile</p>
+<pre><code>FROM circleci/node:8.9
+
+ENV PATH /home/circleci/.local/bin:${PATH}
+
+# Install AWS CLI
+RUN sudo apt-get install python-dev
+RUN sudo curl -O https://bootstrap.pypa.io/get-pip.py
+RUN python get-pip.py --user
+RUN pip install awscli --upgrade --user
+</code></pre><p>image&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x3067;&#x304D;&#x305F;&#x3089;&#x3001;docker image&#x3092;&#x30D3;&#x30EB;&#x30C9;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>$ docker build -f BuildDockerfile .
+</code></pre><p>&#x30D3;&#x30EB;&#x30C9;&#x304C;&#x7D42;&#x308F;&#x3063;&#x305F;&#x3089;image&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x8868;&#x793A;&#x3057;&#x3066;&#x3001;image id&#x3092;&#x899A;&#x3048;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;&#x4ECA;&#x56DE;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x4E00;&#x756A;&#x4E0A;&#x306B;&#x3042;&#x308B;<code>&lt;none&gt;</code>&#x304C;&#x4F5C;&#x6210;&#x3057;&#x305F;image&#x3067;&#x3059;&#x3002;</p>
+<pre><code>$ docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+&lt;none&gt;              &lt;none&gt;              680c58dbd0f9        29 seconds ago      986MB
+circleci/node       8.9                 66a65e08d915        9 hours ago         894MB
+codeprep/sqlite     latest              0c3ec62e9c37        7 days ago          13.6MB
+...
+</code></pre><blockquote>
 <p>&#x76F4;&#x524D;&#x306B;&#x4F5C;&#x3063;&#x305F;image&#x3067;&#x3042;&#x308C;&#x3070;&#x3001;&#x4E00;&#x756A;&#x4E0A;&#x306B;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 </blockquote>
 <h2 id="docker-image&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;"><a href="#docker-image&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;" class="headerlink" title="docker image&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;"></a>docker image&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;</h2><p>docker image&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3057;&#x307E;&#x3059;&#x3002;</p>
@@ -1836,16 +1851,22 @@ h6.categories {
 </blockquote>
 <h2 id="docker&#x306B;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B;"><a href="#docker&#x306B;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B;" class="headerlink" title="docker&#x306B;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B;"></a>docker&#x306B;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B;</h2><p>&#x3053;&#x3053;&#x304B;&#x3089;&#x306F;&#x3001;image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x6E96;&#x5099;&#x3067;&#x3059;&#x3002;</p>
 <p><a href="https://hub.docker.com/" target="_blank" rel="noopener">docker hub</a>&#x306E;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3067;docker&#x306B;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ export DOCKER_ID_USER=&quot;mitsuruog&quot;</span><br><span class="line">$ docker login</span><br></pre></td></tr></tbody></table></figure>
-<p><code>DOCKER_ID_USER</code>&#x306B;&#x306F;docker hub&#x306B;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x540D;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;&#x3042;&#x3068;&#x3067;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;&#xFF08;&#x306A;&#x304F;&#x3066;&#x3082;&#x5927;&#x4E08;&#x592B;&#x3067;&#x3059;&#x304C;&#x3002;&#x3002;&#x3002;&#xFF09;</p>
+<pre><code>$ export DOCKER_ID_USER=&quot;mitsuruog&quot;
+$ docker login
+</code></pre><p><code>DOCKER_ID_USER</code>&#x306B;&#x306F;docker hub&#x306B;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x540D;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;&#x3042;&#x3068;&#x3067;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;&#xFF08;&#x306A;&#x304F;&#x3066;&#x3082;&#x5927;&#x4E08;&#x592B;&#x3067;&#x3059;&#x304C;&#x3002;&#x3002;&#x3002;&#xFF09;</p>
 <h2 id="docker-image&#x306B;&#x30BF;&#x30B0;&#x3092;&#x3064;&#x3051;&#x308B;"><a href="#docker-image&#x306B;&#x30BF;&#x30B0;&#x3092;&#x3064;&#x3051;&#x308B;" class="headerlink" title="docker image&#x306B;&#x30BF;&#x30B0;&#x3092;&#x3064;&#x3051;&#x308B;"></a>docker image&#x306B;&#x30BF;&#x30B0;&#x3092;&#x3064;&#x3051;&#x308B;</h2><p>docker image&#x306B;&#x30BF;&#x30B0;&#xFF08;&#x540D;&#x524D;&#xFF09;&#x3092;&#x4ED8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag [image name] $DOCKER_ID_USER/cool-build-frontend</span><br></pre></td></tr></tbody></table></figure>
-<p><code>image name</code>&#x306B;&#x306F;&#x3001;&#x4E0A;&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;image id&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3001;<code>cool-build-frontend</code>&#x306B;&#x597D;&#x304D;&#x306A;&#x540D;&#x524D;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>$ docker tag [image name] $DOCKER_ID_USER/cool-build-frontend
+</code></pre><p><code>image name</code>&#x306B;&#x306F;&#x3001;&#x4E0A;&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;image id&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3001;<code>cool-build-frontend</code>&#x306B;&#x597D;&#x304D;&#x306A;&#x540D;&#x524D;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x30BF;&#x30B0;&#x3064;&#x3051;&#x304C;&#x7D42;&#x308F;&#x3063;&#x305F;&#x3089;image&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x8868;&#x793A;&#x3057;&#x3066;image&#x306B;&#x30BF;&#x30B0;&#x304C;&#x4ED8;&#x3044;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line">REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mitsuruog/cool-build-frontend   latest              680c58dbd0f9        2 minutes ago       986MB</span><br><span class="line">circleci/node                   8.9                 66a65e08d915        9 hours ago         894MB</span><br><span class="line">codeprep/sqlite                 latest              0c3ec62e9c37        7 days ago          13.6MB</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="docker-image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;"><a href="#docker-image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;" class="headerlink" title="docker image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;"></a>docker image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;</h2><p>&#x6700;&#x5F8C;&#x306B;image&#x3092;docker hub&#x306B;&#x516C;&#x958B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push mitsuruog/cool-build-frontend</span><br></pre></td></tr></tbody></table></figure>
-<p>&#x7D50;&#x679C;&#x306F;&#x3001;&#x3053;&#x3093;&#x306A;&#x611F;&#x3058;&#x3067;&#x3059;&#x3002;</p>
+<pre><code>$ docker images
+
+REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
+mitsuruog/cool-build-frontend   latest              680c58dbd0f9        2 minutes ago       986MB
+circleci/node                   8.9                 66a65e08d915        9 hours ago         894MB
+codeprep/sqlite                 latest              0c3ec62e9c37        7 days ago          13.6MB
+</code></pre><h2 id="docker-image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;"><a href="#docker-image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;" class="headerlink" title="docker image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;"></a>docker image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;</h2><p>&#x6700;&#x5F8C;&#x306B;image&#x3092;docker hub&#x306B;&#x516C;&#x958B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>$ docker push mitsuruog/cool-build-frontend
+</code></pre><p>&#x7D50;&#x679C;&#x306F;&#x3001;&#x3053;&#x3093;&#x306A;&#x611F;&#x3058;&#x3067;&#x3059;&#x3002;</p>
 <ul>
 <li><a href="https://hub.docker.com/r/mitsuruog/cool-build-frontend/" target="_blank" rel="noopener">https://hub.docker.com/r/mitsuruog/cool-build-frontend/</a></li>
 </ul>

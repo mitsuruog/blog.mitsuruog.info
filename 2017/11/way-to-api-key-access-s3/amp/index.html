@@ -1831,8 +1831,20 @@ h6.categories {
 <p>&#x3068;&#x3053;&#x308D;&#x304C;&#x3001;<strong>&#x7279;&#x5B9A;&#x306E;S3&#x306B;&#x306E;&#x307F;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x308B;</strong>&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;<strong>&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30DD;&#x30EA;&#x30B7;&#x30FC;</strong>&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;IAM&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306B;&#x9069;&#x7528;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;<br>&#x3057;&#x304B;&#x3057;&#x307E;&#x3041;&#x3001;&#x30D5;&#x30ED;&#x30F3;&#x30C8;&#x30A8;&#x30F3;&#x30C9;&#x30A8;&#x30F3;&#x30B8;&#x30CB;&#x30A2;&#x306E;&#x81EA;&#x5206;&#x3068;&#x3057;&#x3066;&#x306F;&#x3001;AWS&#x306E;&#x30DD;&#x30EA;&#x30B7;&#x30FC;&#x306E;JSON&#x3092;&#x89E6;&#x308B;&#x6A5F;&#x4F1A;&#x306A;&#x3069;&#x3042;&#x307E;&#x308A;&#x306A;&#x3044;&#x306E;&#x3067;&#x3001;&#x305D;&#x306E;&#x66F8;&#x304D;&#x65B9;&#x3092;&#x6BCE;&#x56DE;&#x3059;&#x3063;&#x304B;&#x308A;&#x5FD8;&#x308C;&#x308B;&#x308F;&#x3051;&#x3067;&#x3059;&#x3002;</p>
 <p>&#x3068;&#x3044;&#x3046;&#x308F;&#x3051;&#x3067;&#x3001;&#x4ECA;&#x56DE;&#x306F;&#x3053;&#x306E;&#x9762;&#x5012;&#x306A;JSON&#x3092;&#x5FD8;&#x308C;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;&#x306E;&#x304C;&#x3053;&#x306E;&#x8A18;&#x4E8B;&#x306E;&#x76EE;&#x7684;&#x3067;&#x3059;&#x3002;</p>
 <p>&#x7279;&#x5B9A;&#x306E;S3&#x30D0;&#x30B1;&#x30C3;&#x30C8;&#x306B;&#x306E;&#x307F;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;JSON&#x3092;&#x30DD;&#x30EA;&#x30B7;&#x30FC;&#x306B;&#x8A2D;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span><br><span class="line">  &quot;Statement&quot;: [</span><br><span class="line">    {</span><br><span class="line">      &quot;Effect&quot;: &quot;Allow&quot;,</span><br><span class="line">      &quot;Action&quot;: &quot;s3:*&quot;,</span><br><span class="line">      &quot;Resource&quot;: [</span><br><span class="line">          &quot;arn:aws:s3:::&lt;bucket-name&gt;&quot;,</span><br><span class="line">          &quot;arn:aws:s3:::&lt;bucket-name&gt;/*&quot;</span><br><span class="line">      ]</span><br><span class="line">    }</span><br><span class="line">  ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<ul>
+<pre><code>{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [
+    {
+      &quot;Effect&quot;: &quot;Allow&quot;,
+      &quot;Action&quot;: &quot;s3:*&quot;,
+      &quot;Resource&quot;: [
+          &quot;arn:aws:s3:::&lt;bucket-name&gt;&quot;,
+          &quot;arn:aws:s3:::&lt;bucket-name&gt;/*&quot;
+      ]
+    }
+  ]
+}
+</code></pre><ul>
 <li><code>&lt;bucket-name&gt;</code>&#x306E;&#x90E8;&#x5206;&#x306B;&#x306F;&#x3001;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3092;&#x8A31;&#x53EF;&#x3057;&#x305F;&#x3044;S3&#x30D0;&#x30B1;&#x30C3;&#x30C8;&#x540D;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</li>
 <li><code>&lt;bucket-name&gt;/*</code>&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x306F;&#x3001;&#x30B5;&#x30D6;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3082;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3092;&#x8A31;&#x53EF;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x8A2D;&#x5B9A;&#x3067;&#x3059;&#x3002;</li>
 </ul>

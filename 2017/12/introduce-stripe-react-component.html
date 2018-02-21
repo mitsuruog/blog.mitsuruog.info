@@ -69,7 +69,8 @@
   
     <link rel="amphtml" href="https://blog.mitsuruog.info/2017/12/introduce-stripe-react-component/amp/index.html">
   
-</head>
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
   
@@ -136,24 +137,126 @@
 </blockquote>
 <p>導入方法は<code>npm install --save react-stripe-elements</code>してから、Reactコンポーネントを使っていきます。</p>
 <h3 id="StripeProviderでアプリケーションをラップする"><a href="#StripeProviderでアプリケーションをラップする" class="headerlink" title="StripeProviderでアプリケーションをラップする"></a>StripeProviderでアプリケーションをラップする</h3><p>まず最初に<code>StripeProvider</code>でアプリケーションのルートコンポーネントをラップします。<br>この時に<code>apiKey</code>にアプリケーションアクセスキーを設定してください。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// index.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; render &#125; from &apos;react-dom&apos;;</span><br><span class="line">import &#123; StripeProvider &#125; from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">import Main from &apos;./Main.jsx&apos;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;StripeProvider apiKey=&quot;&lt;YOUR_APP_KEY&gt;&quot;&gt;</span><br><span class="line">      &lt;Main /&gt;</span><br><span class="line">    &lt;/StripeProvider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">render(&lt;App /&gt;, document.getElementById(&apos;root&apos;));</span><br></pre></td></tr></table></figure>
-<h2 id="Elementsで支払いフォームをラップする"><a href="#Elementsで支払いフォームをラップする" class="headerlink" title="Elementsで支払いフォームをラップする"></a>Elementsで支払いフォームをラップする</h2><p>次に<code>Elements</code>で支払いフォームをラップします。<code>Elements</code>は、Stripeの入力フォームをグルーピングするために利用するコンポーネントのようです。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// myCheckout.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; Elements &#125; from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">import CheckoutForm from &apos;./CheckoutForm.jsx&apos;</span><br><span class="line"></span><br><span class="line">class MyCheckout extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Elements&gt;</span><br><span class="line">        &lt;CheckoutForm /&gt;</span><br><span class="line">      &lt;/Elements&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default MyCheckout;</span><br></pre></td></tr></table></figure>
-<h2 id="injectStripeで支払いフォームをラップする"><a href="#injectStripeで支払いフォームをラップする" class="headerlink" title="injectStripeで支払いフォームをラップする"></a>injectStripeで支払いフォームをラップする</h2><p>さらに<code>injectStripe</code>で支払いフォームをラップします。</p>
+<pre><code>// index.jsx
+import React from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import { StripeProvider } from &#39;react-stripe-elements&#39;;
+
+import Main from &#39;./Main.jsx&#39;
+
+const App = () =&gt; {
+  return (
+    &lt;StripeProvider apiKey=&quot;&lt;YOUR_APP_KEY&gt;&quot;&gt;
+      &lt;Main /&gt;
+    &lt;/StripeProvider&gt;
+  );
+};
+
+render(&lt;App /&gt;, document.getElementById(&#39;root&#39;));
+</code></pre><h2 id="Elementsで支払いフォームをラップする"><a href="#Elementsで支払いフォームをラップする" class="headerlink" title="Elementsで支払いフォームをラップする"></a>Elementsで支払いフォームをラップする</h2><p>次に<code>Elements</code>で支払いフォームをラップします。<code>Elements</code>は、Stripeの入力フォームをグルーピングするために利用するコンポーネントのようです。</p>
+<pre><code>// myCheckout.jsx
+import React from &#39;react&#39;;
+import { Elements } from &#39;react-stripe-elements&#39;;
+
+import CheckoutForm from &#39;./CheckoutForm.jsx&#39;
+
+class MyCheckout extends React.Component {
+  render() {
+    return (
+      &lt;Elements&gt;
+        &lt;CheckoutForm /&gt;
+      &lt;/Elements&gt;
+    );
+  }
+}
+
+export default MyCheckout;
+</code></pre><h2 id="injectStripeで支払いフォームをラップする"><a href="#injectStripeで支払いフォームをラップする" class="headerlink" title="injectStripeで支払いフォームをラップする"></a>injectStripeで支払いフォームをラップする</h2><p>さらに<code>injectStripe</code>で支払いフォームをラップします。</p>
 <p><code>injectStripe</code>は、Stripeの入力フォームの様々な入力イベントを処理するために利用する<strong>Higher-Order Component(HOC)</strong>です。</p>
 <p>公式ドキュメントでは、<code>injectStripe</code>は<code>Elements</code>と<strong>一緒に使えない</strong>ことになっているので、何も考えず<code>Elements</code>と<code>injectStripe</code>を使うコンポーネントを2つに分けた方がいいです。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; injectStripe &#125; from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;form&gt;</span><br><span class="line">        ここに入力フォームが入る</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default injectStripe(CheckoutForm);</span><br></pre></td></tr></table></figure>
-<h2 id="カード情報入力フォームを配置する"><a href="#カード情報入力フォームを配置する" class="headerlink" title="カード情報入力フォームを配置する"></a>カード情報入力フォームを配置する</h2><p>最後にカード情報入力用のコンポーネントを配置していきます。</p>
+<pre><code>// checkoutForm.jsx
+import React from &#39;react&#39;;
+import { injectStripe } from &#39;react-stripe-elements&#39;;
+
+class CheckoutForm extends React.Component {
+  render() {
+    return (
+      &lt;form&gt;
+        ここに入力フォームが入る
+      &lt;/form&gt;
+    );
+  }
+}
+
+export default injectStripe(CheckoutForm);
+</code></pre><h2 id="カード情報入力フォームを配置する"><a href="#カード情報入力フォームを配置する" class="headerlink" title="カード情報入力フォームを配置する"></a>カード情報入力フォームを配置する</h2><p>最後にカード情報入力用のコンポーネントを配置していきます。</p>
 <p>StripeのReactコンポーネントには、All-on-one型の<code>CardElement</code>と、これらを別々に分割した<code>CardNumberElement</code>, <code>CardExpiryElement</code>, <code>CardCVCElement</code>があります。</p>
 <p>自分の場合は、レイアウトを自由にしたかったので、別々に分割されたコンポーネントを利用しました。</p>
-<p>かなりラフですが。。。入力部品を配置したらこのような感じになると思います。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; injectStripe &#125; from &apos;react-stripe-elements&apos;;</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;form&gt;</span><br><span class="line">        &lt;CardNumberElement /&gt;</span><br><span class="line">        &lt;CardExpiryElement /&gt;</span><br><span class="line">        &lt;CardCVCElement /&gt;</span><br><span class="line">        &lt;button&gt;支払い&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default injectStripe(CheckoutForm);</span><br></pre></td></tr></table></figure></p>
-<p>これで導入については終わりです。次からは細かなイベントハンドリング方法やカスタマイズについて紹介します。</p>
+<p>かなりラフですが。。。入力部品を配置したらこのような感じになると思います。</p>
+<pre><code>// checkoutForm.jsx
+import React from &#39;react&#39;;
+import { injectStripe } from &#39;react-stripe-elements&#39;;
+
+class CheckoutForm extends React.Component {
+  render() {
+    return (
+      &lt;form&gt;
+        &lt;CardNumberElement /&gt;
+        &lt;CardExpiryElement /&gt;
+        &lt;CardCVCElement /&gt;
+        &lt;button&gt;支払い&lt;/button&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+
+export default injectStripe(CheckoutForm);
+</code></pre><p>これで導入については終わりです。次からは細かなイベントハンドリング方法やカスタマイズについて紹介します。</p>
 <h2 id="入力フォームのイベントハンドリング"><a href="#入力フォームのイベントハンドリング" class="headerlink" title="入力フォームのイベントハンドリング"></a>入力フォームのイベントハンドリング</h2><p>入力フォームのイベントハンドリング方法について紹介します。</p>
 <h3 id="フォームの入力チェック"><a href="#フォームの入力チェック" class="headerlink" title="フォームの入力チェック"></a>フォームの入力チェック</h3><p>フォームの入力チェックはStripeの入力コンポーネントの<code>onChange</code>にハンドラを設定して処理します。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component &#123;</span><br><span class="line"><span class="addition">+  constructor(props) &#123;</span></span><br><span class="line"><span class="addition">+    super(props);</span></span><br><span class="line"><span class="addition">+    this.handleChange = this.handleChange.bind(this);</span></span><br><span class="line"><span class="addition">+  &#125;</span></span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;form&gt;</span><br><span class="line"><span class="deletion">-        &lt;CardNumberElement /&gt;</span></span><br><span class="line"><span class="addition">+        &lt;CardNumberElement onChange=&#123;this.handleChange&#125;/&gt;</span></span><br><span class="line">        &lt;CardExpiryElement /&gt;</span><br><span class="line">        &lt;CardCVCElement /&gt;</span><br><span class="line">        &lt;button&gt;支払い&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="addition">+  handleChange(data) &#123;</span></span><br><span class="line"><span class="addition">+    if (!data.complete) &#123;</span></span><br><span class="line"><span class="addition">+      // ERROR</span></span><br><span class="line"><span class="addition">+      console.log(data.error.message);</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"><span class="addition">+  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-diff"><code class="language-diff">// checkoutForm.jsx
+
+...
+
+class CheckoutForm extends React.Component {
+<span class="token inserted">+  constructor(props) {</span>
+<span class="token inserted">+    super(props);</span>
+<span class="token inserted">+    this.handleChange = this.handleChange.bind(this);</span>
+<span class="token inserted">+  }</span>
+
+  render() {
+    return (
+      &lt;form>
+<span class="token deleted">-        &lt;CardNumberElement /></span>
+<span class="token inserted">+        &lt;CardNumberElement onChange={this.handleChange}/></span>
+        &lt;CardExpiryElement />
+        &lt;CardCVCElement />
+        &lt;button>支払い&lt;/button>
+      &lt;/form>
+    );
+  }
+
+<span class="token inserted">+  handleChange(data) {</span>
+<span class="token inserted">+    if (!data.complete) {</span>
+<span class="token inserted">+      // ERROR</span>
+<span class="token inserted">+      console.log(data.error.message);</span>
+<span class="token inserted">+    }</span>
+<span class="token inserted">+  }</span>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>onChangeハンドラには次のようなStripeのデータオブジェクトが渡されてくるので、これを元にエラーかどうか判断します。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  brand: &quot;amex&quot;,</span><br><span class="line">  complete: false,</span><br><span class="line">  empty: false,</span><br><span class="line">  error: &#123;</span><br><span class="line">    code: &quot;invalid_number&quot;,</span><br><span class="line">    message: &quot;カード番号が無効です。&quot;,</span><br><span class="line">    type: &quot;validation_error&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  value: undefined</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>エラーかどうかは<code>complete</code>を、メッセージは<code>error.massage</code>を見ればいいと思います。</p>
+<pre><code>{
+  brand: &quot;amex&quot;,
+  complete: false,
+  empty: false,
+  error: {
+    code: &quot;invalid_number&quot;,
+    message: &quot;カード番号が無効です。&quot;,
+    type: &quot;validation_error&quot;
+  },
+  value: undefined
+}
+</code></pre><p>エラーかどうかは<code>complete</code>を、メッセージは<code>error.massage</code>を見ればいいと思います。</p>
 <p>注意点としては、このオブジェクトは入力フィールド単体で送られてくるので、フォーム全体を管理するためには別途Stateなどを使って状態を管理する必要があるということです。<br>ちょっと泥臭い実装ですが、自分はそれぞれの入力フォームのハンドラを別に定義して処理しました。</p>
 <h2 id="フォームの送信処理"><a href="#フォームの送信処理" class="headerlink" title="フォームの送信処理"></a>フォームの送信処理</h2><p>フォームの送信処理は、フォームの<code>onSubmit</code>にハンドラを設定して処理します。</p>
 <blockquote>
@@ -161,7 +264,51 @@
 </blockquote>
 <p>Stripeへの支払い処理には<code>stripe.createToken</code>を呼び出して、カード情報と支払い情報をStripe上に登録する必要があります。処理が完了すると、Stripeはトークンを発行するのでこれをバックエンドのデータベースなどに保存しておきます。</p>
 <p><code>stripe.createToken</code>は<code>injectStripe</code>で設定されるオブジェクトです。<code>injectStripe</code>でラップされたコンポーネントは<code>props</code>からこのオブジェクトを利用することが可能です。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">// checkoutForm.jsx</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">class CheckoutForm extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line"><span class="addition">+    this.handleSubmit = this.handleSubmit.bind(this);</span></span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line"><span class="deletion">-      &lt;form&gt;</span></span><br><span class="line"><span class="addition">+      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</span></span><br><span class="line">        &lt;CardNumberElement onChange=&#123;this.handleChange&#125;/&gt;</span><br><span class="line">        &lt;CardExpiryElement /&gt;</span><br><span class="line">        &lt;CardCVCElement /&gt;</span><br><span class="line">        &lt;button&gt;支払い&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(data) &#123;</span><br><span class="line">    if (!data.complete) &#123;</span><br><span class="line">      // ERROR</span><br><span class="line">      console.log(data.error.message);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="addition">+  handleSubmit(e) &#123;</span></span><br><span class="line"><span class="addition">+    // ここにバリデーション処理</span></span><br><span class="line"><span class="addition">+   </span></span><br><span class="line"><span class="addition">+    this.props.stripe.createToken().then(result =&gt; &#123;</span></span><br><span class="line"><span class="addition">+      if (result.error) &#123;</span></span><br><span class="line"><span class="addition">+        // ERROR</span></span><br><span class="line"><span class="addition">+        console.log(result.error.message);</span></span><br><span class="line"><span class="addition">+        return;</span></span><br><span class="line"><span class="addition">+      &#125;</span></span><br><span class="line"><span class="addition">+      // ここで取得したトークンをバックエンドに送信して完了！！</span></span><br><span class="line"><span class="addition">+      console.log(result.token);</span></span><br><span class="line"><span class="addition">+    &#125;);</span></span><br><span class="line"><span class="addition">+  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-diff"><code class="language-diff">// checkoutForm.jsx
+
+...
+
+class CheckoutForm extends React.Component {
+  constructor(props) {
+    super(props);
+<span class="token inserted">+    this.handleSubmit = this.handleSubmit.bind(this);</span>
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  render() {
+    return (
+<span class="token deleted">-      &lt;form></span>
+<span class="token inserted">+      &lt;form onSubmit={this.handleSubmit}></span>
+        &lt;CardNumberElement onChange={this.handleChange}/>
+        &lt;CardExpiryElement />
+        &lt;CardCVCElement />
+        &lt;button>支払い&lt;/button>
+      &lt;/form>
+    );
+  }
+
+  handleChange(data) {
+    if (!data.complete) {
+      // ERROR
+      console.log(data.error.message);
+    }
+  }
+
+<span class="token inserted">+  handleSubmit(e) {</span>
+<span class="token inserted">+    // ここにバリデーション処理</span>
+<span class="token inserted">+   </span>
+<span class="token inserted">+    this.props.stripe.createToken().then(result => {</span>
+<span class="token inserted">+      if (result.error) {</span>
+<span class="token inserted">+        // ERROR</span>
+<span class="token inserted">+        console.log(result.error.message);</span>
+<span class="token inserted">+        return;</span>
+<span class="token inserted">+      }</span>
+<span class="token inserted">+      // ここで取得したトークンをバックエンドに送信して完了！！</span>
+<span class="token inserted">+      console.log(result.token);</span>
+<span class="token inserted">+    });</span>
+<span class="token inserted">+  }</span>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="スタイルのカスタマイズ方法"><a href="#スタイルのカスタマイズ方法" class="headerlink" title="スタイルのカスタマイズ方法"></a>スタイルのカスタマイズ方法</h2><p>Stripeのコンポーネントはスタイルをカスタマイズすることが可能です。これを行うことで、サービスに溶け込ませるようにStripeを組み込むことができます。</p>
 <p>自分の場合は、バリデーションエラーのスタイルをカスタマイズする必要がありました。なので、この手順はほぼ必須かと思います。<br>最初やり方がわからなかったのでStack Overflowで聞いてみました。</p>
 <ul>
@@ -169,8 +316,18 @@
 </ul>
 <p>実際にrenderされた後のコードを見るとわかるのですが、Stripeのコンポーネントは<code>.StripeElement</code>というスタイルを持つDOMにラップされています。</p>
 <p><code>.StripeElement</code>はCSS命名規則のBEMに則ったいくつかの状態(modifier)を持つので、これらのスタイルを変更することでカスタマイズか可能です。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.StripeElement &#123;</span><br><span class="line">  border: 1px solid #eee;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.StripeElement--invalid &#123;</span><br><span class="line">  border: 1px solid red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.StripeElement--focus &#123;</span><br><span class="line">  border: 1px solid blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>こんな感じでスタイルをカスタマイズできます。</p>
+<pre><code>.StripeElement {
+  border: 1px solid #eee;
+}
+
+.StripeElement--invalid {
+  border: 1px solid red;
+}
+
+.StripeElement--focus {
+  border: 1px solid blue;
+}
+</code></pre><p>こんな感じでスタイルをカスタマイズできます。</p>
 <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/stripe-2.png" width="400">
 <blockquote>
 <p>現在は、<code>Elements</code>の<code>style</code>にCSSスタイルをセットするとスタイルが適用されるようです。便利。</p>
@@ -268,6 +425,30 @@
           <li class="recent-post-item media">
             <figure class="media-left">
               
+  <a href="/2018/02/react-typescript-hoc.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/hoc2.png" class="thumbnail is-6x6" alt="ReactのHigher order component(HOC)をTypeScriptで作る">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/react-typescript-hoc.html" class="">
+                  ReactのHigher order component(HOC)をTypeScriptで作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-21
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
   <a href="/2018/02/postman-env.html">
     <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/postman-logo.png" class="thumbnail is-6x6" alt="Postmanの環境変数を使ってドメイン名を共通で管理する">
   </a>
@@ -361,30 +542,6 @@
             </div>
           </li>
         
-          <li class="recent-post-item media">
-            <figure class="media-left">
-              
-  <a href="/2017/12/merge-gatekeeper-for-github.html">
-    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/gatekeeper00.png" class="thumbnail is-6x6" alt="GitHubでのうっかりPRマージ事故を防ぐChrome拡張機能を作ってみた">
-  </a>
-
-
-            </figure>
-            <div class="media-content">
-              <p class="">
-                <a href="/2017/12/merge-gatekeeper-for-github.html" class="">
-                  GitHubでのうっかりPRマージ事故を防ぐChrome拡張機能を作ってみた
-                </a>
-              </p>
-              <p class="">
-                <small>
-                  2017-12-28
-
-                </small>
-              </p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -395,7 +552,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
     <div class="widget">
-      <a href="/tags/Android/" style="font-size: 10.83px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.5px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 14.17px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.83px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.33px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.33px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.5px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.67px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.17px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.5px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 15px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.83px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.83px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.83px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.83px;">docker</a> <a href="/tags/es6/" style="font-size: 10.83px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.67px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.67px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.83px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.67px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.83px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.83px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.83px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.33px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.83px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 15.83px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.5px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.67px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 13.33px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.5px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.83px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.83px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11.67px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.67px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.67px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.83px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.83px;">翻訳</a>
+      <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.73px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 16.36px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10px;">redux</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.73px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 13.64px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11.82px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
     </div>
   </div>
 
@@ -405,7 +562,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">アーカイブ</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
