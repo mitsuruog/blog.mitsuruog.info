@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Reduxユーザーが最もハマるstateの不正変更とその検出方法 | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta name="description" content="今日はReduxユーザーが最もハマるポイントだと個人的に思っている、stateの不正変更とその検出方法について紹介します。ちなみにReactでの話ですが、他のフレームワークでも同じ事なんではと、勝手に想像しています。 Reduxのstate変更検知の仕組みまず最初にReduxのstate変更検知の仕組みについておさらいします。概要だけ紹介するため、詳細は公式ドキュメントも合わせて参照してください。">
+<meta name="keywords" content="react,redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reduxユーザーが最もハマるstateの不正変更とその検出方法">
+<meta property="og:url" content="https://blog.mitsuruog.info/2018/02/why-is-immutability-required-by-redux.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="今日はReduxユーザーが最もハマるポイントだと個人的に思っている、stateの不正変更とその検出方法について紹介します。ちなみにReactでの話ですが、他のフレームワークでも同じ事なんではと、勝手に想像しています。 Reduxのstate変更検知の仕組みまず最初にReduxのstate変更検知の仕組みについておさらいします。概要だけ紹介するため、詳細は公式ドキュメントも合わせて参照してください。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-logo.png">
+<meta property="og:updated_time" content="2018-02-25T15:42:13.399Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reduxユーザーが最もハマるstateの不正変更とその検出方法">
+<meta name="twitter:description" content="今日はReduxユーザーが最もハマるポイントだと個人的に思っている、stateの不正変更とその検出方法について紹介します。ちなみにReactでの話ですが、他のフレームワークでも同じ事なんではと、勝手に想像しています。 Reduxのstate変更検知の仕組みまず最初にReduxのstate変更検知の仕組みについておさらいします。概要だけ紹介するため、詳細は公式ドキュメントも合わせて参照してください。">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-logo.png">
+  <link rel="icon" href="/favicon.ico">
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Reduxユーザーが最もハマるstateの不正変更とその検出方法",
+  "name": "Reduxユーザーが最もハマるstateの不正変更とその検出方法",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-logo.png",
+  "datePublished": "2018-02-25T15:00:00.000Z",
+  "dateModified": "2018-02-25T15:42:13.399Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2018/02/why-is-immutability-required-by-redux.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2018/02/why-is-immutability-required-by-redux/amp/index.html">
+  
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="columns">
+      <div class="main column">
+        <article class="post">
+  <figure class="post-thumbnail">
+    
+  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-logo.png" class="thumbnail " alt="Reduxユーザーが最もハマるstateの不正変更とその検出方法">
+
+
+  </figure>
+  <span>2018-02-26
+</span>
+  <h1 class="title">Reduxユーザーが最もハマるstateの不正変更とその検出方法</h1>
+  
+  <div class="tags">
+    
+      <a class="tag" href="/tags/react/">react</a>
+    
+      <a class="tag" href="/tags/redux/">redux</a>
+    
+  </div>
+
+
+  <div class="content">
+    <p>今日はReduxユーザーが最もハマるポイントだと個人的に思っている、stateの不正変更とその検出方法について紹介します。<br>ちなみにReactでの話ですが、他のフレームワークでも同じ事なんではと、勝手に想像しています。</p>
+<h2 id="Reduxのstate変更検知の仕組み"><a href="#Reduxのstate変更検知の仕組み" class="headerlink" title="Reduxのstate変更検知の仕組み"></a>Reduxのstate変更検知の仕組み</h2><p>まず最初にReduxのstate変更検知の仕組みについておさらいします。概要だけ紹介するため、詳細は公式ドキュメントも合わせて参照してください。</p>
+<ul>
+<li>Immutable Data - Redux <a href="https://redux.js.org/faq/immutable-data" target="_blank" rel="noopener">https://redux.js.org/faq/immutable-data</a></li>
+</ul>
+<p>Reduxのstateの変更検知には「<strong>shallow equality checking</strong>」という仕組みを使っています。<br>shallow equalityとは、あるネストしたオブジェクトがあった場合、<strong>全ての値をチェックしているのではなく、このオブジェクトが格納されている参照(マシンメモリの番地)が正しいことをチェックする</strong>ことです。そのため「reference equality」とも言われているようです。</p>
+<p>Reduxのstateは内部的にstateをいくつかの部分に分割した状態で保持していますが、1つ1つは比較的大きい構造となる場合が想定されるため、このように参照のみをチェックすることでパフォーマンスを担保しています。</p>
+<p>通常Reduxのstateを変更する時は、stateの変更を検知できるように変更することが望ましいのですが、残念ながら検知できない変更方法が存在します。<br>これを便宜上「<strong>stateの不正変更</strong>」と呼ぶ事にします。</p>
+<h2 id="stateを不正変更できてしまうメカニズム"><a href="#stateを不正変更できてしまうメカニズム" class="headerlink" title="stateを不正変更できてしまうメカニズム"></a>stateを不正変更できてしまうメカニズム</h2><p>これはJavaScriptの言語仕様に深く関係しています。</p>
+<p>例えば<code>const</code>は再代入を許さない変数宣言ですが、再代入のチェックに<strong>参照を利用している</strong>ため、オブジェクト内部のプロパティは変更することが可能です。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"foo"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// これはエラーにならない</span>
+state<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"bar"</span>
+
+<span class="token comment" spellcheck="true">// これは再代入に当たるためエラーになる</span>
+<span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"foo"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>JavaScriptの場合、オブジェクト内部の<strong>プロパティを変更したとしても参照は同じものとなる</strong>ため、参照を使ったチェックではオブジェクトの内部の変更を検知することはできません。</p>
+<h2 id="Reduxのstateを不正変更するとどんな問題が起きるのか？"><a href="#Reduxのstateを不正変更するとどんな問題が起きるのか？" class="headerlink" title="Reduxのstateを不正変更するとどんな問題が起きるのか？"></a>Reduxのstateを不正変更するとどんな問題が起きるのか？</h2><p>さて、stateを不正変更するとどんな問題が起こるかというと、React上で再描画(re-render)が発生しなくなります。</p>
+<p>これはReactが持つメカニズムのためで、Propsの変更を検知して、これが利用されているReactコンポーネントのツリーのみを効率良く再描画させるためです。<br>これが起こるとstateは変更されているが、<strong>画面の表示内容がまったく変化しない</strong>というかなり面倒な事が発生します。</p>
+<p>よくある事例として、Reactのcomponent内にある<code>componentWillReceiveProps</code>が予期せず発火しなくなります。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>nextProps <span class="token operator">!==</span><span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// なにかの処理</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>この状態をredux-dev-toolで見ると次のようになります。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-01.png" width="500">
+<blockquote>
+<p>stateを変更しているはずだが、redux-dev-toolのdiffには何も現れてこない。</p>
+</blockquote>
+<p>これに起因する問題は見つけにくく、個人的にはReduxユーザーがReduxで最もハマりやすいポイントだと思います。</p>
+<h2 id="stateの不正変更に対する正しいアプローチ"><a href="#stateの不正変更に対する正しいアプローチ" class="headerlink" title="stateの不正変更に対する正しいアプローチ"></a>stateの不正変更に対する正しいアプローチ</h2><p>公式に「Immutable Update Patterns」というドキュメントがあるので、これに習ってstateを変更します。(これくらいstateの更新には細心の注意が必要です)</p>
+<ul>
+<li>Immutable Update Patterns · Redux <a href="https://redux.js.org/docs/recipes/reducers/ImmutableUpdatePatterns.html" target="_blank" rel="noopener">https://redux.js.org/docs/recipes/reducers/ImmutableUpdatePatterns.html</a></li>
+</ul>
+<p>Immutable Update Patternsを見るとわかるのですが、かなり面倒です。<br>そのため通常は、なんからのユーティリティライブラリの力を借りている方も多いかと思います。</p>
+<ul>
+<li>kolodny/immutability-helper: mutate a copy of data without changing the original source<br><a href="https://github.com/kolodny/immutability-helper" target="_blank" rel="noopener">https://github.com/kolodny/immutability-helper</a></li>
+<li>debitoor/dot-prop-immutable: Immutable version of dot-prop with some extensions<br><a href="https://github.com/debitoor/dot-prop-immutable" target="_blank" rel="noopener">https://github.com/debitoor/dot-prop-immutable</a></li>
+</ul>
+<p>しかし、上で話した通りJavaScriptの言語仕様もあり、うっかり事故が絶えません。<br>そのため個人的には、なんからの<strong>検知の仕組みをプロジェクトに導入するのが上策</strong>だと考えました。</p>
+<h2 id="stateの不正変更を検知する"><a href="#stateの不正変更を検知する" class="headerlink" title="stateの不正変更を検知する"></a>stateの不正変更を検知する</h2><p>Reduxのmiddlewareにstateの不正変更を検知するものがあったので、これを使います。</p>
+<ul>
+<li>leoasis/redux-immutable-state-invariant: Redux middleware that detects mutations between and outside redux dispatches. For development use only.<br><a href="https://github.com/leoasis/redux-immutable-state-invariant" target="_blank" rel="noopener">https://github.com/leoasis/redux-immutable-state-invariant</a></li>
+</ul>
+<h3 id="redux-immutable-state-invariantを導入する"><a href="#redux-immutable-state-invariantを導入する" class="headerlink" title="redux-immutable-state-invariantを導入する"></a>redux-immutable-state-invariantを導入する</h3><p>導入はドキュメントにある通り、reduxを初期化している部分でmiddlewareに設定します。<br>ドキュメントには<code>redux-thunk</code>を使った例しかないので、<code>redux-observable</code>を使ったものにしてみます。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span> applyMiddleware<span class="token punctuation">,</span> combineReducers<span class="token punctuation">,</span> createStore <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'redux'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> createEpicMiddleware <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'redux-observable'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> epics <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./epics/index'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> reducers <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./reducers/index'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Be sure to ONLY add this middleware in development!</span>
+<span class="token keyword">const</span> middleware <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>NODE_ENV <span class="token operator">!==</span> <span class="token string">'production'</span> <span class="token operator">?</span>
+  <span class="token punctuation">[</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'redux-immutable-state-invariant'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">createEpicMiddleware</span><span class="token punctuation">(</span>epics<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token punctuation">:</span>
+  <span class="token punctuation">[</span><span class="token function">createEpicMiddleware</span><span class="token punctuation">(</span>epics<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Note passing middleware as the last argument to createStore requires redux@>=3.1.0</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>
+  reducers<span class="token punctuation">,</span>
+  <span class="token function">applyMiddleware</span><span class="token punctuation">(</span><span class="token operator">...</span>middleware<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>middlewareを導入した状態で、stateを不正変更すると次のようなエラーが発生します。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-02.png">
+<p><strong>警告ではなくエラー</strong>なので注意が必要です。既にstateを不正変更コードがある場合、最悪アプリケーションが動作しなくなります。</p>
+<blockquote>
+<p>これくらい清々しくクラッシュしてくれた方が、修正のモチベーションになっていいと思います。</p>
+</blockquote>
+<p>これでうっかりstateを不正変更した場合でも検知することができます。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>今日はReduxユーザーが最もハマるポイントだと個人的に思っている、stateの不正変更とその検出方法について紹介でした。</p>
+<p>人は間違い起こすものなので、このような検知の仕組みを導入すると安心ですね。</p>
+
+  </div>
+  
+<nav class="footer-nav">
+  
+  
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2018/02/react-typescript-hoc.html">
+        ReactのHigher order component(HOC)をTypeScriptで作る
+      </a>
+    </div>
+  
+</nav>
+
+
+</article>
+
+
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form" target="_blank">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="https://blog.mitsuruog.info">
+  </form>
+</aside>
+
+  
+    <div class="widget-wrap">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <img src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320" class="avatar" alt="mitsuruog">
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span>mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget-title">最近の記事</div>
+    <div class="widget">
+      <ul class="recent-post">
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/why-is-immutability-required-by-redux.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-logo.png" class="thumbnail is-6x6" alt="Reduxユーザーが最もハマるstateの不正変更とその検出方法">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/why-is-immutability-required-by-redux.html" class="">
+                  Reduxユーザーが最もハマるstateの不正変更とその検出方法
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-26
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/react-typescript-hoc.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/hoc2.png" class="thumbnail is-6x6" alt="ReactのHigher order component(HOC)をTypeScriptで作る">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/react-typescript-hoc.html" class="">
+                  ReactのHigher order component(HOC)をTypeScriptで作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-21
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/postman-env.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/postman-logo.png" class="thumbnail is-6x6" alt="Postmanの環境変数を使ってドメイン名を共通で管理する">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/postman-env.html" class="">
+                  Postmanの環境変数を使ってドメイン名を共通で管理する
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-03
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/01/typescript-emun-tips.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/TypeScriptEnum.png" class="thumbnail is-6x6" alt="TypeScriptのEnumに関数を追加して値を返却する">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/01/typescript-emun-tips.html" class="">
+                  TypeScriptのEnumに関数を追加して値を返却する
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-01-26
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/01/lambda-s3-image-optimizer.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/lambda-s3.png" class="thumbnail is-6x6" alt="AWS Lambdaを使ってS3にアップロードしたイメージを最適化する">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/01/lambda-s3-image-optimizer.html" class="">
+                  AWS Lambdaを使ってS3にアップロードしたイメージを最適化する
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-01-05
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget">
+      <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.73px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 17.27px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 10.91px;">redux</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.73px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 13.64px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 11.82px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

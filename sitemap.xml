@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2018/02/why-is-immutability-required-by-redux.html</loc>
+    
+    <lastmod>2018-02-25T15:42:13.399Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2018/02/react-typescript-hoc.html</loc>
     
     <lastmod>2018-02-21T02:21:28.156Z</lastmod>
@@ -171,13 +178,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/08/how-to-send-custom-attribute-value-to-gtm.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.563Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
     
     <lastmod>2017-12-10T08:09:17.563Z</lastmod>
@@ -185,14 +185,21 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/08/how-to-send-custom-attribute-value-to-gtm.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.563Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
@@ -220,14 +227,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/ng-sake-with-unit-testing.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
     
     <lastmod>2017-12-10T08:09:17.559Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/ng-sake-with-unit-testing.html</loc>
     
     <lastmod>2017-12-10T08:09:17.559Z</lastmod>
     
@@ -262,7 +269,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -276,7 +283,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -297,14 +304,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
@@ -381,14 +388,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
@@ -626,14 +633,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/02/20143535.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/02/sapsapui5.html</loc>
     
     <lastmod>2017-12-09T15:31:05.660Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/02/sapsapui5.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/02/20143535.html</loc>
     
     <lastmod>2017-12-09T15:31:05.660Z</lastmod>
     
@@ -654,14 +661,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5googlemap.html</loc>
     
     <lastmod>2017-12-09T15:31:05.657Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5googlemap.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html</loc>
     
     <lastmod>2017-12-09T15:31:05.657Z</lastmod>
     
@@ -682,14 +689,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
@@ -710,14 +717,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/2013.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html</loc>
     
     <lastmod>2017-12-09T15:31:05.651Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/2013.html</loc>
     
     <lastmod>2017-12-09T15:31:05.651Z</lastmod>
     
