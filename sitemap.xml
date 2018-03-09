@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2018/03/reduce-bundle-size-in-my-case.html</loc>
+    
+    <lastmod>2018-03-09T08:28:42.634Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2018/02/why-is-immutability-required-by-redux.html</loc>
     
     <lastmod>2018-02-25T15:42:13.399Z</lastmod>
@@ -68,7 +75,7 @@
   <url>
     <loc>https://blog.mitsuruog.info/2017/12/merge-gatekeeper-for-github.html</loc>
     
-    <lastmod>2017-12-27T14:21:49.736Z</lastmod>
+    <lastmod>2017-12-27T14:21:49.735Z</lastmod>
     
   </url>
   
@@ -89,28 +96,28 @@
   <url>
     <loc>https://blog.mitsuruog.info/2017/12/muscle-makes-me-great-again.html</loc>
     
-    <lastmod>2017-12-19T09:28:14.594Z</lastmod>
+    <lastmod>2017-12-19T09:28:14.593Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2015/06/aws-s3-pre-signed-url.html</loc>
     
-    <lastmod>2017-12-15T13:07:52.929Z</lastmod>
+    <lastmod>2017-12-15T13:07:52.928Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2017/08/look-back-react-typescript-after-half-year.html</loc>
     
-    <lastmod>2017-12-12T23:27:32.771Z</lastmod>
+    <lastmod>2017-12-12T23:27:32.770Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2017/12/simple-japanese-theme.html</loc>
     
-    <lastmod>2017-12-10T11:11:51.012Z</lastmod>
+    <lastmod>2017-12-10T11:11:51.011Z</lastmod>
     
   </url>
   
@@ -138,19 +145,12 @@
   <url>
     <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.568Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-build-frontend-via-circleci2.html</loc>
-    
     <lastmod>2017-12-10T08:09:17.567Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-build-frontend-via-circleci2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
@@ -159,12 +159,12 @@
   <url>
     <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.566Z</lastmod>
+    <lastmod>2017-12-10T08:09:17.565Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/how-to-fix-react-redux-text.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.565Z</lastmod>
     
@@ -178,9 +178,9 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/how-to-fix-react-redux-text.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.563Z</lastmod>
+    <lastmod>2017-12-10T08:09:17.564Z</lastmod>
     
   </url>
   
@@ -192,13 +192,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.562Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
@@ -206,7 +199,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/07/just-do-not-use-pipe-in-filter-and-sort.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.562Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
     
     <lastmod>2017-12-10T08:09:17.561Z</lastmod>
     
@@ -220,14 +220,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/07/just-do-not-use-pipe-in-filter-and-sort.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
     
     <lastmod>2017-12-10T08:09:17.559Z</lastmod>
     
@@ -241,7 +241,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
     
     <lastmod>2017-12-10T08:09:17.558Z</lastmod>
     
@@ -255,6 +255,13 @@
   </url>
   
   <url>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.557Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html</loc>
     
     <lastmod>2017-12-10T08:09:17.557Z</lastmod>
@@ -264,7 +271,7 @@
   <url>
     <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-basic.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.557Z</lastmod>
+    <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
   </url>
   
@@ -283,14 +290,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/heroku-connect-configuration-compare.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.556Z</lastmod>
+    <lastmod>2017-12-10T08:09:17.555Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/heroku-connect-configuration-compare.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.555Z</lastmod>
     
@@ -313,19 +320,19 @@
   <url>
     <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.553Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.553Z</lastmod>
+    <lastmod>2017-12-10T08:09:17.552Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2016/01/how-to-ci-testing-via-wercker.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
     
     <lastmod>2017-12-10T08:09:17.552Z</lastmod>
     
@@ -341,19 +348,12 @@
   <url>
     <loc>https://blog.mitsuruog.info/2012/12/backbonemodelbackbonecollection.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.709Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2012/12/backbonesyncsastrutsformpost.html</loc>
-    
     <lastmod>2017-12-09T15:31:05.708Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/12/backboneevents.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/12/backbonesyncsastrutsformpost.html</loc>
     
     <lastmod>2017-12-09T15:31:05.707Z</lastmod>
     
@@ -361,6 +361,13 @@
   
   <url>
     <loc>https://blog.mitsuruog.info/2012/12/blog-post.html</loc>
+    
+    <lastmod>2017-12-09T15:31:05.706Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2012/12/backboneevents.html</loc>
     
     <lastmod>2017-12-09T15:31:05.706Z</lastmod>
     
@@ -397,14 +404,14 @@
   <url>
     <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.702Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.701Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2012/10/websocket.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.701Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.700Z</lastmod>
     
   </url>
   
@@ -425,7 +432,7 @@
   <url>
     <loc>https://blog.mitsuruog.info/2015/01/hosting-angularjs-application-on-s3-via-cloudfront.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.697Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.696Z</lastmod>
     
   </url>
   
@@ -458,14 +465,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2015/02/input-date-trouble-tips-in-angularjs.html</loc>
+    <loc>https://blog.mitsuruog.info/2015/02/what-mqtt.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.692Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.691Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2015/02/what-mqtt.html</loc>
+    <loc>https://blog.mitsuruog.info/2015/02/input-date-trouble-tips-in-angularjs.html</loc>
     
     <lastmod>2017-12-09T15:31:05.691Z</lastmod>
     
@@ -495,7 +502,7 @@
   <url>
     <loc>https://blog.mitsuruog.info/2015/03/writing-angularjs-using-es6.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.682Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.681Z</lastmod>
     
   </url>
   
@@ -516,7 +523,7 @@
   <url>
     <loc>https://blog.mitsuruog.info/2014/12/i-love-sytleguide.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.679Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.678Z</lastmod>
     
   </url>
   
@@ -544,42 +551,42 @@
   <url>
     <loc>https://blog.mitsuruog.info/2014/01/bootstrapmodal.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.674Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.673Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2014/01/spa7.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.673Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.672Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2014/08/sapui5openui5_11.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.672Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.671Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2014/08/jwtjson-web-tokenwebapicredential.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.671Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.670Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2014/09/web-components.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.670Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.669Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2014/09/sapui5openui5ui.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.669Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.668Z</lastmod>
     
   </url>
   
@@ -614,13 +621,6 @@
   <url>
     <loc>https://blog.mitsuruog.info/2014/10/sapui5openui5ui.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.663Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2014/10/fluxes5angularjs.html</loc>
-    
     <lastmod>2017-12-09T15:31:05.662Z</lastmod>
     
   </url>
@@ -633,9 +633,9 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/02/sapsapui5.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/10/fluxes5angularjs.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.660Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.661Z</lastmod>
     
   </url>
   
@@ -647,16 +647,23 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5viewfragmentsview.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/02/sapsapui5.html</loc>
     
     <lastmod>2017-12-09T15:31:05.659Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/05/html5funhtml5.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5viewfragmentsview.html</loc>
     
     <lastmod>2017-12-09T15:31:05.658Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2014/05/html5funhtml5.html</loc>
+    
+    <lastmod>2017-12-09T15:31:05.657Z</lastmod>
     
   </url>
   
@@ -670,28 +677,14 @@
   <url>
     <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.657Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.656Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2014/05/sapui5openui5.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.656Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2014/04/fidder2northwindodata.html</loc>
-    
     <lastmod>2017-12-09T15:31:05.655Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
-    
-    <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
   </url>
   
@@ -703,23 +696,23 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/html5wai-ariaweb.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/04/fidder2northwindodata.html</loc>
+    
+    <lastmod>2017-12-09T15:31:05.654Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
     
     <lastmod>2017-12-09T15:31:05.653Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/yeomangruntfilejs.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/html5wai-ariaweb.html</loc>
     
     <lastmod>2017-12-09T15:31:05.652Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html</loc>
-    
-    <lastmod>2017-12-09T15:31:05.651Z</lastmod>
     
   </url>
   
@@ -731,51 +724,65 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/nodeseleniumserverlearnboostsoda.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/yeomangruntfilejs.html</loc>
+    
+    <lastmod>2017-12-09T15:31:05.651Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2013/12/androidchromedevtoolsremote.html</loc>
     
     <lastmod>2017-12-09T15:31:05.650Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/ricoh-theta360threejsfileapidrag.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/nodeseleniumserverlearnboostsoda.html</loc>
     
     <lastmod>2017-12-09T15:31:05.649Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/01/bootstrapbootstrap-narrow.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/ricoh-theta360threejsfileapidrag.html</loc>
     
     <lastmod>2017-12-09T15:31:05.648Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/01/underscorejstemplatetips.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/01/bootstrapbootstrap-narrow.html</loc>
     
     <lastmod>2017-12-09T15:31:05.647Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/11/jjug-ccc-2013-fall.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/01/underscorejstemplatetips.html</loc>
     
     <lastmod>2017-12-09T15:31:05.646Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/02/airbnb-javascript.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/11/jjug-ccc-2013-fall.html</loc>
     
     <lastmod>2017-12-09T15:31:05.645Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/04/backbonejs.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/02/airbnb-javascript.html</loc>
     
     <lastmod>2017-12-09T15:31:05.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2013/04/backbonejs.html</loc>
+    
+    <lastmod>2017-12-09T15:31:05.643Z</lastmod>
     
   </url>
   
@@ -789,7 +796,7 @@
   <url>
     <loc>https://blog.mitsuruog.info/2013/03/backbonejshandlebarjs.html</loc>
     
-    <lastmod>2017-12-09T15:31:05.641Z</lastmod>
+    <lastmod>2017-12-09T15:31:05.640Z</lastmod>
     
   </url>
   
