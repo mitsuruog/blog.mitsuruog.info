@@ -16,7 +16,7 @@
   "dependencies": {
     "del": "^3.0.0",
     "gulp": "^3.9.0",
-    "gulp-textlint": "^1.1.0",
+    "gulp-textlint": "^5.0.7",
     "hexo": "^3.6.0",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-amp": "^3.0.13",
@@ -32,8 +32,8 @@
     "hexo-server": "^0.3.1",
     "textlint-rule-max-ten": "^2.0.0",
     "textlint-rule-no-double-negative-ja": "^1.0.3",
-    "textlint-rule-no-doubled-joshi": "^2.0.0",
-    "textlint-rule-no-mix-dearu-desumasu": "^1.4.0",
-    "textlint-rule-spellcheck-tech-word": "^4.1.2"
+    "textlint-rule-no-doubled-joshi": "^3.5.1",
+    "textlint-rule-no-mix-dearu-desumasu": "^3.0.3",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
   }
 }
