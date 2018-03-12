@@ -1,9 +1,9 @@
 {
   "name": "blog.mitsuruog.info",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "hexo": {
-    "version": "3.4.3"
+    "version": "3.6.0"
   },
   "engines": {
     "node": "~8.9.0"
@@ -14,22 +14,22 @@
     "deploy": "node_modules/.bin/hexo deploy"
   },
   "dependencies": {
-    "del": "^2.2.0",
+    "del": "^3.0.0",
     "gulp": "^3.9.0",
     "gulp-textlint": "^1.1.0",
-    "hexo": "^3.4.3",
+    "hexo": "^3.6.0",
     "hexo-deployer-git": "^0.3.1",
-    "hexo-generator-amp": "^3.0.12",
+    "hexo-generator-amp": "^3.0.13",
     "hexo-generator-archive": "^0.1.5",
     "hexo-generator-category": "^0.1.2",
-    "hexo-generator-index": "^0.1.2",
+    "hexo-generator-index": "^0.2.1",
     "hexo-generator-sitemap": "^1.2.0",
-    "hexo-generator-tag": "^0.1.1",
+    "hexo-generator-tag": "^0.2.0",
     "hexo-prism-plugin": "^2.2.0",
-    "hexo-renderer-ejs": "^0.1.0",
-    "hexo-renderer-marked": "^0.2.4",
+    "hexo-renderer-ejs": "^0.3.1",
+    "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.0",
-    "hexo-server": "^0.1.2",
+    "hexo-server": "^0.3.1",
     "textlint-rule-max-ten": "^2.0.0",
     "textlint-rule-no-double-negative-ja": "^1.0.3",
     "textlint-rule-no-doubled-joshi": "^2.0.0",
