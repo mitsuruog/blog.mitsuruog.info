@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;&lt;del&gt;当ブログで使っている画像をDropboxのpublicフォルダから、Cloudinaryに移行した話です。&lt;br&gt;画像に限った話では、Dropboxの代替先としてCloudinaryは結構いいんじゃないかと思います。&lt;/del&gt;&lt;/p&gt;
@@ -30,6 +32,8 @@
 &lt;/blockquote&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -66,7 +70,14 @@
 			    "@id":"https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html"
 			},
 			"datePublished": "2017-05-16T15:00:00.000Z",
-			"dateModified": "2017-12-10T08:09:17.562Z",
+			"dateModified": "2017-12-10T08:09:17.563Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1781,6 +1792,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1819,6 +1838,8 @@ h6.categories {
 <p>Cloudinary&#x3068;&#x306F;&#x3001;&#x753B;&#x50CF;/&#x52D5;&#x753B;&#x5C02;&#x9580;&#x306E;&#x30AF;&#x30E9;&#x30A6;&#x30C9;&#x30DB;&#x30B9;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3067;&#x3001;&#x753B;&#x50CF;&#x3092;&#x30A2;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C9;&#x3057;&#x3066;&#x30D6;&#x30ED;&#x30B0;&#x306A;&#x3069;&#x3067;&#x4F7F;&#x3046;&#x305F;&#x3081;&#x306B;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <blockquote>
 <p><del>&#x30D5;&#x30EA;&#x30FC;&#x3067;&#x3082;75,000&#x679A;&#x306E;&#x753B;&#x50CF;&#x3084;&#x52D5;&#x753B;&#x3092;&#x4FDD;&#x5B58;&#x3067;&#x304D;&#x308B;&#x306E;&#x3067;&#x3001;&#x307E;&#x3041;&#x666E;&#x901A;&#x306B;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x308B;&#x5185;&#x306F;&#x5927;&#x4E08;&#x592B;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;&#x3002;&#x3002;</del></p>
+</blockquote>
+<blockquote>
 <p>&#xFF08;&#x3060;&#x3081;&#x3067;&#x3057;&#x305F;&#x301C;&#xFF01;&#xFF01;&#xFF09;Bandwidth&#x304C;5GB/&#x6708;&#x306A;&#x3093;&#x3067;&#x3059;&#x304C;&#x3001;&#x7D50;&#x69CB;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x591A;&#x304F;&#x3063;&#x3066;&#x30AA;&#x30FC;&#x30D0;&#x30FC;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;&#x7D50;&#x679C;&#x3001;S3&#x306B;&#x79FB;&#x884C;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;(2017/06/15)</p>
 </blockquote>
 <ul>
@@ -1841,6 +1862,7 @@ Image%2001.png
 
 // Cloudinary
 Image_01.png
+
 </code></pre><h2 id="&#x307E;&#x3068;&#x3081;"><a href="#&#x307E;&#x3068;&#x3081;" class="headerlink" title="&#x307E;&#x3068;&#x3081;"></a>&#x307E;&#x3068;&#x3081;</h2><p>&#x666E;&#x901A;&#x306B;&#x753B;&#x50CF;&#x8AAD;&#x3081;&#x3066;&#x3044;&#x308B;&#x3057;&#x3001;https&#x3082;&#x4F7F;&#x3048;&#x308B;&#x306E;&#x3067;&#x3001;Dropbox&#x306E;&#x4EE3;&#x66FF;&#x5148;&#x3068;&#x3057;&#x3066;Cloudinary&#x306F;&#x7D50;&#x69CB;&#x3044;&#x3044;&#x3093;&#x3058;&#x3083;&#x306A;&#x3044;&#x304B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <blockquote>
 <p>Bandwidth&#x304C;5GB/&#x6708;&#x306E;&#x4E2D;&#x306B;&#x53CE;&#x307E;&#x308B;&#x306E;&#x3067;&#x3042;&#x308C;&#x3070;&#x5927;&#x4E08;&#x592B;&#x3060;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>

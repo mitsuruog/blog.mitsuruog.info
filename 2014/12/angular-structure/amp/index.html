@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2014/12/angular-structure.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;この記事は&lt;a href=&#34;http://www.adventar.org/calendars/350&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;AngularJS Advent Calendar 2014 - Adventar&lt;/a&gt;の3日目の記事です。&lt;/p&gt;
@@ -34,6 +36,8 @@
 &lt;p&gt;そんな私が、最近いいなと思っているAngularJSのプロジェクト構成について紹介します。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -73,6 +77,13 @@
 			},
 			"datePublished": "2014-12-02T15:00:00.000Z",
 			"dateModified": "2017-12-09T15:31:05.677Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1787,6 +1798,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1847,7 +1866,7 @@ h6.categories {
         fuga.service.js  
     views/
         hoge.html     
-        some.html
+        some.html       
 </code></pre><h2 id="&#x30D9;&#x30B9;&#x30C8;&#x30D7;&#x30E9;&#x30AF;&#x30C6;&#x30A3;&#x30B9;-Folders-by-Feature"><a href="#&#x30D9;&#x30B9;&#x30C8;&#x30D7;&#x30E9;&#x30AF;&#x30C6;&#x30A3;&#x30B9;-Folders-by-Feature" class="headerlink" title="&#x30D9;&#x30B9;&#x30C8;&#x30D7;&#x30E9;&#x30AF;&#x30C6;&#x30A3;&#x30B9;(Folders-by-Feature)"></a>&#x30D9;&#x30B9;&#x30C8;&#x30D7;&#x30E9;&#x30AF;&#x30C6;&#x30A3;&#x30B9;(Folders-by-Feature)</h2><p>&#x30A2;&#x30F3;&#x30C1;&#x30D1;&#x30BF;&#x30FC;&#x30F3;(folders-by-type)&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;&#x826F;&#x3044;&#x3068;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x304C;<code>Folders-by-Feature</code>&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x6A5F;&#x80FD;&#x5358;&#x4F4D;&#x306B;&#x30D5;&#x30A9;&#x30EB;&#x30C0;&#x3092;&#x5206;&#x3051;&#x308B;&#x65B9;&#x6CD5;&#x3067;&#x3059;&#x3002;&#x6A5F;&#x80FD;&#x5358;&#x4F4D;&#x3044;&#x3046;&#x3088;&#x308A;&#x3082;<strong>&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x5358;&#x4F4D;</strong>&#x3068;&#x547C;&#x3093;&#x3060;&#x65B9;&#x304C;&#x3057;&#x3063;&#x304F;&#x308A;&#x304F;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <p>generator-angular-fullstack&#x3092;&#x4F7F;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30D5;&#x30A9;&#x30EB;&#x30C0;&#x69CB;&#x6210;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;(<code>client&#x4EE5;&#x4E0B;</code>&#x3060;&#x3051;&#x629C;&#x7C8B;)</p>
 <pre><code>app/

@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2017/11/way-to-build-frontend-via-circleci2.html">
 	
+		<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;&lt;a href=&#34;https://github.com/facebookincubator/create-react-app&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;create-react-app&lt;/a&gt;で作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。&lt;/p&gt;
@@ -24,6 +26,8 @@
 &lt;p&gt;今回説明するのは、CircleCI 2.0を使う上での大まかな流れについてです。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
+	
 	
 	
     
@@ -57,7 +61,14 @@
 			    "@id":"https://blog.mitsuruog.info/2017/11/way-to-build-frontend-via-circleci2.html"
 			},
 			"datePublished": "2017-11-27T15:00:00.000Z",
-			"dateModified": "2017-12-10T08:09:17.566Z",
+			"dateModified": "2017-12-10T08:09:17.567Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png",
+				"width" : "1229",
+				"height" : "311"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1772,6 +1783,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="395" height="100" src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-1.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1931,7 +1950,11 @@ jobs:
 </ul>
 <blockquote>
 <p>&#x6709;&#x52B9;&#x306B;&#x3057;&#x305F;&#x3044;Organization&#x540D;&#x3068;&#x4E00;&#x7DD2;&#x306B;&#x4F9D;&#x983C;&#x3059;&#x308B;&#x3068;&#x5272;&#x3068;&#x65E9;&#x3081;&#x306B;&#x5BFE;&#x5FDC;&#x3057;&#x3066;&#x304F;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;Circle CI&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30FC;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x7D20;&#x6674;&#x3089;&#x3057;&#x3044;&#xFF01;&#xFF01;</p>
+</blockquote>
+<blockquote>
 <div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0-3.png" width="1749" height="140" layout="responsive"></amp-img></div>
+</blockquote>
+<blockquote>
 <p>&#x3068;&#x306F;&#x3044;&#x3048;&#x3001;&#x5C06;&#x6765;&#x7684;&#x306B;&#x306F;<code>resource_class</code>&#x306F;&#x30D7;&#x30EC;&#x30DF;&#x30A2;&#x30E0;&#x6A5F;&#x80FD;&#x306B;&#x306A;&#x308B;&#x304B;&#x3082;&#x3057;&#x308C;&#x306A;&#x3044;&#x3067;&#x3059;&#x3002;&#x8981;&#x6CE8;&#x610F;&#xFF01;</p>
 </blockquote>
 <h2 id="&#x307E;&#x3068;&#x3081;"><a href="#&#x307E;&#x3068;&#x3081;" class="headerlink" title="&#x307E;&#x3068;&#x3081;"></a>&#x307E;&#x3068;&#x3081;</h2><p>CircleCI 2.0&#x3067;&#x30D5;&#x30ED;&#x30F3;&#x30C8;&#x30A8;&#x30F3;&#x30C9;&#x3092;&#x30D3;&#x30EB;&#x30C9;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x5927;&#x307E;&#x304B;&#x306A;&#x624B;&#x9806;&#x3067;&#x3057;&#x305F;&#x3002;<br>&#x672C;&#x984C;&#x3068;&#x306F;&#x5168;&#x304F;&#x95A2;&#x4FC2;&#x306A;&#x3044;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;Circle CI&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30FC;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x8FC5;&#x901F;&#x3067;&#x3088;&#x304B;&#x3063;&#x305F;&#x306A;&#x30FC;&#x3002;</p>

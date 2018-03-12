@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;一手間必要だったのでメモ。&lt;br&gt;長いのでSalesforce Lightning Design System(以下、SLDS)とします。&lt;/p&gt;">
@@ -22,6 +24,8 @@
 		<meta name="twitter:description" content="&lt;p&gt;一手間必要だったのでメモ。&lt;br&gt;長いのでSalesforce Lightning Design System(以下、SLDS)とします。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -54,7 +58,14 @@
 			    "@id":"https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html"
 			},
 			"datePublished": "2016-01-02T15:00:21.000Z",
-			"dateModified": "2017-12-10T08:09:17.552Z",
+			"dateModified": "2017-12-10T08:09:17.553Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1769,6 +1780,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1851,7 +1870,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>./bundle.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="font&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30ED;&#x30FC;&#x30C9;-&#x8FFD;&#x8A18;-2015-01-03"><a href="#font&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30ED;&#x30FC;&#x30C9;-&#x8FFD;&#x8A18;-2015-01-03" class="headerlink" title="font&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30ED;&#x30FC;&#x30C9;(&#x8FFD;&#x8A18;:2015/01/03)"></a>font&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30ED;&#x30FC;&#x30C9;(&#x8FFD;&#x8A18;:2015/01/03)</h3><p>&#x4E0A;&#x306E;&#x65B9;&#x6CD5;&#x3067;&#x306F;SLDS&#x306E;font&#x304C;&#x6B63;&#x3057;&#x304F;&#x30ED;&#x30FC;&#x30C9;&#x3067;&#x304D;&#x305A;&#x3001;font&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x304C;&#x3059;&#x3079;&#x3066;404&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <p>&#x307E;&#x305A;&#x3001;<code>webpack.config.js</code>&#x306E;<code>module.loaders</code>&#x306B;file-loader&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x3001;font&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30B3;&#x30D4;&#x30FC;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> ExtractTextPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;extract-text-webpack-plugin&apos;</span><span class="token punctuation">)</span>

@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2015/04/ionic-7days-war.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;&lt;a href=&#34;http://ionicframework.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ionic&lt;/a&gt;でAndroidアプリを初めて作って公開してみました。&lt;/p&gt;
@@ -24,6 +26,8 @@
 &lt;p&gt;ionicで開発自体はAngularJSベースということもあり、結構スムーズだったのですが、開発以外の部分で意外とハマったので、その辺り紹介しようと思います。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -58,6 +62,13 @@
 			},
 			"datePublished": "2015-04-17T14:30:00.000Z",
 			"dateModified": "2017-12-09T15:31:05.688Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1772,6 +1783,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1827,7 +1846,8 @@ $ ionic serve
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>&#x30A2;&#x30D7;&#x30EA;&#x540D;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">&gt;</span></span>
 
   ...(&#x7701;&#x7565;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="ionic&#x3067;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x958B;&#x767A;"><a href="#ionic&#x3067;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x958B;&#x767A;" class="headerlink" title="ionic&#x3067;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x958B;&#x767A;"></a>ionic&#x3067;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x958B;&#x767A;</h2><p>ionic&#x306F;AngularJS&#x30D9;&#x30FC;&#x30B9;&#x3067;&#x3059;&#x306E;&#x3067;&#x3001;UI&#x90E8;&#x5206;&#x306E;&#x958B;&#x767A;&#x306F;&#x6BD4;&#x8F03;&#x7684;AngularJS&#x306E;&#x77E5;&#x8B58;&#x304C;&#x6D41;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;<br>&#x4ECA;&#x56DE;&#x306F;&#x3001;Cordova&#x3067;&#x5229;&#x7528;&#x983B;&#x5EA6;&#x306E;&#x9AD8;&#x3044;plugin&#x3092;AngularJS&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3067;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x3066;&#x4F7F;&#x3044;&#x3084;&#x3059;&#x304F;&#x3057;&#x305F;&#x3001;<code>ngCordova</code>&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <p><a href="http://ngcordova.com/" target="_blank" rel="noopener">ngCordova - Simple extensions for common Cordova Plugins - by the Ionic Framework Team - by the Ionic Framework Team</a></p>
 <p>&#x5C0E;&#x5165;&#x306F;&#x3001;ngCordova&#x306E;bower&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x3066;&#x3001;&#x30C8;&#x30C3;&#x30D7;&#x30EC;&#x30D9;&#x30EB;&#x306E;AngularJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3067;&#x5BA3;&#x8A00;&#x3059;&#x308B;&#x3068;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
@@ -1866,7 +1886,8 @@ $ ionic serve
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>css/ionic.app.css<span class="token punctuation">&quot;</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 
     ...(&#x7701;&#x7565;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x3042;&#x3068;&#x306F;&#x3001;&#x30AC;&#x30C4;&#x30AC;&#x30C4;&#x958B;&#x767A;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <p>PC&#x306E;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x4E0A;&#x3067;&#x306F;&#x6B63;&#x3057;&#x304F;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3051;&#x3069;&#x3001;&#x5B9F;&#x6A5F;&#x3060;&#x3068;&#x8868;&#x793A;&#x3067;&#x304D;&#x306A;&#x3044;&#x30FB;&#x30FB;&#x30FB;<br>&#x3068;&#x3044;&#x3063;&#x305F;&#x4E8B;&#x304C;&#x3088;&#x304F;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x6C17;&#x306B;&#x305B;&#x305A;&#x9811;&#x5F35;&#x3063;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;  </p>
 <p>&#x305D;&#x306E;&#x8FBA;&#x308A;&#x306E;&#x5FAE;&#x5999;&#x306A;&#x4E0D;&#x5B89;&#x611F;&#x3092;&#x697D;&#x3057;&#x3081;&#x308B;&#x304B;&#x3069;&#x3046;&#x304B;&#x304C;&#x3001;ionic&#x3068;&#x4EF2;&#x826F;&#x304F;&#x306A;&#x308B;&#x30B3;&#x30C4;&#x3067;&#x3059;&#x3002;(&#x3046;&#x30FC;&#x3093;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x958B;&#x767A;&#x5168;&#x822C;&#x3067;&#x8A00;&#x3048;&#x308B;&#x3053;&#x3068;&#x304B;&#x30FB;&#x30FB;&#x30FB;)</p>

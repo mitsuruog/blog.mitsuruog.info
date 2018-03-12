@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2017/11/way-to-contribute-definitely-typed.html">
 	
+		<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;TypeScriptを使っていると、結構必要になる型定義ファイル。&lt;br&gt;型定義が存在しなかったり、古かったりするライブラリを使って、苦労した経験があるひとは多いのではないでしょうか。&lt;/p&gt;
@@ -24,6 +26,8 @@
 &lt;p&gt;今回は、DefinitelyTypedにコントリビュートする機会が最近増えたので、個人的な手順をまとめておきます。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png">
+	
 	
 	
     
@@ -58,6 +62,13 @@
 			},
 			"datePublished": "2017-11-14T15:00:00.000Z",
 			"dateModified": "2018-01-26T13:29:32.241Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png",
+				"width" : "698",
+				"height" : "594"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1772,6 +1783,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="117" height="100" src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/DefinitelyTyped.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1818,6 +1837,8 @@ h6.categories {
 <pre><code>dts-gen --dt --name my-package-name --template module
 </code></pre><blockquote>
 <p><code>--template</code>&#x306E;&#x90E8;&#x5206;&#x306F;&#x3044;&#x304F;&#x3064;&#x304B;&#x6307;&#x5B9A;&#x304C;&#x3042;&#x308B;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x3042;&#x307E;&#x308A;&#x8A73;&#x3057;&#x304F;&#x77E5;&#x3089;&#x306A;&#x3044;&#x3067;&#x3059;&#x3002;<br>&#xFF08;&#x3053;&#x306E;&#x8FBA;&#x308A;&#x3001;&#x3069;&#x306E;template&#x4F7F;&#x3063;&#x305F;&#x3089;&#x3044;&#x3044;&#x304B;&#x3001;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x3044;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x304C;&#x3042;&#x308B;&#x3068;&#x3044;&#x3044;&#x3093;&#x3060;&#x3051;&#x3069;&#x306A;&#x30FC;&#x3002;&#xFF09;</p>
+</blockquote>
+<blockquote>
 <p>(2017.11.23 &#x8FFD;&#x8A18;)&#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;&#x3063;&#x307D;&#x3044;&#x306E;&#x898B;&#x3064;&#x3051;&#x305F;&#x306E;&#x3067;&#x8CBC;&#x3063;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <ul>
 <li><a href="https://github.com/Microsoft/TypeScript-Handbook/tree/master/pages/declaration%20files/templates" target="_blank" rel="noopener">https://github.com/Microsoft/TypeScript-Handbook/tree/master/pages/declaration%20files/templates</a></li>

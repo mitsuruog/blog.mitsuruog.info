@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2014/05/sapui5openui5viewfragmentsview.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;先日、SAPUI5のバージョンが1.20になりました。&lt;/p&gt;
@@ -26,6 +28,8 @@
 &lt;p&gt;今回は、このFragmentsについて実際の利用シーンをイメージしながら紹介します。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -60,7 +64,14 @@
 			    "@id":"https://blog.mitsuruog.info/2014/05/sapui5openui5viewfragmentsview.html"
 			},
 			"datePublished": "2014-05-06T14:52:39.000Z",
-			"dateModified": "2017-12-09T15:31:05.658Z",
+			"dateModified": "2017-12-09T15:31:05.659Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1775,6 +1786,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1842,7 +1861,8 @@ h6.categories {
 
     # &#x3053;&#x3053;&#x306B;&#x666E;&#x901A;&#x306E;JSView&#x306E;createContent&#x3068;&#x540C;&#x69D8;&#x306B;UI&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30EB;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;
     # &#x6700;&#x5F8C;&#x306B;return&#x3057;&#x307E;&#x3059;&#x3002;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x6B21;&#x306B;&#x3001;ownerView&#x5074;&#x3067;Fragments&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p>Fragments1.view.coffee</p>
 <pre class="line-numbers language-coffee"><code class="language-coffee">sap.ui.jsview &quot;view.Fragment&quot;,
@@ -1860,7 +1880,8 @@ h6.categories {
     @page.addContent fragment
 
     @page
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Fragments&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;&#x969B;&#x306E;&#x7B2C;2&#x5F15;&#x6570;&#x306E;oController&#x306F;&#x3001;Fragment&#x306B;&#x3066;&#x53C2;&#x7167;&#x3059;&#x308B;Controller&#x3092;&#x6E21;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#xFF08;&#x8A73;&#x7D30;&#x306F;&#x5F8C;&#x8FF0;&#xFF09;&#x3002;&#x53C2;&#x7167;&#x304C;&#x7121;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;&#x5F53;&#x7136;null&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;&#xFF08;&#x6E21;&#x3057;&#x305F;&#x65B9;&#x304C;&#x5F8C;&#x306E;&#x3053;&#x3068;&#x3068;&#x304B;&#x8003;&#x3048;&#x308B;&#x3068;&#x7121;&#x96E3;&#x3067;&#x3059;&#x3002;&#xFF09;<br>&#x307E;&#x305F;&#x3001;&#x3053;&#x306E;&#x4F8B;&#x306E;&#x5834;&#x5408;&#x3001;SAPUI5&#x304C;&#x547C;&#x3073;&#x51FA;&#x3059;&#x969B;&#x306E;&#x30A8;&#x30A4;&#x30EA;&#x30A2;&#x30B9;&#x540D;&#x304C;&#x300C;util.Edit&#x300D;&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x7269;&#x7406;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;&#x3068;&#x914D;&#x7F6E;&#x5834;&#x6240;&#x306F;&#x300C;util/Edit.fragment.js&#x300D;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;&#x301C;fragments.js&#x304C;&#x63A5;&#x982D;&#x8A9E;&#x3060;&#x3068;&#x601D;&#x3063;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;&#x7269;&#x7406;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x914D;&#x7F6E;&#x5834;&#x6240;&#x3068;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;&#x306B;&#x306F;&#x7279;&#x306B;&#x6CE8;&#x610F;&#x304C;&#x5FC5;&#x8981;&#x3067;&#x3059;&#x3002;</p>
 <p>&#x57FA;&#x672C;&#x7684;&#x306F;&#x4F7F;&#x3044;&#x65B9;&#x306F;&#x4EE5;&#x4E0A;&#x3067;&#x3059;&#x3002;</p>
 <h2 id="3-&#x5B9F;&#x969B;&#x306E;&#x5229;&#x7528;&#x30B7;&#x30FC;&#x30F3;"><a href="#3-&#x5B9F;&#x969B;&#x306E;&#x5229;&#x7528;&#x30B7;&#x30FC;&#x30F3;" class="headerlink" title="3.&#x3000;&#x5B9F;&#x969B;&#x306E;&#x5229;&#x7528;&#x30B7;&#x30FC;&#x30F3;"></a>3.&#x3000;&#x5B9F;&#x969B;&#x306E;&#x5229;&#x7528;&#x30B7;&#x30FC;&#x30F3;</h2><p>&#x3067;&#x306F;&#x3001;&#x5B9F;&#x969B;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306E;&#x4F7F;&#x3044;&#x3069;&#x3053;&#x308D;&#x3068;&#x3057;&#x3066;&#x306F;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B7;&#x30FC;&#x30F3;&#x304C;&#x3042;&#x308B;&#x3067;&#x3057;&#x3087;&#x3046;&#x304B;&#x3002;&#x5C11;&#x3057;&#x89E6;&#x3063;&#x3066;&#x898B;&#x305F;&#x611F;&#x3058;&#x3060;&#x3068;&#x3001;&#x4EE5;&#x4E0B;&#x306E;2&#x3064;&#x3067;&#x4F7F;&#x3048;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
@@ -1873,7 +1894,8 @@ h6.categories {
 
     # &#x3053;&#x3053;&#x306B;&#x666E;&#x901A;&#x306E;JSView&#x306E;createContent&#x3068;&#x540C;&#x69D8;&#x306B;UI&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30EB;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;
     # &#x6700;&#x5F8C;&#x306B;return&#x3057;&#x307E;&#x3059;&#x3002;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x6700;&#x5F8C;&#x306B;&#x3001;controller&#x306B;&#x3066;Fragments&#x547C;&#x3073;&#x51FA;&#x3057;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <p>Fragments2.controller.coffee</p>
 <pre class="line-numbers language-coffee"><code class="language-coffee">sap.ui.jsview &quot;view.Fragment&quot;,
@@ -1892,7 +1914,8 @@ h6.categories {
     #@page.addContent fragment
 
     @page
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x6B21;&#x306B;&#x3001;ownerView&#x5074;&#x306E;&#x30DC;&#x30BF;&#x30F3;&#x3067;UI&#x306E;&#x5207;&#x308A;&#x66FF;&#x3048;&#x3092;&#x884C;&#x3046;&#x305F;&#x3081;&#x3001;ownerView&#x3067;&#x884C;&#x3063;&#x3066;&#x3044;&#x305F;Fragments&#x547C;&#x3073;&#x51FA;&#x3057;&#x51E6;&#x7406;&#x3092;&#x3001;controller&#x3067;&#x884C;&#x3046;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p>Fragments2.view.coffee</p>
 <pre class="line-numbers language-coffee"><code class="language-coffee">jQuery.sap.require &quot;sap.m.MessageToast&quot;
@@ -1950,12 +1973,15 @@ sap.ui.controller &quot;view.Fragment&quot;,
       endButton: new sap.m.Button
         text: &quot;NG&quot;
         press: [oControl
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x306E;&#x4E2D;&#x8EAB;&#x306E;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;&#x306F;&#x5148;&#x307B;&#x3069;&#x5B9A;&#x7FA9;&#x3057;&#x305F;Edit.fragments.js&#x3092;&#x518D;&#x5229;&#x7528;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;&#x3053;&#x3093;&#x306A;&#x3068;&#x3053;&#x308D;&#x3067;&#x3082;Fragments&#x3044;&#x3044;&#x4ED5;&#x4E8B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <p>Fragments&#x5074;&#x304B;&#x3089;Controller&#x306E;function&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;<br>&#x3053;&#x308C;&#x306F;&#x3001;Fragments&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;&#x969B;&#x306B;Controller&#x306E;&#x53C2;&#x7167;&#x3092;&#x6E21;&#x3059;&#x4E8B;&#x3067;&#x3001;Fragments&#x5074;&#x304B;&#x3089;OwnerView&#x306E;Controller&#x306E;function&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p>
 <blockquote>
 <p>&#x3053;&#x306E;&#x5834;&#x5408;&#x3001;OwnerView&#x5074;&#x3067;Fragments&#x304C;&#x4F7F;&#x3046;function&#x3092;&#x77E5;&#x3063;&#x3066;&#x3044;&#x3066;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;Java&#x3067;&#x3044;&#x3046;&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;&#x3068;&#x540C;&#x3058;&#x3088;&#x3046;&#x306A;&#x611F;&#x899A;&#x306A;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x3044;&#x304B;&#x3093;&#x305B;&#x3093;&#x52D5;&#x7684;&#x578B;&#x4ED8;&#x3051;&#x8A00;&#x8A9E;&#x306A;&#x306E;&#x3067;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x304C;&#x7DE9;&#x3044;&#x3067;&#x3059;&#x3002;Controller&#x306B;function&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x5F53;&#x7136;&#x3001;&#x5B9F;&#x884C;&#x6642;&#x306B;&#x843D;&#x3061;&#x307E;&#x3059;&#x3002;<br>&#x6B21;&#x306B;ownerView&#x306E;controller&#x306B;&#x3066;Fragments&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x307E;&#x3059;&#x3002;ownerView&#x306B;&#x3066;&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3092;&#x958B;&#x304F;&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x62BC;&#x3057;&#x305F;&#x969B;&#x306B;&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3092;open&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>Fragments3.controller.coffee<br>```coffee<br>jQuery.sap.require &#x201C;sap.m.MessageToast&#x201D;</p>
+</blockquote>
+<blockquote>
+<p>Fragments3.controller.coffee<br><code>`</code>coffee<br>jQuery.sap.require &#x201C;sap.m.MessageToast&#x201D;</p>
 </blockquote>
 <p>sap.ui.controller &#x201C;view.Fragment&#x201D;,</p>
 <p>  _fragments: {}</p>
@@ -1967,7 +1993,7 @@ unless @_fragments[name]
 </code></pre><p>  onInit: -&gt;</p>
 <p>  #&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3092;&#x8868;&#x793A;&#x3057;&#x307E;&#x3059;<br>  openDialog: (oEvt) -&gt;<br>    dialog = @_getFragments &#x201C;Dialog&#x201D;<br>    dialog.open()</p>
 <p>  #&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3067;OK&#x3092;Press&#x3057;&#x305F;&#x6642;&#x306E;&#x51E6;&#x7406;<br>  pressedOk: (oEvt) -&gt;<br>    oEvt.getSource().getParent().close()<br>    sap.m.MessageToast.show &#x201C;pressed OK&#x201D;</p>
-<p>  #&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3067;NG&#x3092;Press&#x3057;&#x305F;&#x6642;&#x306E;&#x51E6;&#x7406;<br>  pressedNg: (oEvt) -&gt;<br>    oEvt.getSource().getParent().close()<br>    sap.m.MessageToast.show &#x201C;pressed NG&#x201D;<br>```</p>
+<p>  #&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3067;NG&#x3092;Press&#x3057;&#x305F;&#x6642;&#x306E;&#x51E6;&#x7406;<br>  pressedNg: (oEvt) -&gt;<br>    oEvt.getSource().getParent().close()<br>    sap.m.MessageToast.show &#x201C;pressed NG&#x201D;<br><code>`</code></p>
 <p>Fragments&#x306B;&#x3066;OK/NG&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x62BC;&#x3057;&#x305F;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;&#x306F;&#x3001;Controller&#x306B;&#x8A18;&#x8FF0;&#x3057;&#x3066;&#x51E6;&#x7406;&#x3055;&#x305B;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <h2 id="4-&#x307E;&#x3068;&#x3081;"><a href="#4-&#x307E;&#x3068;&#x3081;" class="headerlink" title="4.&#x3000;&#x307E;&#x3068;&#x3081;"></a>4.&#x3000;&#x307E;&#x3068;&#x3081;</h2><p>Fragments&#x3068;&#x306F;&#x4EE5;&#x524D;&#x304B;&#x3089;SAPUI5&#x306B;&#x3042;&#x3063;&#x305F;&#x6A5F;&#x80FD;&#x3067;&#x3059;&#x304C;&#x3001;&#x300C;Experimental&#xFF08;&#x5B9F;&#x9A13;&#x7684;&#xFF09;&#x300D;&#x306A;&#x6A5F;&#x80FD;&#x306B;&#x5206;&#x985E;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;1.20&#x304B;&#x3089;&#x306F;&#x3081;&#x3067;&#x305F;&#x304F;Experimental&#x3067;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x3084;&#x3063;&#x3068;&#x5B9F;&#x6226;&#x3067;&#x6295;&#x5165;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
 <p>SAPUI5&#x306B;&#x3066;UI&#x90E8;&#x54C1;&#x304C;&#x591A;&#x3044;View&#x3092;&#x69CB;&#x7BC9;&#x3059;&#x308B;&#x5834;&#x5408;&#x3001;&#x3059;&#x3050;&#x306B;1000&#x884C;&#x3092;&#x8D85;&#x3048;&#x308B;&#x3088;&#x3046;&#x306A;JS&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3046;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;Fragments&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;UI&#x90E8;&#x54C1;&#x3092;&#x30D1;&#x30FC;&#x30C4;&#x3067;&#x5207;&#x308A;&#x96E2;&#x3057;&#x3066;&#x5229;&#x7528;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;<br>&#xFF08;&#x884C;&#x6570;&#x304C;&#x591A;&#x3044;&#x306E;&#x306F;SAPUI5&#x306B;&#x9650;&#x3063;&#x305F;&#x3053;&#x3068;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3001;Javascript&#x3067;View&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;UI&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x306F;&#x305D;&#x3046;&#x306A;&#x308A;&#x3084;&#x3059;&#x3044;&#x3067;&#x3059;&#x3002;&#xFF09;</p>

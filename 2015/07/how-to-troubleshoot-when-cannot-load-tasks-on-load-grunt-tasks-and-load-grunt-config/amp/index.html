@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2015/07/how-to-troubleshoot-when-cannot-load-tasks-on-load-grunt-tasks-and-load-grunt-config.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;最近、&lt;code&gt;Gruntfile.js&lt;/code&gt;が長くて辛いので、楽をするため次のnpmモジュールをほぼ利用しています。&lt;/p&gt;
@@ -32,6 +34,8 @@
 &lt;p&gt;ただ、内部のタスクロードの仕組みを知らないと、意外なところでつまづくものです。&lt;br&gt;今日は、その辺りのハマりポイントについて紹介します。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -70,6 +74,13 @@
 			},
 			"datePublished": "2015-06-30T16:43:19.000Z",
 			"dateModified": "2017-12-09T15:31:05.694Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1784,6 +1795,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1833,7 +1852,7 @@ h6.categories {
              open  Open urls and files from a grunt task *
  configureProxies  Configure any specified connect proxies.
            server  Custom task.
-          default  Alias for &quot;server&quot; task.
+          default  Alias for &quot;server&quot; task.  
 </code></pre><p>&#x3053;&#x306E;&#x4E00;&#x89A7;&#x306B;&#x30BF;&#x30B9;&#x30AF;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x3001;&#x306A;&#x3093;&#x3089;&#x304B;&#x306E;&#x7406;&#x7531;&#x3067;&#x30ED;&#x30FC;&#x30C9;&#x5BFE;&#x8C61;&#x304B;&#x3089;&#x6F0F;&#x308C;&#x3066;&#x3044;&#x308B;&#x53EF;&#x80FD;&#x6027;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
 <h2 id="load-grunt-tasks&#x3067;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x30BF;&#x30B9;&#x30AF;&#x306E;&#x9078;&#x629E;"><a href="#load-grunt-tasks&#x3067;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x30BF;&#x30B9;&#x30AF;&#x306E;&#x9078;&#x629E;" class="headerlink" title="load-grunt-tasks&#x3067;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x30BF;&#x30B9;&#x30AF;&#x306E;&#x9078;&#x629E;"></a>load-grunt-tasks&#x3067;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x30BF;&#x30B9;&#x30AF;&#x306E;&#x9078;&#x629E;</h2><p><code>load-grunt-tasks</code>&#x5185;&#x90E8;&#x3067;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30D1;&#x30BF;&#x30FC;&#x30F3;&#x30DE;&#x30C3;&#x30C1;&#x30F3;&#x30B0;&#x3067;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x9078;&#x629E;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// require(&apos;load-grunt-tasks&apos;)(grunt); &#x3068;&#x540C;&#x3058;&#x610F;&#x5473;&#x3067;&#x3059;</span>

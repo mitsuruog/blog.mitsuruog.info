@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;docker imageをdocker hubに公開する方法についての小ネタです。&lt;/p&gt;">
@@ -22,6 +24,8 @@
 		<meta name="twitter:description" content="&lt;p&gt;docker imageをdocker hubに公開する方法についての小ネタです。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -55,6 +59,13 @@
 			},
 			"datePublished": "2017-11-09T15:00:00.000Z",
 			"dateModified": "2017-12-10T08:09:17.568Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1769,6 +1780,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1813,7 +1832,7 @@ RUN sudo curl -O https://bootstrap.pypa.io/get-pip.py
 RUN python get-pip.py --user
 RUN pip install awscli --upgrade --user
 </code></pre><p>image&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x3067;&#x304D;&#x305F;&#x3089;&#x3001;docker image&#x3092;&#x30D3;&#x30EB;&#x30C9;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<pre><code>$ docker build -f BuildDockerfile .
+<pre><code>$ docker build -f BuildDockerfile .  
 </code></pre><p>&#x30D3;&#x30EB;&#x30C9;&#x304C;&#x7D42;&#x308F;&#x3063;&#x305F;&#x3089;image&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x8868;&#x793A;&#x3057;&#x3066;&#x3001;image id&#x3092;&#x899A;&#x3048;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;&#x4ECA;&#x56DE;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x4E00;&#x756A;&#x4E0A;&#x306B;&#x3042;&#x308B;<code>&lt;none&gt;</code>&#x304C;&#x4F5C;&#x6210;&#x3057;&#x305F;image&#x3067;&#x3059;&#x3002;</p>
 <pre><code>$ docker images
 
@@ -1846,7 +1865,7 @@ mitsuruog/cool-build-frontend   latest              680c58dbd0f9        2 minute
 circleci/node                   8.9                 66a65e08d915        9 hours ago         894MB
 codeprep/sqlite                 latest              0c3ec62e9c37        7 days ago          13.6MB
 </code></pre><h2 id="docker-image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;"><a href="#docker-image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;" class="headerlink" title="docker image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;"></a>docker image&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;</h2><p>&#x6700;&#x5F8C;&#x306B;image&#x3092;docker hub&#x306B;&#x516C;&#x958B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<pre><code>$ docker push mitsuruog/cool-build-frontend
+<pre><code>$ docker push mitsuruog/cool-build-frontend  
 </code></pre><p>&#x7D50;&#x679C;&#x306F;&#x3001;&#x3053;&#x3093;&#x306A;&#x611F;&#x3058;&#x3067;&#x3059;&#x3002;</p>
 <ul>
 <li><a href="https://hub.docker.com/r/mitsuruog/cool-build-frontend/" target="_blank" rel="noopener">https://hub.docker.com/r/mitsuruog/cool-build-frontend/</a></li>

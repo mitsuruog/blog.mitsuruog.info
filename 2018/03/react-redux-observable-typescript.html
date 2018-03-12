@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>React + Redux + redux-observable + TypeScriptの実践的サンプル | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta name="description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。 デモ作ったも">
+<meta name="keywords" content="typescript,react,redux,redux-observable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React + Redux + redux-observable + TypeScriptの実践的サンプル">
+<meta property="og:url" content="https://blog.mitsuruog.info/2018/03/react-redux-observable-typescript.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。 デモ作ったも">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png">
+<meta property="og:updated_time" content="2018-03-12T16:23:31.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React + Redux + redux-observable + TypeScriptの実践的サンプル">
+<meta name="twitter:description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。 デモ作ったも">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png">
+  <link rel="icon" href="/favicon.ico">
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "React + Redux + redux-observable + TypeScriptの実践的サンプル",
+  "name": "React + Redux + redux-observable + TypeScriptの実践的サンプル",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png",
+  "datePublished": "2018-03-12T15:00:00.000Z",
+  "dateModified": "2018-03-12T16:23:31.230Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2018/03/react-redux-observable-typescript.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2018/03/react-redux-observable-typescript/amp/index.html">
+  
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="columns">
+      <div class="main column">
+        <article class="post">
+  <figure class="post-thumbnail">
+    
+  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png" class="thumbnail " alt="React + Redux + redux-observable + TypeScriptの実践的サンプル">
+
+
+  </figure>
+  <span>2018-03-13
+</span>
+  <h1 class="title">React + Redux + redux-observable + TypeScriptの実践的サンプル</h1>
+  
+  <div class="tags">
+    
+      <a class="tag" href="/tags/typescript/">typescript</a>
+    
+      <a class="tag" href="/tags/react/">react</a>
+    
+      <a class="tag" href="/tags/redux/">redux</a>
+    
+      <a class="tag" href="/tags/redux-observable/">redux-observable</a>
+    
+  </div>
+
+
+  <div class="content">
+    <p>新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。<br>割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。</p>
+<p>対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。</p>
+<h2 id="デモ"><a href="#デモ" class="headerlink" title="デモ"></a>デモ</h2><p>作ったものはこちらのGithubでみれます。</p>
+<ul>
+<li><a href="https://github.com/mitsuruog/react-redux-observable-typescript-sample" target="_blank" rel="noopener">mitsuruog/react-redux-observable-typescript-sample: A sample application for React + redux-observable + TypeScript</a></li>
+</ul>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable01.png" width="500">
+<p>GoogleMapと<a href="https://openweathermap.org/" target="_blank" rel="noopener">OpenWeatherMap</a>のAPIを連動させて、マップをクリックした地点の天気を表示する単純なサンプルです。</p>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>まずこの構成で始めようと思った方は、最初にこれに目を通すべきです。</p>
+<ul>
+<li><a href="https://github.com/piotrwitek/react-redux-typescript-guide" target="_blank" rel="noopener">piotrwitek/react-redux-typescript-guide: A comprehensive guide to static typing in “React &amp; Redux” apps using TypeScript</a></li>
+</ul>
+<p>最初はよくわからないと思います。ある程度理解すると内容がわかってくると思うので、常にそばにおいて参照してください。</p>
+<p>ちなみに「<strong>Redux</strong>」とは<strong>Fluxの良くある実装パターンに名前をつけたもの</strong>です。<br>Fluxを経験した身として、Reduxの主な特徴は次の2点だと感じました。</p>
+<ul>
+<li>中央管理的なState管理(Store)</li>
+<li>Store前にあるReducer(減速機)</li>
+</ul>
+<blockquote>
+<p><strong>Reducer(減速機)</strong>とは、Storeの手前にあるレイアーで、Storeの値を直接変更する役割をしています。<br>ActionからActionを呼び出して、(加速しながら？)何周かぐるぐる回ることもあるので、(安全のため？)減速機を通してからStoreを変更するためこのような名前になったのではと想像しています。</p>
+</blockquote>
+<p>Fluxの説明としては下の図が有名ですね。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable02.png" width="500">
+<blockquote>
+<p><a href="https://github.com/facebook/flux/tree/master/examples/flux-concepts" target="_blank" rel="noopener">https://github.com/facebook/flux/tree/master/examples/flux-concepts</a> より</p>
+</blockquote>
+<p>通常は登場人物は以上なのですが、今回はReduxで副作用を処理部分にedux-observableを使っているため、もう一人「<strong>Epic</strong>」が登場します。</p>
+<p>それでは順にキーポイントとなる部分を紹介していきます。</p>
+<h2 id="ActionとConstants"><a href="#ActionとConstants" class="headerlink" title="ActionとConstants"></a>ActionとConstants</h2><p>まずActionを作ります。<br>ActionはこれからStoreを変更するための起点となる部分です。基本的には<code>type</code>となんらかのデータ構造(今回は<code>params</code>と<code>payload</code>)をとります。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// actions/index.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">Action</span> <span class="token punctuation">{</span>
+  type<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+  payload<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  params<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>typeは他のReducerやEpicでも使うので、定数化して<code>Constants</code>の中に定義しておきます。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// constants/index.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> WEATHER_GET <span class="token operator">=</span> <span class="token string">"@@weather/GET"</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>基本的には<code>@@XXX/SET</code>をReducer用、それ以外(例えば<code>@@XXX/GET</code>)をEpicで使うようにしています。(そこまで厳密じゃないです。)</p>
+<p>Action名は重複すると見つけにくい不具合の原因になるため、<a href="https://github.com/piotrwitek/typesafe-actions" target="_blank" rel="noopener">typesafe-actions</a>を使って定義していきます。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">const</span> weatherGetAction <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span>WEATHER_GET<span class="token punctuation">,</span> <span class="token punctuation">(</span>params <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  type<span class="token punctuation">:</span> WEATHER_GET<span class="token punctuation">,</span>
+  params<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h2><p>次にReducerを作ります。<br>Reducerは直前のStateとActionで渡されたものを引数に、新しいStateを返す役割をしています。</p>
+<pre class="line-numbers language-txt"><code class="language-txt">(previousState: State, action: Action) => newState: State
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>まず、Stateと初期Stateを定義します。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// reducers/WeatherReducer.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WeatherState</span> <span class="token punctuation">{</span>
+  loading<span class="token punctuation">:</span> <span class="token keyword">boolean</span><span class="token punctuation">;</span>
+  weather<span class="token operator">?</span><span class="token punctuation">:</span> Weather<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> initialState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  loading<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>次にReducerを定義していきます。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">const</span> weatherReducer <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">:</span> WeatherState <span class="token operator">=</span> initialState<span class="token punctuation">,</span> action<span class="token punctuation">:</span> Action<span class="token punctuation">)</span><span class="token punctuation">:</span> WeatherState <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> WEATHER_SET<span class="token punctuation">:</span>
+      <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token punctuation">{</span> weather<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Weather</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>payload<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> state<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Reducerの定義の部分で初期State(<code>initialState</code>)を設定しているのが見てわかると思います。</p>
+<p>また、Object.assignは<code>Object.assign(state, newState)</code>としないでください。こうすると元のStateを上書きしてしまうので、ReduxがStateの変更を検知できません。</p>
+<p>ここで正しくStateが変更されて初めて、Reduxはその変更を検知してReactなどに対して再描画の指示を出すことができます。</p>
+<h2 id="Epic"><a href="#Epic" class="headerlink" title="Epic"></a>Epic</h2><p>次にEpicを作ります。<br>Epicはredux-observableのコアコンセプトの1つで、<strong>Actionから呼び出されて、Actionを返します。</strong><br>そのためEpicの作成は「<strong>任意</strong>」です。Actionから何か別のAction(例、APIアクセス、並列処理など)を呼び出す必要がある場合のみ利用します。</p>
+<pre class="line-numbers language-txt"><code class="language-txt">(action$: Observable<Action>, store: Store) => Observable<Action>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>もっとも簡単なEpic例は、Actionを受け取って、別のActionを返すものです。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token keyword">const</span> deadSimpleEpic<span class="token punctuation">:</span> Epic<span class="token operator">&lt;</span>Action<span class="token punctuation">,</span> RootState<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">(</span>action$<span class="token punctuation">,</span> state<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+  action$<span class="token punctuation">.</span><span class="token function">ofType</span><span class="token punctuation">(</span>LOVELY_TYPE<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>action<span class="token punctuation">:</span> Action<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">nextAction</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>payload<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>次にAPIアクセスする例です。</p>
+<blockquote>
+<p>実際のプロダクトでは、<code>Rx.Observable.ajax</code>を使ってみたのですが、個人的に好みではなかったので<code>fetch</code>を使った例にしています。</p>
+</blockquote>
+<p><code>fetch</code>はPromiseを返すので、これをObservableに変換する共通クラスを作成しています。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// shared/services/Api.ts</span>
+<span class="token keyword">const</span> getWeather <span class="token operator">=</span> <span class="token punctuation">(</span>lat<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">,</span> lng<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`some_lovely_URL_will_be_here!!`</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>response <span class="token operator">=</span><span class="token operator">></span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> Observable<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>これをEpicの<code>mergeMap</code>で受け取って、別のActionに繋ぎます。<code>weatherSetAction</code>はStoreを更新するActionです。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// epics/WeatherEpic.ts</span>
+<span class="token keyword">const</span> weatherGetEpic<span class="token punctuation">:</span> Epic<span class="token operator">&lt;</span>Action<span class="token punctuation">,</span> RootState<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">(</span>action$<span class="token punctuation">,</span> state<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+  action$<span class="token punctuation">.</span><span class="token function">ofType</span><span class="token punctuation">(</span>WEATHER_GET<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">mergeMap</span><span class="token punctuation">(</span><span class="token punctuation">(</span>action<span class="token punctuation">:</span> WeatherAction<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+      <span class="token function">getWeather</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>params<span class="token punctuation">.</span>lat<span class="token punctuation">,</span> action<span class="token punctuation">.</span>params<span class="token punctuation">.</span>lng<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>payload <span class="token operator">=</span><span class="token operator">></span> <span class="token function">weatherSetAction</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最終的には、複数のEpicをまとめて1つにします。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// epics/index.ts</span>
+<span class="token keyword">const</span> epics <span class="token operator">=</span> <span class="token function">combineEpics</span><span class="token punctuation">(</span>
+  <span class="token operator">...</span>weatherEpic<span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a>Connect</h2><p>次に、Connectを作ります。<br>ConnectはReactとFluxの実装パターン(たぶん、コンテナパターン)の一種で、<a href="https://github.com/reactjs/react-redux" target="_blank" rel="noopener">react-redux</a>が採用しているものです。</p>
+<p>Reactコンポーネントを「<strong>Connect</strong>」というコンテナでラップして、ReduxのStoreとの橋渡しをします。<br>実際には次の2つの橋渡しです。</p>
+<ul>
+<li>Storeからコンポーネント(慣例で<code>mapStateToProps</code>とする)</li>
+<li>コンポーネントからStore(慣例で<code>mapDispatchToProps</code>とする)</li>
+</ul>
+<p>まず、このConnectコンポーネントが外側に見せるProps(<code>OwnProps</code>)を定義して、Storeとの橋渡し部分を定義します。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// components/Weather.connect.tsx</span>
+<span class="token keyword">interface</span> <span class="token class-name">OwnProps</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">:</span> RootState<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  weather<span class="token punctuation">:</span> state<span class="token punctuation">.</span>weather<span class="token punctuation">.</span>weather<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> mapDispatchToProps <span class="token operator">=</span> <span class="token punctuation">(</span>dispatch<span class="token punctuation">:</span> <span class="token keyword">Function</span><span class="token punctuation">,</span> props<span class="token punctuation">:</span> OwnProps<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 今回は実際にないけど、あったらこんな感じで書く</span>
+  someEventHander<span class="token punctuation">:</span> <span class="token punctuation">(</span>payload<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">someLovelyAction</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>connectのインターフェースは一見難しいのですが、Higher order component(HOC)だと思うとわかりやすいかと思います。<br>まず、Storeとの橋渡しの定義を設定したHOCを作成してから、オリジナルのコンポーネントを渡して、Connectでラップされたコンポーネントを取り出します。</p>
+<pre class="line-numbers language-txt"><code class="language-txt">connect(mapStateToProps, mapDispatchToProps)(OriginalComponent) => ConnectComponent
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>これで、<strong>外側から見ると<code>OwnProps</code>のコンポーネントで、中はしっかりReduxのStoreを繋がっているコンポーネント</strong>の出来上がりです。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// components/Weather.connect.tsx</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> connect<span class="token operator">&lt;</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> WeatherProps<span class="token operator">></span><span class="token punctuation">(</span>
+  mapStateToProps<span class="token punctuation">,</span>
+  mapDispatchToProps<span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">(</span>Weather<span class="token punctuation">)</span> as React<span class="token punctuation">.</span>ComponentClass<span class="token operator">&lt;</span>OwnProps<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h2><p>最後はStoreの設定です。Storeをアプリケーションで有効にして、Connectが正しく機能するようにしましょう。</p>
+<p>上で作成したConnectを有効にするためには、これらの外側を<code>Provider</code>というコンポーネントで囲う必要があります。<br>Storeの作成は通常のReduxと同様に<code>createStore</code>を使って行います。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducers<span class="token punctuation">,</span> preloadedState<span class="token punctuation">,</span> enhancer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>Provider store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>App <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>Provider<span class="token operator">></span><span class="token punctuation">,</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以上で紹介終わり。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>ちょっと詳細割愛してしまった部分もありますが、細かな部分は実際の<a href="https://github.com/mitsuruog/react-redux-observable-typescript-sample" target="_blank" rel="noopener">Githubリポジトリ</a>を見てもらえれば雰囲気わかるかと思います。</p>
+<p>正直「Redux + redux-observable」は学習コスト高めです。使う人を選びます。<br>自分は習得できたし、他の人に教えることもできると思うので次のプロダクトでも機会があれば使うと思います。しかし、他の人にはあまり気持ちよく勧められない部分もあるのも事実です。とはいえ、やりごたえはあると思うので、興味がある方はトライしてみては如何でしょうか。</p>
+<p>その他、個人的に目を通しておいた方がいいと思うもの。</p>
+<ul>
+<li><a href="https://blog.mitsuruog.info/2018/02/why-is-immutability-required-by-redux">Reduxユーザーが最もハマるstateの不正変更とその検出方法 | I am mitsuruog</a></li>
+<li><a href="https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns" target="_blank" rel="noopener">Immutable Update Patterns - Redux</a></li>
+<li><a href="https://redux.js.org/introduction/ecosystem" target="_blank" rel="noopener">Ecosystem - Redux</a></li>
+</ul>
+
+  </div>
+  
+<nav class="footer-nav">
+  
+  
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2018/03/reduce-bundle-size-in-my-case.html">
+        Webpackでビルドしたbundleファイルのサイズを減らす
+      </a>
+    </div>
+  
+</nav>
+
+
+</article>
+
+
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form" target="_blank">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="https://blog.mitsuruog.info">
+  </form>
+</aside>
+
+  
+    <div class="widget-wrap">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <img src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320" class="avatar" alt="mitsuruog">
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span>mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget-title">最近の記事</div>
+    <div class="widget">
+      <ul class="recent-post">
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/03/react-redux-observable-typescript.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png" class="thumbnail is-6x6" alt="React + Redux + redux-observable + TypeScriptの実践的サンプル">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/03/react-redux-observable-typescript.html" class="">
+                  React + Redux + redux-observable + TypeScriptの実践的サンプル
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-03-13
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/03/reduce-bundle-size-in-my-case.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/bandle-logo.png" class="thumbnail is-6x6" alt="Webpackでビルドしたbundleファイルのサイズを減らす">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/03/reduce-bundle-size-in-my-case.html" class="">
+                  Webpackでビルドしたbundleファイルのサイズを減らす
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-03-09
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/why-is-immutability-required-by-redux.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-logo.png" class="thumbnail is-6x6" alt="Reduxユーザーが最もハマるstateの不正変更とその検出方法">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/why-is-immutability-required-by-redux.html" class="">
+                  Reduxユーザーが最もハマるstateの不正変更とその検出方法
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-26
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/react-typescript-hoc.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/hoc2.png" class="thumbnail is-6x6" alt="ReactのHigher order component(HOC)をTypeScriptで作る">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/react-typescript-hoc.html" class="">
+                  ReactのHigher order component(HOC)をTypeScriptで作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-21
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/postman-env.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/postman-logo.png" class="thumbnail is-6x6" alt="Postmanの環境変数を使ってドメイン名を共通で管理する">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/postman-env.html" class="">
+                  Postmanの環境変数を使ってドメイン名を共通で管理する
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-03
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget">
+      <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.73px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 18.18px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 11.82px;">redux</a> <a href="/tags/redux-observable/" style="font-size: 10px;">redux-observable</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.73px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 11.82px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 14.55px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 12.73px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">3月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

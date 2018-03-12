@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2017/11/how-to-fix-react-redux-text.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;ニッチ過ぎて誰得なのか全くわからないのですが、同じようなことで苦しめられるであろう&lt;strong&gt;未来の誰かのため&lt;/strong&gt;に、ここに手がかりを残しておきます。&lt;/p&gt;">
@@ -22,6 +24,8 @@
 		<meta name="twitter:description" content="&lt;p&gt;ニッチ過ぎて誰得なのか全くわからないのですが、同じようなことで苦しめられるであろう&lt;strong&gt;未来の誰かのため&lt;/strong&gt;に、ここに手がかりを残しておきます。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -54,7 +58,14 @@
 			    "@id":"https://blog.mitsuruog.info/2017/11/how-to-fix-react-redux-text.html"
 			},
 			"datePublished": "2017-11-20T15:00:00.000Z",
-			"dateModified": "2017-12-10T08:09:17.564Z",
+			"dateModified": "2017-12-10T08:09:17.565Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1769,6 +1780,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1807,6 +1826,8 @@ h6.categories {
 <pre><code>Invariant Violation: You must pass a component to the function returned by connect. Instead received undefined
 </code></pre><blockquote>
 <p><a href="https://github.com/reactjs/redux/blob/master/docs/recipes/WritingTests.md#connected-components" target="_blank" rel="noopener">https://github.com/reactjs/redux/blob/master/docs/recipes/WritingTests.md#connected-components</a></p>
+</blockquote>
+<blockquote>
 <p>&#x3053;&#x308C;&#x3092;&#x8AAD;&#x3080;&#x3068;&#x66F8;&#x3044;&#x3066;&#x3042;&#x308B;&#x3093;&#x3067;&#x3059;&#x304C;&#x3001;redux store&#x3068;&#x4E00;&#x7DD2;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;<code>&lt;Provider&gt;</code>&#x3067;&#x30E9;&#x30C3;&#x30D7;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
 </blockquote>
 <p>&#x4ECA;&#x56DE;&#x306F;&#x3001;redux store&#x3068;&#x5207;&#x308A;&#x96E2;&#x3057;&#x3066;&#x7D14;&#x7C8B;&#x306A;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;&#x5834;&#x5408;&#x306E;&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#x3067;&#x3059;&#x3002;</p>

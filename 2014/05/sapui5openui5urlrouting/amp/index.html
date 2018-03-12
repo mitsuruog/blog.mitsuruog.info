@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html">
 	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	<meta property="og:site_name" content="I am mitsuruog">
 	
 		<meta property="og:description" content="&lt;p&gt;Backbone.jsやAngularJSに代表されるJavascriptMV＊系で構築されたSPA（Single page application）は、Strutsなどで構築された従来のWebアプリケーションと異なり、1つのHTML5の中に複数画面（View）を持ち、画面遷移時にJavascriptにてViewを切り替えるため、通常はブラウザのリフレッシュを伴いません。&lt;/p&gt;
@@ -30,6 +32,8 @@
 &lt;p&gt;今回は、SAPUI5/OpenUI5でのroutingの基本的なことについて紹介します。&lt;/p&gt;">
 	
     
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
 	
 	
     
@@ -66,7 +70,14 @@
 			    "@id":"https://blog.mitsuruog.info/2014/05/sapui5openui5urlrouting.html"
 			},
 			"datePublished": "2014-05-24T17:16:00.000Z",
-			"dateModified": "2017-12-09T15:31:05.656Z",
+			"dateModified": "2017-12-09T15:31:05.657Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -1781,6 +1792,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1849,7 +1868,8 @@ sap.ui.core.UIComponent.extend &quot;com.mitsuruog.sapui5.Component&quot;,
       },
 
       # ...&#x7701;&#x7565;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x3061;&#x306A;&#x307F;&#x306B;&#x300C;config&#x300D;&#x306F;&#x3059;&#x3079;&#x3066;&#x306E;routing&#x5171;&#x901A;&#x306E;&#x8A2D;&#x5B9A;&#x3067;&#x3001;&#x300C;routes&#x300D;&#x5185;&#x306B;&#x306F;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30CF;&#x30C3;&#x30B7;&#x30E5;&#x3068;&#x5BFE;&#x5FDC;&#x3059;&#x308B;View&#x5B9A;&#x7FA9;&#x3001;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x3059;&#x308B;&#x632F;&#x308B;&#x821E;&#x3044;&#x306A;&#x3069;&#x304C;&#x5B9A;&#x7FA9;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x7D30;&#x304B;&#x3044;&#x8A2D;&#x5B9A;&#x7B49;&#x306F;&#x3053;&#x3061;&#x3089;&#x3067;&#x3059;&#x3002;&#x7C21;&#x5358;&#x306B;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p><a href="https://sapui5.hana.ondemand.com/sdk/#docs/guide/902313063d6f45aeaa3388cc4c13c34e.html" target="_blank" rel="noopener">Configuration Parameters for Navigation</a></p>
@@ -1966,7 +1986,8 @@ sap<span class="token punctuation">.</span>ui<span class="token punctuation">.</
     #<span class="token operator">/</span>some<span class="token operator">/</span><span class="token punctuation">:</span>id<span class="token punctuation">:</span>
     hashParams <span class="token operator">=</span> oEvt<span class="token punctuation">.</span>getParameter <span class="token string">&quot;arguments&quot;</span>
     id <span class="token operator">=</span> hashParams<span class="token punctuation">.</span>id
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x30EB;&#x30FC;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x6642;&#x306B;&#x6E21;&#x3057;&#x305F;&#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;&#x306F;getParameter&#x306B;&#x3066;&#x53D6;&#x5F97;&#x3057;&#x307E;&#x3059;&#x3002;&#x3059;&#x3079;&#x3066;&#x306E;&#x30D1;&#x30BF;&#x30E1;&#x30FC;&#x30BF;&#x3092;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x3057;&#x3066;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;getParameters&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;</p>
 <p>&#xFF08;getParameter&#x306E;&#x5F15;&#x6570;&#x306B;arguments&#x304C;&#x4F7F;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x8FBA;&#x308A;&#x3001;&#x4E2D;&#x306E;&#x5B9F;&#x88C5;&#x304C;&#x3069;&#x3046;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x4E88;&#x60F3;&#x3067;&#x304D;&#x307E;&#x3059;w&#xFF09;</p>
 <h2 id="4-&#x6700;&#x5F8C;&#x306B;"><a href="#4-&#x6700;&#x5F8C;&#x306B;" class="headerlink" title="4.&#x3000;&#x6700;&#x5F8C;&#x306B;"></a>4.&#x3000;&#x6700;&#x5F8C;&#x306B;</h2><p>SAPUI5/OpenUI5&#x3067;&#x306E;&#x30EB;&#x30FC;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x306B;&#x3064;&#x3044;&#x3066;&#x57FA;&#x672C;&#x7684;&#x306A;&#x3053;&#x3068;&#x3092;&#x66F8;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
