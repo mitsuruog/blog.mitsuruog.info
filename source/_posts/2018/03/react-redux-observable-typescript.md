@@ -177,6 +177,16 @@ const epics = combineEpics(
 );
 ```
 
+redux-observableのEpicを使った場合にはじめに混乱するポイントとしては、**ActionからReducerに直接繋がるケースは少なく、別のActionを経由してからReducerに繋がる点**です。
+
+```txt
+// Epicを使わない場合
+Action => Reducer => Store => Re-render
+
+// Epicを使った場合
+Action(@@XXX/GET) => API call => Action(@@XXX/SET) => Reducer => Store => Re-render
+```
+
 ## Connect
 次に、Connectを作ります。
 ConnectはReactとFluxの実装パターン(たぶん、コンテナパターン)の一種で、[react-redux](https://github.com/reactjs/react-redux)が採用しているものです。
