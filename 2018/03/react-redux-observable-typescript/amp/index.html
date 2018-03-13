@@ -52,7 +52,7 @@
 			    "@id":"https://blog.mitsuruog.info/2018/03/react-redux-observable-typescript.html"
 			},
 			"datePublished": "2018-03-12T15:00:00.000Z",
-			"dateModified": "2018-03-12T16:23:31.230Z",
+			"dateModified": "2018-03-13T13:35:19.533Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1922,6 +1922,13 @@ h6.categories {
   <span class="token operator">...</span>weatherEpic<span class="token punctuation">,</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>redux-observable&#x306E;Epic&#x3092;&#x4F7F;&#x3063;&#x305F;&#x5834;&#x5408;&#x306B;&#x306F;&#x3058;&#x3081;&#x306B;&#x6DF7;&#x4E71;&#x3059;&#x308B;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x306F;&#x3001;<strong>Action&#x304B;&#x3089;Reducer&#x306B;&#x76F4;&#x63A5;&#x7E4B;&#x304C;&#x308B;&#x30B1;&#x30FC;&#x30B9;&#x306F;&#x5C11;&#x306A;&#x304F;&#x3001;&#x5225;&#x306E;Action&#x3092;&#x7D4C;&#x7531;&#x3057;&#x3066;&#x304B;&#x3089;Reducer&#x306B;&#x7E4B;&#x304C;&#x308B;&#x70B9;</strong>&#x3067;&#x3059;&#x3002;</p>
+<pre class="line-numbers language-txt"><code class="language-txt">// Epic&#x3092;&#x4F7F;&#x308F;&#x306A;&#x3044;&#x5834;&#x5408;
+Action =&gt; Reducer =&gt; Store =&gt; Re-render
+
+// Epic&#x3092;&#x4F7F;&#x3063;&#x305F;&#x5834;&#x5408;
+Action(@@XXX/GET) =&gt; API call =&gt; Action(@@XXX/SET) =&gt; Reducer =&gt; Store =&gt; Re-render
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a>Connect</h2><p>&#x6B21;&#x306B;&#x3001;Connect&#x3092;&#x4F5C;&#x308A;&#x307E;&#x3059;&#x3002;<br>Connect&#x306F;React&#x3068;Flux&#x306E;&#x5B9F;&#x88C5;&#x30D1;&#x30BF;&#x30FC;&#x30F3;(&#x305F;&#x3076;&#x3093;&#x3001;&#x30B3;&#x30F3;&#x30C6;&#x30CA;&#x30D1;&#x30BF;&#x30FC;&#x30F3;)&#x306E;&#x4E00;&#x7A2E;&#x3067;&#x3001;<a href="https://github.com/reactjs/react-redux" target="_blank" rel="noopener">react-redux</a>&#x304C;&#x63A1;&#x7528;&#x3057;&#x3066;&#x3044;&#x308B;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;</p>
 <p>React&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x300C;<strong>Connect</strong>&#x300D;&#x3068;&#x3044;&#x3046;&#x30B3;&#x30F3;&#x30C6;&#x30CA;&#x3067;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x3066;&#x3001;Redux&#x306E;Store&#x3068;&#x306E;&#x6A4B;&#x6E21;&#x3057;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x5B9F;&#x969B;&#x306B;&#x306F;&#x6B21;&#x306E;2&#x3064;&#x306E;&#x6A4B;&#x6E21;&#x3057;&#x3067;&#x3059;&#x3002;</p>
 <ul>
