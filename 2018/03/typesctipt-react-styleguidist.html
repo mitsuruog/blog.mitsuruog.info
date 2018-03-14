@@ -5,20 +5,20 @@
   <meta charset="utf-8">
   <title>TypeScriptのReactプロジェクトでreact-styleguidistを使う | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <meta name="description" content="基本セットアップReduxと一緒に使うConnectコンポーネントを使うための工夫">
+  <meta name="description" content="今回は、TypeScriptのReactプロジェクトとreact-styleguidistを一緒に使う方法についての紹介です。 紹介する内容は、こちらのGithubで見ることができます。  mitsuruog/react-styleguidist-typescript-demo: A sample for using react-styleguidist, React and Redux.  はじ">
 <meta name="keywords" content="styleguide,typescript,react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
 <meta property="og:url" content="https://blog.mitsuruog.info/2018/03/typesctipt-react-styleguidist.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="基本セットアップReduxと一緒に使うConnectコンポーネントを使うための工夫">
+<meta property="og:description" content="今回は、TypeScriptのReactプロジェクトとreact-styleguidistを一緒に使う方法についての紹介です。 紹介する内容は、こちらのGithubで見ることができます。  mitsuruog/react-styleguidist-typescript-demo: A sample for using react-styleguidist, React and Redux.  はじ">
 <meta property="og:locale" content="ja">
-<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/bandle-logo.png">
-<meta property="og:updated_time" content="2018-03-13T13:29:04.594Z">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist-logo.png">
+<meta property="og:updated_time" content="2018-03-14T09:45:35.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
-<meta name="twitter:description" content="基本セットアップReduxと一緒に使うConnectコンポーネントを使うための工夫">
-<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/bandle-logo.png">
+<meta name="twitter:description" content="今回は、TypeScriptのReactプロジェクトとreact-styleguidistを一緒に使う方法についての紹介です。 紹介する内容は、こちらのGithubで見ることができます。  mitsuruog/react-styleguidist-typescript-demo: A sample for using react-styleguidist, React and Redux.  はじ">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist-logo.png">
   <link rel="icon" href="/favicon.ico">
   
   
@@ -42,9 +42,9 @@
   "@type": "BlogPosting",
   "headline": "TypeScriptのReactプロジェクトでreact-styleguidistを使う",
   "name": "TypeScriptのReactプロジェクトでreact-styleguidistを使う",
-  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/bandle-logo.png",
-  "datePublished": "2018-03-08T15:00:00.000Z",
-  "dateModified": "2018-03-13T13:29:04.594Z",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist-logo.png",
+  "datePublished": "2018-03-13T15:00:00.000Z",
+  "dateModified": "2018-03-14T09:45:35.895Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2018/03/typesctipt-react-styleguidist.html"
@@ -99,11 +99,11 @@
         <article class="post">
   <figure class="post-thumbnail">
     
-  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/bandle-logo.png" class="thumbnail " alt="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
+  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist-logo.png" class="thumbnail " alt="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
 
 
   </figure>
-  <span>2018-03-09
+  <span>2018-03-14
 </span>
   <h1 class="title">TypeScriptのReactプロジェクトでreact-styleguidistを使う</h1>
   
@@ -119,27 +119,168 @@
 
 
   <div class="content">
-    <h2 id="基本セットアップ"><a href="#基本セットアップ" class="headerlink" title="基本セットアップ"></a>基本セットアップ</h2><h2 id="Reduxと一緒に使う"><a href="#Reduxと一緒に使う" class="headerlink" title="Reduxと一緒に使う"></a>Reduxと一緒に使う</h2><h2 id="Connectコンポーネントを使うための工夫"><a href="#Connectコンポーネントを使うための工夫" class="headerlink" title="Connectコンポーネントを使うための工夫"></a>Connectコンポーネントを使うための工夫</h2>
+    <p>今回は、TypeScriptのReactプロジェクトと<a href="https://react-styleguidist.js.org/" target="_blank" rel="noopener">react-styleguidist</a>を一緒に使う方法についての紹介です。</p>
+<p>紹介する内容は、こちらのGithubで見ることができます。</p>
+<ul>
+<li><a href="https://github.com/mitsuruog/react-styleguidist-typescript-demo" target="_blank" rel="noopener">mitsuruog/react-styleguidist-typescript-demo: A sample for using react-styleguidist, React and Redux.</a></li>
+</ul>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>react-styleguidistとは、「<strong>style guide</strong>」と呼ばれるドキュメントツールの一種です。</p>
+<p>最近は、小さなReactコンポーネントを積み重ねて巨大なアプリケーションを構築していくのですが、どんなコンポーネントがあるかを俯瞰的見るために、このようなツールを使います。</p>
+<p>こちらで公式のサンプルを見ることができます。</p>
+<ul>
+<li><a href="https://react-styleguidist.js.org/examples/basic/" target="_blank" rel="noopener">React Styleguidist Example Basic Style Guide</a></li>
+</ul>
+<blockquote>
+<p>個人的には、「<strong>コンポーネントカタログ</strong>」と言った方がバックエンドの人も理解してくれるので、こちらの呼び方をする方が多い。</p>
+</blockquote>
+<h2 id="基本セットアップ"><a href="#基本セットアップ" class="headerlink" title="基本セットアップ"></a>基本セットアップ</h2><p>まず、react-styleguidistをインストールします。</p>
+<pre class="line-numbers language-sh"><code class="language-sh">npm install --save-dev react-styleguidist
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>つぎに<code>package.json</code>の<code>scripts</code>の部分にタスクを追加していきます。</p>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+  ...
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"styleguide"</span><span class="token operator">:</span> <span class="token string">"styleguidist server"</span><span class="token punctuation">,</span>
+    <span class="token property">"styleguide:build"</span><span class="token operator">:</span> <span class="token string">"styleguidist build"</span>
+  <span class="token punctuation">}</span>
+  ...
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最後に<code>styleguide.config.js</code>を作成して、TypeScriptのプロジェクトで動かすための設定を追加します。</p>
+<pre class="line-numbers language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  components<span class="token punctuation">:</span> <span class="token string">"src/shared/components/**/*.{ts,tsx}"</span><span class="token punctuation">,</span>
+  webpackConfig<span class="token punctuation">:</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"./webpack.config"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  propsParser<span class="token punctuation">:</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"react-docgen-typescript"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>細かい内容はこちらです。</p>
+<ul>
+<li><code>components</code>: コンポーネントとして扱うファイルを<a href="https://github.com/isaacs/node-glob" target="_blank" rel="noopener">glob</a>形式で指定します。</li>
+<li><code>webpackConfig</code>: react-styleguidistはTypeScriptのコンパイルができないので、Webpackの設定ファイルを指定します。</li>
+<li><code>propsParser</code>: TypeScriptのinterfaceなどのProps情報をメタデータに変換するためのカスタムPaserです。</li>
+</ul>
+<p>以上で、基本セットアップは完了しました。</p>
+<p>コードのサンプルや使用例は、コンポーネントと同じディレクトリに<code>README.md</code>を作成します。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// README.md</span>
+
+ここに説明
+
+<span class="token template-string"><span class="token string">``</span></span><span class="token template-string"><span class="token string">`
+&lt;Lovely />
+`</span></span><span class="token template-string"><span class="token string">``</span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>そのあとに<code>npm run styleguide</code>をすると、スタイルガイドが見れるようになります。</p>
+<h2 id="Reduxと一緒に使う"><a href="#Reduxと一緒に使う" class="headerlink" title="Reduxと一緒に使う"></a>Reduxと一緒に使う</h2><p>Reduxなどのサードパーティ製のライブラリと一緒に使う場合は、既存のスタイルガイドのrootコンポーネントを置き換える必要があります。<br>今回は割と需要がありそうな国際化ライブラリ<a href="https://github.com/ratson/react-intl-redux" target="_blank" rel="noopener">react-intl-redux</a>を使ってみました。</p>
+<p><code>Wrapper.tsx</code>という名前のコンポーネントを作成して、これで置き換えます。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// src/styleguide/Wrapper.tsx</span>
+
+<span class="token operator">...</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Provider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-intl-redux"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> addLocaleData <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-intl"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> as jaLocale <span class="token keyword">from</span> <span class="token string">"react-intl/locale-data/ja"</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// add japanese localisation data</span>
+<span class="token function">addLocaleData</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">...</span>jaLocale<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">...</span> <span class="token punctuation">(</span>Redux storeの準備<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// デフォルトの言語設定</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">langSwitchAction</span><span class="token punctuation">(</span><span class="token string">"ja"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Wrapper</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>Provider store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">}</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>Provider<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>ReduxのStoreの準備は、プロジェクトのエントリポイントのファイル(通常は<code>entry.tsx</code>とか<code>index.tsx</code>)にあると思うので、そのまま使えると思います。<br>いろいろ割愛しているので、詳細はこちらのコードを見てください。</p>
+<ul>
+<li><a href="https://github.com/mitsuruog/react-styleguidist-typescript-demo/blob/master/src/styleguide/Wrapper.tsx" target="_blank" rel="noopener">https://github.com/mitsuruog/react-styleguidist-typescript-demo/blob/master/src/styleguide/Wrapper.tsx</a></li>
+</ul>
+<p>作成したコンポーネントを<code>styleguide.config.js</code>に設定します。</p>
+<pre class="line-numbers language-diff"><code class="language-diff">module.exports = {
+  ...
+<span class="token inserted">+  styleguideComponents: {</span>
+<span class="token inserted">+    Wrapper: __dirname + "/src/styleguide/Wrapper.tsx",</span>
+<span class="token inserted">+  },</span>
+  ...
+};
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>これでサードパーティ製のライブラリと一緒に使うことができるようになりました。</p>
+<h2 id="Connectコンポーネントを使うための工夫"><a href="#Connectコンポーネントを使うための工夫" class="headerlink" title="Connectコンポーネントを使うための工夫"></a>Connectコンポーネントを使うための工夫</h2><blockquote>
+<p>この工夫は必要ない人もいると思います。ただカスタマイズが必要になった場合に必要な知識なので、頭の片隅にでも覚えておくといいと思います。</p>
+</blockquote>
+<p>プロダクトの構成次第ですが、自分の場合はコンポーネントに関連するファイル一式を同じフォルダに管理しています。</p>
+<pre class="line-numbers language-txt"><code class="language-txt">Lovely
+  Lovely.tsx
+  Lovely.connect.tsx
+  Lovely.scss
+  Lovely.spec.tsx
+  README.md
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>このような構成をとった場合、(<code>styleguide.config.js</code>の<code>components</code>の設定次第ではありますが)<code>Lovely.tsx</code>と<code>Lovely.connect.tsx</code>の2つがスタイルガイド上に登場してしまいます。</p>
+<p>そのため、<code>components</code>プロパティをもう少しカスタマイズする必要が出てきます。<br><code>components</code>プロパティは基本的に<a href="https://github.com/isaacs/node-glob" target="_blank" rel="noopener">node-glob</a>で対象となったコンポーネントのリストがあればいいので、これに関数を渡してカスタマイズします。</p>
+<pre class="line-numbers language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  components<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> glob<span class="token punctuation">.</span><span class="token function">sync</span><span class="token punctuation">(</span><span class="token string">"src/shared/components/**/*.{ts,tsx}"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>file <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Take only connect component if exists, ignore others.</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/connect.tsx$/</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> pathObject <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pathObject<span class="token punctuation">.</span>ext <span class="token operator">=</span> <span class="token template-string"><span class="token string">`.connect</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pathObject<span class="token punctuation">.</span>ext<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> root<span class="token punctuation">,</span> dir<span class="token punctuation">,</span> ext<span class="token punctuation">,</span> name <span class="token punctuation">}</span> <span class="token operator">=</span> pathObject<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token punctuation">{</span> root<span class="token punctuation">,</span> dir<span class="token punctuation">,</span> ext<span class="token punctuation">,</span> name <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>同じフォルダに<code>connect.tsx</code>があったら、これをスタイルガイドのコンポーネントとして使うだけのコードです。<br>ご自身の環境に合わせてさらにカスタマイズすることもできます。</p>
+<p>最後に<code>README.md</code>で使うコンポーネントを調整する必要があります。</p>
+<p>README.mdのExampleプロックの中では、<code>require</code>でモジュールをロードして使えるので、次のようにConnectコンポーネントを直接呼び出して利用します。</p>
+<pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// README.md</span>
+
+<span class="token template-string"><span class="token string">``</span></span><span class="token template-string"><span class="token string">`
+const FormattedMessage = require("react-intl").FormattedMessage;
+const LangSwitch = require("./LangSwitch.connect").default;
+&lt;div>
+  &lt;LangSwitch />
+  &lt;p>&lt;FormattedMessage id={"greeting"} />&lt;/p>
+&lt;/div>
+`</span></span><span class="token template-string"><span class="token string">``</span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist01.gif">
+<p>他にもできることがあるので、詳しい説明は公式ドキュメントを見てください。</p>
+<ul>
+<li><a href="https://react-styleguidist.js.org/docs/documenting.html#writing-code-examples" target="_blank" rel="noopener">Documenting components — React Styleguidist</a></li>
+</ul>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>TypeScriptのReactプロジェクトと<a href="https://react-styleguidist.js.org/" target="_blank" rel="noopener">react-styleguidist</a>を一緒に使う方法についての紹介でした。</p>
+<blockquote>
+<p>(余談)<br>すこし前までは、<a href="https://github.com/facebook/create-react-app" target="_blank" rel="noopener">create-react-app</a>で作成したアプリケーションは<code>webpack.config.js</code>を取り出す手段がなかったので、仕方なくejectしていまいたが、今は必要ないようです。素晴らしい。</p>
+<ul>
+<li><a href="https://react-styleguidist.js.org/docs/webpack.html#create-react-app-typescript" target="_blank" rel="noopener">Configuring webpack — React Styleguidist</a></li>
+</ul>
+</blockquote>
+
   </div>
   
 <nav class="footer-nav">
-  
-    <div class="footer-nav__prev">
-      <div class="footer-nav__label">
-        新しい記事
-      </div>
-      <a href="/2018/03/react-redux-observable-typescript.html">
-        React + Redux + redux-observable + TypeScriptの実践的サンプル
-      </a>
-    </div>
   
   
     <div class="footer-nav__next">
       <div class="footer-nav__label">
         古い記事
       </div>
-      <a href="/2018/03/reduce-bundle-size-in-my-case.html">
-        Webpackでビルドしたbundleファイルのサイズを減らす
+      <a href="/2018/03/react-redux-observable-typescript.html">
+        React + Redux + redux-observable + TypeScriptの実践的サンプル
       </a>
     </div>
   
@@ -199,6 +340,30 @@
           <li class="recent-post-item media">
             <figure class="media-left">
               
+  <a href="/2018/03/typesctipt-react-styleguidist.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist-logo.png" class="thumbnail is-6x6" alt="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/03/typesctipt-react-styleguidist.html" class="">
+                  TypeScriptのReactプロジェクトでreact-styleguidistを使う
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-03-14
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
   <a href="/2018/03/react-redux-observable-typescript.html">
     <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png" class="thumbnail is-6x6" alt="React + Redux + redux-observable + TypeScriptの実践的サンプル">
   </a>
@@ -214,30 +379,6 @@
               <p class="">
                 <small>
                   2018-03-13
-
-                </small>
-              </p>
-            </div>
-          </li>
-        
-          <li class="recent-post-item media">
-            <figure class="media-left">
-              
-  <a href="/2018/03/typesctipt-react-styleguidist.html">
-    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/bandle-logo.png" class="thumbnail is-6x6" alt="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
-  </a>
-
-
-            </figure>
-            <div class="media-content">
-              <p class="">
-                <a href="/2018/03/typesctipt-react-styleguidist.html" class="">
-                  TypeScriptのReactプロジェクトでreact-styleguidistを使う
-                </a>
-              </p>
-              <p class="">
-                <small>
-                  2018-03-09
 
                 </small>
               </p>
