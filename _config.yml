@@ -42,8 +42,8 @@ relative_link: false
 future: true
 highlight:
   enable: false
-  line_number: true
-  auto_detect: false
+#   line_number: true
+#   auto_detect: false
 
 # Category & Tag
 default_category: uncategorized
@@ -85,6 +85,11 @@ widgets:
   - recent_posts
   - tagcloud
   - archive
+
+simple_japanese:
+  custom_assets:
+    css: css/custom.css
+    # js: js/custom.js
 
 # Contacts
 contact:
