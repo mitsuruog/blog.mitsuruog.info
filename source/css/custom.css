@@ -1,3 +1,17 @@
 .content pre code {
   color: #f8f8f2;
 }
+
+.language-html > .tag {
+  padding: 0;
+}
+
+.language-html .tag {
+  background-color: transparent;
+  height: auto;
+  padding: 0;
+}
+
+.language-html .attr-name {
+  padding-left: 0.5em;
+}
