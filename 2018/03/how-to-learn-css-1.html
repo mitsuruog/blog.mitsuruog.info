@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CSSができる人とできない人では何が違うのか？(レイアウト編) | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta name="description" content="プライベートでCSSを教える機会があるのですが、CSSに関しては特に苦手にしている人が多く、「どうやったらそうなれますか？」という質問をよくもらいます。 そこで普段あまり考えたことがなかったので、ちょっと考えてみました。その中で感じたことは、自分には見えているものが、他の人には見えていないということでした。 いくつかキーとなる視点がありそうなので、シリーズ化してみます。 今回は「レイアウト」につい">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSSができる人とできない人では何が違うのか？(レイアウト編)">
+<meta property="og:url" content="https://blog.mitsuruog.info/2018/03/how-to-learn-css-1.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="プライベートでCSSを教える機会があるのですが、CSSに関しては特に苦手にしている人が多く、「どうやったらそうなれますか？」という質問をよくもらいます。 そこで普段あまり考えたことがなかったので、ちょっと考えてみました。その中で感じたことは、自分には見えているものが、他の人には見えていないということでした。 いくつかキーとなる視点がありそうなので、シリーズ化してみます。 今回は「レイアウト」につい">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout-logo.png">
+<meta property="og:updated_time" content="2018-03-28T00:48:13.644Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSSができる人とできない人では何が違うのか？(レイアウト編)">
+<meta name="twitter:description" content="プライベートでCSSを教える機会があるのですが、CSSに関しては特に苦手にしている人が多く、「どうやったらそうなれますか？」という質問をよくもらいます。 そこで普段あまり考えたことがなかったので、ちょっと考えてみました。その中で感じたことは、自分には見えているものが、他の人には見えていないということでした。 いくつかキーとなる視点がありそうなので、シリーズ化してみます。 今回は「レイアウト」につい">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout-logo.png">
+  <link rel="icon" href="/favicon.ico">
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CSSができる人とできない人では何が違うのか？(レイアウト編)",
+  "name": "CSSができる人とできない人では何が違うのか？(レイアウト編)",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout-logo.png",
+  "datePublished": "2018-03-27T15:00:00.000Z",
+  "dateModified": "2018-03-28T00:48:13.644Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2018/03/how-to-learn-css-1.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2018/03/how-to-learn-css-1/amp/index.html">
+  
+  
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="columns">
+      <div class="main column is-8">
+        <article class="post">
+  <figure class="post-thumbnail">
+    
+  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout-logo.png" class="thumbnail " alt="CSSができる人とできない人では何が違うのか？(レイアウト編)">
+
+
+  </figure>
+  <span>2018-03-28
+</span>
+  <h1 class="title">CSSができる人とできない人では何が違うのか？(レイアウト編)</h1>
+  
+  <div class="tags">
+    
+      <a class="tag" href="/tags/css/">css</a>
+    
+  </div>
+
+
+  <div class="content">
+    <p>プライベートでCSSを教える機会があるのですが、CSSに関しては特に苦手にしている人が多く、「どうやったらそうなれますか？」という質問をよくもらいます。</p>
+<p>そこで普段あまり考えたことがなかったので、ちょっと考えてみました。<br>その中で感じたことは、<strong>自分には見えているものが、他の人には見えていない</strong>ということでした。</p>
+<p>いくつかキーとなる視点がありそうなので、シリーズ化してみます。</p>
+<p>今回は「レイアウト」について。</p>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>今回は次のような、コメントフィード風のUIを作るケースを想定して順に説明していきます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout1.png" width="550">
+<blockquote>
+<p>ちなみに自分の場合、作成時間は15分くらいでした。<br>コードはこちらで全て見ることができます。<br><a href="https://codepen.io/mitsuruog/pen/dmZBLM?editors=1100" target="_blank" rel="noopener">https://codepen.io/mitsuruog/pen/dmZBLM?editors=1100</a></p>
+</blockquote>
+<p>CSSが苦手な人にやらせた場合、自分が期待した通りにはならないケースが多いと思います。<br>ブラウザはスクリーンのサイズが大きく変化するため、絶対位置でレイアウトしても崩れてしまいます。<br>そのような条件の中でこれらの要素を正しく配置レイアウトするためには、レイアウトを設計するための新しい「視点」が必要です。</p>
+<h2 id="正しいレイアウトには正しいHTML構造が必要"><a href="#正しいレイアウトには正しいHTML構造が必要" class="headerlink" title="正しいレイアウトには正しいHTML構造が必要"></a>正しいレイアウトには正しいHTML構造が必要</h2><p>実は、レイアウトには<strong>CSSの知識よりもHTML構造の設計の知識の方が重要</strong>です。</p>
+<p>自分がレイアウトするために大切にしている「視点」とは、<strong>UIのデザインを見て、どのようなHTML構造をするべきかをイメージする</strong>ことです。これをするためには、HTMLのブロックレベル要素、インラインレベル要素の特性についての理解と、これらを正しく入れ子状に設計できる必要があります。</p>
+<p>よくあるケースとして、デザインを見てHTML構造の設計について熟考せず、すぐスタイリングしてしまうパターン。<br>この場合、レイアウトするために過剰にCSSを使ってしまうことが多いような気がします。これを見ると、HTML構造を変えるだけでもっとシンプルに作れるのに、と残念に思います。</p>
+<p>では、自分がどのように設計していくか順に見ていきましょう。</p>
+<h3 id="大枠のブロックを設計する"><a href="#大枠のブロックを設計する" class="headerlink" title="大枠のブロックを設計する"></a>大枠のブロックを設計する</h3><p>今回のUIをレイアウトする場合は、まず外枠のブロックと、アバター画像とコメントエリアの2つのブロックをイメージします。<br>ブロックレベル要素は横幅全体に広がる特徴があるので、最初アバター画像とコメントエリアは縦に並べておいて、後でCSSで横並びにしていきます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout2.png" width="550">
+<p>大枠のブロックを設計する上で大事なことは、まず大きな要素を抽出して、<strong>一度縦に並べてから後でCSSを使って横並びにするプロセス</strong>をイメージすることです。</p>
+<p>ちなみに、横並びのレイアウトを考える上でのコツは、<strong>一緒の列にしたい要素をグループ化して、その外側をブロックレベル要素で囲う</strong>ことです。<br>このブロックのことを「<strong>コンテナ</strong>」と呼び、CSSを理解する上で重要な概念です。どこかで取り上げようかと思います。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-left<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>画像のURL<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-avatar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-right<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    テキスト
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>結果はこのようになります。<br><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout3.png" width="550"></p>
+<h3 id="各ブロックの中身を設計する"><a href="#各ブロックの中身を設計する" class="headerlink" title="各ブロックの中身を設計する"></a>各ブロックの中身を設計する</h3><p>次に着目する部分は、コメントエリアの構造です。<br>コメントエリアの中の要素は、コメントエリア横幅いっぱいのブロックで良さそうなので、単純に縦に並ます。<br>したがって次のようにブロックを設計します。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout4.png" width="550">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-left<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>画像のURL<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-avatar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-right<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>mitsuruog<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>テキストテキストテキスト...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-buttons<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      ここにボタン
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>結果はこのようになります。<br><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout5.png" width="550"></p>
+<p>ボタンは横並びに配置すればいいので、インライン要素を使います。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-left<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>画像のURL<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-avatar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-right<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>mitsuruog<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>テキストテキストテキスト...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-buttons<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fa fa-pencil<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>編集<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment-button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fa fa-trash<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>削除<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>   
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>結果はこのようになります。<br><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout6.png" width="550"></p>
+<p>これで基本的なHTMLの構造が完成しました。</p>
+<h3 id="CSSで横並びにする"><a href="#CSSで横並びにする" class="headerlink" title="CSSで横並びにする"></a>CSSで横並びにする</h3><p>正しいHTML構造が完成したら、はじめてCSSのスタイリングに入ります。<br>横並びにしたいグループのコンテナ(今回は<code>.comment</code>)をFlexコンテナに指定します。</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.comment</span> </span><span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+
+  // borderとかwidthとか設定する
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>その後は、細かなスタイルを指定すると、最終的な結果はこのようになります。<br><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout1.png" width="550"></p>
+<p>レイアウトで大事なことは、まず正しいHTML構造を意識することですが、これをプロセスに変換すると次のようになります。</p>
+<ul>
+<li>必要な要素をまず縦に並べてみる。(配置する)</li>
+<li>横並びにする要素を見つけてグループにする。(コンテナを作る)</li>
+<li>横並びにするグループに対してCSSを設定する。(横並びにする)</li>
+<li>細かなスタイルを追加する。(スタイリング)</li>
+</ul>
+<h2 id="ちょっと発展系"><a href="#ちょっと発展系" class="headerlink" title="ちょっと発展系"></a>ちょっと発展系</h2><p>これまでは非常に単純な例でしたので、この中に「日時」を追加する場合、追加する場所でどのようにHTML構造を設計するべきかみてみましょう。</p>
+<h3 id="既存のブロック構造が利用できるケース"><a href="#既存のブロック構造が利用できるケース" class="headerlink" title="既存のブロック構造が利用できるケース"></a>既存のブロック構造が利用できるケース</h3><p>次のような位置に日時を追加する場合です。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout7.png" width="550">
+<p>よく見ると右側のエリアのブロックの中に収まりそうです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout7-1.png" width="550">
+<p>そのため、右側のブロックの最下層のブロックをコンテナにして、その中に2つのブロックを横並びに配置します。<br>(青の部分が新しく追加するブロック)</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout8.png" width="550">
+<h3 id="既存のブロック構造が利用できないケース"><a href="#既存のブロック構造が利用できないケース" class="headerlink" title="既存のブロック構造が利用できないケース"></a>既存のブロック構造が利用できないケース</h3><p>次は、下の位置に日時を追加する場合です。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout9.png" width="550">
+<p>日時は右側のブロックの最下層のブロックの左側を突き破っています。<br>この場合、既存のブロック構造を上下に分けて再設計します。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout9-1.png" width="550">
+<p>右側のブロック最下層のボタンと日時を合わせて新しいブロックを構築して、次のように上下にコンテナを再配置します。<br>(青の部分が新しく追加するブロック)</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout10.png" width="550">
+<blockquote>
+<p>実は上の大枠を設計する時に、このような拡張を予測して最初から上下に設計することも可能でした。HTML構造に対するアプローチの仕方は様々です。</p>
+</blockquote>
+<p>このように変更内容によってはHTML構造を再構成した方が、良い場合があります。</p>
+<blockquote>
+<p>UIの変更を依頼する側は、このあたりの事情について全く知らないので、結構軽い気持ちで変更を依頼してくることがありますね。。。</p>
+</blockquote>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>今回は「レイアウト」について、できる人とできない人の視点の違いについて紹介しました。<br>デザインを見てHTML構造をイメージできるのは、一種の「千里眼」っぽいなと感じますが、訓練で誰でもできるようになります。</p>
+<blockquote>
+<p>ちなみに、自分が作っていた<a href="https://codeprep.jp/tracks/UI%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E5%AE%9F%E8%B7%B5" target="_blank" rel="noopener">CODEPREP</a>のコンテンツは、ほぼ最初の章がHTML構造の設計になっています。</p>
+</blockquote>
+<p>さて、次はなににしようかな。</p>
+
+  </div>
+  
+<nav class="footer-nav">
+  
+  
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2018/03/typesctipt-react-styleguidist.html">
+        TypeScriptのReactプロジェクトでreact-styleguidistを使う
+      </a>
+    </div>
+  
+</nav>
+
+
+</article>
+
+
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form" target="_blank">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="https://blog.mitsuruog.info">
+  </form>
+</aside>
+
+  
+    <div class="widget-wrap">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <img src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320" class="avatar" alt="mitsuruog">
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span>mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget-title">最近の記事</div>
+    <div class="widget">
+      <ul class="recent-post">
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/03/how-to-learn-css-1.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/css-layout-logo.png" class="thumbnail is-6x6" alt="CSSができる人とできない人では何が違うのか？(レイアウト編)">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/03/how-to-learn-css-1.html" class="">
+                  CSSができる人とできない人では何が違うのか？(レイアウト編)
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-03-28
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/03/typesctipt-react-styleguidist.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist-logo.png" class="thumbnail is-6x6" alt="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/03/typesctipt-react-styleguidist.html" class="">
+                  TypeScriptのReactプロジェクトでreact-styleguidistを使う
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-03-14
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/03/react-redux-observable-typescript.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png" class="thumbnail is-6x6" alt="React + Redux + redux-observable + TypeScriptの実践的サンプル">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/03/react-redux-observable-typescript.html" class="">
+                  React + Redux + redux-observable + TypeScriptの実践的サンプル
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-03-13
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/03/reduce-bundle-size-in-my-case.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/bandle-logo.png" class="thumbnail is-6x6" alt="Webpackでビルドしたbundleファイルのサイズを減らす">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/03/reduce-bundle-size-in-my-case.html" class="">
+                  Webpackでビルドしたbundleファイルのサイズを減らす
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-03-09
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2018/02/why-is-immutability-required-by-redux.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-logo.png" class="thumbnail is-6x6" alt="Reduxユーザーが最もハマるstateの不正変更とその検出方法">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/02/why-is-immutability-required-by-redux.html" class="">
+                  Reduxユーザーが最もハマるstateの不正変更とその検出方法
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-02-26
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget">
+      <a href="/tags/Android/" style="font-size: 10.91px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 17.27px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.64px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.91px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 18.18px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 18.18px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.73px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/angular/" style="font-size: 16.36px;">angular</a> <a href="/tags/angular2/" style="font-size: 19.09px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.73px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.55px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.91px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10.91px;">ci</a> <a href="/tags/circleci2/" style="font-size: 10px;">circleci2</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.91px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.91px;">docker</a> <a href="/tags/es6/" style="font-size: 10.91px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.82px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 11.82px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.91px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 16.36px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15.45px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.91px;">localstorage</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 18.18px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.91px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 19.09px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 11.82px;">redux</a> <a href="/tags/redux-observable/" style="font-size: 10px;">redux-observable</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.73px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 12.73px;">styleguide</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 15.45px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.27px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.91px;">vscode</a> <a href="/tags/webapi/" style="font-size: 10.91px;">webapi</a> <a href="/tags/webpack/" style="font-size: 12.73px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.82px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.82px;">ハンズオン</a> <a href="/tags/統計/" style="font-size: 10.91px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.91px;">翻訳</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">3月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
