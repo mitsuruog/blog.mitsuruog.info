@@ -9,8 +9,8 @@
     "node": "~8.9.0"
   },
   "scripts": {
+    "start": "node_modules/.bin/hexo server",
     "generate": "gulp clean && node_modules/.bin/hexo generate",
-    "server": "node_modules/.bin/hexo server",
     "deploy": "node_modules/.bin/hexo deploy"
   },
   "dependencies": {
