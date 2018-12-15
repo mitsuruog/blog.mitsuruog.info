@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   <title>Androidアプリ開発初心者がionicでアプリを作って公開するまでの7日間の道のり | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
@@ -78,7 +78,7 @@
   
 <link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-
+</html>
 <body>
   
   
@@ -141,7 +141,7 @@ $ ionic start <アプリ名> tabs
 $ cd <アプリ名>
 $ ionic platform add android
 $ ionic serve
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></アプリ名></アプリ名></code></pre>
 <p>最後の<code>ionic serve</code>すると、アプリのwebview部分がブラウザ上で表示されますので、比較的単純なデバックはこちらで行いながら開発していきます。</p>
 <h3 id="パッケージ名の変更"><a href="#パッケージ名の変更" class="headerlink" title="パッケージ名の変更"></a>パッケージ名の変更</h3><p>ionicコマンドでアプリscaffoldの作成した場合は、必ず<code>config.xml</code>の<code>&lt;widget id=&quot;&quot;&gt;</code>のパッケージ名を変更してください。<br>デフォルトでは<code>com.ionicframework.&lt;アプリ名+乱数&gt;</code>のような形式になっています。<br>これは後でストア公開するときのアプリの公開IDになります。ストア公開後は変更できませんので必ず変更するようにしてください。</p>
 <pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?></span>
@@ -234,7 +234,7 @@ $ ionic serve
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>これで、<code>platforms/android/ant-build/MainActivity-release-unsigned.apk</code>というファイルが生成されます。<br>これはunsigned APK(署名なしAPK)と呼ばれるもので、このままだとPlay storeに公開できません。</p>
 <p>次に署名を作成します。<code>keytool</code>コマンドでprivate keyを生成します。<br>この手順は初回1回のみです。生成されたprivate keyはズッ友なので無くさないように。。。</p>
-<pre class="line-numbers language-sh"><code class="language-sh">$ keytool -genkey -v -keystore <あなたのKeyの名前>.keystore
+<pre class="line-numbers language-sh"><code class="language-sh">$ keytool -genkey -v -keystore <あなたのkeyの名前>.keystore
   -alias <エイリアス名> -keyalg RSA -keysize 2048 -validity 10000
 
 姓名は何ですか。
@@ -251,11 +251,11 @@ $ ionic serve
   [Unknown]:
 CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknownでよろしいですか。
   [いいえ]:  y
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></エイリアス名></あなたのkeyの名前></code></pre>
 <p>この例だと、10,000日間有効な2,048ビットのRSAの鍵ペアと自己署名型証明書(SHA256withRSA)を生成するらしい。</p>
 <p>次に、<code>jarsigner</code>コマンドを使って、APKを署名します。</p>
 <pre class="line-numbers language-sh"><code class="language-sh">$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1
-  -keystore <あなたのKeyの名前>.keystore platforms/android/ant-build/MainActivity-release-unsigned.apk <エイリアス名>
+  -keystore <あなたのkeyの名前>.keystore platforms/android/ant-build/MainActivity-release-unsigned.apk <エイリアス名>
 
 キーストアのパスワードを入力してください:
    追加中: META-INF/MANIFEST.MF
@@ -275,7 +275,7 @@ jarは署名されました。
 
 警告:
 -tsaまたは-tsacertが指定されていないため、このjarにはタイムスタンプが付加されていません。タイムスタンプがないと、署名者証明書の有効期限(2042-09-01)後または将来の失効日後に、ユーザーはこのjarを検証できない可能性があります。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></エイリアス名></あなたのkeyの名前></code></pre>
 <p>最後に<code>zipplugin</code>コマンドでAPKをzip化します。</p>
 <pre class="line-numbers language-sh"><code class="language-sh">$ zipalign -vf 4 platforms/android/ant-build/MainActivity-release-unsigned.apk <アプリ名>.apk
 
@@ -289,7 +289,7 @@ Verifying alignment of transitbus.apk (4)...
  2413084 resources.arsc (OK)
  2415741 classes.dex (OK - compressed)
 Verification succesful
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></アプリ名></code></pre>
 <p>コマンドを実行した直下にapkファイルができているので、これをplayストアにうpすればいい。</p>
 <p><a href="http://qiita.com/kazuqqfp/items/8eae69e309c6ed75d661" target="_blank" rel="noopener">Androidにおいてなぜzipalignをやる必要があるのか - Qiita</a></p>
 <h3 id="ストア公開用アイコン-amp-宣伝画像"><a href="#ストア公開用アイコン-amp-宣伝画像" class="headerlink" title="ストア公開用アイコン&amp;宣伝画像"></a>ストア公開用アイコン&amp;宣伝画像</h3><p>まず、ストア公開用アイコンと宣伝画像ですね。正直、デザインセンスや画像編集ツール慣れてない身としては、ここが一番コストがかかったとこです。</p>
@@ -402,6 +402,30 @@ Verification succesful
           <li class="recent-post-item media">
             <figure class="media-left">
               
+  <a href="/2018/12/collaborating-with-the-enemy.html">
+    <img src="https://images-na.ssl-images-amazon.com/images/I/51B6wny9PrL._SX327_BO1,204,203,200_.jpg" class="thumbnail is-6x6" alt="この本を読んでからファシリテーションするのが不安になった話">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2018/12/collaborating-with-the-enemy.html" class="">
+                  この本を読んでからファシリテーションするのが不安になった話
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2018-12-16
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
   <a href="/2018/12/typesafe-redux-store.html">
     <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/type-safe-redux-store.png" class="thumbnail is-6x6" alt="typesafe-actionsを使って型安心なRedux Storeを実装する">
   </a>
@@ -495,30 +519,6 @@ Verification succesful
             </div>
           </li>
         
-          <li class="recent-post-item media">
-            <figure class="media-left">
-              
-  <a href="/2018/03/typesctipt-react-styleguidist.html">
-    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/react-styleguidist-logo.png" class="thumbnail is-6x6" alt="TypeScriptのReactプロジェクトでreact-styleguidistを使う">
-  </a>
-
-
-            </figure>
-            <div class="media-content">
-              <p class="">
-                <a href="/2018/03/typesctipt-react-styleguidist.html" class="">
-                  TypeScriptのReactプロジェクトでreact-styleguidistを使う
-                </a>
-              </p>
-              <p class="">
-                <small>
-                  2018-03-14
-
-                </small>
-              </p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -539,7 +539,7 @@ Verification succesful
   <div class="widget-wrap">
     <h3 class="widget-title">アーカイブ</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">12月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">3月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">12月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">3月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -555,9 +555,9 @@ Verification succesful
     <div class="content has-text-centered">
       <p>
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
-          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
         </a>
-        <br />
+        <br>
         <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
       </p>
     </div>
