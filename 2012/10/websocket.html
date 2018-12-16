@@ -15,7 +15,7 @@
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/comp.png">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png">
-<meta property="og:updated_time" content="2017-12-09T15:31:05.701Z">
+<meta property="og:updated_time" content="2018-12-16T06:51:45.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="websocketを使う際の意外な落とし穴">
 <meta name="twitter:description" content="本ブログは東京Node学園祭2012 アドベントカレンダーの6日目の記事です。 今回はnodejitsuを使ってsockect.ioを使ったアプリをホスティングしたところ、websocket（以下、ws）まわりで思わぬハマりポイントがあったというお話しをします。（同じようなトラブルで悩む方に少しでもヒントをあげられたらと考えています。）">
@@ -47,7 +47,7 @@
   "headline": "websocketを使う際の意外な落とし穴",
   "name": "websocketを使う際の意外な落とし穴",
   "datePublished": "2012-10-20T11:00:00.000Z",
-  "dateModified": "2017-12-09T15:31:05.701Z",
+  "dateModified": "2018-12-16T06:51:45.496Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2012/10/websocket.html"
@@ -141,7 +141,7 @@
 <p>wsの正しい挙動としては、まずhttpでハンドシェイクを行い、ハンドシェイクができた後にwsにプロトコルを変更して通信する流れなのですが、どうやらハンドシェイクを確立した後にwsのみがブロックされている場合、socket.ioにて通信手段の変更ができないようです。</p>
 <p>（念のため、Chromeで取ったヘッダーとか載せときますね。）</p>
 <p><a href="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png" target="_blank" rel="noopener"><img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png"></a></p>
-<pre><code>Request URL:ws://wsping.jit.su/socket.io/1/websocket/dL7NXuBCnWhqnZMPAYkU
+<pre class="line-numbers language-txt"><code class="language-txt">Request URL:ws://wsping.jit.su/socket.io/1/websocket/dL7NXuBCnWhqnZMPAYkU
 Request Method:GET
 Status Code:101 Switching Protocols
 Request Headersview source
@@ -158,7 +158,8 @@ Connection:Upgrade
 Sec-WebSocket-Accept:lbl4DxvLmfnTm2okzQxld/Yb/sE=
 Upgrade:websocket
 (Challenge Response):00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
-</code></pre><p>正直、この挙動が仕様なのかバグなのか、それとも私の実装が悪いのか判断できず、一度詳しい方の見解を聞いてみたいです。（Help me!）</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>正直、この挙動が仕様なのかバグなのか、それとも私の実装が悪いのか判断できず、一度詳しい方の見解を聞いてみたいです。（Help me!）</p>
 <p>今回の件で、改めて新しいプロトコル導入期のライアント周辺環境（N/Wとかセキュリティとか）の課題が大きいなと感じました。（SPDYもそうなんですが･･･）<br>現状、より多くのユーザの元にsocket.ioを使った通信を届けるためには、wsの通信をwssとするか、通信手段をXmlHttpRequestなどにダウングレードするのが無難なのかもしれません。</p>
 <p>（ちなみに先に紹介したnodejitsuのwebsocketPingサイトですが、wsが届いていない人もURLをhttpsに変えてアクセスすると届いたりします。）<br>（ちなみに、私はwindowsユーザなので、ならではの話題だったりして･･･）</p>
 <h2 id="nodejitsuなかなか好いよ。"><a href="#nodejitsuなかなか好いよ。" class="headerlink" title="nodejitsuなかなか好いよ。"></a>nodejitsuなかなか好いよ。</h2><p>最後に2か月くらい<a href="http://nodejitsu.com/" target="_blank" rel="noopener">nodejitsu</a>使って遊んでますが。良かった点を書き連ねてみます。（CEOの<a href="https://twitter.com/indexzero" target="_blank" rel="noopener"><br>Charlie Robbins氏</a>も来ることですし。）</p>
@@ -173,6 +174,8 @@ Upgrade:websocket
 <blockquote>
 <p><strong>修正（2012/10/21)</strong><br>Jxckさんの指摘反映<br>websocketのセキュアなプロトコルはhttpsではなくwss。</p>
 </blockquote>
+<p>ちなみに自分はこの本でNode覚えました。技術英語の勉強にもなっていい本ですよ。</p>
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=1491943122&linkId=23b628eef8f90c597c673445ed300b91&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr"><br>    </iframe>
 
   </div>
   
