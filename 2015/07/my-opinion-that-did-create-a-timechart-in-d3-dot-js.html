@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="I am mitsuruog">
 <meta property="og:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2017-12-09T15:31:05.695Z">
+<meta property="og:updated_time" content="2018-12-16T06:30:40.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる">
 <meta name="twitter:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
@@ -44,7 +44,7 @@
   "headline": "D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる",
   "name": "D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる",
   "datePublished": "2015-07-05T13:38:00.000Z",
-  "dateModified": "2017-12-09T15:31:05.695Z",
+  "dateModified": "2018-12-16T06:30:40.716Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html"
@@ -121,7 +121,7 @@
     <p>D3.jsを使ってタイムチャートを作成してみました。<br>初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。<br>D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。</p>
 <a id="more"></a>
 <h2 id="サンプル"><a href="#サンプル" class="headerlink" title="サンプル"></a>サンプル</h2><p>jsBinにサンプルつくりました。</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/ziwuru/embed?output" target="_blank" rel="noopener">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.30.4"></script></p>
+<p><a class="jsbin-embed" href="https://jsbin.com/ziwuru/embed?output" target="_blank" rel="noopener">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.30.4"></script></p>
 <h2 id="苦労したこと"><a href="#苦労したこと" class="headerlink" title="苦労したこと"></a>苦労したこと</h2><ol>
 <li>一定期間の時間軸を作成したい</li>
 <li>時間軸のラベルを一定間隔にしたい</li>
@@ -152,11 +152,12 @@
 <p>細かな単位の指定などはこちら<br>(Intervalsを指定すればいいと思われる。)</p>
 <p><a href="https://github.com/mbostock/d3/wiki/Time-Intervals" target="_blank" rel="noopener">Time Intervals · mbostock/d3 Wiki</a></p>
 <h3 id="時間軸のラベルフォーマットしたい"><a href="#時間軸のラベルフォーマットしたい" class="headerlink" title="時間軸のラベルフォーマットしたい"></a>時間軸のラベルフォーマットしたい</h3><p><code>tickFormat</code> を使おう。</p>
-<pre><code>var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient(&#39;bottom&#39;)
-    .tickFormat(d3.time.format(&#39;%H:00&#39;));
-</code></pre><p>フォーマット書式はこちら</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> xAxis <span class="token operator">=</span> d3<span class="token punctuation">.</span>svg<span class="token punctuation">.</span><span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">scale</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">orient</span><span class="token punctuation">(</span><span class="token string">'bottom'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">tickFormat</span><span class="token punctuation">(</span>d3<span class="token punctuation">.</span>time<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'%H:00'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>フォーマット書式はこちら</p>
 <p><a href="https://github.com/mbostock/d3/wiki/Time-Formatting" target="_blank" rel="noopener">Time Formatting · mbostock/d3 Wiki</a></p>
 <p>よく使いそうなもの</p>
 <pre><code>%Y - year
@@ -177,19 +178,20 @@
 <p>ここの記事がわかりやすかったので、これを見れば十分。</p>
 <p><a href="http://blog.qaramell.com/?p=12911" target="_blank" rel="noopener">D3.jsの折れ線グラフにグリッド線を追加する | Qaramell Blog</a></p>
 <h3 id="画面サイズに応じて軸ラベルを回転させたい"><a href="#画面サイズに応じて軸ラベルを回転させたい" class="headerlink" title="画面サイズに応じて軸ラベルを回転させたい"></a>画面サイズに応じて軸ラベルを回転させたい</h3><p>ラベルを描画する際に、画面サイズに応じて<code>rotate</code>させる。</p>
-<pre><code>svg.append(&#39;g&#39;)
-  .call(xAxis)
-  .selectAll(&#39;text&#39;)
-  .attr(&#39;transform&#39;, function() {
-    if (w &lt; 1000 &amp;&amp; w &gt; 689) {
-      return &#39;translate(20, -5) rotate(-45)&#39;;
-    } else if (w &lt;= 689) {
-      return &#39;translate(20, -15) rotate(-90)&#39;;
-    } else {
-      return null;
-    }
-  });
-</code></pre><h3 id="カテゴライズされた軸を作りたい"><a href="#カテゴライズされた軸を作りたい" class="headerlink" title="カテゴライズされた軸を作りたい"></a>カテゴライズされた軸を作りたい</h3><p>例えば、システム的なIdではなくで、なんらかの文字列のラベルなど。</p>
+<pre class="line-numbers language-js"><code class="language-js">svg<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'g'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>xAxis<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">selectAll</span><span class="token punctuation">(</span><span class="token string">'text'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">'transform'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>w <span class="token operator">&lt;</span> <span class="token number">1000</span> <span class="token operator">&amp;&amp;</span> w <span class="token operator">></span> <span class="token number">689</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token string">'translate(20, -5) rotate(-45)'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>w <span class="token operator">&lt;=</span> <span class="token number">689</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token string">'translate(20, -15) rotate(-90)'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="カテゴライズされた軸を作りたい"><a href="#カテゴライズされた軸を作りたい" class="headerlink" title="カテゴライズされた軸を作りたい"></a>カテゴライズされた軸を作りたい</h3><p>例えば、システム的なIdではなくで、なんらかの文字列のラベルなど。</p>
 <p><code>d3.scale.ordinal</code>を使って<code>domain</code>にラベルとしたい値の配列を渡す。</p>
 <pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> labels <span class="token operator">=</span> <span class="token punctuation">[</span>
   <span class="token punctuation">{</span>id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span><span class="token string">'ばなな'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -270,7 +272,11 @@ svg<span class="token punctuation">.</span><span class="token function">append</
 <ul>
 <li><a href="http://www.chartjs.org/docs/#radar-chart" target="_blank" rel="noopener">Chart.js | Documentation</a></li>
 </ul>
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=4774163260&linkId=2d5a40a1cd37936b85c54bb68e0898d8&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr"><br>    </iframe>
 
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=4873117461&linkId=f1102c173b373b8f4f7e861a5f990c6f&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr"><br>    </iframe>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=B00LBLX46Y&linkId=fc2789d898447fe41decf7b2fbb96908&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr"><br>    </iframe>
   </div>
   
 <nav class="footer-nav">
