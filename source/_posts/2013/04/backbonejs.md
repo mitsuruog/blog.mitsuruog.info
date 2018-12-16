@@ -7,6 +7,7 @@ tags:
  - backbone
  - SPA
  - チュートリアル
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2013/backbone.jpg
 ---
 
 先日めでたく1.0.0をリリースしたBackbone.jsですが、よくも悪くも「どう作るか」について、作成者側の思いで自由にできるため、始めの取っ掛かりとして、どう作ればよいかと言うことで結構悩む方も多いかと思います。
@@ -22,8 +23,6 @@ tags:
 
 1.  Backbone.jsのチュートリアル作りました。
 2.  Backbone.Viewを扱う際に注意するポイントについていくつか紹介します。
-
-{% img http://farm1.static.flickr.com/184/438710250_9184e08ac0.jpg %}
 
 ##  チュートリアル
 早速ですが、Backbone.jsでシングルページアプリケーションを作成するチュートリアルの紹介です。

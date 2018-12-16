@@ -20,7 +20,7 @@ D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい
 
 jsBinにサンプルつくりました。
 
-<a class="jsbin-embed" href="http://jsbin.com/ziwuru/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.30.4"></script>
+<a class="jsbin-embed" href="https://jsbin.com/ziwuru/embed?output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.30.4"></script>
 
 ## 苦労したこと
 
@@ -69,7 +69,7 @@ var xAxis = d3.svg.axis()
 
 `tickFormat` を使おう。
 
-```
+```js
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient('bottom')
@@ -114,7 +114,7 @@ var xAxis = d3.svg.axis()
 
 ラベルを描画する際に、画面サイズに応じて`rotate`させる。
 
-```
+```js
 svg.append('g')
   .call(xAxis)
   .selectAll('text')
@@ -253,3 +253,12 @@ D3.jsでタイムチャートで作ってみましたが、1点ものの作品�
 D3.jsじゃないけど、気になってるやつ
 
 - [Chart.js | Documentation](http://www.chartjs.org/docs/#radar-chart)
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=4774163260&linkId=2d5a40a1cd37936b85c54bb68e0898d8&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>
+    
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=4873117461&linkId=f1102c173b373b8f4f7e861a5f990c6f&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>
+    
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=B00LBLX46Y&linkId=fc2789d898447fe41decf7b2fbb96908&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>

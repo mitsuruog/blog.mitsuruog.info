@@ -22,7 +22,7 @@ SAPUI5/OpenUI5を使った場合、SAPのバックエンドのデータと、様
 
 「Open Map」ボタンを押すと東京駅を中心としたマップが表示されます。
 
-<a class="jsbin-embed" href="http://jsbin.com/rowib/1/embed?output&height=400px">SAPUI5/OpenUI5 Google map Sample</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="https://jsbin.com/rowib/1/embed?output&height=400px">SAPUI5/OpenUI5 Google map Sample</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 1.  説明
 2.  最後に

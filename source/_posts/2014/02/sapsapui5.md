@@ -8,7 +8,7 @@ tags:
  - OpenUI5
 ---
 
-SAP社では2013年12月に「[SAP Mobile Platform 3.0](http://www.sapmobile-platform.com/)」を公開しており、本格的にHTML5に力を入れてきました。  
+SAP社では2013年12月に[SAP Mobile Platform \- Wikipedia](https://en.wikipedia.org/wiki/SAP_Mobile_Platform)を公開しており、本格的にHTML5に力を入れてきました。  
 今回はその流れの中で、SAPのモバイル戦略を下支えするHTML5ベースのUIフレームワーク「SAPUI5」を少し触ってみます。
 
 <!-- more -->
@@ -18,11 +18,11 @@ SAP社では2013年12月に「[SAP Mobile Platform 3.0](http://www.sapmobile-pla
 ## SAPUI5とは
 
 SAPUI5とは「SAP UI Development Toolkit for HTML5」の略称で、業務系アプリケーションに特化した機能豊富なUIコンポーネントを含んだUIフレームワークです。  
-2013年12月にSAPUI5をオープンソース化した「[OpenUI5](http://sap.github.io/openui5/)」が発表されています。
+2013年12月にSAPUI5をオープンソース化した[OpenUI5](https://openui5.org/)が発表されています。
 
 特徴は、Publickeyさんの方で語られていますので、こちらを参照してください。
 
-[ SAP、業務アプリ用のJavaScript製UIライブラリ「OpenUI5」を公開。レスポンシブ対応でモバイルデバイスにも － Publickey](http://www.publickey1.jp/blog/13/sapjavascriptuiopenui5.html)
+[SAP、業務アプリ用のJavaScript製UIライブラリ「OpenUI5」を公開。レスポンシブ対応でモバイルデバイスにも － Publickey](https://www.publickey1.jp/blog/13/sapjavascriptuiopenui5.html)
 
 ## SAPUI5とOpenUI5の違い
 
@@ -77,7 +77,8 @@ SAPUI5ではデスクトップ用途の「`sap.ui.commons`」とモバイル用�
 HTMLファイルを準備して以下のように記述してください。（ライブラリは2014/2/17現在の最新版1.18.6を使っています。）
 
 コードはこちらです。
-
+ 
+```js
 //3.0.3以降
 $myModal = $('#myModal').modal({}, {
   person: 'mitsuruog'
@@ -86,14 +87,15 @@ $myModal = $('#myModal').modal({}, {
 $myModal.on('show.bs.modal', function(e) {
   var name = e.relatedTarget.person;
 }
+```
 
 実際に動くアプリケーションはこちらです。
 
-<a class="jsbin-embed" href="http://jsbin.com/gur/3/embed?output">Hello SAPUI5</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="https://jsbin.com/gur/3/embed?output">Hello SAPUI5</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 ## まとめ
 
-SAP社では2013年12月に「[SAP Mobile Platform 3.0](http://www.sapmobile-platform.com/)」を公開しており、本格的にHTML5に力を入れてきました。
+SAP社では2013年12月に[SAP Mobile Platform \- Wikipedia](https://en.wikipedia.org/wiki/SAP_Mobile_Platform)を公開しており、本格的にHTML5に力を入れてきました。
 
 Platform 3.0では「Sybase Unwired Platform」をはじめ、「SAP NetWeaver Gateway」、GUIで画面開発ができる「App Builder」などいくつかのモバイル向けソリューションの統合が行われています。  
 HTML5ベースのUIフレームワーク「SAPUI5」は、そのようなSAPのモバイル戦略を下支えするものです。

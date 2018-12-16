@@ -53,7 +53,7 @@ wsの正しい挙動としては、まずhttpでハンドシェイクを行い�
 
 [{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png %}](https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2012/block.png)
 
-```
+```txt
 Request URL:ws://wsping.jit.su/socket.io/1/websocket/dL7NXuBCnWhqnZMPAYkU
 Request Method:GET
 Status Code:101 Switching Protocols
@@ -99,3 +99,8 @@ Charlie Robbins氏](https://twitter.com/indexzero)も来ることですし。）
 > **修正（2012/10/21)**  
 > Jxckさんの指摘反映  
 > websocketのセキュアなプロトコルはhttpsではなくwss。
+
+ちなみに自分はこの本でNode覚えました。技術英語の勉強にもなっていい本ですよ。
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=1491943122&linkId=23b628eef8f90c597c673445ed300b91&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>

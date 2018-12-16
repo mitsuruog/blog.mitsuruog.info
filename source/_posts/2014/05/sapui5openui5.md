@@ -51,7 +51,7 @@ I/Fのパラメータの詳細については次の通りです。
 
 サンプルはこちらです。
 
-<a class="jsbin-embed" href="http://jsbin.com/cihoxu/1/embed?output">SAPUI5/OpenUI5 Sample</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="https://jsbin.com/cihoxu/1/embed?output">SAPUI5/OpenUI5 Sample</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 Buttonのpressイベント発火時の第1引数にオブジェクトを渡しています。分かると簡単です。この例ではpressイベントの中にイベントハンドラを記述していますが、Controllerに処理を委譲する場合は次のようにしてください。
 
@@ -68,31 +68,24 @@ button = new sap.m.Button
   ]
 
 button.placeAt "content"
-
 ```
 
 ```html
 <!DOCTYPE HTML>
 <html>
-
-    <head>
-<meta name="description" content="[add your bin description]" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta charset="UTF-8">
-
-        <title>SAPUI5/OpenUI5 Sample</title>
-
-        <script id="sap-ui-bootstrap"
-        src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-        data-sap-ui-libs="sap.m"
-        data-sap-ui-theme="sap_bluecrystal"
-        >
-        </script>
-
-    </head>
-
-    <body class="sapUiBody" id="content" />
-
+  <head>
+  <meta name="description" content="[add your bin description]" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <title>SAPUI5/OpenUI5 Sample</title>
+  <script id="sap-ui-bootstrap"
+    src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+    data-sap-ui-libs="sap.m"
+    data-sap-ui-theme="sap_bluecrystal"
+  >
+  </script>
+  </head>
+  <body class="sapUiBody" id="content" />
 </html>
 ```
 
@@ -102,4 +95,4 @@ button.placeAt "content"
 
 ちなみに、この内容はこちらのやり取りを参考にしています。
 
-[SAPUI5: How do I pass values to an eventhandler | SCN](http://scn.sap.com/thread/3442827)
+[SAPUI5: How do I pass values to an eventhandler | SCN](https://archive.sap.com/discussions/thread/3442827)

@@ -133,3 +133,11 @@ SPAを導入した場合の課題をいくつか挙げてみました。少し�
 * [Pros and Cons of Having a Single Page Website – Professional Dubai Web Design Blog by Insight Soft in UAE](http://blog.insightsoft.ae/a-single-page-website/)
 * [Isomorphic JavaScript: The Future of Web Apps - Airbnb Engineering](http://nerds.airbnb.com/wp-content/files_mf/1384225374isomorphicjs.png)
 * [Advantages and disadvantages of building a single page web application - Programmers Stack Exchange](http://programmers.stackexchange.com/questions/144717/advantages-and-disadvantages-of-building-a-single-page-web-application)
+
+今となってはほとんど役に立たないかもしれないけど、これらの書籍でbackbone.jsを学びながら今後のJavaScript開発で必要なテクニックを学んでいきました。
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=4873116589&linkId=eb8b9ed1789b5db87ee86c4416036d24&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>
+    
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=487311554X&linkId=f7183373522c9a2b985891d8767af2c8&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>

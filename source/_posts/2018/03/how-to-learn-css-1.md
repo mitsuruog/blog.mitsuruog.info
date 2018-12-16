@@ -179,3 +179,8 @@ CSSが苦手な人にやらせた場合、自分が期待した通りにはな�
 > ちなみに、自分が作っていた[CODEPREP](https://codeprep.jp/tracks/UI%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E5%AE%9F%E8%B7%B5)のコンテンツは、ほぼ最初の章がHTML構造の設計になっています。
 
 さて、次はなににしようかな。
+
+CSSの実用的な本についてはあまりいい書籍がなのですが、この本は割といいです。
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=B00M0ESXUI&linkId=f4b2639fd5927037c954d8367b3ce79f&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>

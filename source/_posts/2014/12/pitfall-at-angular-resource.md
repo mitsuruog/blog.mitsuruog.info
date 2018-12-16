@@ -14,7 +14,7 @@ AngularJSを利用するメリットの1つとして、AngularJSが内包して�
 
 <!-- more -->
 
-[AngularJS Advent Calendar 2014 - Adventar](http://www.adventar.org/calendars/350)16日目の記事です。
+[AngularJS Advent Calendar 2014 \- Adventar](https://adventar.org/calendars/350)16日目の記事です。
 
 * 15日目[AngularJS - Promiseを使おう - Qiita(@teyosh)](http://qiita.com/teyosh/items/d7d3c17f954318c88882)
 * 17日目[AngularJS 1.3へのアップデート(@kon.yuichi)](https://note.mu/konpyu/n/n1eb6c13c69d6)
@@ -136,10 +136,11 @@ angular.module('app').controller('MainCtrl', MainCtrl);
 ```
 
 各コントローラでpromiseを処理するのが面倒な場合は、15日目[AngularJS - Promiseを使おう - Qiita(@teyosh)](http://qiita.com/teyosh/items/d7d3c17f954318c88882)で紹介されているような、promiseを処理するためのfactoryを作ってラップするといいと思います。  
-(たしか、[AngularJSアプリケーション開発ガイド](http://www.amazon.co.jp/gp/product/4873116678/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116678&linkCode=as2&tag=mitsuruog-22)のサンプルもそうなってたはず。)
+(たしか、<a target="_blank" href="https://www.amazon.co.jp/gp/product/4873116678/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116678&linkCode=as2&tag=mitsuruog-22&linkId=bdd0c9b0152b6260907ab4e64036c67a">AngularJSアプリケーション開発ガイド</a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=mitsuruog-22&l=am2&o=9&a=4873116678" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />のサンプルもそうなってたはず。)
 
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=mitsuruog-22&o=9&p=8&l=as1&asins=4873116678&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mitsuruog-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=4873116678&linkId=d152ad4c622d40713fb4691ba63bcb90&bc1=000000&lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>
+    
 ## まとめ
 
 今日は$resourceを使うと便利ですが、ちょっとハマるよという話をしました。

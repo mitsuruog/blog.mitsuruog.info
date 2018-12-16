@@ -5,7 +5,7 @@ date: 2016-01-02 22:20:29 +0900
 comments: true
 tags:
   - その他
-thumbnail: http://giantech.jp/assets/images/20150604/purpose_venn_diagram_ja.png
+thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/purpose_venn_diagram_ja.png
 ---
 
 あけましておめでとうございます。  
@@ -59,7 +59,7 @@ http://giantech.jp/2015/06/04/what-origin-is-the-purpose-diagram/
 
 図を拝借します。
 
-![](http://giantech.jp/assets/images/20150604/purpose_venn_diagram_ja.png)
+![](https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2016/purpose_venn_diagram_ja.png)
 
 あーそれそれ。「生きがい」求めてた。  
 いままでモヤモヤしていたものが言語化できてスッキリした瞬間でした。
