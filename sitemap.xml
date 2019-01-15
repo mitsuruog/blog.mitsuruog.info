@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2019/01/workflow-for-translation.html</loc>
+    
+    <lastmod>2019-01-15T11:54:24.208Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2018/12/collaborating-with-the-enemy.html</loc>
     
     <lastmod>2018-12-17T15:01:09.095Z</lastmod>
@@ -255,14 +262,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
     
     <lastmod>2017-12-10T08:09:17.568Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
     
     <lastmod>2017-12-10T08:09:17.568Z</lastmod>
     
@@ -276,14 +283,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
@@ -304,14 +311,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/08/how-to-send-custom-attribute-value-to-gtm.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
     
     <lastmod>2017-12-10T08:09:17.563Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/08/how-to-send-custom-attribute-value-to-gtm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.563Z</lastmod>
     
@@ -339,14 +346,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
@@ -395,14 +402,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -430,14 +437,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
@@ -514,14 +521,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
@@ -759,14 +766,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
