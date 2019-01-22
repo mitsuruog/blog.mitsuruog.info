@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2019/01/dont-use-dynamic-string-for-typesafe-actions.html</loc>
+    
+    <lastmod>2019-01-22T14:20:24.076Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2019/01/workflow-for-translation.html</loc>
     
     <lastmod>2019-01-15T11:54:24.208Z</lastmod>
@@ -283,14 +290,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
@@ -311,13 +318,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.563Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2017/08/how-to-send-custom-attribute-value-to-gtm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.563Z</lastmod>
@@ -325,14 +325,21 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.563Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
@@ -402,7 +409,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -416,7 +423,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -640,14 +647,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/12/goodby-2014.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/01/bootstrapmodal.html</loc>
     
     <lastmod>2017-12-09T15:31:05.674Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/01/bootstrapmodal.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/12/goodby-2014.html</loc>
     
     <lastmod>2017-12-09T15:31:05.674Z</lastmod>
     
@@ -766,14 +773,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
