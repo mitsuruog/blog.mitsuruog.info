@@ -6,7 +6,7 @@
   <title>typesafe-actionsのActionTypeに動的な文字列を使ってはいけない | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="description" content="（完全に自分用のメモです。） TypeScript+React+Reduxを使うときに気に入って使っているtypesafe-actions。意外なところでハマりポイントがありました。 ReducerでActionの型情報が見れないよくあるReducer。 export const weatherReducer = (state: WeatherState = initialState, actio">
-<meta name="keywords" content="react,redux,typescript">
+<meta name="keywords" content="typescript,react,redux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="typesafe-actionsのActionTypeに動的な文字列を使ってはいけない">
 <meta property="og:url" content="https://blog.mitsuruog.info/2019/01/dont-use-dynamic-string-for-typesafe-actions.html">
@@ -14,7 +14,7 @@
 <meta property="og:description" content="（完全に自分用のメモです。） TypeScript+React+Reduxを使うときに気に入って使っているtypesafe-actions。意外なところでハマりポイントがありました。 ReducerでActionの型情報が見れないよくあるReducer。 export const weatherReducer = (state: WeatherState = initialState, actio">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/typesafe-actions-logo.png">
-<meta property="og:updated_time" content="2019-01-22T14:20:24.076Z">
+<meta property="og:updated_time" content="2019-01-22T14:38:41.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typesafe-actionsのActionTypeに動的な文字列を使ってはいけない">
 <meta name="twitter:description" content="（完全に自分用のメモです。） TypeScript+React+Reduxを使うときに気に入って使っているtypesafe-actions。意外なところでハマりポイントがありました。 ReducerでActionの型情報が見れないよくあるReducer。 export const weatherReducer = (state: WeatherState = initialState, actio">
@@ -47,7 +47,7 @@
   "name": "typesafe-actionsのActionTypeに動的な文字列を使ってはいけない",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/typesafe-actions-logo.png",
   "datePublished": "2019-01-21T15:00:00.000Z",
-  "dateModified": "2019-01-22T14:20:24.076Z",
+  "dateModified": "2019-01-22T14:38:41.805Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/01/dont-use-dynamic-string-for-typesafe-actions.html"
@@ -113,11 +113,11 @@
   
   <div class="tags">
     
+      <a class="tag" href="/tags/typescript/">typescript</a>
+    
       <a class="tag" href="/tags/react/">react</a>
     
       <a class="tag" href="/tags/redux/">redux</a>
-    
-      <a class="tag" href="/tags/typescript/">typescript</a>
     
   </div>
 
@@ -154,6 +154,9 @@ Property 'payload' does not exist on type
   Property 'payload' does not exist on type '{ type: "@@map/READY"; }'.
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Actionの型定義は一見良さそうなので、最初は何が原因かわかりませんでした。</p>
+<blockquote>
+<p>(追記: 2019/01/23)<br>というか型定義良くない。<code>type: string</code>になっている。Blog用にエラーを整形したら気づいた。エラーメッセージもっと冷静に読まないと。</p>
+</blockquote>
 <h2 id="ActionTypeに動的な文字列を使ってはいけない"><a href="#ActionTypeに動的な文字列を使ってはいけない" class="headerlink" title="ActionTypeに動的な文字列を使ってはいけない"></a>ActionTypeに動的な文字列を使ってはいけない</h2><p>原因はこれでした。ActionTypeを<code>PREFIX</code>を使ったテンプレート文字列で定義している部分。</p>
 <pre class="line-numbers language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// constants.ts</span>
 <span class="token keyword">const</span> PREFIX <span class="token operator">=</span> <span class="token string">"@MyApp"</span>
