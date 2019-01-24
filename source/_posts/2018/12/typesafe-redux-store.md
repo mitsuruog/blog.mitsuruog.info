@@ -166,3 +166,5 @@ const epicMiddleware = createEpicMiddleware<Action, Action, RootState>();
 ## まとめ
 説明割愛してしまった部分もありますが、実際に動作しているコードは[GitHub](https://github.com/mitsuruog/react-redux-observable-typescript-sample)を見てください。
 
+> typesafe-actionsで意外なハマりポイントがあったので、こちらにも目を通しておくといいです。
+> - [typesafe\-actionsのActionTypeに動的な文字列を使ってはいけない \| I am mitsuruog](https://blog.mitsuruog.info/2019/01/dont-use-dynamic-string-for-typesafe-actions)

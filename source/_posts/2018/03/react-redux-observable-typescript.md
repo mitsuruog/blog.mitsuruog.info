@@ -15,6 +15,9 @@ thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/re
 
 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。
 
+> 続きがあるので、読み終わったらこちらも見てみてください。2019年1月段階の最新です。
+> - [typesafe\-actionsを使って型安心なRedux Storeを実装する \| I am mitsuruog](https://blog.mitsuruog.info/2018/12/typesafe-redux-store)
+
 ## デモ
 作ったものはこちらのGithubでみれます。
 
