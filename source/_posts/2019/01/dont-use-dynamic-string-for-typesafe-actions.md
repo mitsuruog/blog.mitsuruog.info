@@ -55,6 +55,9 @@ Property 'payload' does not exist on type 
 
 Actionの型定義は一見良さそうなので、最初は何が原因かわかりませんでした。
 
+> (追記: 2019/01/23)
+> というか型定義良くない。`type: string`になっている。Blog用にエラーを整形したら気づいた。エラーメッセージもっと冷静に読まないと。
+
 ## ActionTypeに動的な文字列を使ってはいけない
 
 原因はこれでした。ActionTypeを`PREFIX`を使ったテンプレート文字列で定義している部分。
