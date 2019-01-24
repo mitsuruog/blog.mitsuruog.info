@@ -5,19 +5,19 @@
   <meta charset="utf-8">
   <title>React + Redux + redux-observable + TypeScriptの実践的サンプル | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <meta name="description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。 デモ作ったも">
-<meta name="keywords" content="typescript,react,redux,redux-observable">
+  <meta name="description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。  続きがある">
+<meta name="keywords" content="react,redux,typescript,redux-observable">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React + Redux + redux-observable + TypeScriptの実践的サンプル">
 <meta property="og:url" content="https://blog.mitsuruog.info/2018/03/react-redux-observable-typescript.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。 デモ作ったも">
+<meta property="og:description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。  続きがある">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png">
-<meta property="og:updated_time" content="2018-03-13T13:35:19.533Z">
+<meta property="og:updated_time" content="2019-01-24T23:51:00.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React + Redux + redux-observable + TypeScriptの実践的サンプル">
-<meta name="twitter:description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。 デモ作ったも">
+<meta name="twitter:description" content="新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。 対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。  続きがある">
 <meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png">
   <link rel="icon" href="/favicon.ico">
   
@@ -47,7 +47,7 @@
   "name": "React + Redux + redux-observable + TypeScriptの実践的サンプル",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/redux-observable-logo.png",
   "datePublished": "2018-03-12T15:00:00.000Z",
-  "dateModified": "2018-03-13T13:35:19.533Z",
+  "dateModified": "2019-01-24T23:51:00.807Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2018/03/react-redux-observable-typescript.html"
@@ -113,11 +113,11 @@
   
   <div class="tags">
     
-      <a class="tag" href="/tags/typescript/">typescript</a>
-    
       <a class="tag" href="/tags/react/">react</a>
     
       <a class="tag" href="/tags/redux/">redux</a>
+    
+      <a class="tag" href="/tags/typescript/">typescript</a>
     
       <a class="tag" href="/tags/redux-observable/">redux-observable</a>
     
@@ -127,6 +127,12 @@
   <div class="content">
     <p>新規プロダクトで「React + Redux + redux-observable + TypeScript」を使ってみました。<br>割と良く仕上がったので、全体アーキテクトを単純にしたサンプルを作ってまとめてみました。同じような構成を考えている人は参考にしてみてください。</p>
 <p>対象者は、ReactとTypeScript(もしくはFlux)経験者です。初歩的な部分は割と割愛して説明しています。</p>
+<blockquote>
+<p>続きがあるので、読み終わったらこちらも見てみてください。2019年1月段階の最新です。</p>
+<ul>
+<li><a href="https://blog.mitsuruog.info/2018/12/typesafe-redux-store">typesafe-actionsを使って型安心なRedux Storeを実装する | I am mitsuruog</a></li>
+</ul>
+</blockquote>
 <h2 id="デモ"><a href="#デモ" class="headerlink" title="デモ"></a>デモ</h2><p>作ったものはこちらのGithubでみれます。</p>
 <ul>
 <li><a href="https://github.com/mitsuruog/react-redux-observable-typescript-sample" target="_blank" rel="noopener">mitsuruog/react-redux-observable-typescript-sample: A sample application for React + redux-observable + TypeScript</a></li>

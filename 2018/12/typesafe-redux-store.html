@@ -6,7 +6,7 @@
   <title>typesafe-actionsを使って型安心なRedux Storeを実装する | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="description" content="この記事はReact.js その2 Advent Calendar 2018 8日目の記事です。 半年くらい前に、React + Redux + redux-observable + TypeScriptの実践的サンプルという記事を書いたのですが、Reduxのactionとreducerの部分の型があまりうまく定義できてなかったので、個人的に課題だと感じていました。 今回はその部分をtypesa">
-<meta name="keywords" content="typescript,react,redux,redux-observable">
+<meta name="keywords" content="react,redux,typescript,redux-observable">
 <meta property="og:type" content="article">
 <meta property="og:title" content="typesafe-actionsを使って型安心なRedux Storeを実装する">
 <meta property="og:url" content="https://blog.mitsuruog.info/2018/12/typesafe-redux-store.html">
@@ -14,7 +14,7 @@
 <meta property="og:description" content="この記事はReact.js その2 Advent Calendar 2018 8日目の記事です。 半年くらい前に、React + Redux + redux-observable + TypeScriptの実践的サンプルという記事を書いたのですが、Reduxのactionとreducerの部分の型があまりうまく定義できてなかったので、個人的に課題だと感じていました。 今回はその部分をtypesa">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/type-safe-redux-store.png">
-<meta property="og:updated_time" content="2018-12-07T14:30:16.534Z">
+<meta property="og:updated_time" content="2019-01-24T23:51:37.344Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typesafe-actionsを使って型安心なRedux Storeを実装する">
 <meta name="twitter:description" content="この記事はReact.js その2 Advent Calendar 2018 8日目の記事です。 半年くらい前に、React + Redux + redux-observable + TypeScriptの実践的サンプルという記事を書いたのですが、Reduxのactionとreducerの部分の型があまりうまく定義できてなかったので、個人的に課題だと感じていました。 今回はその部分をtypesa">
@@ -47,7 +47,7 @@
   "name": "typesafe-actionsを使って型安心なRedux Storeを実装する",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2018/type-safe-redux-store.png",
   "datePublished": "2018-12-07T15:00:00.000Z",
-  "dateModified": "2018-12-07T14:30:16.534Z",
+  "dateModified": "2019-01-24T23:51:37.344Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2018/12/typesafe-redux-store.html"
@@ -113,11 +113,11 @@
   
   <div class="tags">
     
-      <a class="tag" href="/tags/typescript/">typescript</a>
-    
       <a class="tag" href="/tags/react/">react</a>
     
       <a class="tag" href="/tags/redux/">redux</a>
+    
+      <a class="tag" href="/tags/typescript/">typescript</a>
     
       <a class="tag" href="/tags/redux-observable/">redux-observable</a>
     
@@ -223,6 +223,12 @@ type Action <span class="token operator">=</span> ActionType<span class="token o
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>これでredux-observableと一緒に使っても型安心になりました。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>説明割愛してしまった部分もありますが、実際に動作しているコードは<a href="https://github.com/mitsuruog/react-redux-observable-typescript-sample" target="_blank" rel="noopener">GitHub</a>を見てください。</p>
+<blockquote>
+<p>typesafe-actionsで意外なハマりポイントがあったので、こちらにも目を通しておくといいです。</p>
+<ul>
+<li><a href="https://blog.mitsuruog.info/2019/01/dont-use-dynamic-string-for-typesafe-actions">typesafe-actionsのActionTypeに動的な文字列を使ってはいけない | I am mitsuruog</a></li>
+</ul>
+</blockquote>
 
   </div>
   
