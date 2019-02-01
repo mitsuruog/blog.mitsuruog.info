@@ -9,18 +9,24 @@ tags:
   - chart
 ---
 
-
 D3.jsを使ってタイムチャートを作成してみました。  
 初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。  
 D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。
+
+> 利用しているD3.jsはv3系です。
 
 <!-- more -->
 
 ## サンプル
 
-jsBinにサンプルつくりました。
+Codepenにサンプル作りました。
 
-<a class="jsbin-embed" href="https://jsbin.com/ziwuru/embed?output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.30.4"></script>
+<p class="codepen" data-height="265" data-theme-id="0" data-default-tab="result" data-user="mitsuruog" data-slug-hash="bzqgKG" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="TimeChart">
+  <span>See the Pen <a href="https://codepen.io/mitsuruog/pen/bzqgKG/">
+  TimeChart</a> by mitsuruog (<a href="https://codepen.io/mitsuruog">@mitsuruog</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ## 苦労したこと
 
@@ -82,7 +88,7 @@ var xAxis = d3.svg.axis()
 
 よく使いそうなもの
 
-```
+```txt
 %Y - year
 %m - month[01,12]
 %d - zero-padded day[01,31]
