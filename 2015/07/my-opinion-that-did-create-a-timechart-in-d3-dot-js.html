@@ -5,18 +5,18 @@
   <meta charset="utf-8">
   <title>D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <meta name="description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
-<meta name="keywords" content="javascript,d3.js,chart">
+  <meta name="description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。  利用しているD3.jsはv3系です。">
+<meta name="keywords" content="d3.js,javascript,chart">
 <meta property="og:type" content="article">
 <meta property="og:title" content="D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる">
 <meta property="og:url" content="https://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
+<meta property="og:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。  利用しているD3.jsはv3系です。">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2018-12-16T06:30:40.716Z">
+<meta property="og:updated_time" content="2019-02-01T03:34:25.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる">
-<meta name="twitter:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。">
+<meta name="twitter:description" content="D3.jsを使ってタイムチャートを作成してみました。初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。  利用しているD3.jsはv3系です。">
   <link rel="icon" href="/favicon.ico">
   
   
@@ -44,7 +44,7 @@
   "headline": "D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる",
   "name": "D3.jsでタイムチャートを作ってみたので、苦労した点など振り返ってみる",
   "datePublished": "2015-07-05T13:38:00.000Z",
-  "dateModified": "2018-12-16T06:30:40.716Z",
+  "dateModified": "2019-02-01T03:34:25.679Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html"
@@ -108,9 +108,9 @@
   
   <div class="tags">
     
-      <a class="tag" href="/tags/javascript/">javascript</a>
-    
       <a class="tag" href="/tags/d3-js/">d3.js</a>
+    
+      <a class="tag" href="/tags/javascript/">javascript</a>
     
       <a class="tag" href="/tags/chart/">chart</a>
     
@@ -119,9 +119,14 @@
 
   <div class="content">
     <p>D3.jsを使ってタイムチャートを作成してみました。<br>初めて実践投入したこともあり、いろいろ苦労した点などあるので、振り返ってまとめてみます。<br>D3.jsまだまだ奥が深いので、私が紹介する以外にもっといい方法があると思います。あくまで自分用のメモだと思ってください。</p>
+<blockquote>
+<p>利用しているD3.jsはv3系です。</p>
+</blockquote>
 <a id="more"></a>
-<h2 id="サンプル"><a href="#サンプル" class="headerlink" title="サンプル"></a>サンプル</h2><p>jsBinにサンプルつくりました。</p>
-<p><a class="jsbin-embed" href="https://jsbin.com/ziwuru/embed?output" target="_blank" rel="noopener">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.30.4"></script></p>
+<h2 id="サンプル"><a href="#サンプル" class="headerlink" title="サンプル"></a>サンプル</h2><p>Codepenにサンプル作りました。</p>
+<p></p><p class="codepen" data-height="265" data-theme-id="0" data-default-tab="result" data-user="mitsuruog" data-slug-hash="bzqgKG" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="TimeChart"><br>  <span>See the Pen <a href="https://codepen.io/mitsuruog/pen/bzqgKG/" target="_blank" rel="noopener"><br>  TimeChart</a> by mitsuruog (<a href="https://codepen.io/mitsuruog" target="_blank" rel="noopener">@mitsuruog</a>)<br>  on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</span><br></p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 <h2 id="苦労したこと"><a href="#苦労したこと" class="headerlink" title="苦労したこと"></a>苦労したこと</h2><ol>
 <li>一定期間の時間軸を作成したい</li>
 <li>時間軸のラベルを一定間隔にしたい</li>
@@ -160,13 +165,14 @@
 <p>フォーマット書式はこちら</p>
 <p><a href="https://github.com/mbostock/d3/wiki/Time-Formatting" target="_blank" rel="noopener">Time Formatting · mbostock/d3 Wiki</a></p>
 <p>よく使いそうなもの</p>
-<pre><code>%Y - year
+<pre class="line-numbers language-txt"><code class="language-txt">%Y - year
 %m - month[01,12]
 %d - zero-padded day[01,31]
 %H - hour[00-23]
 %M - minute[00,59]
 %S - second as a decimal number [00,61].
-</code></pre><p><a href="http://stackoverflow.com/questions/15471224/how-to-format-time-on-xaxis-use-d3-js" target="_blank" rel="noopener">javascript - how to format time on xAxis use d3.js - Stack Overflow</a></p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><a href="http://stackoverflow.com/questions/15471224/how-to-format-time-on-xaxis-use-d3-js" target="_blank" rel="noopener">javascript - how to format time on xAxis use d3.js - Stack Overflow</a></p>
 <h3 id="軸のメモリ線-？-を消したい"><a href="#軸のメモリ線-？-を消したい" class="headerlink" title="軸のメモリ線(？)を消したい"></a>軸のメモリ線(？)を消したい</h3><p><code>innerTickSize</code>, <code>outerTickSize</code>, <code>tickPadding</code>あたりを使う。</p>
 <pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> xAxis <span class="token operator">=</span> d3<span class="token punctuation">.</span>svg<span class="token punctuation">.</span><span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token punctuation">.</span><span class="token function">scale</span><span class="token punctuation">(</span>xScale<span class="token punctuation">)</span>
