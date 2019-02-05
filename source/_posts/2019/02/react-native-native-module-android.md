@@ -4,7 +4,8 @@ title: "react-nativeでNative moduleを呼び出す(Android編)"
 date: 2019-02-01 0:00:00 +900
 comments: true
 tags:
-  - その他
+  - react-native
+  - android
 thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/android-react-native-logo.png
 ---
 
@@ -206,6 +207,8 @@ Counter.decrement()
 最後にdecrementした時に、`onDecrement`イベントが発火するようにして、これをreact-native側で利用できるようにします。
 
 Eventをreact-native側に送るには`ReactContext`が必要なので、`this.getReactApplicationContext()`から取得します。これを使ってイベントを通知します。
+
+> 公式ドキュメントだと`ReactContext`をどう取得すればいいか記載がありません。
 
 react-native側に送るペイロードは`WritableMap`を使って準備します。
 
