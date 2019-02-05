@@ -3,16 +3,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html</loc>
+    <loc>https://blog.mitsuruog.info/2019/02/react-native-native-module-swift.html</loc>
     
-    <lastmod>2019-02-01T03:34:25.679Z</lastmod>
+    <lastmod>2019-02-05T00:51:29.856Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.mitsuruog.info/2019/02/react-native-native-module-android.html</loc>
     
-    <lastmod>2019-02-01T02:34:49.759Z</lastmod>
+    <lastmod>2019-02-05T00:51:20.119Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2015/07/my-opinion-that-did-create-a-timechart-in-d3-dot-js.html</loc>
+    
+    <lastmod>2019-02-01T03:34:25.679Z</lastmod>
     
   </url>
   
@@ -297,14 +304,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
@@ -374,13 +381,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.559Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2016/03/ng-sake-with-unit-testing.html</loc>
     
     <lastmod>2017-12-10T08:09:17.559Z</lastmod>
@@ -388,14 +388,21 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.559Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
     
     <lastmod>2017-12-10T08:09:17.558Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
     
     <lastmod>2017-12-10T08:09:17.558Z</lastmod>
     
@@ -416,7 +423,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -430,7 +437,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -458,14 +465,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
@@ -535,14 +542,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
@@ -780,14 +787,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
