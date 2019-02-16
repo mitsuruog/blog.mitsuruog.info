@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2015/04/ionic-7days-war.html</loc>
+    
+    <lastmod>2019-02-16T13:34:18.161Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2019/02/react-native-dropdownalert.html</loc>
     
     <lastmod>2019-02-15T12:15:53.829Z</lastmod>
@@ -304,14 +311,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
     
     <lastmod>2017-12-10T08:09:17.568Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
     
     <lastmod>2017-12-10T08:09:17.568Z</lastmod>
     
@@ -353,14 +360,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/08/how-to-send-custom-attribute-value-to-gtm.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
     
     <lastmod>2017-12-10T08:09:17.563Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/05/image-hosting-move-dropdox-to-cloudinary.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/08/how-to-send-custom-attribute-value-to-gtm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.563Z</lastmod>
     
@@ -388,14 +395,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
@@ -451,14 +458,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -636,13 +643,6 @@
     <loc>https://blog.mitsuruog.info/2015/04/hello-azure-machine-learning.html</loc>
     
     <lastmod>2017-12-09T15:31:05.689Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2015/04/ionic-7days-war.html</loc>
-    
-    <lastmod>2017-12-09T15:31:05.688Z</lastmod>
     
   </url>
   
