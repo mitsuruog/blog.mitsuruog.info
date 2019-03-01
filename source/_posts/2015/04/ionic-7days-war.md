@@ -19,7 +19,7 @@ ionicで開発自体はAngularJSベースということもあり、結構スム
 
 {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2015/hello-ionic-1-1.png %}
 
-[ダウンロードはこちら](https://play.google.com/store/apps/details?id=com.mitsuruog.transitbus)
+~~ダウンロードはこちら(現在は配布しておりません)~~
 
 はい、千葉のローカルバスのアプリです。
 
