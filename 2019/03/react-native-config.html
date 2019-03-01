@@ -14,7 +14,7 @@
 <meta property="og:description" content="まぁ、よくあるdevelopment/statging/productionの定数切り替えです。 いくつかライブラリを選定したのですが、最終的にreact-native-configを使うことにしました。理由はNativeModuleを使っていて、双方で定数を共有したいからです。 NativeModuleを使っていなければreact-native-dotenvでも大丈夫だと思います。 導入にあたり">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/react-native-config-logo.png">
-<meta property="og:updated_time" content="2019-03-01T13:57:25.116Z">
+<meta property="og:updated_time" content="2019-03-01T14:11:04.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-nativeで環境ごとに定数を切り替える(react-native-config)">
 <meta name="twitter:description" content="まぁ、よくあるdevelopment/statging/productionの定数切り替えです。 いくつかライブラリを選定したのですが、最終的にreact-native-configを使うことにしました。理由はNativeModuleを使っていて、双方で定数を共有したいからです。 NativeModuleを使っていなければreact-native-dotenvでも大丈夫だと思います。 導入にあたり">
@@ -47,7 +47,7 @@
   "name": "react-nativeで環境ごとに定数を切り替える(react-native-config)",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/react-native-config-logo.png",
   "datePublished": "2019-02-28T15:00:00.000Z",
-  "dateModified": "2019-03-01T13:57:25.116Z",
+  "dateModified": "2019-03-01T14:11:04.518Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/03/react-native-config.html"
@@ -122,7 +122,7 @@
     <p>まぁ、よくあるdevelopment/statging/productionの定数切り替えです。</p>
 <p>いくつかライブラリを選定したのですが、最終的に<a href="https://github.com/luggit/react-native-config" target="_blank" rel="noopener">react-native-config</a>を使うことにしました。理由はNativeModuleを使っていて、双方で定数を共有したいからです。</p>
 <p>NativeModuleを使っていなければ<a href="https://github.com/zetachang/react-native-dotenv" target="_blank" rel="noopener">react-native-dotenv</a>でも大丈夫だと思います。</p>
-<p>導入にあたりNative側にも設定が必要だったので、ある程度難儀すると思っていたのですが、やはり結構大変だったのでその辺りを中心に紹介します。</p>
+<p>導入にあたりNative側にも設定が必要だったので、設定するにあたりある程度の困難はあると思っていたのですが、結構大変だったのでその辺りを中心に紹介します。</p>
 <h2 id="基本的な導入方法"><a href="#基本的な導入方法" class="headerlink" title="基本的な導入方法"></a>基本的な導入方法</h2><p>公式ドキュメントにもあるとおり、<code>npm install</code>して<code>react-native link</code>をすると導入自体は終わります。</p>
 <pre class="line-numbers language-sh"><code class="language-sh">npm install --save react-native-config
 react-native link react-native-config
@@ -138,8 +138,8 @@ GOOGLE_MAPS_API_KEY=abcdefgh
 Config<span class="token punctuation">.</span>API_URL  <span class="token comment" spellcheck="true">// 'https://myapi.com'</span>
 Config<span class="token punctuation">.</span>GOOGLE_MAPS_API_KEY  <span class="token comment" spellcheck="true">// 'abcdefgh'</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Native側については設定がもう少し必要ですが、公式ドキュメントの内容にしたがってやってみるといいと思います。</p>
-<p>で、ここまでが良く見かける記述。<br>NativeModuleを使っている場合は、さらにここからドキュメントにない設定が必要です。</p>
+<p>Native側については設定がもう少し必要ですが、公式ドキュメントの内容にしたがってやってみるといいと思います。<br>で、ここまでが良く見かける記述。Googleで検索すると良く出てくるのでサラッと流します。</p>
+<p>NativeModuleを使っている場合は、さらにここからドキュメントにない設定が必要です。ここからが本番です。</p>
 <h2 id="トラブルシュート"><a href="#トラブルシュート" class="headerlink" title="トラブルシュート"></a>トラブルシュート</h2><p>自分が遭遇したトラブルについて残しておきます。</p>
 <h3 id="Android側でBuildConfigが見つからない"><a href="#Android側でBuildConfigが見つからない" class="headerlink" title="Android側でBuildConfigが見つからない"></a>Android側でBuildConfigが見つからない</h3><p>Android側で定数を受け取るサンプルで良くあるのが、<code>MainApplication.java</code>などの<strong>アプリのPackageNameと同じパッケージ</strong>だけでやっている場合。<br>これだとNativeModuleを使っているケースでトラブルになります。</p>
 <p>PackageNameが<code>jp.sample.mitsuruog</code>だったとして、NativeModuleを<code>jp.sample.mitsuruog.custom.hoge</code>など異なるパッケージに置いたとします。</p>
