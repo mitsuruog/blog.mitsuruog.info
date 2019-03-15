@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2019/03/rnrf-customizable-onright.html</loc>
+    
+    <lastmod>2019-03-15T08:06:16.397Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2019/03/try-typescript-generics-101.html</loc>
     
     <lastmod>2019-03-12T13:28:13.136Z</lastmod>
@@ -332,14 +339,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
     
     <lastmod>2017-12-10T08:09:17.568Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
     
     <lastmod>2017-12-10T08:09:17.568Z</lastmod>
     
@@ -444,13 +451,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.558Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
     
     <lastmod>2017-12-10T08:09:17.558Z</lastmod>
@@ -458,14 +458,21 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.558Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-basic.html</loc>
     
     <lastmod>2017-12-10T08:09:17.557Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-basic.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html</loc>
     
     <lastmod>2017-12-10T08:09:17.557Z</lastmod>
     
@@ -591,14 +598,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
