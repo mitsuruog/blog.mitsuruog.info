@@ -14,7 +14,7 @@
 <meta property="og:description" content="react-native-router-fluxの小ネタです。 react-native-router-fluxで毎日頭を悩ませています。うーん、なんだろう。。。初見は使いやすそうなんですが、いざ本番となるといろいろ制約があって悩ましいライブラリですね。 今回はアプリのNavBarの右側にあるボタンをクリックした時に、次の画面にpropsを渡したいようなユースケースを想定しています。例えば参照画面">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/rnrf-logo.png">
-<meta property="og:updated_time" content="2019-03-15T08:06:16.397Z">
+<meta property="og:updated_time" content="2019-03-15T13:21:16.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-native-router-fluxのonRightをカスタマイズする">
 <meta name="twitter:description" content="react-native-router-fluxの小ネタです。 react-native-router-fluxで毎日頭を悩ませています。うーん、なんだろう。。。初見は使いやすそうなんですが、いざ本番となるといろいろ制約があって悩ましいライブラリですね。 今回はアプリのNavBarの右側にあるボタンをクリックした時に、次の画面にpropsを渡したいようなユースケースを想定しています。例えば参照画面">
@@ -47,7 +47,7 @@
   "name": "react-native-router-fluxのonRightをカスタマイズする",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/rnrf-logo.png",
   "datePublished": "2019-03-14T15:00:00.000Z",
-  "dateModified": "2019-03-15T08:06:16.397Z",
+  "dateModified": "2019-03-15T13:21:16.700Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/03/rnrf-customizable-onright.html"
@@ -126,8 +126,8 @@
 <p>今回はアプリのNavBarの右側にあるボタンをクリックした時に、次の画面にpropsを渡したいようなユースケースを想定しています。例えば参照画面から編集画面に移動するときなどです。<br>ボタンは次のイメージのような感じです。</p>
 <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/rnrf1.png" width="350">
 <p>この時react-native-router-fluxは<code>onRight</code>を発火するのですが、これに動的に値を渡すために少し工夫が必要でした。</p>
-<h2 id="通常のonRightの定義方法"><a href="#通常のonRightの定義方法" class="headerlink" title="通常のonRightの定義方法"></a>通常のonRightの定義方法</h2><p>「プロフィール」と「プロフィール編集」ページを想像してみましょう。「プロフィール」ページの編集ボタンをクリックすると「プロフィール編集」ページに移動します。この時、react-native-router-fluxの<code>Actions</code>に<strong>商品IDを渡して次の画面で利用できるようにしたい</strong>です。</p>
-<p>次のコードは通常の<code>Router</code>設定です。<br><code>onRight</code>は<code>Scene</code>と一緒に定義してあり、期待通り「プロフィール編集」しますが、商品IDを値を渡すことはできません。</p>
+<h2 id="通常のonRightの定義方法"><a href="#通常のonRightの定義方法" class="headerlink" title="通常のonRightの定義方法"></a>通常のonRightの定義方法</h2><p>「プロフィール」と「プロフィール編集」ページを想像してみましょう。「プロフィール」ページの編集ボタンをクリックすると「プロフィール編集」ページに移動します。この時、react-native-router-fluxの<code>Actions</code>に<strong>プロフィールIDを渡して次の画面で利用できるようにしたい</strong>です。</p>
+<p>次のコードは通常の<code>Router</code>設定です。<br><code>onRight</code>は<code>Scene</code>と一緒に定義してあり、期待通り「プロフィール編集」しますが、プロフィールIDを値を渡すことはできません。</p>
 <pre class="line-numbers language-ts"><code class="language-ts"><span class="token comment" spellcheck="true">// AppRoute.tsx</span>
   <span class="token operator">...</span>
   <span class="token operator">&lt;</span>Scene 
@@ -144,7 +144,7 @@
   <span class="token operator">/</span><span class="token operator">></span>
   <span class="token operator">...</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="onRightをComponentの中で定義する"><a href="#onRightをComponentの中で定義する" class="headerlink" title="onRightをComponentの中で定義する"></a>onRightをComponentの中で定義する</h2><p><code>onRight</code>に商品IDを渡すためには、「プロフィール」ページの中で<code>onRight</code>ハンドラを<strong>上書き</strong>して、商品IDを渡すようにしなければなりません。<br><code>onRight</code>はpropsで渡されてくる<code>navigation.setParams()</code>にて置き換えできるので、<code>componentWillMount</code>でコンポーネントがMountされた時に上書きしましょう。</p>
+<h2 id="onRightをComponentの中で定義する"><a href="#onRightをComponentの中で定義する" class="headerlink" title="onRightをComponentの中で定義する"></a>onRightをComponentの中で定義する</h2><p><code>onRight</code>にプロフィールIDを渡すためには、「プロフィール」ページの中で<code>onRight</code>ハンドラを<strong>上書き</strong>して、IDを渡せるようにしなければなりません。<br><code>onRight</code>はpropsで渡されてくる<code>navigation.setParams()</code>にて置き換えできるので、<code>componentWillMount</code>でコンポーネントがMountされた時に上書きしましょう。</p>
 <pre class="line-numbers language-ts"><code class="language-ts"><span class="token comment" spellcheck="true">// Profile.tsx</span>
 <span class="token keyword">export</span> Profile <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>ProfileProps<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token operator">></span> <span class="token punctuation">{</span>
   <span class="token function">componentWillMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -154,8 +154,8 @@
   <span class="token punctuation">}</span>
   <span class="token keyword">private</span> onRight <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Press onRight!!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// ここでActionsに商品IDを渡す</span>
-    Actions<span class="token punctuation">.</span><span class="token function">page_profile_edit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> itemId<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// ここでActionsにプロフィールIDを渡す</span>
+    Actions<span class="token punctuation">.</span><span class="token function">page_profile_edit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> profileId<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">}</span>
   <span class="token operator">...</span>
 <span class="token punctuation">}</span>
