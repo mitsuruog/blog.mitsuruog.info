@@ -23,10 +23,10 @@ react-native-router-fluxで毎日頭を悩ませています。
 
 ## 通常のonRightの定義方法
 
-「プロフィール」と「プロフィール編集」ページを想像してみましょう。「プロフィール」ページの編集ボタンをクリックすると「プロフィール編集」ページに移動します。この時、react-native-router-fluxの`Actions`に**商品IDを渡して次の画面で利用できるようにしたい**です。
+「プロフィール」と「プロフィール編集」ページを想像してみましょう。「プロフィール」ページの編集ボタンをクリックすると「プロフィール編集」ページに移動します。この時、react-native-router-fluxの`Actions`に**プロフィールIDを渡して次の画面で利用できるようにしたい**です。
 
 次のコードは通常の`Router`設定です。
-`onRight`は`Scene`と一緒に定義してあり、期待通り「プロフィール編集」しますが、商品IDを値を渡すことはできません。
+`onRight`は`Scene`と一緒に定義してあり、期待通り「プロフィール編集」しますが、プロフィールIDを値を渡すことはできません。
 
 ```ts
 // AppRoute.tsx
@@ -48,7 +48,7 @@ react-native-router-fluxで毎日頭を悩ませています。
 
 ## onRightをComponentの中で定義する
 
-`onRight`に商品IDを渡すためには、「プロフィール」ページの中で`onRight`ハンドラを**上書き**して、商品IDを渡すようにしなければなりません。
+`onRight`にプロフィールIDを渡すためには、「プロフィール」ページの中で`onRight`ハンドラを**上書き**して、IDを渡せるようにしなければなりません。
 `onRight`はpropsで渡されてくる`navigation.setParams()`にて置き換えできるので、`componentWillMount`でコンポーネントがMountされた時に上書きしましょう。
 
 ```ts
@@ -61,8 +61,8 @@ export Profile extends React.Component<ProfileProps, {}> {
   }
   private onRight = () => {
     console.log('Press onRight!!');
-    // ここでActionsに商品IDを渡す
-    Actions.page_profile_edit({ itemId: 1 });
+    // ここでActionsにプロフィールIDを渡す
+    Actions.page_profile_edit({ profileId: 1 });
   }}
   ...
 }
