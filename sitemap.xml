@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2019/04/typescript-string-emun-tips.html</loc>
+    
+    <lastmod>2019-04-05T05:37:26.305Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2019/03/typescript-filter-array.html</loc>
     
     <lastmod>2019-03-26T12:44:20.103Z</lastmod>
@@ -472,6 +479,13 @@
   </url>
   
   <url>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-basic.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.557Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html</loc>
     
     <lastmod>2017-12-10T08:09:17.557Z</lastmod>
@@ -479,9 +493,9 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-basic.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.557Z</lastmod>
+    <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
   </url>
   
@@ -494,13 +508,6 @@
   
   <url>
     <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.556Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -521,7 +528,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
@@ -535,7 +542,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
@@ -843,14 +850,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
+    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2013/12/siernodejs.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/03/gruntcoffeescript.html</loc>
     
     <lastmod>2017-12-09T15:31:05.654Z</lastmod>
     
