@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2019/04/roblox-setup-leaderboard.html</loc>
+    
+    <lastmod>2019-04-20T14:04:44.913Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2019/04/typescript-string-emun-tips.html</loc>
     
     <lastmod>2019-04-05T05:37:26.305Z</lastmod>
@@ -416,14 +423,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
@@ -437,14 +444,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
@@ -493,7 +500,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -507,7 +514,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -612,14 +619,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
