@@ -14,7 +14,7 @@
 <meta property="og:description" content="TypeScriptの小ネタ。 TypeScriptで再帰的なデータ構造のデータに対して型を適用する方法です。例えば、クローリングしてきたWebサイトの情報など。JSONのkeyがあって、値がstring | number | boolean | Array | Objectになる可能性がある面倒なやつです。 普通に考えると、[key: string]のIndex signatureとUnion">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/typesctipt-recursive-data-structure-logo.png">
-<meta property="og:updated_time" content="2019-04-26T02:08:46.443Z">
+<meta property="og:updated_time" content="2019-04-26T02:27:58.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TypeScriptで再帰的なデータ構造を型安心にする">
 <meta name="twitter:description" content="TypeScriptの小ネタ。 TypeScriptで再帰的なデータ構造のデータに対して型を適用する方法です。例えば、クローリングしてきたWebサイトの情報など。JSONのkeyがあって、値がstring | number | boolean | Array | Objectになる可能性がある面倒なやつです。 普通に考えると、[key: string]のIndex signatureとUnion">
@@ -47,7 +47,7 @@
   "name": "TypeScriptで再帰的なデータ構造を型安心にする",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/typesctipt-recursive-data-structure-logo.png",
   "datePublished": "2019-04-25T15:00:00.000Z",
-  "dateModified": "2019-04-26T02:08:46.443Z",
+  "dateModified": "2019-04-26T02:27:58.848Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/04/typesctipt-recursive-data-structure.html"
@@ -143,16 +143,16 @@ type JSONValueType <span class="token operator">=</span>
   <span class="token operator">|</span> <span class="token keyword">Array</span><span class="token operator">&lt;</span>JSONValueType<span class="token operator">></span> 
   <span class="token operator">|</span> Object<span class="token operator">&lt;</span>JSONValueType<span class="token operator">></span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>次に<code>Array&lt;JSONValueType&gt;</code>の型定義をします。名前は<code>JSONValueTypeArrray</code>にしましょう。</p>
+<p>次に<code>Array&lt;JSONValueType&gt;</code>の型定義をします。名前は<code>JSONValueTypeArray</code>にしましょう。</p>
 <p>定義するには<code>JSONValueType</code>型のArrayを継承したinterfaceを作成します(ちょっとトリッキーです)。定義した後は、<code>JSONValueType</code>の型定義も置き換えます。</p>
 <pre class="line-numbers language-ts"><code class="language-ts">type JSONValueType <span class="token operator">=</span> 
   <span class="token operator">|</span> <span class="token keyword">string</span> 
   <span class="token operator">|</span> <span class="token keyword">number</span> 
   <span class="token operator">|</span> <span class="token keyword">boolean</span> 
-  <span class="token operator">|</span> JSONValueTypeArrray
+  <span class="token operator">|</span> JSONValueTypeArray
   <span class="token operator">|</span> Object<span class="token operator">&lt;</span>JSONValueType<span class="token operator">></span><span class="token punctuation">;</span>
 
-<span class="token keyword">interface</span> <span class="token class-name">JSONValueTypeArrray</span> <span class="token keyword">extends</span> <span class="token class-name">Array</span><span class="token operator">&lt;</span>JSONValueType<span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">interface</span> <span class="token class-name">JSONValueTypeArray</span> <span class="token keyword">extends</span> <span class="token class-name">Array</span><span class="token operator">&lt;</span>JSONValueType<span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>次に<code>Object&lt;JSONValueType&gt;</code>の型定義をします。名前は<code>JSONValueTypeObject</code>にしましょう。</p>
 <p>こちらも定義するには<code>[key: string]</code>のIndex signatureを持って<code>JSONValueType</code>の値を持つinterfaceを定義します。<br>定義した後は、<code>JSONValueType</code>の型定義も置き換えます。</p>
@@ -160,7 +160,7 @@ type JSONValueType <span class="token operator">=</span>
   <span class="token operator">|</span> <span class="token keyword">string</span> 
   <span class="token operator">|</span> <span class="token keyword">number</span> 
   <span class="token operator">|</span> <span class="token keyword">boolean</span> 
-  <span class="token operator">|</span> JSONValueTypeArrray
+  <span class="token operator">|</span> JSONValueTypeArray
   <span class="token operator">|</span> JSONValueTypeObject<span class="token punctuation">;</span>
 
 <span class="token operator">...</span>

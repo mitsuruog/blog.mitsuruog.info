@@ -52,7 +52,7 @@
 			    "@id":"https://blog.mitsuruog.info/2019/04/typesctipt-recursive-data-structure.html"
 			},
 			"datePublished": "2019-04-25T15:00:00.000Z",
-			"dateModified": "2019-04-26T02:08:46.443Z",
+			"dateModified": "2019-04-26T02:27:58.848Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1834,16 +1834,16 @@ type JSONValueType <span class="token operator">=</span>
   <span class="token operator">|</span> <span class="token keyword">Array</span><span class="token operator">&lt;</span>JSONValueType<span class="token operator">&gt;</span> 
   <span class="token operator">|</span> Object<span class="token operator">&lt;</span>JSONValueType<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&#x6B21;&#x306B;<code>Array&lt;JSONValueType&gt;</code>&#x306E;&#x578B;&#x5B9A;&#x7FA9;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;&#x540D;&#x524D;&#x306F;<code>JSONValueTypeArrray</code>&#x306B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>&#x6B21;&#x306B;<code>Array&lt;JSONValueType&gt;</code>&#x306E;&#x578B;&#x5B9A;&#x7FA9;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;&#x540D;&#x524D;&#x306F;<code>JSONValueTypeArray</code>&#x306B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
 <p>&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x306B;&#x306F;<code>JSONValueType</code>&#x578B;&#x306E;Array&#x3092;&#x7D99;&#x627F;&#x3057;&#x305F;interface&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;(&#x3061;&#x3087;&#x3063;&#x3068;&#x30C8;&#x30EA;&#x30C3;&#x30AD;&#x30FC;&#x3067;&#x3059;)&#x3002;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5F8C;&#x306F;&#x3001;<code>JSONValueType</code>&#x306E;&#x578B;&#x5B9A;&#x7FA9;&#x3082;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3059;&#x3002;</p>
 <pre class="line-numbers language-ts"><code class="language-ts">type JSONValueType <span class="token operator">=</span> 
   <span class="token operator">|</span> <span class="token keyword">string</span> 
   <span class="token operator">|</span> <span class="token keyword">number</span> 
   <span class="token operator">|</span> <span class="token keyword">boolean</span> 
-  <span class="token operator">|</span> JSONValueTypeArrray
+  <span class="token operator">|</span> JSONValueTypeArray
   <span class="token operator">|</span> Object<span class="token operator">&lt;</span>JSONValueType<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 
-<span class="token keyword">interface</span> <span class="token class-name">JSONValueTypeArrray</span> <span class="token keyword">extends</span> <span class="token class-name">Array</span><span class="token operator">&lt;</span>JSONValueType<span class="token operator">&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">interface</span> <span class="token class-name">JSONValueTypeArray</span> <span class="token keyword">extends</span> <span class="token class-name">Array</span><span class="token operator">&lt;</span>JSONValueType<span class="token operator">&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x6B21;&#x306B;<code>Object&lt;JSONValueType&gt;</code>&#x306E;&#x578B;&#x5B9A;&#x7FA9;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;&#x540D;&#x524D;&#x306F;<code>JSONValueTypeObject</code>&#x306B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
 <p>&#x3053;&#x3061;&#x3089;&#x3082;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x306B;&#x306F;<code>[key: string]</code>&#x306E;Index signature&#x3092;&#x6301;&#x3063;&#x3066;<code>JSONValueType</code>&#x306E;&#x5024;&#x3092;&#x6301;&#x3064;interface&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5F8C;&#x306F;&#x3001;<code>JSONValueType</code>&#x306E;&#x578B;&#x5B9A;&#x7FA9;&#x3082;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3059;&#x3002;</p>
@@ -1851,7 +1851,7 @@ type JSONValueType <span class="token operator">=</span>
   <span class="token operator">|</span> <span class="token keyword">string</span> 
   <span class="token operator">|</span> <span class="token keyword">number</span> 
   <span class="token operator">|</span> <span class="token keyword">boolean</span> 
-  <span class="token operator">|</span> JSONValueTypeArrray
+  <span class="token operator">|</span> JSONValueTypeArray
   <span class="token operator">|</span> JSONValueTypeObject<span class="token punctuation">;</span>
 
 <span class="token operator">...</span>
