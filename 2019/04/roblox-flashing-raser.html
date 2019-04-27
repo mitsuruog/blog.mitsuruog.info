@@ -14,7 +14,7 @@
 <meta property="og:description" content="Robloxで罠を作る方法です。「罠」とはRobloxゲームの中でよく出てくるもので、これにプレイヤーが触れるとプレイヤーは死にます。 今回の罠は「レーザー」にします。 通常のレーザーの作り方と、点滅するレーザーの作り方を紹介します。 レーザーを作成する通常の罠の作り方は至ってシンプルです。Robloxの公式ページにチュートリアルがあるので、その通りやってみれば作れると思います。  Roblox:">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-flashing-raser-logo.png">
-<meta property="og:updated_time" content="2019-04-27T04:41:11.556Z">
+<meta property="og:updated_time" content="2019-04-27T05:24:32.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robloxで点滅する罠を作る">
 <meta name="twitter:description" content="Robloxで罠を作る方法です。「罠」とはRobloxゲームの中でよく出てくるもので、これにプレイヤーが触れるとプレイヤーは死にます。 今回の罠は「レーザー」にします。 通常のレーザーの作り方と、点滅するレーザーの作り方を紹介します。 レーザーを作成する通常の罠の作り方は至ってシンプルです。Robloxの公式ページにチュートリアルがあるので、その通りやってみれば作れると思います。  Roblox:">
@@ -47,7 +47,7 @@
   "name": "Robloxで点滅する罠を作る",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-flashing-raser-logo.png",
   "datePublished": "2019-04-26T15:00:00.000Z",
-  "dateModified": "2019-04-27T04:41:11.556Z",
+  "dateModified": "2019-04-27T05:24:32.948Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/04/roblox-flashing-raser.html"
@@ -178,8 +178,10 @@ Laser<span class="token punctuation">.</span>Touched<span class="token punctuati
   <span class="token function">wait</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
 <span class="token keyword">end</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>CanCollide = false</code>にした場合、Partの位置を固定しないと、ゲームの世界から落下して見えなくなってしまいます。<br>プロパティウィンドウからPartの<code>Anchored</code>のチェックを付けておいてください。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-flashing-raser3.png" width="350">
 <p>しかし、このままではまだレーザーが消灯時にも罠が作動しています。<br>これは<code>Laser.Touched</code>イベントが<code>Laser.CanCollide = false</code>の場合でも発火してしまうためです。</p>
-<p>これを避けるためには、イベントハンドラの中でレーザーの<code>CanCollide</code>の状態を判定して、点灯中の場合のみ作動させる必要があります。</p>
+<p>これを避けるためには、イベントハンドラの中でレーザーの<code>CanCollide</code>の状態を判定して、点灯中の場合のみ作動させる必要があります。<br>これでレーザーは配置された場所から動かなくなります。</p>
 <pre class="line-numbers language-lua"><code class="language-lua"><span class="token keyword">local</span> Laser <span class="token operator">=</span> script<span class="token punctuation">.</span>Parent
 
 <span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">onPartTouch</span><span class="token punctuation">(</span>otherPart<span class="token punctuation">)</span>

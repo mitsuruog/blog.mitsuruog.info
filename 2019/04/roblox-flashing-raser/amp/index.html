@@ -52,7 +52,7 @@
 			    "@id":"https://blog.mitsuruog.info/2019/04/roblox-flashing-raser.html"
 			},
 			"datePublished": "2019-04-26T15:00:00.000Z",
-			"dateModified": "2019-04-27T04:41:11.556Z",
+			"dateModified": "2019-04-27T05:24:32.948Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1869,8 +1869,10 @@ Laser<span class="token punctuation">.</span>Touched<span class="token punctuati
   <span class="token function">wait</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
 <span class="token keyword">end</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>CanCollide = false</code>&#x306B;&#x3057;&#x305F;&#x5834;&#x5408;&#x3001;Part&#x306E;&#x4F4D;&#x7F6E;&#x3092;&#x56FA;&#x5B9A;&#x3057;&#x306A;&#x3044;&#x3068;&#x3001;&#x30B2;&#x30FC;&#x30E0;&#x306E;&#x4E16;&#x754C;&#x304B;&#x3089;&#x843D;&#x4E0B;&#x3057;&#x3066;&#x898B;&#x3048;&#x306A;&#x304F;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;<br>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x30A6;&#x30A3;&#x30F3;&#x30C9;&#x30A6;&#x304B;&#x3089;Part&#x306E;<code>Anchored</code>&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3092;&#x4ED8;&#x3051;&#x3066;&#x304A;&#x3044;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<div class="amp-img-wrapper"><amp-img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-flashing-raser3.png" width="791" height="582" layout="responsive"></amp-img></div>
 <p>&#x3057;&#x304B;&#x3057;&#x3001;&#x3053;&#x306E;&#x307E;&#x307E;&#x3067;&#x306F;&#x307E;&#x3060;&#x30EC;&#x30FC;&#x30B6;&#x30FC;&#x304C;&#x6D88;&#x706F;&#x6642;&#x306B;&#x3082;&#x7F60;&#x304C;&#x4F5C;&#x52D5;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<br>&#x3053;&#x308C;&#x306F;<code>Laser.Touched</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;<code>Laser.CanCollide = false</code>&#x306E;&#x5834;&#x5408;&#x3067;&#x3082;&#x767A;&#x706B;&#x3057;&#x3066;&#x3057;&#x307E;&#x3046;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x308C;&#x3092;&#x907F;&#x3051;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30E9;&#x306E;&#x4E2D;&#x3067;&#x30EC;&#x30FC;&#x30B6;&#x30FC;&#x306E;<code>CanCollide</code>&#x306E;&#x72B6;&#x614B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x3001;&#x70B9;&#x706F;&#x4E2D;&#x306E;&#x5834;&#x5408;&#x306E;&#x307F;&#x4F5C;&#x52D5;&#x3055;&#x305B;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x308C;&#x3092;&#x907F;&#x3051;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30E9;&#x306E;&#x4E2D;&#x3067;&#x30EC;&#x30FC;&#x30B6;&#x30FC;&#x306E;<code>CanCollide</code>&#x306E;&#x72B6;&#x614B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x3001;&#x70B9;&#x706F;&#x4E2D;&#x306E;&#x5834;&#x5408;&#x306E;&#x307F;&#x4F5C;&#x52D5;&#x3055;&#x305B;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;<br>&#x3053;&#x308C;&#x3067;&#x30EC;&#x30FC;&#x30B6;&#x30FC;&#x306F;&#x914D;&#x7F6E;&#x3055;&#x308C;&#x305F;&#x5834;&#x6240;&#x304B;&#x3089;&#x52D5;&#x304B;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
 <pre class="line-numbers language-lua"><code class="language-lua"><span class="token keyword">local</span> Laser <span class="token operator">=</span> script<span class="token punctuation">.</span>Parent
 
 <span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">onPartTouch</span><span class="token punctuation">(</span>otherPart<span class="token punctuation">)</span>
