@@ -42,7 +42,7 @@ type JSONValueType =
   | Object<JSONValueType>;
 ```
 
-次に`Array<JSONValueType>`の型定義をします。名前は`JSONValueTypeArrray`にしましょう。
+次に`Array<JSONValueType>`の型定義をします。名前は`JSONValueTypeArray`にしましょう。
 
 定義するには`JSONValueType`型のArrayを継承したinterfaceを作成します(ちょっとトリッキーです)。定義した後は、`JSONValueType`の型定義も置き換えます。
 
@@ -51,10 +51,10 @@ type JSONValueType =
   | string 
   | number 
   | boolean 
-  | JSONValueTypeArrray
+  | JSONValueTypeArray
   | Object<JSONValueType>;
 
-interface JSONValueTypeArrray extends Array<JSONValueType> {}
+interface JSONValueTypeArray extends Array<JSONValueType> {}
 ```
 
 次に`Object<JSONValueType>`の型定義をします。名前は`JSONValueTypeObject`にしましょう。
@@ -67,7 +67,7 @@ type JSONValueType =
   | string 
   | number 
   | boolean 
-  | JSONValueTypeArrray
+  | JSONValueTypeArray
   | JSONValueTypeObject;
 
 ...
