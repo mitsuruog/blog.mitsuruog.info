@@ -93,10 +93,16 @@ while true do
 end
 ```
 
+`CanCollide = false`にした場合、Partの位置を固定しないと、ゲームの世界から落下して見えなくなってしまいます。
+プロパティウィンドウからPartの`Anchored`のチェックを付けておいてください。
+
+{% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-flashing-raser3.png 350 %}
+
 しかし、このままではまだレーザーが消灯時にも罠が作動しています。
 これは`Laser.Touched`イベントが`Laser.CanCollide = false`の場合でも発火してしまうためです。
 
 これを避けるためには、イベントハンドラの中でレーザーの`CanCollide`の状態を判定して、点灯中の場合のみ作動させる必要があります。
+これでレーザーは配置された場所から動かなくなります。
 
 ```lua
 local Laser = script.Parent
