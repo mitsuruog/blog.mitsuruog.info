@@ -5,6 +5,7 @@ date: 2019-04-27 0:00:00 +900
 comments: true
 tags:
   - roblox
+  - ロブロックス
 thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-flashing-raser-logo.png
 ---
 
