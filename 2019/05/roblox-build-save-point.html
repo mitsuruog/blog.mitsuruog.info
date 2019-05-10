@@ -14,7 +14,7 @@
 <meta property="og:description" content="今日はRobloxでセーブポイントを作ってみます。 セーブポイントとは、プレイヤーが死んだ時に任意の場所から復活できるものです。Obby(Obstacle course)と呼ばれる障害物を超えてゴールを目指すタイプのゲームにてよく見かけます。 完成形のプロジェクト構造はこちらです。  今回はWorkspaceにPartを4つとServerScriptが1つです。 セーブポイントをマップに配置するま">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-save-point-logo.png">
-<meta property="og:updated_time" content="2019-05-10T13:27:45.708Z">
+<meta property="og:updated_time" content="2019-05-10T13:33:25.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robloxでセーブポイントを作る">
 <meta name="twitter:description" content="今日はRobloxでセーブポイントを作ってみます。 セーブポイントとは、プレイヤーが死んだ時に任意の場所から復活できるものです。Obby(Obstacle course)と呼ばれる障害物を超えてゴールを目指すタイプのゲームにてよく見かけます。 完成形のプロジェクト構造はこちらです。  今回はWorkspaceにPartを4つとServerScriptが1つです。 セーブポイントをマップに配置するま">
@@ -47,7 +47,7 @@
   "name": "Robloxでセーブポイントを作る",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-save-point-logo.png",
   "datePublished": "2019-05-09T15:00:00.000Z",
-  "dateModified": "2019-05-10T13:27:45.708Z",
+  "dateModified": "2019-05-10T13:33:25.902Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/05/roblox-build-save-point.html"
@@ -186,25 +186,25 @@ table<span class="token punctuation">.</span><span class="token function">sort</
 <span class="token punctuation">...</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>続いて、スタート地点を変更してみましょう。</p>
-<p>まず、触れたのがプレイヤーかどうか判定してから、現在の復活地点を取得します。<br>触れらセープポイントが、現在の復活地点より先の場合は、スタート地点を変更します。</p>
+<p>まず、触れたのがプレイヤーかどうか判定してから、現在の復活地点を取得します。<br>もし触れたセープポイントが現在の復活地点より先の場合、スタート地点を変更します。</p>
 <p>スタート地点を変更した場合にログを出力するようにしておきます。</p>
 <pre class="line-numbers language-lua"><code class="language-lua"><span class="token punctuation">...</span>
 
 <span class="token comment" spellcheck="true">-- セーブポイントの設定処理</span>
 <span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">setUpCheckpoint</span><span class="token punctuation">(</span>checkpoint<span class="token punctuation">)</span>
+
   <span class="token comment" spellcheck="true">-- セーブポイントに触れた時の処理</span>
   checkpoint<span class="token punctuation">.</span>Touched<span class="token punctuation">:</span><span class="token function">Connect</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>part<span class="token punctuation">)</span>
+
     <span class="token comment" spellcheck="true">-- プレイヤーかどうかを判定し、プレイヤーオブジェクトの取得する</span>
     <span class="token keyword">local</span> humanoid <span class="token operator">=</span> part<span class="token punctuation">.</span>Parent<span class="token punctuation">:</span><span class="token function">FindFirstChild</span><span class="token punctuation">(</span><span class="token string">"Humanoid"</span><span class="token punctuation">)</span>
     <span class="token keyword">local</span> player <span class="token operator">=</span> Players<span class="token punctuation">:</span><span class="token function">FindFirstChild</span><span class="token punctuation">(</span>part<span class="token punctuation">.</span>Parent<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> humanoid <span class="token keyword">and</span> player <span class="token keyword">then</span>
 
+    <span class="token keyword">if</span> humanoid <span class="token keyword">and</span> player <span class="token keyword">then</span>
       <span class="token comment" spellcheck="true">-- 現在の復活地点を取得する</span>
       <span class="token keyword">local</span> currentCheckPoint <span class="token operator">=</span> player<span class="token punctuation">.</span>RespawnLocation<span class="token punctuation">.</span>Name
-
       <span class="token comment" spellcheck="true">-- セーブポイントの比較する</span>
       <span class="token keyword">if</span> <span class="token function">tonumber</span><span class="token punctuation">(</span>checkpoint<span class="token punctuation">.</span>Name<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token function">tonumber</span><span class="token punctuation">(</span>currentCheckPoint<span class="token punctuation">)</span> <span class="token keyword">then</span>
-
         <span class="token comment" spellcheck="true">-- スタート地点を変更して、ログを出力する</span>
         player<span class="token punctuation">.</span>RespawnLocation <span class="token operator">=</span> checkpoint
         <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"RespawnLocation has been changed to "</span> <span class="token operator">..</span> checkpoint<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>

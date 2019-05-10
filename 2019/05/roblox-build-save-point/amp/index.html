@@ -52,7 +52,7 @@
 			    "@id":"https://blog.mitsuruog.info/2019/05/roblox-build-save-point.html"
 			},
 			"datePublished": "2019-05-09T15:00:00.000Z",
-			"dateModified": "2019-05-10T13:27:45.708Z",
+			"dateModified": "2019-05-10T13:33:25.902Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1875,25 +1875,25 @@ table<span class="token punctuation">.</span><span class="token function">sort</
 <span class="token punctuation">...</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&#x7D9A;&#x3044;&#x3066;&#x3001;&#x30B9;&#x30BF;&#x30FC;&#x30C8;&#x5730;&#x70B9;&#x3092;&#x5909;&#x66F4;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x307E;&#x305A;&#x3001;&#x89E6;&#x308C;&#x305F;&#x306E;&#x304C;&#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x304B;&#x3069;&#x3046;&#x304B;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x304B;&#x3089;&#x3001;&#x73FE;&#x5728;&#x306E;&#x5FA9;&#x6D3B;&#x5730;&#x70B9;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x89E6;&#x308C;&#x3089;&#x30BB;&#x30FC;&#x30D7;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x304C;&#x3001;&#x73FE;&#x5728;&#x306E;&#x5FA9;&#x6D3B;&#x5730;&#x70B9;&#x3088;&#x308A;&#x5148;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x30B9;&#x30BF;&#x30FC;&#x30C8;&#x5730;&#x70B9;&#x3092;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x307E;&#x305A;&#x3001;&#x89E6;&#x308C;&#x305F;&#x306E;&#x304C;&#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x304B;&#x3069;&#x3046;&#x304B;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x304B;&#x3089;&#x3001;&#x73FE;&#x5728;&#x306E;&#x5FA9;&#x6D3B;&#x5730;&#x70B9;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x3082;&#x3057;&#x89E6;&#x308C;&#x305F;&#x30BB;&#x30FC;&#x30D7;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x304C;&#x73FE;&#x5728;&#x306E;&#x5FA9;&#x6D3B;&#x5730;&#x70B9;&#x3088;&#x308A;&#x5148;&#x306E;&#x5834;&#x5408;&#x3001;&#x30B9;&#x30BF;&#x30FC;&#x30C8;&#x5730;&#x70B9;&#x3092;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 <p>&#x30B9;&#x30BF;&#x30FC;&#x30C8;&#x5730;&#x70B9;&#x3092;&#x5909;&#x66F4;&#x3057;&#x305F;&#x5834;&#x5408;&#x306B;&#x30ED;&#x30B0;&#x3092;&#x51FA;&#x529B;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;</p>
 <pre class="line-numbers language-lua"><code class="language-lua"><span class="token punctuation">...</span>
 
 <span class="token comment" spellcheck="true">-- &#x30BB;&#x30FC;&#x30D6;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x306E;&#x8A2D;&#x5B9A;&#x51E6;&#x7406;</span>
 <span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">setUpCheckpoint</span><span class="token punctuation">(</span>checkpoint<span class="token punctuation">)</span>
+
   <span class="token comment" spellcheck="true">-- &#x30BB;&#x30FC;&#x30D6;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x306B;&#x89E6;&#x308C;&#x305F;&#x6642;&#x306E;&#x51E6;&#x7406;</span>
   checkpoint<span class="token punctuation">.</span>Touched<span class="token punctuation">:</span><span class="token function">Connect</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>part<span class="token punctuation">)</span>
+
     <span class="token comment" spellcheck="true">-- &#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x304B;&#x3069;&#x3046;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3001;&#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x53D6;&#x5F97;&#x3059;&#x308B;</span>
     <span class="token keyword">local</span> humanoid <span class="token operator">=</span> part<span class="token punctuation">.</span>Parent<span class="token punctuation">:</span><span class="token function">FindFirstChild</span><span class="token punctuation">(</span><span class="token string">&quot;Humanoid&quot;</span><span class="token punctuation">)</span>
     <span class="token keyword">local</span> player <span class="token operator">=</span> Players<span class="token punctuation">:</span><span class="token function">FindFirstChild</span><span class="token punctuation">(</span>part<span class="token punctuation">.</span>Parent<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> humanoid <span class="token keyword">and</span> player <span class="token keyword">then</span>
 
+    <span class="token keyword">if</span> humanoid <span class="token keyword">and</span> player <span class="token keyword">then</span>
       <span class="token comment" spellcheck="true">-- &#x73FE;&#x5728;&#x306E;&#x5FA9;&#x6D3B;&#x5730;&#x70B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;</span>
       <span class="token keyword">local</span> currentCheckPoint <span class="token operator">=</span> player<span class="token punctuation">.</span>RespawnLocation<span class="token punctuation">.</span>Name
-
       <span class="token comment" spellcheck="true">-- &#x30BB;&#x30FC;&#x30D6;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x306E;&#x6BD4;&#x8F03;&#x3059;&#x308B;</span>
       <span class="token keyword">if</span> <span class="token function">tonumber</span><span class="token punctuation">(</span>checkpoint<span class="token punctuation">.</span>Name<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token function">tonumber</span><span class="token punctuation">(</span>currentCheckPoint<span class="token punctuation">)</span> <span class="token keyword">then</span>
-
         <span class="token comment" spellcheck="true">-- &#x30B9;&#x30BF;&#x30FC;&#x30C8;&#x5730;&#x70B9;&#x3092;&#x5909;&#x66F4;&#x3057;&#x3066;&#x3001;&#x30ED;&#x30B0;&#x3092;&#x51FA;&#x529B;&#x3059;&#x308B;</span>
         player<span class="token punctuation">.</span>RespawnLocation <span class="token operator">=</span> checkpoint
         <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">&quot;RespawnLocation has been changed to &quot;</span> <span class="token operator">..</span> checkpoint<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>
