@@ -4,8 +4,8 @@ title: "Circle CI 2.0でフロントエンドをビルドする"
 date: 2017-11-28 0:00:00 +900
 comments: true
 tags:
-  - circleci2
-  - ci
+  - circleci
+  - unit test
 thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2017/circleci2.0.png
 ---
 [create-react-app](https://github.com/facebookincubator/create-react-app)で作っているReactアプリをCircle CI 2.0でビルドする手順について紹介します。
