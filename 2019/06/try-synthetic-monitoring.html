@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた | I am mitsuruog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta name="description" content="先日、参加したhtml5j パフォーマンス部 第五回勉強会 ― 改正民法債権法と非機能要求としてのWebパフォーマンスの勉強会にて「Synthetic Monitoring」なる聞きなれない単語が出てきたので、学習のためこのブロクのパフォーマンスを1週間測定してみた話です。 勉強会の内容をみて「Synthetic Monitoringとは？」っと興味を持った方には、読むと雰囲気が伝わるのではと思い">
+<meta name="keywords" content="web performance">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた">
+<meta property="og:url" content="https://blog.mitsuruog.info/2019/06/try-synthetic-monitoring.html">
+<meta property="og:site_name" content="I am mitsuruog">
+<meta property="og:description" content="先日、参加したhtml5j パフォーマンス部 第五回勉強会 ― 改正民法債権法と非機能要求としてのWebパフォーマンスの勉強会にて「Synthetic Monitoring」なる聞きなれない単語が出てきたので、学習のためこのブロクのパフォーマンスを1週間測定してみた話です。 勉強会の内容をみて「Synthetic Monitoringとは？」っと興味を持った方には、読むと雰囲気が伝わるのではと思い">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint-logo.png">
+<meta property="og:updated_time" content="2019-06-28T14:19:44.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた">
+<meta name="twitter:description" content="先日、参加したhtml5j パフォーマンス部 第五回勉強会 ― 改正民法債権法と非機能要求としてのWebパフォーマンスの勉強会にて「Synthetic Monitoring」なる聞きなれない単語が出てきたので、学習のためこのブロクのパフォーマンスを1週間測定してみた話です。 勉強会の内容をみて「Synthetic Monitoringとは？」っと興味を持った方には、読むと雰囲気が伝わるのではと思い">
+<meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint-logo.png">
+  <link rel="icon" href="/favicon.ico">
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
+  
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた",
+  "name": "Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた",
+  "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint-logo.png",
+  "datePublished": "2019-06-28T15:00:00.000Z",
+  "dateModified": "2019-06-28T14:19:44.477Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.mitsuruog.info/2019/06/try-synthetic-monitoring.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "mitsuruog",
+    "image": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320",
+    "description": "I am a frontend developer and happy hacking every time for learning something new."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mitsuruog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320"
+    }
+  }
+}
+</script>
+
+  
+    <link rel="amphtml" href="https://blog.mitsuruog.info/2019/06/try-synthetic-monitoring/amp/index.html">
+  
+  
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  
+  
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7XMZ2');</script>
+    <!-- End Google Tag Manager -->
+  
+
+
+  <header class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-item">
+      I am mitsuruog
+    </a>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="columns">
+      <div class="main column is-8">
+        <article class="post">
+  <figure class="post-thumbnail">
+    
+  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint-logo.png" class="thumbnail " alt="Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた">
+
+
+  </figure>
+  <span>2019-06-29
+</span>
+  <h1 class="title">Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた</h1>
+  
+  <div class="tags">
+    
+      <a class="tag" href="/tags/web-performance/">web performance</a>
+    
+  </div>
+
+
+  <div class="content">
+    <p>先日、参加した<a href="https://atnd.org/events/106358" target="_blank" rel="noopener">html5j パフォーマンス部 第五回勉強会 ― 改正民法債権法と非機能要求としてのWebパフォーマンス</a>の勉強会にて<strong>「Synthetic Monitoring」</strong>なる聞きなれない単語が出てきたので、学習のためこのブロクのパフォーマンスを1週間測定してみた話です。</p>
+<p>勉強会の内容をみて「Synthetic Monitoringとは？」っと興味を持った方には、読むと雰囲気が伝わるのではと思います。</p>
+<p>Synthetic Monitoringについては、当日の竹洞さんの資料や動画を確認してください。</p>
+<ul>
+<li>(Slide) <a href="https://www.slideshare.net/takehora/web-150634918" target="_blank" rel="noopener">https://www.slideshare.net/takehora/web-150634918</a></li>
+<li>(Video) <a href="https://www.youtube.com/watch?v=R44_wzrkVMw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=R44_wzrkVMw</a></li>
+</ul>
+<blockquote>
+<p>注意)</p>
+<ul>
+<li>この記事の内容は、<a href="https://spelldata.co.jp/about/representative.html" target="_blank" rel="noopener">Spelldata 代表取締役 竹洞さん</a>に測定を協力していただき、いろいろ教授していただい内容を元にしています。しかし、私自身が曲解・誤解している部分もあると思いますので、内容は正確でない可能性があります。ご注意ください。</li>
+<li>個人ブログを1週間計測しただけのごく限られた条件下の話であるため、この記事の内容をWebパフォーマンス全般について語っているような形で解釈しないでください。また計測値についても鵜呑みにしないでください。ご自身のWebサイトの状態を正確に知るためには、実際に測定して専門家に分析を依頼してください。</li>
+<li>ブログ書きながら画像のキャプチャを撮っているため、若干計測の時間がずれているものがあります。雰囲気を感じるには十分だと思いそのままにしています。</li>
+</ul>
+</blockquote>
+<h2 id="測定条件"><a href="#測定条件" class="headerlink" title="測定条件"></a>測定条件</h2><p>測定した条件は次の通りです。</p>
+<ul>
+<li>測定したページ: <a href="https://blog.mitsuruog.info/2018/03/how-to-learn-css-1">https://blog.mitsuruog.info/2018/03/how-to-learn-css-1</a></li>
+<li>測定期間: 2019/6/21 ~ 2019/6/28</li>
+<li>測定ネットワーク:<ul>
+<li>4G</li>
+<li>4Gエミュレート</li>
+<li>Desktop</li>
+</ul>
+</li>
+<li>測定地点:<ul>
+<li>Tokyo: NTT</li>
+<li>Tokyo: KDDI</li>
+<li>OSAKA: NTT</li>
+</ul>
+</li>
+<li>測定間隔: 各測定地点15分間隔</li>
+<li>測定方法: Catchpointを使ったSynthetic Monitoring</li>
+</ul>
+<blockquote>
+<p>注意)</p>
+<ul>
+<li>3タイプの測定ネットワークで測定を行なっていますが、Desktop以外のネットワークでサイトが遅すぎて測定がタイムアウトしてしまっていたため、以降の測定値はすべてDesktopで測定した内容です。</li>
+</ul>
+</blockquote>
+<h2 id="このブログの測定結果"><a href="#このブログの測定結果" class="headerlink" title="このブログの測定結果"></a>このブログの測定結果</h2><h3 id="直近1時間分布を見る"><a href="#直近1時間分布を見る" class="headerlink" title="直近1時間分布を見る"></a>直近1時間分布を見る</h3><p>まずはじめに直近1時間のパフォーマンス推移の散布図を見てみます。メトリクスは次の3つです。</p>
+<ul>
+<li>Render Start (ms)</li>
+<li>Document Complete (ms)</li>
+<li>Speed Index</li>
+</ul>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint1-1.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint1-2.png">
+<ul>
+<li>Render Start (ms): 700ms~2sくらい</li>
+<li>Document Complete (ms): 2s~3sくらい</li>
+<li>Speed Index: 1,000~2,000</li>
+</ul>
+<h3 id="直近24時間分布を見る"><a href="#直近24時間分布を見る" class="headerlink" title="直近24時間分布を見る"></a>直近24時間分布を見る</h3><p>直近1時間では信頼性に欠けるので、範囲を24時間に広げます。</p>
+<p>Render Startの中央値が1,298msでDocument Completeの中央値が2,786msなので、<br>残念ですが遅いサイト確定です。</p>
+<p>いくつか<strong>外れ値</strong>(赤丸で括った部分)の存在が確認できます。外れ値は後ほどのWaterfallを見てみます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint1-3.png">
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint1-4.png">
+<p>俯瞰して見ると、ブログの速度は次の関係が成立しそうです。</p>
+<ul>
+<li>(速い) OSAKA: NTT &gt; Tokyo: NTT &gt; Tokyo: KDDI (遅い)</li>
+</ul>
+<h2 id="単一測定点のWaterfallを見る"><a href="#単一測定点のWaterfallを見る" class="headerlink" title="単一測定点のWaterfallを見る"></a>単一測定点のWaterfallを見る</h2><p>だいたいの傾向がわかったので、中央値あたりにある測定点のWaterfallを見てみます。</p>
+<p>この測定点の測定データでは、Render Startが1,800msでDocument Completeまでが3,100msです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-1.png">
+<p>どのあたりにボトルネックがあるかというと、下の図から次のリクエストに問題がありそうです。()の中は用途です。</p>
+<ul>
+<li>ws-fe.assoc-amazon.com（Amazonアフィリエイト）</li>
+<li>blog.mitsuruog.info（HTML配信）</li>
+<li>s3-ap-northeast-1.amazonaws.com（画像配信）</li>
+<li>i.creativecommons.org（画像配信）</li>
+<li>maxcdn.bootstrapcdn.com（FontAwesome CDN）</li>
+<li>rcm-fe.amazon-adsystem.com（Amazonアフィリエイト）</li>
+<li>Render StartからJavaScriptの実行時間が1,500msくらいある</li>
+</ul>
+<p>個別に見ていきます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-2.png">
+<p>まずHTML配信から。</p>
+<p>このサイトは<a href="https://www.netlify.com" target="_blank" rel="noopener">Netlify</a>(Freeプラン)を使っているのですが、ここでのHTML配信が遅延しているようです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-3.png">
+<blockquote>
+<p><a href="https://www.netlify.com/pricing/" target="_blank" rel="noopener">Netlify Pricing</a>を確認するとFreeプランでもNetlify Edge featuresのGlobal CDN deploymentsが有効になっているので、単純にこのCDNが遅いだけかもしれません。<br>（有料化したら別の高速化オプションがあるかもしれませんが。。。）</p>
+</blockquote>
+<p>次にFontAwesomeのCDN。遅いですね。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-4.png">
+<p>続いて画像配信。このサイトの画像はS3から直接配信しています。</p>
+<p>S3の場合は、画像の最初の1バイト目が配信されるまでは速いのですが、ファイルサイズが大きくなると急激にデータの送り出しが遅くなるケースがあるようです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-5.png">
+<p>続いて、クリエイティブ・コモンズの画像。<br>（こんな小さな画像の配信でこんなに遅延するとは。。。）</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-6.png">
+<p>そして、Amazonアフィリエイト。<br>（Redirect!? 一体こいつは何をしているんだ。。。）</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-7.png">
+<p>最後にJavaScriptの実行時間です。1,500msくらいあります。</p>
+<blockquote>
+<p>この時間はCatchpointでは測定できないので、Developer toolのプロファイルで測定・分析する必要があります。</p>
+</blockquote>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint2-8.png">
+<p>今日は、パフォーマンス改善の話はしないので、ボトルネックの把握だけにします。<br>ここまでで判明した事実として、このブログは次のボトルネックがあるようです。</p>
+<ul>
+<li>HTML配信が遅い</li>
+<li>S3からの画像配信が遅い</li>
+<li>FontAwesomeのCDNとクリエイティブコモンズの画像配信が遅い</li>
+<li>Amazonのアフィリエイトが遅い</li>
+<li>JavaScriptの実行時間が遅い</li>
+</ul>
+<p>続いて代表的な外れ値のWaterfallを確認してみます。</p>
+<h3 id="外れ値-S3遅延のケース"><a href="#外れ値-S3遅延のケース" class="headerlink" title="外れ値(S3遅延のケース)"></a>外れ値(S3遅延のケース)</h3><p>まず、Render Startが一番遅延している測定点のWaterfallを確認します。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint3-1.png">
+<p>Render Startまで10s掛かっています。<br>ボトルネックを見ると、S3が遅延していることがわかります。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint3-2.png">
+<p>上のボトルネックでも判明している、S3からの画像の送り出しの部分が非常に遅延していますね。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint3-3.png">
+<h2 id="外れ値-JavaScript実行による遅延のケース"><a href="#外れ値-JavaScript実行による遅延のケース" class="headerlink" title="外れ値(JavaScript実行による遅延のケース)"></a>外れ値(JavaScript実行による遅延のケース)</h2><p>続いて、Document Completeが遅延している測定点を見てみます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint4-1.png">
+<p>Render StartからDocument Completeまで5s掛かっていることがわかります。</p>
+<p>ボトルネックを見ると遅延していますが、上のRender Startの中央値1,298msと比べるとRender Startの1,397msというのは、そこまで外れ値でななさそうです。<br>（つまり、通常通りの遅延であって、ここまで異常値になった原因ではない。）</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint4-2.png">
+<p>異常箇所はどこにあるかというと、JavaScriptの実行時間にありました。</p>
+<p>ここの分析にはDeveloper toolでプロファイルの測定をする必要がありますが、このタイミングを捉えるのは非常に根気がいる作業であることが容易に想像できます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint4-3.png">
+<h2 id="ボトルネック通信の品質の揺らぎを見る"><a href="#ボトルネック通信の品質の揺らぎを見る" class="headerlink" title="ボトルネック通信の品質の揺らぎを見る"></a>ボトルネック通信の品質の揺らぎを見る</h2><p>続いて各ボトルネックの品質がどれくらい幅があるか見てみます。これは継続的にデータを収集するSynthetic Monitoringならではの面白さだと感じます。</p>
+<p>ちなみにパフォーマンスにおいて品質とは<strong>「速さ」</strong>です。</p>
+<h3 id="ボトルネック通信をピックアップして分布を見る"><a href="#ボトルネック通信をピックアップして分布を見る" class="headerlink" title="ボトルネック通信をピックアップして分布を見る"></a>ボトルネック通信をピックアップして分布を見る</h3><p>まず、測定した通信の中で遅いものをピックアップします。<br>今回は次の3つをピックアップしました。</p>
+<ul>
+<li><code>https://blog.mitsuruog.info/2018/03/how-to-learn-css-1</code><ul>
+<li>S3から配信している画像の中でも特別にサイズが大きいもの(サイズは1M)</li>
+</ul>
+</li>
+<li><code>https://i.creativecommons.org/l/by-sa/4.0/88x31.png</code><ul>
+<li>クリエイティブコモンズの画像</li>
+</ul>
+</li>
+<li><code>https://rcm-fe.amazon-adsystem.com/e/cm</code><ul>
+<li>AmazonのADシステムの何か？</li>
+</ul>
+</li>
+</ul>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint5−1.png">
+<p>まず分布をみます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint5−2.png">
+<p>このままでは何もわからないので、累積分布関数(Cumulative Distribution Function)をかけます。</p>
+<p>累積分布を見ると<strong>どれくらいの確率でどれくらいの速度が出ているか</strong>がわかります。<br>下のグラフを眺めていると、途中までは速度が速く一定ですが、急に遅くなるポイントがあります。これを<strong>「変曲点」</strong>と呼び、品質を見る上で重要なポイントです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint5−3.png">
+<p>個別にみてみます。</p>
+<h3 id="S3画像配信の品質"><a href="#S3画像配信の品質" class="headerlink" title="S3画像配信の品質"></a>S3画像配信の品質</h3><p>まず分布をみます。<br>中央値は238msですが、分布を見ると速いケースと遅いケースに二極化しているようです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint6−1.png">
+<p>次に累積分布をみます。変曲点は60パーセンタイルと99パーセンタイルの2つでした。<br>つまり「60%の確率で速く、残りの39%の確率は非常に遅く、1%の確率で信じられないくらい遅い」ということです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint6−2.png">
+<p>このグラフのように速度のばらつきも大きいため、大きいサイズの画像をS3から配信した場合は<strong>品質が悪い</strong>と言えます。</p>
+<h3 id="クリエイティブコモンズとAmazonのADシステムの品質"><a href="#クリエイティブコモンズとAmazonのADシステムの品質" class="headerlink" title="クリエイティブコモンズとAmazonのADシステムの品質"></a>クリエイティブコモンズとAmazonのADシステムの品質</h3><p>2つまとめて分布を見てみます。<br>分布を見るとクリエイティブコモンズの方が、AmazonのADシステムよりも高速なことが多いことがわかります。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint7−1.png">
+<p>次に累積分布をみます。変曲点は共に99パーセンタイルでした。<br>つまり「99%の確率で遅く、1%の確率で信じられないくらい遅い」ということです。</p>
+<p>このような累積分布を示す場合は、(遅いけど)<strong>品質が良い</strong>と言えます。<br>下のグラフを見ると、クリエイティブコモンズは品質が一定ですが、AmazonのADシステムは少し変動の幅があるため、クリエイティブコモンズの方が品質が良いと言えます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint7−2.png">
+<h3 id="NetlifyからのHTML配信の品質"><a href="#NetlifyからのHTML配信の品質" class="headerlink" title="NetlifyからのHTML配信の品質"></a>NetlifyからのHTML配信の品質</h3><p>NetlifyからのHTML配信の分布をみてみます。</p>
+<blockquote>
+<p>記事を書いている間にとんでもない外れ値が出ていました。</p>
+</blockquote>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint8−1.png">
+<p>次に累積分布をみます。<br>品質は安定していますが、1つだけ異常な測定値がありました。これは一体なんなのでしょうか。。。？</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint8−2.png">
+<p>異常点のWaterfallを見てみます。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint8−3.png">
+<p>なんとDNS failure。サイトに到達できてない。</p>
+<p>今回の計測では、これの原因の推測まではできません。<br>しかし、1ヶ月や1年などの長い周期で測定していた場合、何かの傾向(定期的なシステムメンテナンスなど)が読み解けるかもしれませんね。</p>
+<h3 id="S3から小さな画像を配信してみたらどうか？"><a href="#S3から小さな画像を配信してみたらどうか？" class="headerlink" title="S3から小さな画像を配信してみたらどうか？"></a>S3から小さな画像を配信してみたらどうか？</h3><p>S3から大きい画像を配信した場合は遅延することがわかったのですが、小さな画像の場合はどうでしょうか？<br>小さな画像の通信をいくつかピックアップして分布を見てみます。</p>
+<p>中央値は25msなので割と高速ですが、分布にばらつきがみられ品質はあまり良さそうではないです。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint9-1.png">
+<p>累積分布を見てみます。<br>品質が一定ではない(気がする)。<br>CloudFrontなどのCDNから配信した場合を直接測定したことがないので、正直なんとも言えませんね。CDNを測定してみると違いがわかると思います。</p>
+<img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint9-2.png">
+<p>ちょっと疲れてきたので、このあたりにします。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>自分のブログのパフォーマンスをSynthetic Monitoringで1週間測定してみて、通信上のボトルネックについてどれくらいの品質なのか分析してみました。</p>
+<p>わかったこととしては、このブログは遅いが、HTML配信や画像配信、JavaScript実行のプロファイル分析をすることで高速化する可能性があるということです。<br>また、品質管理の観点では、品質は平均ではなく分散であり、累積分布をみることでどれくらい安定しているか判断できるようになることがわかりました。</p>
+<p>継続的に同じ条件で測定を行うことで、別の視点からの比較・分析がやりやすいことがわかりました。</p>
+<p>とはいえ、Catchpointは個人で使うには高すぎるので、別の代替えサービスを探して測定を続けたいと思います。</p>
+<h3 id="謝辞"><a href="#謝辞" class="headerlink" title="謝辞"></a>謝辞</h3><p>個人でSynthetic Monitoringを試してみようと思ったところ、どのサービスも個人で利用するためには敷居が高すぎて頓挫しているところを、「1週間なら試しに測定してもいいよ」と言ってくれただけでなく、後日、丁寧な解説用の動画を作成してくれた竹洞さんに最大の感謝を送ります。</p>
+
+  </div>
+  
+<nav class="footer-nav">
+  
+  
+    <div class="footer-nav__next">
+      <div class="footer-nav__label">
+        古い記事
+      </div>
+      <a href="/2019/06/jest-module-name-mapper.html">
+        Jestでaliasを使ったモジュール参照を扱う
+      </a>
+    </div>
+  
+</nav>
+
+
+</article>
+
+
+      </div>
+      <div class="sidebar column is-4">
+        <aside>
+  
+    <aside class="search widget">
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form" target="_blank">
+    <div class="control has-icons-right">
+      <input type="search" name="q" class="input" placeholder="検索">
+      <span class="icon is-small is-right">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="hidden" name="sitesearch" value="https://blog.mitsuruog.info">
+  </form>
+</aside>
+
+  
+    <div class="widget-wrap">
+  <div class="widget-title">著者</div>
+  <aside class="profile media widget">
+    <figure class="profile-avatar media-left">
+      <img src="https://s.gravatar.com/avatar/72a1fbe4f393609954a8072ef828fa30?s=320" class="avatar" alt="mitsuruog">
+    </figure>
+    <div class="media-content">
+      <p>
+        <strong>
+          <span>mitsuruog</span>
+          <span class="icon">
+            <a href="https://github.com/mitsuruog" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </span>
+        </strong>
+        <br>
+        <span>I am a frontend developer and happy hacking every time for learning something new.</span>
+      </p>
+    </div>
+  </aside>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget-title">最近の記事</div>
+    <div class="widget">
+      <ul class="recent-post">
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2019/06/try-synthetic-monitoring.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/catchpoint-logo.png" class="thumbnail is-6x6" alt="Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2019/06/try-synthetic-monitoring.html" class="">
+                  Catchpointでこのブログのパフォーマンスを1週間Synthetic Monitoringしてみた
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2019-06-29
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2019/06/jest-module-name-mapper.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/jest-alias-logo.png" class="thumbnail is-6x6" alt="Jestでaliasを使ったモジュール参照を扱う">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2019/06/jest-module-name-mapper.html" class="">
+                  Jestでaliasを使ったモジュール参照を扱う
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2019-06-07
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2019/05/react-native-platform-specific-extensions-with-typescript.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/typescript-platform-extensions-logo.png" class="thumbnail is-6x6" alt="TypeScriptでreact-nativeのPlatform-specific extensionsを型安心にする">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2019/05/react-native-platform-specific-extensions-with-typescript.html" class="">
+                  TypeScriptでreact-nativeのPlatform-specific extensionsを型安心にする
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2019-05-22
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2019/05/roblox-build-save-point.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-save-point-logo.png" class="thumbnail is-6x6" alt="Robloxでセーブポイントを作る">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2019/05/roblox-build-save-point.html" class="">
+                  Robloxでセーブポイントを作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2019-05-10
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+          <li class="recent-post-item media">
+            <figure class="media-left">
+              
+  <a href="/2019/05/roblox-create-money-pick-game.html">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/roblox-money-logo.png" class="thumbnail is-6x6" alt="Robloxで簡単なコイン拾いゲームを作る">
+  </a>
+
+
+            </figure>
+            <div class="media-content">
+              <p class="">
+                <a href="/2019/05/roblox-create-money-pick-game.html" class="">
+                  Robloxで簡単なコイン拾いゲームを作る
+                </a>
+              </p>
+              <p class="">
+                <small>
+                  2019-05-04
+
+                </small>
+              </p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget">
+      <a href="/tags/Android/" style="font-size: 10.71px;">Android</a> <a href="/tags/AngularJs/" style="font-size: 16.43px;">AngularJs</a> <a href="/tags/CODEPREP/" style="font-size: 10px;">CODEPREP</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Chrome-Devtools/" style="font-size: 10px;">Chrome Devtools</a> <a href="/tags/CoffeeScript/" style="font-size: 10px;">CoffeeScript</a> <a href="/tags/Fiddler2/" style="font-size: 10px;">Fiddler2</a> <a href="/tags/File-API/" style="font-size: 10px;">File API</a> <a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/GoogleMap/" style="font-size: 10px;">GoogleMap</a> <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/HTML5/" style="font-size: 13.57px;">HTML5</a> <a href="/tags/Iot/" style="font-size: 10px;">Iot</a> <a href="/tags/JAX-RS/" style="font-size: 10px;">JAX-RS</a> <a href="/tags/JSF/" style="font-size: 10px;">JSF</a> <a href="/tags/JSON-Web-Signature/" style="font-size: 10px;">JSON Web Signature</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JWS/" style="font-size: 10px;">JWS</a> <a href="/tags/JWT/" style="font-size: 10px;">JWT</a> <a href="/tags/Jasmine/" style="font-size: 10.71px;">Jasmine</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Json-Web-token/" style="font-size: 10px;">Json Web token</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Northwind/" style="font-size: 10px;">Northwind</a> <a href="/tags/OData/" style="font-size: 10px;">OData</a> <a href="/tags/ODataService/" style="font-size: 10px;">ODataService</a> <a href="/tags/OpenUI5/" style="font-size: 17.14px;">OpenUI5</a> <a href="/tags/RICOH-THETA/" style="font-size: 10px;">RICOH THETA</a> <a href="/tags/ReverseProxy/" style="font-size: 10px;">ReverseProxy</a> <a href="/tags/SAPUI5/" style="font-size: 17.14px;">SAPUI5</a> <a href="/tags/SAStruts/" style="font-size: 10px;">SAStruts</a> <a href="/tags/SPA/" style="font-size: 12.14px;">SPA</a> <a href="/tags/Salesforce/" style="font-size: 10px;">Salesforce</a> <a href="/tags/Salesforce-Lightning-Design-System/" style="font-size: 10px;">Salesforce Lightning Design System</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Seaser2/" style="font-size: 10px;">Seaser2</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/Underscore/" style="font-size: 10px;">Underscore</a> <a href="/tags/WAI-ARIA/" style="font-size: 10px;">WAI-ARIA</a> <a href="/tags/Web-Components/" style="font-size: 10px;">Web Components</a> <a href="/tags/WebAPI/" style="font-size: 10px;">WebAPI</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/angular/" style="font-size: 15.71px;">angular</a> <a href="/tags/angular2/" style="font-size: 17.86px;">angular2</a> <a href="/tags/aws/" style="font-size: 12.86px;">aws</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/babel/" style="font-size: 10px;">babel</a> <a href="/tags/backbone/" style="font-size: 14.29px;">backbone</a> <a href="/tags/bootstrap/" style="font-size: 10.71px;">bootstrap</a> <a href="/tags/browser-extensions/" style="font-size: 10px;">browser extensions</a> <a href="/tags/chart/" style="font-size: 10px;">chart</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/circleci/" style="font-size: 10px;">circleci</a> <a href="/tags/cloudfront/" style="font-size: 10px;">cloudfront</a> <a href="/tags/cordova/" style="font-size: 10.71px;">cordova</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/d3-js/" style="font-size: 10px;">d3.js</a> <a href="/tags/definitelytyped/" style="font-size: 10px;">definitelytyped</a> <a href="/tags/docker/" style="font-size: 10.71px;">docker</a> <a href="/tags/es6/" style="font-size: 10.71px;">es6</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/font/" style="font-size: 10px;">font</a> <a href="/tags/fullstack/" style="font-size: 10px;">fullstack</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 11.43px;">grunt</a> <a href="/tags/handlebars-js/" style="font-size: 10px;">handlebars.js</a> <a href="/tags/heroku/" style="font-size: 12.14px;">heroku</a> <a href="/tags/heroku-connect/" style="font-size: 10.71px;">heroku connect</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/i18n/" style="font-size: 10px;">i18n</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/istanbul/" style="font-size: 10px;">istanbul</a> <a href="/tags/jasmine/" style="font-size: 15.71px;">jasmine</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jest/" style="font-size: 10.71px;">jest</a> <a href="/tags/jspm/" style="font-size: 10px;">jspm</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/localstorage/" style="font-size: 10.71px;">localstorage</a> <a href="/tags/minecraft/" style="font-size: 10px;">minecraft</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mongoose/" style="font-size: 10px;">mongoose</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/mows/" style="font-size: 10px;">mows</a> <a href="/tags/mqtt/" style="font-size: 10px;">mqtt</a> <a href="/tags/nodejitsu/" style="font-size: 10px;">nodejitsu</a> <a href="/tags/nodejs/" style="font-size: 17.14px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.71px;">npm</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/postman/" style="font-size: 10px;">postman</a> <a href="/tags/r/" style="font-size: 10px;">r</a> <a href="/tags/reacr-router-4/" style="font-size: 10px;">reacr-router-4</a> <a href="/tags/react/" style="font-size: 18.57px;">react</a> <a href="/tags/react-intl/" style="font-size: 10px;">react-intl</a> <a href="/tags/react-native/" style="font-size: 15px;">react-native</a> <a href="/tags/react-native-router-flux/" style="font-size: 10px;">react-native-router-flux</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/redux/" style="font-size: 12.86px;">redux</a> <a href="/tags/redux-observable/" style="font-size: 10.71px;">redux-observable</a> <a href="/tags/roblox/" style="font-size: 12.86px;">roblox</a> <a href="/tags/rollbar/" style="font-size: 10px;">rollbar</a> <a href="/tags/s3/" style="font-size: 12.14px;">s3</a> <a href="/tags/stripe/" style="font-size: 10px;">stripe</a> <a href="/tags/styleguide/" style="font-size: 12.86px;">styleguide</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/typescript/" style="font-size: 19.29px;">typescript</a> <a href="/tags/underscore/" style="font-size: 10px;">underscore</a> <a href="/tags/unit-test/" style="font-size: 17.86px;">unit test</a> <a href="/tags/vscode/" style="font-size: 10.71px;">vscode</a> <a href="/tags/web-performance/" style="font-size: 10px;">web performance</a> <a href="/tags/webapi/" style="font-size: 10.71px;">webapi</a> <a href="/tags/webpack/" style="font-size: 12.14px;">webpack</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/wercker/" style="font-size: 10px;">wercker</a> <a href="/tags/wot/" style="font-size: 10px;">wot</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/yeoman/" style="font-size: 11.43px;">yeoman</a> <a href="/tags/その他/" style="font-size: 20px;">その他</a> <a href="/tags/チュートリアル/" style="font-size: 10px;">チュートリアル</a> <a href="/tags/ハンズオン/" style="font-size: 11.43px;">ハンズオン</a> <a href="/tags/ロブロックス/" style="font-size: 12.86px;">ロブロックス</a> <a href="/tags/統計/" style="font-size: 10.71px;">統計</a> <a href="/tags/翻訳/" style="font-size: 10.71px;">翻訳</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">6月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">5月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">4月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">3月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">1月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">12月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">3月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">9月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">8月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">10月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">4月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">3月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">1月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">12月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">7月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">6月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">1月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">12月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">11月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">10月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">8月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">5月 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">4月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">3月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">1月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">12月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">11月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">4月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">3月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">1月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">12月 2012</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">11月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10月 2012</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+          <img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+        </a>
+        <br>
+        <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">mitsuruog</span>を著作者とするこの作品は<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">クリエイティブ・コモンズの 表示 - 継承 4.0 国際 ライセンス</a>で提供されています。
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
