@@ -14,6 +14,10 @@ thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/rn
 react-native-router-fluxで毎日頭を悩ませています。
 うーん、なんだろう。。。初見は使いやすそうなんですが、いざ本番となるといろいろ制約があって悩ましいライブラリですね。
 
+> Part2
+> [react\-native\-router\-fluxのonRightをカスタマイズする(part2) \| I am mitsuruog](https://blog.mitsuruog.info/2019/08/rnrf-customizable-onright)
+
+
 今回はアプリのNavBarの右側にあるボタンをクリックした時に、次の画面にpropsを渡したいようなユースケースを想定しています。例えば参照画面から編集画面に移動するときなどです。
 ボタンは次のイメージのような感じです。
 
