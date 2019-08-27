@@ -3,9 +3,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.mitsuruog.info/2018/03/how-to-learn-css-1.html</loc>
+    
+    <lastmod>2019-08-27T14:13:00.094Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2019/03/rnrf-customizable-onright.html</loc>
+    
+    <lastmod>2019-08-27T14:11:56.692Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2019/08/rnrf-customizable-onright.html</loc>
+    
+    <lastmod>2019-08-27T14:09:35.968Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.mitsuruog.info/2019/06/try-synthetic-monitoring.html</loc>
     
-    <lastmod>2019-06-28T14:19:44.477Z</lastmod>
+    <lastmod>2019-07-05T03:31:26.535Z</lastmod>
     
   </url>
   
@@ -90,13 +111,6 @@
     <loc>https://blog.mitsuruog.info/2019/03/typescript-filter-array.html</loc>
     
     <lastmod>2019-03-26T12:44:20.103Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2019/03/rnrf-customizable-onright.html</loc>
-    
-    <lastmod>2019-03-15T13:21:16.700Z</lastmod>
     
   </url>
   
@@ -216,13 +230,6 @@
     <loc>https://blog.mitsuruog.info/2014/01/spa7.html</loc>
     
     <lastmod>2018-12-16T07:06:53.407Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.mitsuruog.info/2018/03/how-to-learn-css-1.html</loc>
-    
-    <lastmod>2018-12-16T06:58:37.903Z</lastmod>
     
   </url>
   
@@ -430,13 +437,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.568Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2017/11/way-to-debug-docker-image.html</loc>
     
     <lastmod>2017-12-10T08:09:17.568Z</lastmod>
@@ -444,14 +444,21 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-publish-docker-image.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.568Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2017/11/react-router-redirect-parameter.html</loc>
+    <loc>https://blog.mitsuruog.info/2017/11/way-to-api-key-access-s3.html</loc>
     
     <lastmod>2017-12-10T08:09:17.566Z</lastmod>
     
@@ -486,14 +493,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
@@ -521,13 +528,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.559Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2016/03/ng-sake-with-unit-testing.html</loc>
     
     <lastmod>2017-12-10T08:09:17.559Z</lastmod>
@@ -535,14 +535,21 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-xhr.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.559Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
     
     <lastmod>2017-12-10T08:09:17.558Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
     
     <lastmod>2017-12-10T08:09:17.558Z</lastmod>
     
@@ -563,7 +570,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -577,7 +584,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/vscode-with-nvm.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -598,7 +605,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
@@ -612,7 +619,7 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-component-router-tips.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
@@ -682,14 +689,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2012/10/nodejsnpm.html</loc>
+    <loc>https://blog.mitsuruog.info/2012/10/nodejstcp.html</loc>
     
     <lastmod>2017-12-09T15:31:05.702Z</lastmod>
     
@@ -794,14 +801,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/01/bootstrapmodal.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/12/goodby-2014.html</loc>
     
     <lastmod>2017-12-09T15:31:05.674Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2014/12/goodby-2014.html</loc>
+    <loc>https://blog.mitsuruog.info/2014/01/bootstrapmodal.html</loc>
     
     <lastmod>2017-12-09T15:31:05.674Z</lastmod>
     
