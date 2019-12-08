@@ -14,7 +14,7 @@
 <meta property="og:description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVSCodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理由">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png">
-<meta property="og:updated_time" content="2019-12-08T11:05:22.108Z">
+<meta property="og:updated_time" content="2019-12-08T11:48:49.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VSCodeのLiveShareを使ったリモートペアプログラミングの紹介">
 <meta name="twitter:description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVSCodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理由">
@@ -47,7 +47,7 @@
   "name": "VSCodeのLiveShareを使ったリモートペアプログラミングの紹介",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png",
   "datePublished": "2019-12-07T15:00:00.000Z",
-  "dateModified": "2019-12-08T11:05:22.108Z",
+  "dateModified": "2019-12-08T11:48:49.804Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/12/pair-programming-vscode-live-share.html"
@@ -162,9 +162,9 @@
 </ul>
 <p>VSCodeの他にはリアルタイムで会話するために、ビデオチャットツールを利用しています。<br>Live Shareには<strong>Shared servers</strong>や<strong>Shared terminal</strong>など相手の環境を共有できる強力な機能がありますが、やはり「そっちの画面ちょっとみせて」といったライトなやりとりができた方がいいので、ビデオチャットには画面共有ができた方がいいです。</p>
 <p>まず、どちらかのローカル環境にVSCode経由で接続する(Collaborative Session)ことでリモートペアプログラミングが始まります。</p>
-<p>基本的にVSCodeを左右2ペインにして作業します。<br>下の例では左がジュニア、右がシニアです。ジュニア側はReactの小さなUIコンポーネントを作成しています。こうすることで2人同時に並行作業することができます。</p>
+<p>基本的にVSCodeを左右2ペインにして作業します。<br>下の例では左がジュニア、右がシニアです。ジュニア側はReactの小さなUIコンポーネントを作成し、シニア側はコンポーネントを検証するコードを書きます。こうすることで2人同時に並行作業することができます。</p>
 <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-02.png">
-<p>基本的な手順としては、シニアがスタイルガイド(<a href="https://react-styleguidist.js.org/" target="_blank" rel="noopener">React Styleguidist</a>)にこのUIコンポーネントも様々なバリエーションを追加していき。これをジュニアが実装していきます。<br>ジュニアがつまづいたりした場合は、ビデオチャットで教えたり、直接コードを変更しながら実装の手順を順番に見せたりします。</p>
+<p>今回は小さなUIコンポーネントを題材にしました。シニアがスタイルガイド(<a href="https://react-styleguidist.js.org/" target="_blank" rel="noopener">React Styleguidist</a>)にUIコンポーネントの様々なバリエーションを追加していき、これをジュニアが実装していきます。<br>ジュニアがつまづいたりした場合は、ビデオチャットで教えたり、直接コードを変更しながら実装の手順を順番に見せたりします。</p>
 <p>最終的に二人で協力しながら1つのUIコンポーネントを完成させることを目指します。</p>
 <blockquote>
 <p>スタイルガイド(<a href="https://react-styleguidist.js.org/" target="_blank" rel="noopener">React Styleguidist</a>)とは、UIコンポーネントの見本カタログのようなものです。他には<a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>が有名です。<br>個人的な経験として、昨今のフロントエンドの品質を上げるためには、<strong>末端のUIコンポーネントを品質を上げることが非常に重要</strong>なことがわかってきました。そのため、このようなスタイルガイドを利用して様々な状態(レスポンシブ・内包するコンテンツなど)に対応するUIコンポーネントを作り込む作業を非常に重要視しています。</p>

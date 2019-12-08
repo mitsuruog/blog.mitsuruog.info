@@ -5,7 +5,7 @@
   <url>
     <loc>https://blog.mitsuruog.info/2019/12/pair-programming-vscode-live-share.html</loc>
     
-    <lastmod>2019-12-08T11:05:22.108Z</lastmod>
+    <lastmod>2019-12-08T11:48:49.804Z</lastmod>
     
   </url>
   
@@ -500,14 +500,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/10/webpack-with-custom-font.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/10/using-react-intl-make-react-app-as-i18n.html</loc>
     
     <lastmod>2017-12-10T08:09:17.562Z</lastmod>
     
@@ -521,14 +521,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/04/goodby-si.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/04/way-of-http-interceptpr-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.560Z</lastmod>
     
@@ -549,13 +549,6 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
-    
-    <lastmod>2017-12-10T08:09:17.558Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-dom.html</loc>
     
     <lastmod>2017-12-10T08:09:17.558Z</lastmod>
@@ -563,9 +556,9 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-pipe.html</loc>
     
-    <lastmod>2017-12-10T08:09:17.557Z</lastmod>
+    <lastmod>2017-12-10T08:09:17.558Z</lastmod>
     
   </url>
   
@@ -577,14 +570,21 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-coverage.html</loc>
+    
+    <lastmod>2017-12-10T08:09:17.557Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/how-to-make-sharedservice-in-angular2.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/03/how-to-test-angular2-application-1.html</loc>
     
     <lastmod>2017-12-10T08:09:17.556Z</lastmod>
     
@@ -619,14 +619,14 @@
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.mitsuruog.info/2016/02/angular2-minimum-starter.html</loc>
+    <loc>https://blog.mitsuruog.info/2016/01/use-salesforce-lightning-design-system-in-webpack.html</loc>
     
     <lastmod>2017-12-10T08:09:17.553Z</lastmod>
     
