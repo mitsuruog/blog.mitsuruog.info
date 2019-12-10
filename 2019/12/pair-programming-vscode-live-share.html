@@ -3,21 +3,21 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>VSCodeのLiveShareを使ったリモートペアプログラミングの紹介 | I am mitsuruog</title>
+  <title>VS CodeのLiveShareを使ったリモートペアプログラミングの紹介 | I am mitsuruog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <meta name="description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVSCodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理由">
+  <meta name="description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVS CodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理">
 <meta name="keywords" content="vscode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VSCodeのLiveShareを使ったリモートペアプログラミングの紹介">
+<meta property="og:title" content="VS CodeのLiveShareを使ったリモートペアプログラミングの紹介">
 <meta property="og:url" content="https://blog.mitsuruog.info/2019/12/pair-programming-vscode-live-share.html">
 <meta property="og:site_name" content="I am mitsuruog">
-<meta property="og:description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVSCodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理由">
+<meta property="og:description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVS CodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理">
 <meta property="og:locale" content="ja">
 <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png">
-<meta property="og:updated_time" content="2019-12-08T11:48:49.804Z">
+<meta property="og:updated_time" content="2019-12-10T13:39:15.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VSCodeのLiveShareを使ったリモートペアプログラミングの紹介">
-<meta name="twitter:description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVSCodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理由">
+<meta name="twitter:title" content="VS CodeのLiveShareを使ったリモートペアプログラミングの紹介">
+<meta name="twitter:description" content="この記事はVisual Studio Code Advent Calendar 2019 - Qiita8日目の記事です。 現在、仕事で使っているVS CodeのLiveShareを使ったリモートペアプログラミングについて紹介します。ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。 背景なぜ現在この方法を採用しているかというと、次のような理">
 <meta name="twitter:image" content="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png">
   <link rel="icon" href="/favicon.ico">
   
@@ -43,11 +43,11 @@
   {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "headline": "VSCodeのLiveShareを使ったリモートペアプログラミングの紹介",
-  "name": "VSCodeのLiveShareを使ったリモートペアプログラミングの紹介",
+  "headline": "VS CodeのLiveShareを使ったリモートペアプログラミングの紹介",
+  "name": "VS CodeのLiveShareを使ったリモートペアプログラミングの紹介",
   "image": "https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png",
   "datePublished": "2019-12-07T15:00:00.000Z",
-  "dateModified": "2019-12-08T11:48:49.804Z",
+  "dateModified": "2019-12-10T13:39:15.060Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.mitsuruog.info/2019/12/pair-programming-vscode-live-share.html"
@@ -103,13 +103,13 @@
         <article class="post">
   <figure class="post-thumbnail">
     
-  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png" class="thumbnail " alt="VSCodeのLiveShareを使ったリモートペアプログラミングの紹介">
+  <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png" class="thumbnail " alt="VS CodeのLiveShareを使ったリモートペアプログラミングの紹介">
 
 
   </figure>
   <span>2019-12-08
 </span>
-  <h1 class="title">VSCodeのLiveShareを使ったリモートペアプログラミングの紹介</h1>
+  <h1 class="title">VS CodeのLiveShareを使ったリモートペアプログラミングの紹介</h1>
   
   <div class="tags">
     
@@ -120,7 +120,7 @@
 
   <div class="content">
     <p>この記事は<a href="https://qiita.com/advent-calendar/2019/vscode" target="_blank" rel="noopener">Visual Studio Code Advent Calendar 2019 - Qiita</a>8日目の記事です。</p>
-<p>現在、仕事で使っているVSCodeのLiveShareを使ったリモートペアプログラミングについて紹介します。<br>ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。</p>
+<p>現在、仕事で使っているVS CodeのLiveShareを使ったリモートペアプログラミングについて紹介します。<br>ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。</p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>なぜ現在この方法を採用しているかというと、次のような理由がありました。</p>
 <ul>
 <li>ジュニアのフロントエンドが参画したため、育成する必要がある</li>
@@ -145,24 +145,24 @@
 <p>そこで感じたことは、ペアプログラミング(というかペア作業)の一番の醍醐味は「<strong>お互いに1つのものを協力して完成させていく過程を楽しみ、そこで生まれる達成感からお互いの信頼関係が深まることではないか</strong>」と思った次第です。</p>
 <p>そのため自分がやりたいペアプログラミングを実現するために、同じPCの画面上で同時に並行作業でき、ナビゲータとドライバーの垣根をなくせるようなツール(道具)が必要でした。<br>そこで出会ったのが「<strong><a href="https://visualstudio.microsoft.com/services/live-share/" target="_blank" rel="noopener">Live Share</a></strong>」です。</p>
 <h2 id="Live-Shareとは"><a href="#Live-Shareとは" class="headerlink" title="Live Shareとは"></a>Live Shareとは</h2><p>前置きが長くなりましたが、Live Shareを一言でいうと「<strong>コードの共同編集</strong>」です。<br>Google Docの共同編集を体験した方であれが想像がしやすいかと思いますが、複数人で同時に同じコードを編集することができるツールです。</p>
-<p>Live Shareを使うと、下のようにVSCode上で他の人がどこを編集しているか一目でわかるようになります。</p>
+<p>Live Shareを使うと、下のようにVS Code上で他の人がどこを編集しているか一目でわかるようになります。</p>
 <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-03.png">
 <blockquote>
 <p>(画像は本家サイトのもの) <a href="https://visualstudio.microsoft.com/services/live-share/" target="_blank" rel="noopener">https://visualstudio.microsoft.com/services/live-share/</a></p>
 </blockquote>
-<p>Live ShareはVSCodeのpluginとなっているので、こちらからインストールしてください。</p>
+<p>Live ShareはVS Codeのpluginとなっているので、こちらからインストールしてください。</p>
 <ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare" target="_blank" rel="noopener">Live Share - Visual Studio Marketplace</a></li>
 </ul>
 <p>こまかな設定や利用方法については、Webを検索すると様々な情報が見つかるので、そちらを参照してください。</p>
 <h2 id="実際のリモートペアプログラミングのやり方"><a href="#実際のリモートペアプログラミングのやり方" class="headerlink" title="実際のリモートペアプログラミングのやり方"></a>実際のリモートペアプログラミングのやり方</h2><p>リモートペアプログラミングをする上で次のツールを利用しています。</p>
 <ul>
-<li>VSCode + Live Share</li>
+<li>VS Code + Live Share</li>
 <li>Slack(ビデオチャット用。画面共有できれば他のもので代用可。)</li>
 </ul>
-<p>VSCodeの他にはリアルタイムで会話するために、ビデオチャットツールを利用しています。<br>Live Shareには<strong>Shared servers</strong>や<strong>Shared terminal</strong>など相手の環境を共有できる強力な機能がありますが、やはり「そっちの画面ちょっとみせて」といったライトなやりとりができた方がいいので、ビデオチャットには画面共有ができた方がいいです。</p>
-<p>まず、どちらかのローカル環境にVSCode経由で接続する(Collaborative Session)ことでリモートペアプログラミングが始まります。</p>
-<p>基本的にVSCodeを左右2ペインにして作業します。<br>下の例では左がジュニア、右がシニアです。ジュニア側はReactの小さなUIコンポーネントを作成し、シニア側はコンポーネントを検証するコードを書きます。こうすることで2人同時に並行作業することができます。</p>
+<p>VS Codeの他にはリアルタイムで会話するために、ビデオチャットツールを利用しています。<br>Live Shareには<strong>Shared servers</strong>や<strong>Shared terminal</strong>など相手の環境を共有できる強力な機能がありますが、やはり「そっちの画面ちょっとみせて」といったライトなやりとりができた方がいいので、ビデオチャットには画面共有ができた方がいいです。</p>
+<p>まず、どちらかのローカル環境にVS Code経由で接続する(Collaborative Session)ことでリモートペアプログラミングが始まります。</p>
+<p>基本的にVS Codeを左右2ペインにして作業します。<br>下の例では左がジュニア、右がシニアです。ジュニア側はReactの小さなUIコンポーネントを作成し、シニア側はコンポーネントを検証するコードを書きます。こうすることで2人同時に並行作業することができます。</p>
 <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-02.png">
 <p>今回は小さなUIコンポーネントを題材にしました。シニアがスタイルガイド(<a href="https://react-styleguidist.js.org/" target="_blank" rel="noopener">React Styleguidist</a>)にUIコンポーネントの様々なバリエーションを追加していき、これをジュニアが実装していきます。<br>ジュニアがつまづいたりした場合は、ビデオチャットで教えたり、直接コードを変更しながら実装の手順を順番に見せたりします。</p>
 <p>最終的に二人で協力しながら1つのUIコンポーネントを完成させることを目指します。</p>
@@ -177,7 +177,7 @@
 </blockquote>
 <p>なにより一緒に作業することで、ジュニアのスキルレベルの把握ができ、どのような課題があって次にそのような挑戦をさせたらしいか、考えることができるようになりました。</p>
 <p>ジュニアも今まで謎だった、フロントエンド実装の手順について明らかになり、自信がついてきたような気がします。<br>このようなことは、フロントエンド特有の自由度に起因するのかもしれませんが、ジュニアに結果だけでなく過程も見せることで確実にスキルアップできそうな気がします。</p>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>VSCodeのLiveShareを使ったリモートペアプログラミングの紹介でした。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>VS CodeのLiveShareを使ったリモートペアプログラミングの紹介でした。</p>
 <p>きっかけはチームにジュニアが参画したことで、従来の<strong>もぐらたたき式</strong>のPullRequestレビューや、ストレスの多いペアプログラミングを脱却し、本当にチームの中でジュニアがのびのび楽しく成長できる環境を作りたかったことが始まりでした。</p>
 <p>まだ、試行錯誤の途中ですが、これからも自分が考える最良の環境を目指して努力していきたいです。</p>
 
@@ -252,7 +252,7 @@
             <figure class="media-left">
               
   <a href="/2019/12/pair-programming-vscode-live-share.html">
-    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png" class="thumbnail is-6x6" alt="VSCodeのLiveShareを使ったリモートペアプログラミングの紹介">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-logo.png" class="thumbnail is-6x6" alt="VS CodeのLiveShareを使ったリモートペアプログラミングの紹介">
   </a>
 
 
@@ -260,7 +260,7 @@
             <div class="media-content">
               <p class="">
                 <a href="/2019/12/pair-programming-vscode-live-share.html" class="">
-                  VSCodeのLiveShareを使ったリモートペアプログラミングの紹介
+                  VS CodeのLiveShareを使ったリモートペアプログラミングの紹介
                 </a>
               </p>
               <p class="">
