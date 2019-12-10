@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "VSCodeのLiveShareを使ったリモートペアプログラミングの紹介"
+title: "VS CodeのLiveShareを使ったリモートペアプログラミングの紹介"
 date: 2019-12-08 0:00:00 +900
 comments: true
 tags:
@@ -10,7 +10,7 @@ thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/li
 
 この記事は[Visual Studio Code Advent Calendar 2019 - Qiita](https://qiita.com/advent-calendar/2019/vscode)8日目の記事です。
 
-現在、仕事で使っているVSCodeのLiveShareを使ったリモートペアプログラミングについて紹介します。
+現在、仕事で使っているVS CodeのLiveShareを使ったリモートペアプログラミングについて紹介します。
 ちなみに利用している技術スタックは、「React+TypeScript」のフロントエンドチームの事例です。
 
 ## 背景
@@ -54,13 +54,13 @@ thumbnail: https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/li
 前置きが長くなりましたが、Live Shareを一言でいうと「**コードの共同編集**」です。
 Google Docの共同編集を体験した方であれが想像がしやすいかと思いますが、複数人で同時に同じコードを編集することができるツールです。
 
-Live Shareを使うと、下のようにVSCode上で他の人がどこを編集しているか一目でわかるようになります。
+Live Shareを使うと、下のようにVS Code上で他の人がどこを編集しているか一目でわかるようになります。
 
 {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-03.png %}
 
 > (画像は本家サイトのもの) https://visualstudio.microsoft.com/services/live-share/
 
-Live ShareはVSCodeのpluginとなっているので、こちらからインストールしてください。
+Live ShareはVS Codeのpluginとなっているので、こちらからインストールしてください。
 
 - [Live Share \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
 
@@ -70,15 +70,15 @@ Live ShareはVSCodeのpluginとなっているので、こちらからインス�
 
 リモートペアプログラミングをする上で次のツールを利用しています。
 
-- VSCode + Live Share
+- VS Code + Live Share
 - Slack(ビデオチャット用。画面共有できれば他のもので代用可。)
 
-VSCodeの他にはリアルタイムで会話するために、ビデオチャットツールを利用しています。
+VS Codeの他にはリアルタイムで会話するために、ビデオチャットツールを利用しています。
 Live Shareには**Shared servers**や**Shared terminal**など相手の環境を共有できる強力な機能がありますが、やはり「そっちの画面ちょっとみせて」といったライトなやりとりができた方がいいので、ビデオチャットには画面共有ができた方がいいです。
 
-まず、どちらかのローカル環境にVSCode経由で接続する(Collaborative Session)ことでリモートペアプログラミングが始まります。
+まず、どちらかのローカル環境にVS Code経由で接続する(Collaborative Session)ことでリモートペアプログラミングが始まります。
 
-基本的にVSCodeを左右2ペインにして作業します。
+基本的にVS Codeを左右2ペインにして作業します。
 下の例では左がジュニア、右がシニアです。ジュニア側はReactの小さなUIコンポーネントを作成し、シニア側はコンポーネントを検証するコードを書きます。こうすることで2人同時に並行作業することができます。
 
 {% img https://s3-ap-northeast-1.amazonaws.com/blog-mitsuruog/images/2019/liveshare-02.png %}
@@ -106,7 +106,7 @@ Live Shareには**Shared servers**や**Shared terminal**など相手の環境を
 
 ## まとめ
 
-VSCodeのLiveShareを使ったリモートペアプログラミングの紹介でした。
+VS CodeのLiveShareを使ったリモートペアプログラミングの紹介でした。
 
 きっかけはチームにジュニアが参画したことで、従来の**もぐらたたき式**のPullRequestレビューや、ストレスの多いペアプログラミングを脱却し、本当にチームの中でジュニアがのびのび楽しく成長できる環境を作りたかったことが始まりでした。
 
